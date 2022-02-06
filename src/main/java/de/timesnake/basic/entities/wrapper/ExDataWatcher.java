@@ -1,0 +1,17 @@
+package de.timesnake.basic.entities.wrapper;
+
+import net.minecraft.network.syncher.DataWatcher;
+
+public class ExDataWatcher {
+
+    private final DataWatcher watcher;
+
+    public ExDataWatcher(DataWatcher watcher) {
+        this.watcher = watcher;
+    }
+
+    public DataWatcher getNMS() {
+        return this.watcher;
+    }
+
+}
