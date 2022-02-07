@@ -1,12 +1,14 @@
 package de.timesnake.basic.entities.entity.bukkit;
 
-import com.destroystokyo.paper.profile.ProfileProperty;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import de.timesnake.basic.entities.entity.extension.EntityExtension;
 import de.timesnake.basic.entities.entity.extension.ExEntity;
 import de.timesnake.basic.entities.entity.extension.ExEntityHuman;
-import de.timesnake.basic.entities.wrapper.*;
+import de.timesnake.basic.entities.wrapper.ExDamageSource;
+import de.timesnake.basic.entities.wrapper.ExEntityMoveType;
+import de.timesnake.basic.entities.wrapper.ExVec3D;
+import de.timesnake.basic.entities.wrapper.ExWorldServer;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import de.timesnake.library.reflection.wrapper.ExEntityPose;
 import de.timesnake.library.reflection.wrapper.ExEnumItemSlot;
@@ -30,7 +32,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Random;
-import java.util.Set;
 import java.util.UUID;
 
 public class ExPlayer extends CraftPlayer implements EntityExtension<ExEntityHuman> {
@@ -65,23 +66,11 @@ public class ExPlayer extends CraftPlayer implements EntityExtension<ExEntityHum
         return extension;
     }
 
-    public void setTextures(Set<ProfileProperty> profileProperties) {
-        ProfileProperty textures = null;
-
-        for (ProfileProperty prop : profileProperties) {
-            if (prop.getName().equals("textures")) {
-                textures = prop;
-            }
-        }
-
-        this.getProfile().getProperties().put("textures", new Property("textures", textures.getValue(), textures.getSignature()));
-    }
-
     public void setTextures(String value, String signature) {
         this.getProfile().getProperties().put("textures", new Property("textures", value, signature));
     }
 
-    // delegated
+    // delegated extension
 
 
     public void setNMSField(String name, Object value) {
@@ -275,4 +264,5 @@ public class ExPlayer extends CraftPlayer implements EntityExtension<ExEntityHum
     public UUID getUniqueID() {
         return getExtension().getUniqueID();
     }
+
 }
