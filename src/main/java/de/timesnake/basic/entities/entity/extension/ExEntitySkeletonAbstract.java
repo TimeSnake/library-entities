@@ -1,7 +1,7 @@
 package de.timesnake.basic.entities.entity.extension;
 
 import de.timesnake.basic.entities.pathfinder.ExPathfinderGoal;
-import de.timesnake.basic.entities.pathfinder.goals.ExPathfinderGoalBowShoot;
+import de.timesnake.basic.entities.pathfinder.ExPathfinderGoalBowShoot;
 import net.minecraft.world.entity.monster.EntitySkeletonAbstract;
 import org.bukkit.craftbukkit.v1_18_R1.entity.CraftAbstractSkeleton;
 
@@ -30,6 +30,7 @@ public class ExEntitySkeletonAbstract extends ExEntityInsentient {
             pathfinderGoal.injectEntity(this);
 
             super.setNMSField(EntitySkeletonAbstract.class, "b", pathfinderGoal.getNMS());
+            this.getNMS().t();
         } else {
             super.addPathfinderGoal(priority, pathfinderGoal);
         }
@@ -45,6 +46,7 @@ public class ExEntitySkeletonAbstract extends ExEntityInsentient {
             pathfinderGoal.injectEntity(this);
 
             super.setNMSField(EntitySkeletonAbstract.class, "b", pathfinderGoal.getNMS());
+            this.getNMS().t();
         } else {
             super.addPathfinderGoal(pathfinderGoal);
         }
