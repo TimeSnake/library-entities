@@ -5,7 +5,7 @@ import de.timesnake.basic.entities.entity.extension.ExEntity;
 import de.timesnake.basic.entities.entity.extension.ExEntityLiving;
 import de.timesnake.basic.entities.entity.extension.ExEntityRaider;
 import de.timesnake.basic.entities.pathfinder.ExPathfinderGoal;
-import de.timesnake.basic.entities.pathfinder.target.ExPathfinderGoalNearestAttackableTargetWitch;
+import de.timesnake.basic.entities.pathfinder.ExPathfinderGoalNearestAttackableTargetWitch;
 import de.timesnake.basic.entities.wrapper.*;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import de.timesnake.library.reflection.wrapper.ExEntityPose;
