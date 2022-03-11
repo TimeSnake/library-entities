@@ -37,10 +37,8 @@ public abstract class PathfinderGoalUpdatedLocation extends PathfinderGoal {
 
         if (this.entity.distanceSquared(x, y, z) < (this.minDistance * this.minDistance)) { // entity distance < minDistance
             return false;
-        } else if (this.entity.distanceSquared(x, y, z) > (this.trackingDistance * this.trackingDistance)) { // entity not in tracking distance
-            return false;
         } else {
-            return true;
+            return !(this.entity.distanceSquared(x, y, z) > (this.trackingDistance * this.trackingDistance));
         }
 
     }

@@ -1,7 +1,7 @@
 package de.timesnake.basic.entities.entity.extension;
 
-import de.timesnake.library.reflection.RefUtil;
 import de.timesnake.basic.entities.wrapper.*;
+import de.timesnake.library.reflection.RefUtil;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import de.timesnake.library.reflection.wrapper.ExEntityPose;
 import de.timesnake.library.reflection.wrapper.ExEnumItemSlot;
@@ -129,7 +129,11 @@ public class ExEntity {
     }
 
     public void setPosition(double x, double y, double z) {
-        this.getNMS().o(x, y, z);
+        this.getNMS().o(x, y + 0.1, z);
+    }
+
+    public void setPosition(double x, double y, double z, boolean fixSpawnInBlock) {
+        this.getNMS().o(x, y + (fixSpawnInBlock ? 0.1 : 0), z);
     }
 
     public double getX() {
