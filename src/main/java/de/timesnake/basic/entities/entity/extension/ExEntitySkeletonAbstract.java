@@ -2,7 +2,12 @@ package de.timesnake.basic.entities.entity.extension;
 
 import de.timesnake.basic.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.basic.entities.pathfinder.ExPathfinderGoalBowShoot;
+import de.timesnake.library.reflection.RefUtil;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalBowShoot;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalMeleeAttack;
 import net.minecraft.world.entity.monster.EntitySkeletonAbstract;
+import net.minecraft.world.entity.projectile.ProjectileHelper;
+import net.minecraft.world.item.Items;
 import org.bukkit.craftbukkit.v1_18_R1.entity.CraftAbstractSkeleton;
 
 public class ExEntitySkeletonAbstract extends ExEntityInsentient {
@@ -30,7 +35,7 @@ public class ExEntitySkeletonAbstract extends ExEntityInsentient {
             pathfinderGoal.injectEntity(this);
 
             super.setNMSField(EntitySkeletonAbstract.class, "b", pathfinderGoal.getNMS());
-            this.getNMS().t();
+            this.updateBowShootMeele(priority);
         } else {
             super.addPathfinderGoal(priority, pathfinderGoal);
         }
@@ -46,9 +51,27 @@ public class ExEntitySkeletonAbstract extends ExEntityInsentient {
             pathfinderGoal.injectEntity(this);
 
             super.setNMSField(EntitySkeletonAbstract.class, "b", pathfinderGoal.getNMS());
-            this.getNMS().t();
+            this.updateBowShootMeele(pathfinderGoal.getPriority());
         } else {
             super.addPathfinderGoal(pathfinderGoal);
+        }
+    }
+
+    private void updateBowShootMeele(int priority) {
+
+        PathfinderGoalBowShoot<?> b = ((PathfinderGoalBowShoot<?>) RefUtil.getInstanceField(EntitySkeletonAbstract.class, this.getNMS(), "b"));
+        PathfinderGoalMeleeAttack c = (PathfinderGoalMeleeAttack) RefUtil.getInstanceField(EntitySkeletonAbstract.class, this.getNMS(), "c");
+
+        if (this.getNMSWorld() != null && !this.getNMSWorld().y) {
+            this.getGoalSelector().a(c);
+            this.getGoalSelector().a(b);
+
+            net.minecraft.world.item.ItemStack itemStack = this.getNMS().b(ProjectileHelper.a(this.getNMS(), Items.mg));
+            if (itemStack.a(Items.mg)) {
+                this.getGoalSelector().a(priority, b);
+            } else {
+                this.getGoalSelector().a(priority, c);
+            }
         }
     }
 

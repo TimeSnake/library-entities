@@ -13,8 +13,8 @@ public class ExPathfinderGoalBowShoot extends ExPathfinderGoal {
         super(new PathfinderGoalBowShoot<>(null, speed, 20, radius));
     }
 
-    public ExPathfinderGoalBowShoot(double speed, int i, float radius) {
-        super(new PathfinderGoalBowShoot<>(null, speed, i, radius));
+    public ExPathfinderGoalBowShoot(double speed, int delay, float radius) {
+        super(new PathfinderGoalBowShoot<>(null, speed, delay, radius));
     }
 
     @Override
