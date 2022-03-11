@@ -6,7 +6,7 @@ import net.minecraft.world.entity.ai.goal.PathfinderGoalCrossbowAttack;
 public class ExPathfinderGoalCrossbowAttack extends ExPathfinderGoal {
 
     public ExPathfinderGoalCrossbowAttack(double speed, float radius) {
-        super(new PathfinderGoalCrossbowAttack(null, speed, radius));
+        super(new PathfinderGoalCrossbowAttack<>(null, speed, radius));
     }
 
     @Override
