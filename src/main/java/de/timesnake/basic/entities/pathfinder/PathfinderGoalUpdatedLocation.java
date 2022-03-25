@@ -8,7 +8,7 @@ public abstract class PathfinderGoalUpdatedLocation extends PathfinderGoal {
 
     protected final ExEntityInsentient entity;
 
-    protected final double speed;
+    protected double speed;
     protected final double trackingDistance;
     protected final double minDistance;
 
@@ -51,6 +51,10 @@ public abstract class PathfinderGoalUpdatedLocation extends PathfinderGoal {
     @Override
     public boolean b() {
         return !this.entity.getNavigation().m() && this.entity.distanceSquared(x, y, z) < (this.minDistance * this.minDistance);
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
     }
 
     public abstract Location getNextLocation(Location entityLoc);

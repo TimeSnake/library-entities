@@ -15,15 +15,19 @@ import net.minecraft.network.syncher.DataWatcher;
 import net.minecraft.server.level.WorldServer;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.tags.Tag;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalSelector;
 import net.minecraft.world.entity.ai.targeting.PathfinderTargetCondition;
 import net.minecraft.world.entity.monster.EntitySkeleton;
 import net.minecraft.world.entity.monster.EntitySkeletonAbstract;
+import net.minecraft.world.entity.projectile.EntityArrow;
+import net.minecraft.world.entity.projectile.EntityTippedArrow;
 import net.minecraft.world.level.material.FluidType;
 import net.minecraft.world.level.pathfinder.PathType;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
@@ -31,6 +35,7 @@ import org.bukkit.craftbukkit.v1_18_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_18_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_18_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_18_R1.entity.CraftSkeleton;
+import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -43,12 +48,35 @@ public class ExSkeleton extends CraftSkeleton implements EntityExtension<ExEntit
     private final ExEntitySkeletonAbstract extension = new ExEntitySkeletonAbstract(this);
 
     public ExSkeleton(World world, boolean loadDefaultPathfinderGoals) {
-        super(((CraftServer) Bukkit.getServer()), new EntitySkeleton(ExEntityType.SKELETON.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntitySkeleton(ExEntityType.SKELETON.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             public void u() {
                 if (loadDefaultPathfinderGoals) {
                     super.u();
                 }
+            }
+        });
+    }
+
+    public ExSkeleton(World world, boolean loadDefaultPathfinderGoals, ExMobEffects arrowEffect, int durationInTicks,
+                      int amplifier) {
+        super(((CraftServer) Bukkit.getServer()), new EntitySkeleton(ExEntityType.SKELETON.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
+            @Override
+            public void u() {
+                if (loadDefaultPathfinderGoals) {
+                    super.u();
+                }
+            }
+
+            @Override
+            public EntityArrow b(net.minecraft.world.item.ItemStack var0, float var1) {
+                EntityTippedArrow var2 =
+                        (EntityTippedArrow) super.b(CraftItemStack.asNMSCopy(new ItemStack(Material.TIPPED_ARROW)),
+                                var1);
+                var2.a(new MobEffect(arrowEffect.getMobEffectList(), durationInTicks, amplifier));
+                return var2;
             }
         });
     }
