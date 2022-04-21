@@ -9,10 +9,13 @@ import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalSelector;
 import net.minecraft.world.level.pathfinder.PathType;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftMob;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftMob;
 import org.bukkit.event.entity.EntityTargetEvent;
 
 public class ExEntityInsentient extends ExEntityLiving {
+
+    public static final String PATHFINDER_GOAL_SELECTOR = "bQ";
+    public static final String PATHFINDER_TARGET_SELECTOR = "bR";
 
     public ExEntityInsentient(CraftMob entity) {
         super(entity);
@@ -31,11 +34,11 @@ public class ExEntityInsentient extends ExEntityLiving {
     }
 
     public PathfinderGoalSelector getGoalSelector() {
-        return this.getNMS().bR;
+        return (PathfinderGoalSelector) RefUtil.getInstanceField(this.getNMS(), PATHFINDER_GOAL_SELECTOR);
     }
 
     public PathfinderGoalSelector getTargetSelector() {
-        return this.getNMS().bS;
+        return (PathfinderGoalSelector) RefUtil.getInstanceField(this.getNMS(), PATHFINDER_TARGET_SELECTOR);
     }
 
     public void addPathfinderGoal(ExPathfinderGoal pathfinderGoal) {
@@ -60,9 +63,9 @@ public class ExEntityInsentient extends ExEntityLiving {
         pathfinderGoal.injectEntity(this);
 
         if (pathfinderGoal instanceof ExPathfinderGoalTarget) {
-            this.getNMS().bS.a(priority, pathfinderGoal.getNMS());
+            this.getTargetSelector().a(priority, pathfinderGoal.getNMS());
         } else {
-            this.getNMS().bR.a(priority, pathfinderGoal.getNMS());
+            this.getGoalSelector().a(priority, pathfinderGoal.getNMS());
         }
     }
 
@@ -110,7 +113,8 @@ public class ExEntityInsentient extends ExEntityLiving {
     }
 
     public void clearGoalTargets() {
-        this.getNMS().bS = new PathfinderGoalSelector(this.getNMS().t.ac());
+        RefUtil.setInstanceField(this.getNMS(), PATHFINDER_TARGET_SELECTOR,
+                new PathfinderGoalSelector(this.getNMS().s.ac()));
     }
 
     public ExPathEntity calcPath(double x, double y, double z, int minDistance) {
@@ -150,23 +154,23 @@ public class ExEntityInsentient extends ExEntityLiving {
     }
 
     public boolean isNoAI() {
-        return this.getNMS().fr();
-    }
-
-    public boolean isLeftHanded() {
         return this.getNMS().fs();
     }
 
-    public boolean isAggressive() {
+    public boolean isLeftHanded() {
         return this.getNMS().ft();
     }
 
+    public boolean isAggressive() {
+        return this.getNMS().fu();
+    }
+
     public boolean isNmsLeashed() {
-        return this.getNMS().fp();
+        return this.getNMS().fq();
     }
 
     public boolean isLeashed() {
-        return this.getNMS().fq() != null;
+        return this.getNMS().fr() != null;
     }
 
     public int O() {

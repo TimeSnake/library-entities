@@ -1,7 +1,7 @@
 package de.timesnake.basic.entities.entity.extension;
 
 import net.minecraft.world.entity.npc.EntityVillagerAbstract;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftAbstractVillager;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftAbstractVillager;
 
 public class ExEntityVillagerAbstract extends ExEntityAgeable {
 

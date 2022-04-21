@@ -95,7 +95,7 @@ public class ExPathfinderGoalNearestAttackableTarget extends ExPathfinderGoalTar
         }
 
         public boolean a() {
-            if (this.b > 0 && this.e.dK().nextInt(this.b) != 0) {
+            if (this.b > 0 && this.e.dL().nextInt(this.b) != 0) {
                 return false;
             } else {
                 this.g();
@@ -109,9 +109,10 @@ public class ExPathfinderGoalNearestAttackableTarget extends ExPathfinderGoalTar
 
         protected void g() {
             if (this.a != EntityHuman.class && this.a != EntityPlayer.class) {
-                this.c = this.e.t.a(this.e.t.a(this.a, this.a(this.l()), (entityliving) -> true), this.d, this.e, this.e.dc(), this.e.dg(), this.e.di());
+                this.c = this.e.s.a(this.e.s.a(this.a, this.a(this.l()), (entityliving) -> true), this.d, this.e,
+                        this.e.dc(), this.e.dg(), this.e.di());
             } else {
-                this.c = this.e.t.a(this.d, this.e, this.e.dc(), this.e.dg(), this.e.di());
+                this.c = this.e.s.a(this.d, this.e, this.e.dc(), this.e.dg(), this.e.di());
             }
 
         }

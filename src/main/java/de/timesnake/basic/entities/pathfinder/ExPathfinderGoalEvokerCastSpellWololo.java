@@ -31,14 +31,15 @@ public class ExPathfinderGoalEvokerCastSpellWololo extends ExPathfinderGoalIllag
         public boolean a() {
             if (this.entity.G() != null) {
                 return false;
-            } else if (this.entity.fI()) {
+            } else if (this.entity.fJ()) {
                 return false;
             } else if (this.entity.S < this.c) {
                 return false;
-            } else if (!this.entity.t.X().b(GameRules.c)) {
+            } else if (!this.entity.s.W().b(GameRules.c)) {
                 return false;
             } else {
-                List<EntitySheep> var0 = this.entity.t.a(EntitySheep.class, this.e, this.entity, this.entity.cw().c(16.0D, 4.0D, 16.0D));
+                List<EntitySheep> var0 = this.entity.s.a(EntitySheep.class, this.e, this.entity,
+                        this.entity.cw().c(16.0D, 4.0D, 16.0D));
                 if (var0.isEmpty()) {
                     return false;
                 } else {

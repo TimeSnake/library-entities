@@ -1,7 +1,7 @@
 package de.timesnake.basic.entities.entity.extension;
 
 import net.minecraft.world.entity.EntityCreature;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftCreature;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftCreature;
 
 public class ExEntityCreature extends ExEntityInsentient {
 

@@ -64,11 +64,11 @@ public class ExPathfinderGoalEvokerCastSpellFangs extends ExPathfinderGoalIllage
 
             do {
                 BlockPosition var14 = var10.c();
-                IBlockData var15 = this.entity.t.a_(var14);
-                if (var15.d(this.entity.t, var14, EnumDirection.b)) {
-                    if (!this.entity.t.w(var10)) {
-                        IBlockData var16 = this.entity.t.a_(var10);
-                        VoxelShape var17 = var16.k(this.entity.t, var10);
+                IBlockData var15 = this.entity.s.a_(var14);
+                if (var15.d(this.entity.s, var14, EnumDirection.b)) {
+                    if (!this.entity.s.w(var10)) {
+                        IBlockData var16 = this.entity.s.a_(var10);
+                        VoxelShape var17 = var16.k(this.entity.s, var10);
                         if (!var17.b()) {
                             var12 = var17.c(EnumDirection.EnumAxis.b);
                         }
@@ -82,7 +82,8 @@ public class ExPathfinderGoalEvokerCastSpellFangs extends ExPathfinderGoalIllage
             } while (var10.v() >= MathHelper.b(var4) - 1);
 
             if (var11) {
-                this.entity.t.b(new EntityEvokerFangs(this.entity.t, var0, (double) var10.v() + var12, var2, var8, var9, this.entity));
+                this.entity.s.b(new EntityEvokerFangs(this.entity.s, var0, (double) var10.v() + var12, var2, var8,
+                        var9, this.entity));
             }
 
         }

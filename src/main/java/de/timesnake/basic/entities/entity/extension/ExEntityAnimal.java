@@ -2,7 +2,7 @@ package de.timesnake.basic.entities.entity.extension;
 
 import net.minecraft.server.level.WorldServer;
 import net.minecraft.world.entity.animal.EntityAnimal;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftAnimals;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftAnimals;
 
 public class ExEntityAnimal extends ExEntityAgeable {
 
@@ -24,11 +24,11 @@ public class ExEntityAnimal extends ExEntityAgeable {
     }
 
     public boolean isInLove() {
-        return this.getNMS().fE();
+        return this.getNMS().fF();
     }
 
     public void resetLove() {
-        this.getNMS().fF();
+        this.getNMS().fG();
     }
 
     public boolean mate(ExEntityAnimal entity) {

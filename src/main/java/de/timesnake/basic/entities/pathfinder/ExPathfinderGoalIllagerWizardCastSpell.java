@@ -6,7 +6,7 @@ import net.minecraft.sounds.SoundEffect;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import net.minecraft.world.entity.monster.EntityIllagerWizard;
-import org.bukkit.craftbukkit.v1_18_R1.event.CraftEventFactory;
+import org.bukkit.craftbukkit.v1_18_R2.event.CraftEventFactory;
 
 import javax.annotation.Nullable;
 
@@ -38,7 +38,7 @@ public abstract class ExPathfinderGoalIllagerWizardCastSpell extends ExPathfinde
 
         public boolean a() {
             EntityLiving entityliving = this.entity.G();
-            return entityliving != null && entityliving.bl() && (!this.entity.fI() && this.entity.S >= this.c);
+            return entityliving != null && entityliving.bl() && (!this.entity.fJ() && this.entity.S >= this.c);
         }
 
         public boolean b() {

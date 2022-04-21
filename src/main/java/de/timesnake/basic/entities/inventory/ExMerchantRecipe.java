@@ -1,7 +1,7 @@
 package de.timesnake.basic.entities.inventory;
 
 import net.minecraft.world.item.trading.MerchantRecipe;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_18_R2.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
 public class ExMerchantRecipe {
