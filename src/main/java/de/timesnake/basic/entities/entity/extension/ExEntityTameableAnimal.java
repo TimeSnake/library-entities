@@ -4,7 +4,7 @@ import net.minecraft.advancements.CriterionTriggers;
 import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.EntityTameableAnimal;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftTameableAnimal;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftTameableAnimal;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -33,7 +33,7 @@ public class ExEntityTameableAnimal extends ExEntityAnimal {
     }
 
     public boolean isSitting() {
-        return this.getNMS().fy();
+        return this.getNMS().fz();
     }
 
     public void setSitting(boolean tag) {
@@ -58,11 +58,11 @@ public class ExEntityTameableAnimal extends ExEntityAnimal {
     }
 
     public EntityLiving getOwner() {
-        return this.getNMS().fz();
+        return this.getNMS().fA();
     }
 
     public boolean isWillSit() {
-        return this.getNMS().fA();
+        return this.getNMS().fB();
     }
 
     public void setWillSit(boolean tag) {

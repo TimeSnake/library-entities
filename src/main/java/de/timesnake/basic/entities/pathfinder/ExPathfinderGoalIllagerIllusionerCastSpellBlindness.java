@@ -25,7 +25,7 @@ public class ExPathfinderGoalIllagerIllusionerCastSpellBlindness extends ExPathf
         }
 
         public boolean a() {
-            return super.a() && (this.entity.G() != null && (this.entity.G().ae() != this.e && this.entity.t.d_(this.entity.cW()).a((float) EnumDifficulty.c.ordinal())));
+            return super.a() && (this.entity.G() != null && (this.entity.G().ae() != this.e && this.entity.s.d_(this.entity.cW()).a((float) EnumDifficulty.c.ordinal())));
         }
 
         public void c() {

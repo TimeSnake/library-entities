@@ -8,7 +8,7 @@ import net.minecraft.world.entity.ai.goal.PathfinderGoalMeleeAttack;
 import net.minecraft.world.entity.monster.EntitySkeletonAbstract;
 import net.minecraft.world.entity.projectile.ProjectileHelper;
 import net.minecraft.world.item.Items;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftAbstractSkeleton;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftAbstractSkeleton;
 
 public class ExEntitySkeletonAbstract extends ExEntityInsentient {
 
@@ -62,7 +62,7 @@ public class ExEntitySkeletonAbstract extends ExEntityInsentient {
         PathfinderGoalBowShoot<?> b = ((PathfinderGoalBowShoot<?>) RefUtil.getInstanceField(EntitySkeletonAbstract.class, this.getNMS(), "b"));
         PathfinderGoalMeleeAttack c = (PathfinderGoalMeleeAttack) RefUtil.getInstanceField(EntitySkeletonAbstract.class, this.getNMS(), "c");
 
-        if (this.getNMSWorld() != null && !this.getNMSWorld().y) {
+        if (this.getNMSWorld() != null && !this.getNMSWorld().x) {
             this.getGoalSelector().a(c);
             this.getGoalSelector().a(b);
 

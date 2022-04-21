@@ -15,7 +15,7 @@ import net.minecraft.core.BlockPosition;
 import net.minecraft.network.syncher.DataWatcher;
 import net.minecraft.server.level.WorldServer;
 import net.minecraft.sounds.SoundEffect;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalSelector;
@@ -29,10 +29,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
-import org.bukkit.craftbukkit.v1_18_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_18_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftWitch;
+import org.bukkit.craftbukkit.v1_18_R2.CraftServer;
+import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftWitch;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -238,7 +238,7 @@ public class ExWitch extends CraftWitch implements EntityExtension<ExEntityRaide
         getExtension().setPositionRotation(position, yaw, pitch);
     }
 
-    public double b(Tag<FluidType> type) {
+    public double b(TagKey<FluidType> type) {
         return getExtension().b(type);
     }
 

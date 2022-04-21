@@ -14,7 +14,7 @@ public class PathfinderGoalTargetLivingEntity extends PathfinderGoalNearestAttac
     }
 
     @Override
-    public void g() {
+    public void h() {
         super.c = target;
     }
 }

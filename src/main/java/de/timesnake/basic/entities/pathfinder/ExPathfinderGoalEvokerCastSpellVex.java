@@ -34,7 +34,7 @@ public class ExPathfinderGoalEvokerCastSpellVex extends ExPathfinderGoalIllagerW
             if (!super.a()) {
                 return false;
             } else {
-                int var0 = this.entity.t.a(EntityVex.class, this.e, this.entity, this.entity.cw().g(16.0D)).size();
+                int var0 = this.entity.s.a(EntityVex.class, this.e, this.entity, this.entity.cw().g(16.0D)).size();
                 return ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(8) + 1 > var0;
             }
         }
@@ -48,13 +48,14 @@ public class ExPathfinderGoalEvokerCastSpellVex extends ExPathfinderGoalIllagerW
         }
 
         protected void k() {
-            WorldServer var0 = (WorldServer) this.entity.t;
+            WorldServer var0 = (WorldServer) this.entity.s;
 
             for (int var1 = 0; var1 < 3; ++var1) {
-                BlockPosition var2 = this.entity.cW().b(-2 + ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(5), 1, -2 + ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(5));
-                EntityVex var3 = EntityTypes.aU.a(this.entity.t);
+                BlockPosition var2 =
+                        this.entity.cW().b(-2 + ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(5), 1, -2 + ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(5));
+                EntityVex var3 = EntityTypes.aU.a(this.entity.s);
                 var3.a(var2, 0.0F, 0.0F);
-                var3.a(var0, this.entity.t.d_(var2), EnumMobSpawn.f, (GroupDataEntity) null, (NBTTagCompound) null);
+                var3.a(var0, this.entity.s.d_(var2), EnumMobSpawn.f, (GroupDataEntity) null, (NBTTagCompound) null);
                 var3.a(this.entity);
                 var3.g(var2);
                 var3.a(20 * (30 + ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(90)));

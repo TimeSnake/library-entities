@@ -1,7 +1,7 @@
 package de.timesnake.basic.entities.entity.extension;
 
 import net.minecraft.world.entity.monster.EntityIllagerAbstract;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftIllager;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftIllager;
 
 public class ExEntityIllagerAbstract extends ExEntityRaider {
 

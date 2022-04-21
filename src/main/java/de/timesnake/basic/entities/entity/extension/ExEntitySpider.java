@@ -1,7 +1,7 @@
 package de.timesnake.basic.entities.entity.extension;
 
 import net.minecraft.world.entity.monster.EntitySpider;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftSpider;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftSpider;
 
 public class ExEntitySpider extends ExEntityMonster {
     public ExEntitySpider(CraftSpider entity) {

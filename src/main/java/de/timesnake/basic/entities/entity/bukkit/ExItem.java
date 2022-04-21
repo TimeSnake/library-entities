@@ -9,16 +9,16 @@ import net.minecraft.core.BlockPosition;
 import net.minecraft.network.syncher.DataWatcher;
 import net.minecraft.server.level.WorldServer;
 import net.minecraft.sounds.SoundEffect;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.EntityItem;
 import net.minecraft.world.level.material.FluidType;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_18_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_18_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftItem;
+import org.bukkit.craftbukkit.v1_18_R2.CraftServer;
+import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftItem;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Random;
@@ -138,7 +138,7 @@ public class ExItem extends CraftItem {
 
     public void setPose(ExEntityPose pose) {getExtension().setPose(pose);}
 
-    public double b(Tag<FluidType> type) {return getExtension().b(type);}
+    public double b(TagKey<FluidType> type) {return getExtension().b(type);}
 
     public double cx() {return getExtension().cx();}
 

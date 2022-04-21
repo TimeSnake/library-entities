@@ -3,8 +3,8 @@ package de.timesnake.basic.entities;
 import de.timesnake.basic.entities.entity.extension.EntityExtension;
 import net.minecraft.world.entity.Entity;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_18_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftEntity;
 
 public class EntityManager {
 

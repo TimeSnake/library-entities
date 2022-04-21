@@ -5,7 +5,7 @@ import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.targeting.PathfinderTargetCondition;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftLivingEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 
@@ -47,12 +47,12 @@ public class ExEntityLiving extends ExEntity {
         return this.getNMS().drops;
     }
 
-    public void setMaxNoDamageTicks(int ticks) {
-        this.getNMS().aV = ticks;
+    public int getMaxNoDamageTicks() {
+        return this.getNMS().aU;
     }
 
-    public int getMaxNoDamageTicks() {
-        return this.getNMS().aV;
+    public void setMaxNoDamageTicks(int ticks) {
+        this.getNMS().aU = ticks;
     }
 
     public void swingHand(ExEnumHand hand) {
@@ -64,15 +64,15 @@ public class ExEntityLiving extends ExEntity {
     }
 
     public EntityLiving getLastDamager() {
-        return this.getNMS().dL();
+        return this.getNMS().dM();
     }
 
     public ExEntityLiving getExLastDamager() {
-        return new ExEntityLiving(this.getNMS().dL());
+        return new ExEntityLiving(this.getNMS().dM());
     }
 
     public int getHurtTimestamp() {
-        return this.getNMS().dM();
+        return this.getNMS().dN();
     }
 
 }

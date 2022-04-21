@@ -2,7 +2,7 @@ package de.timesnake.basic.entities.entity.extension;
 
 
 import net.minecraft.world.entity.EntityFlying;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftFlying;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftFlying;
 
 public class ExEntityFlying extends ExEntityInsentient {
 

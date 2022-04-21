@@ -11,14 +11,14 @@ import net.minecraft.network.chat.IChatBaseComponent;
 import net.minecraft.network.syncher.DataWatcher;
 import net.minecraft.server.level.WorldServer;
 import net.minecraft.sounds.SoundEffect;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.material.FluidType;
 import net.minecraft.world.phys.Vec3D;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_18_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_18_R2.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Random;
@@ -173,7 +173,7 @@ public class ExEntity {
     }
 
     public float getYaw() {
-        return this.entity.getHandle().dm();
+        return this.entity.getHandle().dn();
     }
 
     public void setYaw(float yaw) {
@@ -181,7 +181,7 @@ public class ExEntity {
     }
 
     public float getPitch() {
-        return this.entity.getHandle().dn();
+        return (float) RefUtil.getInstanceField(this.entity.getHandle(), "aB");
     }
 
     public void setPitch(float pitch) {
@@ -289,7 +289,7 @@ public class ExEntity {
         this.getNMS().b(pose.getPose());
     }
 
-    public double b(Tag<FluidType> type) {
+    public double b(TagKey<FluidType> type) {
         return this.getNMS().b(type);
     }
 
