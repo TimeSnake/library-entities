@@ -1,7 +1,9 @@
 package de.timesnake.basic.entities.wrapper;
 
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.control.ControllerJump;
 
+@NmsReflection
 public class ExControllerJump {
 
     private final ControllerJump controller;

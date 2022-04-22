@@ -6,6 +6,7 @@ import de.timesnake.basic.entities.wrapper.EntityClass;
 import de.timesnake.basic.entities.wrapper.ExControllerLook;
 import de.timesnake.basic.entities.wrapper.ExNavigationAbstract;
 import de.timesnake.basic.entities.wrapper.ExPathType;
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
@@ -13,6 +14,7 @@ import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import java.util.EnumSet;
 import java.util.List;
 
+@NmsReflection
 public class ExPathfinderGoalFollowEntity extends ExPathfinderGoal {
 
     public ExPathfinderGoalFollowEntity(EntityExtension<? extends ExEntityInsentient> leader, float speed, float maxDistance, float leaderSearchRadius) {

@@ -1,7 +1,9 @@
 package de.timesnake.basic.entities.wrapper;
 
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.phys.Vec3D;
 
+@NmsReflection
 public class ExVec3D {
 
     private final Vec3D vec;

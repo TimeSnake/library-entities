@@ -1,8 +1,10 @@
 package de.timesnake.basic.entities.entity.extension;
 
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.animal.EntityGolem;
 import org.bukkit.craftbukkit.v1_18_R2.entity.CraftGolem;
 
+@NmsReflection
 public class ExEntityGolem extends ExEntityInsentient {
 
     public ExEntityGolem(EntityGolem entity) {

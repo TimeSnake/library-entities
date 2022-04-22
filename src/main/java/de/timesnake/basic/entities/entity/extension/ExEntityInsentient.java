@@ -4,6 +4,7 @@ import com.google.common.collect.Sets;
 import de.timesnake.basic.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.basic.entities.pathfinder.ExPathfinderGoalTarget;
 import de.timesnake.basic.entities.wrapper.*;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.EntityLiving;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.pathfinder.PathType;
 import org.bukkit.craftbukkit.v1_18_R2.entity.CraftMob;
 import org.bukkit.event.entity.EntityTargetEvent;
 
+@NmsReflection(usesReflection = true)
 public class ExEntityInsentient extends ExEntityLiving {
 
     public static final String PATHFINDER_GOAL_SELECTOR = "bQ";

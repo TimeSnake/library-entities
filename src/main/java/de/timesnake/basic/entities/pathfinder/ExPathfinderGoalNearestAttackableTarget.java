@@ -2,6 +2,7 @@ package de.timesnake.basic.entities.pathfinder;
 
 import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.basic.entities.wrapper.EntityClass;
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.EntityLiving;
@@ -15,6 +16,7 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
+@NmsReflection
 public class ExPathfinderGoalNearestAttackableTarget extends ExPathfinderGoalTarget {
 
     public ExPathfinderGoalNearestAttackableTarget(EntityClass<? extends EntityLiving> target) {

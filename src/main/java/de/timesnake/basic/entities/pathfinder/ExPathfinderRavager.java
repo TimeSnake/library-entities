@@ -1,11 +1,13 @@
 package de.timesnake.basic.entities.pathfinder;
 
 import de.timesnake.basic.entities.wrapper.ExPathType;
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.world.level.IBlockAccess;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.PathfinderNormal;
 
+@NmsReflection
 public class ExPathfinderRavager extends ExPathfinderNormal {
 
     public ExPathfinderRavager() {

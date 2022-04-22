@@ -1,8 +1,10 @@
 package de.timesnake.basic.entities.pathfinder;
 
 import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalBowShoot;
 
+@NmsReflection(usesReflection = true)
 public class ExPathfinderGoalBowShoot extends ExPathfinderGoal {
 
     public ExPathfinderGoalBowShoot(float radius) {

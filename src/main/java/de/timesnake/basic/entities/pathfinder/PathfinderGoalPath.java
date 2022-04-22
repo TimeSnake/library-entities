@@ -2,12 +2,14 @@ package de.timesnake.basic.entities.pathfinder;
 
 import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.basic.entities.wrapper.ExPathEntity;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import org.bukkit.Location;
 
 import java.util.*;
 
+@NmsReflection
 public class PathfinderGoalPath extends PathfinderGoal {
 
 

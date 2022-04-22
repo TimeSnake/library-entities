@@ -7,6 +7,7 @@ import de.timesnake.basic.entities.wrapper.ExIBlockData;
 import de.timesnake.basic.entities.wrapper.ExNavigationAbstract;
 import de.timesnake.basic.entities.wrapper.ExPathType;
 import de.timesnake.basic.entities.wrapper.ExWorldServer;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.world.entity.EntityLiving;
@@ -20,6 +21,7 @@ import org.bukkit.event.entity.EntityTeleportEvent;
 
 import java.util.EnumSet;
 
+@NmsReflection
 public class ExPathfinderGoalFollowOwner extends ExPathfinderGoal {
 
     public ExPathfinderGoalFollowOwner(double speed, float distance, float cancelDistance, boolean teleportOnLeaves) {

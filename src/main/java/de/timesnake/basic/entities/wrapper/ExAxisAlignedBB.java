@@ -1,9 +1,11 @@
 package de.timesnake.basic.entities.wrapper;
 
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.world.phys.AxisAlignedBB;
 
+@NmsReflection
 public class ExAxisAlignedBB {
 
     private final AxisAlignedBB axis;

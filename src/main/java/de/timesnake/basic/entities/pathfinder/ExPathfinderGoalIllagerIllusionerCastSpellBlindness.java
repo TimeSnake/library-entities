@@ -1,5 +1,6 @@
 package de.timesnake.basic.entities.pathfinder;
 
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.sounds.SoundEffects;
 import net.minecraft.world.EnumDifficulty;
@@ -10,6 +11,7 @@ import net.minecraft.world.entity.monster.EntityIllagerIllusioner;
 import net.minecraft.world.entity.monster.EntityIllagerWizard;
 import org.bukkit.event.entity.EntityPotionEffectEvent;
 
+@NmsReflection
 public class ExPathfinderGoalIllagerIllusionerCastSpellBlindness extends ExPathfinderGoalIllagerWizardCastSpell {
 
     public ExPathfinderGoalIllagerIllusionerCastSpellBlindness() {

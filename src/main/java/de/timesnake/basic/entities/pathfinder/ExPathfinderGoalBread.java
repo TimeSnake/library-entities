@@ -2,6 +2,7 @@ package de.timesnake.basic.entities.pathfinder;
 
 import de.timesnake.basic.entities.entity.extension.ExEntityAnimal;
 import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.server.level.WorldServer;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import net.minecraft.world.entity.ai.targeting.PathfinderTargetCondition;
@@ -12,6 +13,7 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.List;
 
+@NmsReflection
 public class ExPathfinderGoalBread extends ExPathfinderGoal {
 
     public ExPathfinderGoalBread(double speed) {

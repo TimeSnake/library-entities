@@ -1,8 +1,10 @@
 package de.timesnake.basic.entities.entity.extension;
 
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityCreature;
 import org.bukkit.craftbukkit.v1_18_R2.entity.CraftCreature;
 
+@NmsReflection
 public class ExEntityCreature extends ExEntityInsentient {
 
     public ExEntityCreature(CraftCreature entity) {

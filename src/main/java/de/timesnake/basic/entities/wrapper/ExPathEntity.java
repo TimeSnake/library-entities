@@ -1,8 +1,10 @@
 package de.timesnake.basic.entities.wrapper;
 
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.level.pathfinder.PathEntity;
 import net.minecraft.world.level.pathfinder.PathPoint;
 
+@NmsReflection
 public class ExPathEntity {
 
     private final PathEntity path;

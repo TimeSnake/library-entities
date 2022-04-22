@@ -1,12 +1,14 @@
 package de.timesnake.basic.entities.pathfinder;
 
 import de.timesnake.basic.entities.wrapper.EntityClass;
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.raid.EntityRaider;
 
 import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
+@NmsReflection
 public class ExPathfinderGoalNearestAttackableTargetWitch extends ExPathfinderGoalNearestAttackableTarget {
 
     public ExPathfinderGoalNearestAttackableTargetWitch(EntityClass<? extends EntityLiving> target, int chance, boolean checkIfCanSee, boolean onlyIfPathExists) {

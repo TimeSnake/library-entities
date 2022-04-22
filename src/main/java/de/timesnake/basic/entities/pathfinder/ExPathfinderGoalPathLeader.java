@@ -4,10 +4,12 @@ import de.timesnake.basic.entities.entity.extension.ExEntity;
 import de.timesnake.basic.entities.entity.extension.ExEntityHuman;
 import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.basic.entities.entity.extension.ExEntityLiving;
+import de.timesnake.library.reflection.NmsReflection;
 import org.bukkit.Location;
 
 import java.util.LinkedList;
 
+@NmsReflection
 public class ExPathfinderGoalPathLeader extends ExPathfinderGoalPath {
 
     public ExPathfinderGoalPathLeader(Location target, double speed, double minDistance, ExEntityLiving follower, double maxfollowerDistance, Location... pathPoints) {

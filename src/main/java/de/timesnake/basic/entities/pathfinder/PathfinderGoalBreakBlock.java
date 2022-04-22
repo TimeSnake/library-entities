@@ -3,6 +3,7 @@ package de.timesnake.basic.entities.pathfinder;
 import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.basic.entities.wrapper.ExIBlockData;
 import de.timesnake.basic.entities.wrapper.ExNavigation;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import de.timesnake.library.reflection.wrapper.ExEnumHand;
 import net.minecraft.core.BlockPosition;
@@ -17,6 +18,7 @@ import org.bukkit.block.Block;
 
 import java.util.*;
 
+@NmsReflection
 public class PathfinderGoalBreakBlock extends PathfinderGoal implements LocationTargetable {
 
     private static final Integer[][] NEAR_BLOCK_VECTORS = new Integer[][]{{1, 1, 0}, {-1, 1, 0}, {0, 1, 1}, {0, 1, -1}, {1, 0, 0}, {-1, 0, 0}, {0, 0, 1}, {0, 0, -1}};

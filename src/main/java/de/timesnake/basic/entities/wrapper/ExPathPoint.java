@@ -1,9 +1,11 @@
 package de.timesnake.basic.entities.wrapper;
 
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.world.level.pathfinder.PathPoint;
 
+@NmsReflection
 public class ExPathPoint {
 
     private final PathPoint point;

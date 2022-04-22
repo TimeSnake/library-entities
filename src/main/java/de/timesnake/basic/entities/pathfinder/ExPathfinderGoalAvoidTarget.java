@@ -7,6 +7,7 @@ import de.timesnake.basic.entities.wrapper.EntityClass;
 import de.timesnake.basic.entities.wrapper.ExNavigationAbstract;
 import de.timesnake.basic.entities.wrapper.ExPathEntity;
 import de.timesnake.basic.entities.wrapper.ExVec3D;
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityCreature;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.IEntitySelector;
@@ -17,6 +18,7 @@ import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
+@NmsReflection
 public class ExPathfinderGoalAvoidTarget extends ExPathfinderGoal {
 
     public ExPathfinderGoalAvoidTarget(EntityClass<? extends EntityLiving> clazz, float innerRadius, double innerSpeed, float outerRadius, double outerSpeed) {

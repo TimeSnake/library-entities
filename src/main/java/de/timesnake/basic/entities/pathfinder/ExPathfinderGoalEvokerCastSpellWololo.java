@@ -1,5 +1,6 @@
 package de.timesnake.basic.entities.pathfinder;
 
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.sounds.SoundEffects;
@@ -13,6 +14,7 @@ import net.minecraft.world.level.GameRules;
 import java.util.List;
 import java.util.Random;
 
+@NmsReflection(usesReflection = true)
 public class ExPathfinderGoalEvokerCastSpellWololo extends ExPathfinderGoalIllagerWizardCastSpell {
 
     public ExPathfinderGoalEvokerCastSpellWololo() {

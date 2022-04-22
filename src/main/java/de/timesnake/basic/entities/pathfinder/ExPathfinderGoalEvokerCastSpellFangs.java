@@ -1,5 +1,6 @@
 package de.timesnake.basic.entities.pathfinder;
 
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.core.EnumDirection;
 import net.minecraft.sounds.SoundEffect;
@@ -12,6 +13,7 @@ import net.minecraft.world.entity.projectile.EntityEvokerFangs;
 import net.minecraft.world.level.block.state.IBlockData;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+@NmsReflection
 public class ExPathfinderGoalEvokerCastSpellFangs extends ExPathfinderGoalIllagerWizardCastSpell {
 
     public ExPathfinderGoalEvokerCastSpellFangs() {

@@ -3,6 +3,7 @@ package de.timesnake.basic.entities.entity.bukkit;
 import de.timesnake.basic.entities.entity.extension.*;
 import de.timesnake.basic.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.basic.entities.wrapper.*;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import de.timesnake.library.reflection.wrapper.ExEntityPose;
 import de.timesnake.library.reflection.wrapper.ExEnumHand;
@@ -35,6 +36,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+@NmsReflection
 public class ExVillager extends CraftVillager implements EntityExtension<ExEntityVillagerAbstract> {
 
     public enum Type {

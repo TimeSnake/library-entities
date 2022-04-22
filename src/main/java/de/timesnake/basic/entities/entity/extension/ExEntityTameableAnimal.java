@@ -1,5 +1,6 @@
 package de.timesnake.basic.entities.entity.extension;
 
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.advancements.CriterionTriggers;
 import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.world.entity.EntityLiving;
@@ -9,6 +10,7 @@ import org.bukkit.craftbukkit.v1_18_R2.entity.CraftTameableAnimal;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
+@NmsReflection
 public class ExEntityTameableAnimal extends ExEntityAnimal {
 
     public ExEntityTameableAnimal(EntityTameableAnimal entity) {

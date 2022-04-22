@@ -1,11 +1,13 @@
 package de.timesnake.basic.entities.pathfinder;
 
 import de.timesnake.basic.entities.entity.extension.EntityExtension;
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalMeleeAttack;
 import net.minecraft.world.entity.monster.EntitySpider;
 import org.bukkit.event.entity.EntityTargetEvent;
 
+@NmsReflection
 public class ExPathfinderGoalSpiderMeleeAttack extends ExPathfinderGoalMeleeAttack {
 
     public ExPathfinderGoalSpiderMeleeAttack(float speed) {

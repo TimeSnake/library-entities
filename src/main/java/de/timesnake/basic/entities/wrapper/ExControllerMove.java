@@ -1,7 +1,9 @@
 package de.timesnake.basic.entities.wrapper;
 
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.control.ControllerMove;
 
+@NmsReflection
 public class ExControllerMove {
 
     private final ControllerMove controller;

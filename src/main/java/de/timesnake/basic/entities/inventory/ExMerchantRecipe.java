@@ -1,9 +1,11 @@
 package de.timesnake.basic.entities.inventory;
 
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.item.trading.MerchantRecipe;
 import org.bukkit.craftbukkit.v1_18_R2.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
+@NmsReflection
 public class ExMerchantRecipe {
 
     private final MerchantRecipe nms;
