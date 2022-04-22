@@ -3,6 +3,7 @@ package de.timesnake.basic.entities.pathfinder;
 import de.timesnake.basic.entities.entity.extension.EntityExtension;
 import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.basic.entities.wrapper.EntityClass;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
@@ -12,6 +13,7 @@ import org.bukkit.event.entity.EntityTargetEvent;
 import java.util.EnumSet;
 import java.util.List;
 
+@NmsReflection
 public abstract class ExPathfinderGoalSpawnArmy extends ExPathfinderGoal {
 
     public ExPathfinderGoalSpawnArmy(EntityClass<? extends EntityInsentient> armyClass, int amountOnRespawn) {

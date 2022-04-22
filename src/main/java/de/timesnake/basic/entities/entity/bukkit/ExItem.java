@@ -2,6 +2,7 @@ package de.timesnake.basic.entities.entity.bukkit;
 
 import de.timesnake.basic.entities.entity.extension.ExEntity;
 import de.timesnake.basic.entities.wrapper.*;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import de.timesnake.library.reflection.wrapper.ExEntityPose;
 import de.timesnake.library.reflection.wrapper.ExEnumItemSlot;
@@ -23,6 +24,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Random;
 
+@NmsReflection
 public class ExItem extends CraftItem {
 
     private final ExEntity extension = new ExEntity(this);

@@ -1,11 +1,13 @@
 package de.timesnake.basic.entities.pathfinder;
 
 import de.timesnake.basic.entities.wrapper.EntityClass;
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.target.PathfinderGoalHurtByTarget;
 
 import java.util.List;
 
+@NmsReflection
 public class ExPathfinderGoalHurtByTarget extends ExPathfinderGoalTarget {
 
     @SafeVarargs

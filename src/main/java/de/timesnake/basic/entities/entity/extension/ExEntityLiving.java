@@ -1,5 +1,6 @@
 package de.timesnake.basic.entities.entity.extension;
 
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExEnumHand;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.targeting.PathfinderTargetCondition;
@@ -12,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Collection;
 import java.util.List;
 
+@NmsReflection
 public class ExEntityLiving extends ExEntity {
 
     public ExEntityLiving(CraftLivingEntity entity) {

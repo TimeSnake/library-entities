@@ -9,6 +9,7 @@ import de.timesnake.basic.entities.wrapper.ExDamageSource;
 import de.timesnake.basic.entities.wrapper.ExEntityMoveType;
 import de.timesnake.basic.entities.wrapper.ExVec3D;
 import de.timesnake.basic.entities.wrapper.ExWorldServer;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import de.timesnake.library.reflection.wrapper.ExEntityPose;
 import de.timesnake.library.reflection.wrapper.ExEnumItemSlot;
@@ -34,6 +35,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Random;
 import java.util.UUID;
 
+@NmsReflection
 public class ExPlayer extends CraftPlayer implements EntityExtension<ExEntityHuman> {
 
     private final ExEntityHuman extension = new ExEntityHuman(this);

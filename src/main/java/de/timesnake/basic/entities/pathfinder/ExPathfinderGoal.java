@@ -1,9 +1,11 @@
 package de.timesnake.basic.entities.pathfinder;
 
 import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 
+@NmsReflection
 public abstract class ExPathfinderGoal {
 
     public static final String PATHFINDER_GOAL_PREFIX = "ExPathfinderGoal";

@@ -1,8 +1,10 @@
 package de.timesnake.basic.entities.pathfinder;
 
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.world.level.pathfinder.PathfinderAbstract;
 
+@NmsReflection
 public class ExPathfinderAbstract {
 
     protected int priority = 1;

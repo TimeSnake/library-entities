@@ -1,6 +1,7 @@
 package de.timesnake.basic.entities.pathfinder;
 
 import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.world.entity.EntityLiving;
@@ -10,6 +11,7 @@ import org.bukkit.craftbukkit.v1_18_R2.event.CraftEventFactory;
 
 import javax.annotation.Nullable;
 
+@NmsReflection(usesReflection = true)
 public abstract class ExPathfinderGoalIllagerWizardCastSpell extends ExPathfinderGoal {
 
     public ExPathfinderGoalIllagerWizardCastSpell(PathfinderGoalIllagerWizardCastSpell pathfinder) {

@@ -1,9 +1,11 @@
 package de.timesnake.basic.entities.wrapper;
 
 import de.timesnake.basic.entities.entity.extension.ExEntity;
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.sensing.EntitySenses;
 
+@NmsReflection
 public class ExEntitySenses {
 
     private final EntitySenses senses;

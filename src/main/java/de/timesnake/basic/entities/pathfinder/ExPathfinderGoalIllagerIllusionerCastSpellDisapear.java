@@ -1,5 +1,6 @@
 package de.timesnake.basic.entities.pathfinder;
 
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.sounds.SoundEffects;
 import net.minecraft.world.effect.MobEffect;
@@ -10,6 +11,7 @@ import org.bukkit.event.entity.EntityPotionEffectEvent;
 
 import javax.annotation.Nullable;
 
+@NmsReflection
 public class ExPathfinderGoalIllagerIllusionerCastSpellDisapear extends ExPathfinderGoalIllagerWizardCastSpell {
 
     public ExPathfinderGoalIllagerIllusionerCastSpellDisapear() {

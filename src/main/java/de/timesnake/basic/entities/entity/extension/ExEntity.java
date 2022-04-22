@@ -1,6 +1,7 @@
 package de.timesnake.basic.entities.entity.extension;
 
 import de.timesnake.basic.entities.wrapper.*;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.RefUtil;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import de.timesnake.library.reflection.wrapper.ExEntityPose;
@@ -23,6 +24,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Random;
 
+@NmsReflection(usesReflection = true)
 public class ExEntity {
 
     protected final CraftEntity entity;

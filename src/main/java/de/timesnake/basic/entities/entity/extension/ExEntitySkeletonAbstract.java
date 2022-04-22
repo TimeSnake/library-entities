@@ -2,6 +2,7 @@ package de.timesnake.basic.entities.entity.extension;
 
 import de.timesnake.basic.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.basic.entities.pathfinder.ExPathfinderGoalBowShoot;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalBowShoot;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalMeleeAttack;
@@ -10,6 +11,7 @@ import net.minecraft.world.entity.projectile.ProjectileHelper;
 import net.minecraft.world.item.Items;
 import org.bukkit.craftbukkit.v1_18_R2.entity.CraftAbstractSkeleton;
 
+@NmsReflection(usesReflection = true)
 public class ExEntitySkeletonAbstract extends ExEntityInsentient {
 
     public ExEntitySkeletonAbstract(CraftAbstractSkeleton entity) {

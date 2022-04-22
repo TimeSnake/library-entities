@@ -1,5 +1,6 @@
 package de.timesnake.basic.entities.wrapper;
 
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.world.entity.Entity;
@@ -8,6 +9,7 @@ import net.minecraft.world.level.block.state.IBlockData;
 import net.minecraft.world.phys.AxisAlignedBB;
 import org.bukkit.craftbukkit.v1_18_R2.CraftServer;
 
+@NmsReflection
 public class ExWorld {
 
     protected final World world;

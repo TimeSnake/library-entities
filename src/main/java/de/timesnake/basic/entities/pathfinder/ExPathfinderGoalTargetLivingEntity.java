@@ -2,7 +2,9 @@ package de.timesnake.basic.entities.pathfinder;
 
 import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.basic.entities.entity.extension.ExEntityLiving;
+import de.timesnake.library.reflection.NmsReflection;
 
+@NmsReflection
 public class ExPathfinderGoalTargetLivingEntity extends ExPathfinderGoalTarget {
 
     private final ExEntityLiving target;

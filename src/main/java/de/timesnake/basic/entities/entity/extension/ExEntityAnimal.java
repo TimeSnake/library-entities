@@ -1,9 +1,11 @@
 package de.timesnake.basic.entities.entity.extension;
 
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.server.level.WorldServer;
 import net.minecraft.world.entity.animal.EntityAnimal;
 import org.bukkit.craftbukkit.v1_18_R2.entity.CraftAnimals;
 
+@NmsReflection
 public class ExEntityAnimal extends ExEntityAgeable {
 
     public ExEntityAnimal(CraftAnimals entity) {

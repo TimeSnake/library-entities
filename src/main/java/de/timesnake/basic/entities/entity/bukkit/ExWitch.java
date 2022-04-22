@@ -7,6 +7,7 @@ import de.timesnake.basic.entities.entity.extension.ExEntityRaider;
 import de.timesnake.basic.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.basic.entities.pathfinder.ExPathfinderGoalNearestAttackableTargetWitch;
 import de.timesnake.basic.entities.wrapper.*;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import de.timesnake.library.reflection.wrapper.ExEntityPose;
 import de.timesnake.library.reflection.wrapper.ExEnumHand;
@@ -40,6 +41,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+@NmsReflection
 public class ExWitch extends CraftWitch implements EntityExtension<ExEntityRaider> {
 
     private final ExEntityRaider extension = new ExEntityRaider(this);

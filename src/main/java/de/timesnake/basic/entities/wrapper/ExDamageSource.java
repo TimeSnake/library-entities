@@ -1,7 +1,9 @@
 package de.timesnake.basic.entities.wrapper;
 
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.damagesource.DamageSource;
 
+@NmsReflection
 public enum ExDamageSource {
 
     FIRE(DamageSource.a),

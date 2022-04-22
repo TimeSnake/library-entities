@@ -1,5 +1,6 @@
 package de.timesnake.basic.entities.wrapper;
 
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.core.Position;
@@ -7,6 +8,7 @@ import net.minecraft.world.entity.ai.navigation.NavigationAbstract;
 import net.minecraft.world.level.pathfinder.PathEntity;
 import net.minecraft.world.level.pathfinder.PathPoint;
 
+@NmsReflection
 public class ExWrapper {
 
     public static ExNavigationAbstract wrapNavigationAbstract(NavigationAbstract navigationAbstract) {

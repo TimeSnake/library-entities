@@ -3,6 +3,7 @@ package de.timesnake.basic.entities.entity.bukkit;
 import de.timesnake.basic.entities.entity.extension.*;
 import de.timesnake.basic.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.basic.entities.wrapper.*;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import de.timesnake.library.reflection.wrapper.ExEntityPose;
 import de.timesnake.library.reflection.wrapper.ExEnumHand;
@@ -36,6 +37,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+@NmsReflection(usesReflection = true)
 public class ExSheep extends CraftSheep implements EntityExtension<ExEntityAnimal> {
 
     private final ExEntityAnimal extension = new ExEntityAnimal(this);
@@ -51,7 +53,7 @@ public class ExSheep extends CraftSheep implements EntityExtension<ExEntityAnima
         });
 
         if (!loadDefaultPathfinderGoals) {
-            this.extension.setNMSField("cc", new PathfinderGoalEatTile(this.extension.getNMS()));
+            this.extension.setNMSField("cb", new PathfinderGoalEatTile(this.extension.getNMS()));
         }
     }
 

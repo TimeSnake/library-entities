@@ -25,6 +25,7 @@ import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.entity.raid.EntityRaider;
 import net.minecraft.world.entity.vehicle.*;
 
+
 public class ExEntityClass<Nms extends Entity> {
 
     public static final ExEntityClass<EntityAreaEffectCloud> EntityAreaEffectCloud = new ExEntityClass<>(EntityAreaEffectCloud.class);

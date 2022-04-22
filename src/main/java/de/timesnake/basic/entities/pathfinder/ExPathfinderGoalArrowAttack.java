@@ -2,12 +2,14 @@ package de.timesnake.basic.entities.pathfinder;
 
 import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.basic.entities.entity.extension.ExEntityLiving;
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import net.minecraft.world.entity.monster.IRangedEntity;
 
 import java.util.EnumSet;
 
+@NmsReflection
 public class ExPathfinderGoalArrowAttack extends ExPathfinderGoal {
 
     public ExPathfinderGoalArrowAttack(double speed, int ticksPerAttack, float maxRange) {

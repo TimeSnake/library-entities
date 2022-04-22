@@ -3,6 +3,7 @@ package de.timesnake.basic.entities.entity.bukkit;
 import de.timesnake.basic.entities.entity.extension.EntityExtension;
 import de.timesnake.basic.entities.entity.extension.ExEntity;
 import de.timesnake.basic.entities.wrapper.*;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import de.timesnake.library.reflection.wrapper.ExEnumItemSlot;
 import net.minecraft.core.BlockPosition;
@@ -23,6 +24,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Random;
 
+@NmsReflection
 public class ExArmorStand extends CraftArmorStand implements EntityExtension<ExEntity> {
 
     private final ExEntity extension = new ExEntity(this);

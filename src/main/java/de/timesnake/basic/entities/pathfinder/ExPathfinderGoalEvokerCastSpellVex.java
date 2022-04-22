@@ -1,14 +1,13 @@
 package de.timesnake.basic.entities.pathfinder;
 
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.core.BlockPosition;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.level.WorldServer;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.sounds.SoundEffects;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.EnumMobSpawn;
-import net.minecraft.world.entity.GroupDataEntity;
 import net.minecraft.world.entity.ai.targeting.PathfinderTargetCondition;
 import net.minecraft.world.entity.monster.EntityEvoker;
 import net.minecraft.world.entity.monster.EntityIllagerWizard;
@@ -16,6 +15,7 @@ import net.minecraft.world.entity.monster.EntityVex;
 
 import java.util.Random;
 
+@NmsReflection(usesReflection = true)
 public class ExPathfinderGoalEvokerCastSpellVex extends ExPathfinderGoalIllagerWizardCastSpell {
 
     public ExPathfinderGoalEvokerCastSpellVex() {
@@ -55,7 +55,7 @@ public class ExPathfinderGoalEvokerCastSpellVex extends ExPathfinderGoalIllagerW
                         this.entity.cW().b(-2 + ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(5), 1, -2 + ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(5));
                 EntityVex var3 = EntityTypes.aU.a(this.entity.s);
                 var3.a(var2, 0.0F, 0.0F);
-                var3.a(var0, this.entity.s.d_(var2), EnumMobSpawn.f, (GroupDataEntity) null, (NBTTagCompound) null);
+                var3.a(var0, this.entity.s.d_(var2), EnumMobSpawn.f, null, null);
                 var3.a(this.entity);
                 var3.g(var2);
                 var3.a(20 * (30 + ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(90)));

@@ -1,12 +1,14 @@
 package de.timesnake.basic.entities.pathfinder;
 
 import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import net.minecraft.world.entity.monster.EntityIllagerWizard;
 
 import java.util.EnumSet;
 
+@NmsReflection(usesReflection = true)
 public class ExPathfinderGoalIllagerWizardNoneSpell extends ExPathfinderGoal {
 
     public ExPathfinderGoalIllagerWizardNoneSpell() {

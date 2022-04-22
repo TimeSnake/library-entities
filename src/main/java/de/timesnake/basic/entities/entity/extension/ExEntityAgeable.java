@@ -1,8 +1,10 @@
 package de.timesnake.basic.entities.entity.extension;
 
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityAgeable;
 import org.bukkit.craftbukkit.v1_18_R2.entity.CraftAgeable;
 
+@NmsReflection
 public abstract class ExEntityAgeable extends ExEntityInsentient {
 
     public ExEntityAgeable(CraftAgeable entity) {

@@ -5,6 +5,7 @@ import de.timesnake.basic.entities.wrapper.ExIBlockData;
 import de.timesnake.basic.entities.wrapper.ExNavigation;
 import de.timesnake.basic.entities.wrapper.ExPathEntity;
 import de.timesnake.basic.entities.wrapper.ExWrapper;
+import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import de.timesnake.library.reflection.wrapper.ExEnumHand;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
@@ -17,6 +18,7 @@ import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 
+@NmsReflection
 public class PathfinderGoalBreakBlockToLocation extends PathfinderGoal {
 
     private static final Integer[][] NEAR_BLOCK_VECTORS = new Integer[][]{{1, 1, 0}, {-1, 1, 0}, {0, 1, 1}, {0, 1, -1}, {1, 0, 0}, {-1, 0, 0}, {0, 0, 1}, {0, 0, -1}};

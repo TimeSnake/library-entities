@@ -2,12 +2,14 @@ package de.timesnake.basic.entities.pathfinder;
 
 import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.basic.entities.entity.extension.ExEntityLiving;
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.goal.target.PathfinderGoalTarget;
 import net.minecraft.world.entity.ai.targeting.PathfinderTargetCondition;
 import org.bukkit.event.entity.EntityTargetEvent;
 
 import java.util.EnumSet;
 
+@NmsReflection
 public class ExPathfinderGoalCustomOwnerHurtByTarget extends ExPathfinderGoalTarget {
 
     public ExPathfinderGoalCustomOwnerHurtByTarget(ExEntityInsentient owner) {

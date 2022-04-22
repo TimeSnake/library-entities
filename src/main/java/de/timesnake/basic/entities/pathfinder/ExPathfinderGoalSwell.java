@@ -3,10 +3,12 @@ package de.timesnake.basic.entities.pathfinder;
 import de.timesnake.basic.entities.entity.bukkit.ExCreeper;
 import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.basic.entities.entity.extension.ExEntityLiving;
+import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 
 import java.util.EnumSet;
 
+@NmsReflection
 public class ExPathfinderGoalSwell extends ExPathfinderGoal {
 
     public ExPathfinderGoalSwell(double swellRadius, double keepSwellingRadius) {
