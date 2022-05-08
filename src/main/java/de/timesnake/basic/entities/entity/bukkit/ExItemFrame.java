@@ -2,6 +2,7 @@ package de.timesnake.basic.entities.entity.bukkit;
 
 import de.timesnake.basic.entities.entity.extension.EntityExtension;
 import de.timesnake.basic.entities.entity.extension.ExEntity;
+import de.timesnake.basic.entities.entity.extension.ExEntityHanging;
 import de.timesnake.basic.entities.wrapper.*;
 import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
@@ -13,36 +14,37 @@ import net.minecraft.server.level.WorldServer;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.item.EntityItem;
+import net.minecraft.world.entity.decoration.EntityItemFrame;
 import net.minecraft.world.level.material.FluidType;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_18_R2.CraftServer;
 import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
 import org.bukkit.craftbukkit.v1_18_R2.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftItem;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftItemFrame;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Random;
 
-@NmsReflection
-public class ExItem extends CraftItem implements EntityExtension<ExEntity> {
+@NmsReflection(usesReflection = true)
+public class ExItemFrame extends CraftItemFrame implements EntityExtension<ExEntityHanging> {
 
-    private final ExEntity extension = new ExEntity(this);
+    private final ExEntityHanging extension = new ExEntityHanging(this);
 
-    public ExItem(World world) {
-        super(((CraftServer) Bukkit.getServer()), new EntityItem(ExEntityType.ITEM.getNMSType(),
+    public ExItemFrame(World world) {
+        super(((CraftServer) Bukkit.getServer()), new EntityItemFrame(ExEntityType.ITEM_FRAME.getNMSType(),
                 ((CraftWorld) world).getHandle()));
     }
 
-    public ExItem(EntityItem entity) {
+    public ExItemFrame(EntityItemFrame entity) {
         super(((CraftServer) Bukkit.getServer()), entity);
     }
 
-    public ExEntity getExtension() {
+    public ExEntityHanging getExtension() {
         return extension;
     }
 
+    // delegated
 
     public void setNMSField(String name, Object value) {getExtension().setNMSField(name, value);}
 
@@ -77,8 +79,7 @@ public class ExItem extends CraftItem implements EntityExtension<ExEntity> {
     public void setPosition(double x, double y, double z) {getExtension().setPosition(x, y, z);}
 
     public void setPosition(double x, double y, double z, boolean fixSpawnInBlock) {
-        getExtension().setPosition(x, y,
-                z, fixSpawnInBlock);
+        getExtension().setPosition(x, y, z, fixSpawnInBlock);
     }
 
     public double getX() {return getExtension().getX();}

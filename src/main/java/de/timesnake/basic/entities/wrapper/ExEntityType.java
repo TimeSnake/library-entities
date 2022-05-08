@@ -7,6 +7,7 @@ import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.ambient.EntityBat;
 import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.decoration.EntityArmorStand;
+import net.minecraft.world.entity.decoration.EntityItemFrame;
 import net.minecraft.world.entity.item.EntityItem;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.npc.EntityVillager;
@@ -63,8 +64,8 @@ public class ExEntityType<NmsType extends Entity> {
             EntityIronGolem.class, ExEntityIronGolem.class);
     public static final ExEntityType<EntityItem> ITEM = new ExEntityType<>(EntityTypes.Q, EntityItem.class,
             ExItem.class);
-    //public static final ExEntityType<EntityItemFrame> ITEM_FRAME = new ExEntityType<>(EntityTypes.R,
-    // EntityItemFrame.class, ExEntityItemFrame.class);
+    public static final ExEntityType<EntityItemFrame> ITEM_FRAME = new ExEntityType<>(EntityTypes.R,
+            EntityItemFrame.class, ExItemFrame.class);
     //public static final ExEntityType<EntityLargeFireball> FIREBALL = new ExEntityType<>(EntityTypes.S,
     // EntityLargeFireball.class, ExEntityLargeFireball.class);
     //public static final ExEntityType<EntityLeash> LEASH_KNOT = new ExEntityType<>(EntityTypes.T, EntityLeash.class,
