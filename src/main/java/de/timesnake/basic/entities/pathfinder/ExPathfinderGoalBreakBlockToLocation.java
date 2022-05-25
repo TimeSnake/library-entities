@@ -7,7 +7,8 @@ import org.bukkit.Material;
 @NmsReflection
 public class ExPathfinderGoalBreakBlockToLocation extends ExPathfinderGoal {
 
-    public ExPathfinderGoalBreakBlockToLocation(double x, double y, double z, double speedModifier, Material... materials) {
+    public ExPathfinderGoalBreakBlockToLocation(double x, double y, double z, double speedModifier,
+                                                Material... materials) {
         super(new PathfinderGoalBreakBlockToLocation(null, x, y, z, speedModifier, materials));
     }
 

@@ -22,7 +22,8 @@ public class ExPathfinderGoalBreakBlock extends ExPathfinderGoal {
         super(new PathfinderGoalBreakBlock(null, speedModifier, ignoreTarget, materials));
     }
 
-    public ExPathfinderGoalBreakBlock(double speedModifier, boolean ignoreTarget, BreakEvent event, Collection<Material> materials) {
+    public ExPathfinderGoalBreakBlock(double speedModifier, boolean ignoreTarget, BreakEvent event,
+                                      Collection<Material> materials) {
         super(new PathfinderGoalBreakBlock(null, speedModifier, ignoreTarget, event, materials));
     }
 

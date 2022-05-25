@@ -61,8 +61,11 @@ public class ExEntitySkeletonAbstract extends ExEntityInsentient {
 
     private void updateBowShootMeele(int priority) {
 
-        PathfinderGoalBowShoot<?> b = ((PathfinderGoalBowShoot<?>) RefUtil.getInstanceField(EntitySkeletonAbstract.class, this.getNMS(), "b"));
-        PathfinderGoalMeleeAttack c = (PathfinderGoalMeleeAttack) RefUtil.getInstanceField(EntitySkeletonAbstract.class, this.getNMS(), "c");
+        PathfinderGoalBowShoot<?> b =
+                ((PathfinderGoalBowShoot<?>) RefUtil.getInstanceField(EntitySkeletonAbstract.class, this.getNMS(), "b"
+                ));
+        PathfinderGoalMeleeAttack c =
+                (PathfinderGoalMeleeAttack) RefUtil.getInstanceField(EntitySkeletonAbstract.class, this.getNMS(), "c");
 
         if (this.getNMSWorld() != null && !this.getNMSWorld().x) {
             this.getGoalSelector().a(c);

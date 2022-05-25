@@ -44,7 +44,8 @@ public class ExBlaze extends CraftBlaze implements EntityExtension<ExEntityMonst
     private final ExEntityMonster extension = new ExEntityMonster(this);
 
     public ExBlaze(World world, boolean loadDefaultPathfinders) {
-        super(((CraftServer) Bukkit.getServer()), new EntityBlaze(ExEntityType.BLAZE.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityBlaze(ExEntityType.BLAZE.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinders) {

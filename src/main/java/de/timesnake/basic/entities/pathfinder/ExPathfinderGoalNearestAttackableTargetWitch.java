@@ -11,8 +11,10 @@ import java.util.function.Predicate;
 @NmsReflection
 public class ExPathfinderGoalNearestAttackableTargetWitch extends ExPathfinderGoalNearestAttackableTarget {
 
-    public ExPathfinderGoalNearestAttackableTargetWitch(EntityClass<? extends EntityLiving> target, int chance, boolean checkIfCanSee, boolean onlyIfPathExists) {
-        super(new PathfinderGoalNearestAttackableTargetWitch<>(null, target.getNMSClass(), chance, checkIfCanSee, onlyIfPathExists, null));
+    public ExPathfinderGoalNearestAttackableTargetWitch(EntityClass<? extends EntityLiving> target, int chance,
+                                                        boolean checkIfCanSee, boolean onlyIfPathExists) {
+        super(new PathfinderGoalNearestAttackableTargetWitch<>(null, target.getNMSClass(), chance, checkIfCanSee,
+                onlyIfPathExists, null));
     }
 
     public ExPathfinderGoalNearestAttackableTargetWitch(PathfinderGoalNearestAttackableTargetWitch<?> pathfinderGoal) {
@@ -27,7 +29,8 @@ public class ExPathfinderGoalNearestAttackableTargetWitch extends ExPathfinderGo
 
         private boolean i = true;
 
-        public PathfinderGoalNearestAttackableTargetWitch(EntityRaider var0, Class<T> var1, int var2, boolean var3, boolean var4, @Nullable Predicate<EntityLiving> var5) {
+        public PathfinderGoalNearestAttackableTargetWitch(EntityRaider var0, Class<T> var1, int var2, boolean var3,
+                                                          boolean var4, @Nullable Predicate<EntityLiving> var5) {
             super(var0, var1, var2, var3, var4, var5);
         }
 

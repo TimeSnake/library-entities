@@ -46,7 +46,8 @@ public class ExSpider extends CraftSpider implements EntityExtension<ExEntityMon
     private final ExEntitySpider extension;
 
     public ExSpider(World world, boolean loadDefaultPathfinderGoals) {
-        super(((CraftServer) Bukkit.getServer()), new EntitySpider(ExEntityType.SPIDER.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntitySpider(ExEntityType.SPIDER.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinderGoals) {

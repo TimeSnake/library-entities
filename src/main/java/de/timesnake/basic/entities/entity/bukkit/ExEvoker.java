@@ -45,7 +45,8 @@ public class ExEvoker extends CraftEvoker implements EntityExtension<ExEntityIll
     private final ExEntityIllagerWizard extension = new ExEntityIllagerWizard(this);
 
     public ExEvoker(World world, boolean loadDefaultPathfinderGoals) {
-        super(((CraftServer) Bukkit.getServer()), new EntityEvoker(ExEntityType.EVOKER.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityEvoker(ExEntityType.EVOKER.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinderGoals) {

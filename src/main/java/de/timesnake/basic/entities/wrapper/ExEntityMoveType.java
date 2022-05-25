@@ -6,7 +6,11 @@ import net.minecraft.world.entity.EnumMoveType;
 @NmsReflection
 public enum ExEntityMoveType {
 
-    SELF(EnumMoveType.a), PLAYER(EnumMoveType.b), PISTON(EnumMoveType.c), SHULKER_BOX(EnumMoveType.d), SHULKER(EnumMoveType.e);
+    SELF(EnumMoveType.a),
+    PLAYER(EnumMoveType.b),
+    PISTON(EnumMoveType.c),
+    SHULKER_BOX(EnumMoveType.d),
+    SHULKER(EnumMoveType.e);
 
     private final EnumMoveType type;
 

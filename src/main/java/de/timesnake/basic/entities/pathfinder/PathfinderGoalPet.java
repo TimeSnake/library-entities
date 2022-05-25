@@ -22,7 +22,8 @@ public class PathfinderGoalPet extends PathfinderGoal {
     private double y;
     private double z;
 
-    public PathfinderGoalPet(ExEntityInsentient pet, Player owner, double speed, float minDistance, float teleportDistance) {
+    public PathfinderGoalPet(ExEntityInsentient pet, Player owner, double speed, float minDistance,
+                             float teleportDistance) {
         this.pet = pet;
         this.owner = new ExPlayer(owner);
         this.speed = speed;

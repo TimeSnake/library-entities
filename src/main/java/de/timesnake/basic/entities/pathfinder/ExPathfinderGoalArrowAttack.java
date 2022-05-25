@@ -37,7 +37,8 @@ public class ExPathfinderGoalArrowAttack extends ExPathfinderGoal {
             this(entity, speed, ticksPerAttack, ticksPerAttack, maxRange);
         }
 
-        public PathfinderGoalArrowAttack(ExEntityInsentient entity, double speed, int minimumTicksPerAttack, int ticksPerAttackAtMaxRange, float maxRange) {
+        public PathfinderGoalArrowAttack(ExEntityInsentient entity, double speed, int minimumTicksPerAttack,
+                                         int ticksPerAttackAtMaxRange, float maxRange) {
             this.delay = -1;
             this.entity = entity;
             this.speed = speed;
@@ -74,7 +75,8 @@ public class ExPathfinderGoalArrowAttack extends ExPathfinderGoal {
         }
 
         public void e() {
-            double distanceSquared = this.entity.distanceSquared(this.target.getX(), this.target.getY(), this.target.getZ());
+            double distanceSquared = this.entity.distanceSquared(this.target.getX(), this.target.getY(),
+                    this.target.getZ());
             boolean var2 = this.entity.getEntitySenses().a(this.target);
             if (var2) {
                 ++this.f;
@@ -98,10 +100,12 @@ public class ExPathfinderGoalArrowAttack extends ExPathfinderGoal {
                 distanceMaxRangeRatio = (float) (Math.sqrt(distanceSquared) / this.maxRange);
                 float var4 = MathHelper.a(distanceMaxRangeRatio, 0.1F, 1.0F);
                 this.entityRanged.a(this.target.getNMS(), var4);
-                this.delay = MathHelper.d(distanceMaxRangeRatio * (float) (this.ticksPerAttackAtMaxRange - this.minimumTicksPerAttack) + (float) this.minimumTicksPerAttack);
+                this.delay =
+                        MathHelper.d(distanceMaxRangeRatio * (float) (this.ticksPerAttackAtMaxRange - this.minimumTicksPerAttack) + (float) this.minimumTicksPerAttack);
             } else if (this.delay < 0) {
                 distanceMaxRangeRatio = (float) (Math.sqrt(distanceSquared) / this.maxRange);
-                this.delay = MathHelper.d(distanceMaxRangeRatio * (float) (this.ticksPerAttackAtMaxRange - this.minimumTicksPerAttack) + (float) this.minimumTicksPerAttack);
+                this.delay =
+                        MathHelper.d(distanceMaxRangeRatio * (float) (this.ticksPerAttackAtMaxRange - this.minimumTicksPerAttack) + (float) this.minimumTicksPerAttack);
             }
 
         }

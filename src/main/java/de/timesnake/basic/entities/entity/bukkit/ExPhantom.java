@@ -45,7 +45,8 @@ public class ExPhantom extends CraftPhantom implements EntityExtension<ExEntityF
     private final ExEntityFlying extension = new ExEntityFlying(this);
 
     public ExPhantom(World world, boolean loadDefaultPathfinderGoals) {
-        super(((CraftServer) Bukkit.getServer()), new EntityPhantom(ExEntityType.PHANTOM.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityPhantom(ExEntityType.PHANTOM.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
 
             @Override
             protected void u() {

@@ -45,7 +45,8 @@ public class ExCaveSpider extends CraftCaveSpider implements EntityExtension<ExE
     private final ExEntitySpider extension = new ExEntitySpider(this);
 
     public ExCaveSpider(World world, boolean loadDefaultPathfinderGoals) {
-        super(((CraftServer) Bukkit.getServer()), new EntityCaveSpider(ExEntityType.CAVE_SPIDER.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityCaveSpider(ExEntityType.CAVE_SPIDER.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinderGoals) {

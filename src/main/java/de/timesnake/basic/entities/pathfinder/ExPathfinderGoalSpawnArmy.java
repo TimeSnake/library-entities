@@ -20,9 +20,11 @@ public abstract class ExPathfinderGoalSpawnArmy extends ExPathfinderGoal {
         this(armyClass, amountOnRespawn, 0);
     }
 
-    public ExPathfinderGoalSpawnArmy(EntityClass<? extends EntityInsentient> armyClass, int amountOnRespawn, int cooldownInTicks) {
+    public ExPathfinderGoalSpawnArmy(EntityClass<? extends EntityInsentient> armyClass, int amountOnRespawn,
+                                     int cooldownInTicks) {
         super();
-        super.pathfinderGoal = new PathfinderGoalSpawnArmy(null, armyClass.getNMSClass(), amountOnRespawn, cooldownInTicks) {
+        super.pathfinderGoal = new PathfinderGoalSpawnArmy(null, armyClass.getNMSClass(), amountOnRespawn,
+                cooldownInTicks) {
 
             @Override
             public List<? extends EntityExtension<? extends ExEntityInsentient>> getArmy() {
@@ -37,7 +39,8 @@ public abstract class ExPathfinderGoalSpawnArmy extends ExPathfinderGoal {
     }
 
 
-    public abstract List<? extends EntityExtension<? extends ExEntityInsentient>> getArmee(EntityExtension<? extends ExEntityInsentient> entity);
+    public abstract List<? extends EntityExtension<? extends ExEntityInsentient>> getArmee(EntityExtension<?
+            extends ExEntityInsentient> entity);
 
 
     public abstract static class PathfinderGoalSpawnArmy extends PathfinderGoal {
@@ -51,11 +54,13 @@ public abstract class ExPathfinderGoalSpawnArmy extends ExPathfinderGoal {
         private final int cooldown;
         private int currentCooldown = 0;
 
-        public PathfinderGoalSpawnArmy(EntityExtension<? extends ExEntityInsentient> entity, Class<? extends EntityInsentient> armyClass, int spawn) {
+        public PathfinderGoalSpawnArmy(EntityExtension<? extends ExEntityInsentient> entity, Class<?
+                extends EntityInsentient> armyClass, int spawn) {
             this(entity, armyClass, spawn, 0);
         }
 
-        public PathfinderGoalSpawnArmy(EntityExtension<? extends ExEntityInsentient> entity, Class<? extends EntityInsentient> armyClass, int spawn, int cooldown) {
+        public PathfinderGoalSpawnArmy(EntityExtension<? extends ExEntityInsentient> entity, Class<?
+                extends EntityInsentient> armyClass, int spawn, int cooldown) {
             this.exEntity = entity;
             this.armyClass = armyClass;
             this.spawn = spawn;
@@ -66,7 +71,8 @@ public abstract class ExPathfinderGoalSpawnArmy extends ExPathfinderGoal {
 
         @Override
         public boolean a() {
-            int var0 = exEntity.getExtension().getNMSWorld().a(this.armyClass, this.targetCondition, exEntity.getExtension().getNMS(), exEntity.getExtension().getExBoundingBox().grow(8.0D).getNMS()).size();
+            int var0 = exEntity.getExtension().getNMSWorld().a(this.armyClass, this.targetCondition,
+                    exEntity.getExtension().getNMS(), exEntity.getExtension().getExBoundingBox().grow(8.0D).getNMS()).size();
             this.currentCooldown--;
             return exEntity.getExtension().getRandom().nextInt(spawn) >= var0 && this.currentCooldown <= 0;
         }
@@ -74,9 +80,11 @@ public abstract class ExPathfinderGoalSpawnArmy extends ExPathfinderGoal {
         @Override
         public void c() {
             for (EntityExtension<? extends ExEntityInsentient> entity : this.getArmy()) {
-                ExBlockPosition position = new ExBlockPosition(this.exEntity.getExtension().getChunkCoordinates().b(-2 + this.exEntity.getExtension().getRandom().nextInt(5), 0, -2 + this.exEntity.getExtension().getRandom().nextInt(5)));
+                ExBlockPosition position =
+                        new ExBlockPosition(this.exEntity.getExtension().getChunkCoordinates().b(-2 + this.exEntity.getExtension().getRandom().nextInt(5), 0, -2 + this.exEntity.getExtension().getRandom().nextInt(5)));
 
-                entity.getExtension().setTarget(this.exEntity.getExtension().getNMSTarget(), EntityTargetEvent.TargetReason.CUSTOM, true);
+                entity.getExtension().setTarget(this.exEntity.getExtension().getNMSTarget(),
+                        EntityTargetEvent.TargetReason.CUSTOM, true);
                 entity.getExtension().setPositionRotation(position, 0, 0);
 
                 this.exEntity.getExtension().getExWorld().addEntity(entity.getExtension().getNMS());

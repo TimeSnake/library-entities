@@ -48,7 +48,8 @@ public class ExPathfinderGoalIllagerIllusionerCastSpellBlindness extends ExPathf
         }
 
         protected void k() {
-            this.entity.G().addEffect(new MobEffect(MobEffects.o, 400), this.entity, EntityPotionEffectEvent.Cause.ATTACK);
+            this.entity.G().addEffect(new MobEffect(MobEffects.o, 400), this.entity,
+                    EntityPotionEffectEvent.Cause.ATTACK);
         }
 
         protected SoundEffect l() {

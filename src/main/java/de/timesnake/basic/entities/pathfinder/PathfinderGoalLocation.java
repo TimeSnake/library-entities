@@ -20,7 +20,8 @@ public class PathfinderGoalLocation extends PathfinderGoal {
     private final double y;
     private final double z;
 
-    public PathfinderGoalLocation(ExEntityInsentient entity, double x, double y, double z, double speed, double trackingDistance, double minDistance) {
+    public PathfinderGoalLocation(ExEntityInsentient entity, double x, double y, double z, double speed,
+                                  double trackingDistance, double minDistance) {
         this.entity = entity;
         this.speed = speed;
         this.trackingDistance = trackingDistance;
@@ -34,9 +35,11 @@ public class PathfinderGoalLocation extends PathfinderGoal {
     @Override
     public boolean a() {
 
-        if (this.entity.distanceSquared(x, y, z) < (this.minDistance * this.minDistance)) { // entity distance < minDistance
+        if (this.entity.distanceSquared(x, y, z) < (this.minDistance * this.minDistance)) { // entity distance <
+            // minDistance
             return false;
-        } else if (this.entity.distanceSquared(x, y, z) > (this.trackingDistance * this.trackingDistance)) { // entity not in tracking distance
+        } else if (this.entity.distanceSquared(x, y, z) > (this.trackingDistance * this.trackingDistance)) { //
+            // entity not in tracking distance
             return false;
         } else {
             return true;

@@ -31,20 +31,27 @@ public class ExPathfinderGoalNearestAttackableTarget extends ExPathfinderGoalTar
         this(target, checkIfCanSee, false);
     }
 
-    public ExPathfinderGoalNearestAttackableTarget(EntityClass<? extends EntityLiving> target, boolean checkIfCanSee, boolean onlyIfPathExists) {
+    public ExPathfinderGoalNearestAttackableTarget(EntityClass<? extends EntityLiving> target, boolean checkIfCanSee,
+                                                   boolean onlyIfPathExists) {
         this(target, 10, checkIfCanSee, onlyIfPathExists);
     }
 
-    public ExPathfinderGoalNearestAttackableTarget(EntityClass<? extends EntityLiving> target, boolean checkIfCanSee, boolean onlyIfPathExists, Double maxDistance) {
-        super(new PathfinderGoalNearestAttackableTarget(null, target.getNMSClass(), checkIfCanSee, onlyIfPathExists, maxDistance));
+    public ExPathfinderGoalNearestAttackableTarget(EntityClass<? extends EntityLiving> target, boolean checkIfCanSee,
+                                                   boolean onlyIfPathExists, Double maxDistance) {
+        super(new PathfinderGoalNearestAttackableTarget(null, target.getNMSClass(), checkIfCanSee, onlyIfPathExists,
+                maxDistance));
     }
 
-    public ExPathfinderGoalNearestAttackableTarget(EntityClass<? extends EntityLiving> target, int chance, boolean checkIfCanSee, boolean onlyIfPathExists) {
+    public ExPathfinderGoalNearestAttackableTarget(EntityClass<? extends EntityLiving> target, int chance,
+                                                   boolean checkIfCanSee, boolean onlyIfPathExists) {
         this(target, chance, checkIfCanSee, onlyIfPathExists, null);
     }
 
-    public ExPathfinderGoalNearestAttackableTarget(EntityClass<? extends EntityLiving> target, int chance, boolean checkIfCanSee, boolean onlyIfPathExists, @Nullable Predicate<EntityLiving> condition) {
-        super(new PathfinderGoalNearestAttackableTarget(null, target.getNMSClass(), chance, checkIfCanSee, onlyIfPathExists, condition));
+    public ExPathfinderGoalNearestAttackableTarget(EntityClass<? extends EntityLiving> target, int chance,
+                                                   boolean checkIfCanSee, boolean onlyIfPathExists,
+                                                   @Nullable Predicate<EntityLiving> condition) {
+        super(new PathfinderGoalNearestAttackableTarget(null, target.getNMSClass(), chance, checkIfCanSee,
+                onlyIfPathExists, condition));
     }
 
     protected ExPathfinderGoalNearestAttackableTarget(PathfinderGoalNearestAttackableTarget<? extends EntityLiving> pathfinderGoal) {
@@ -75,16 +82,20 @@ public class ExPathfinderGoalNearestAttackableTarget extends ExPathfinderGoalTar
             this(entityinsentient, oclass, flag, false);
         }
 
-        public PathfinderGoalNearestAttackableTarget(EntityInsentient entityinsentient, Class<T> oclass, boolean flag, boolean flag1) {
+        public PathfinderGoalNearestAttackableTarget(EntityInsentient entityinsentient, Class<T> oclass, boolean flag
+                , boolean flag1) {
             this(entityinsentient, oclass, 10, flag, flag1, null);
         }
 
-        public PathfinderGoalNearestAttackableTarget(EntityInsentient entityinsentient, Class<T> oclass, boolean flag, boolean flag1, Double maxDistance) {
+        public PathfinderGoalNearestAttackableTarget(EntityInsentient entityinsentient, Class<T> oclass, boolean flag
+                , boolean flag1, Double maxDistance) {
             this(entityinsentient, oclass, 10, flag, flag1, null);
             this.maxDistance = maxDistance;
         }
 
-        public PathfinderGoalNearestAttackableTarget(EntityInsentient entityinsentient, Class<T> oclass, int i, boolean flag, boolean flag1, @Nullable Predicate<EntityLiving> predicate) {
+        public PathfinderGoalNearestAttackableTarget(EntityInsentient entityinsentient, Class<T> oclass, int i,
+                                                     boolean flag, boolean flag1,
+                                                     @Nullable Predicate<EntityLiving> predicate) {
             super(entityinsentient, flag, flag1);
             this.a = oclass;
             this.b = i;
@@ -120,7 +131,8 @@ public class ExPathfinderGoalNearestAttackableTarget extends ExPathfinderGoalTar
         }
 
         public void c() {
-            this.e.setTarget(this.c, this.c instanceof EntityPlayer ? EntityTargetEvent.TargetReason.CLOSEST_PLAYER : EntityTargetEvent.TargetReason.CLOSEST_ENTITY, true);
+            this.e.setTarget(this.c, this.c instanceof EntityPlayer ? EntityTargetEvent.TargetReason.CLOSEST_PLAYER :
+                    EntityTargetEvent.TargetReason.CLOSEST_ENTITY, true);
             super.c();
         }
 

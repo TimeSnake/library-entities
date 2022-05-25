@@ -45,7 +45,8 @@ public class ExEndermite extends CraftEndermite implements EntityExtension<ExEnt
     private final ExEntityMonster extension = new ExEntityMonster(this);
 
     public ExEndermite(World world, boolean loadDefaultPathfinderGoals) {
-        super(((CraftServer) Bukkit.getServer()), new EntityEndermite(ExEntityType.ENDERMITE.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityEndermite(ExEntityType.ENDERMITE.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinderGoals) {

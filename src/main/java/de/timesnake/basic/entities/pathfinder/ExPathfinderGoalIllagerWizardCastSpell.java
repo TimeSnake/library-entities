@@ -68,6 +68,7 @@ public abstract class ExPathfinderGoalIllagerWizardCastSpell extends ExPathfinde
                 }
 
                 this.k();
+                // TODO "fy" not exists
                 this.entity.a((SoundEffect) RefUtil.invokeMethod(this.entity, "fy"), 1.0F, 1.0F);
             }
 

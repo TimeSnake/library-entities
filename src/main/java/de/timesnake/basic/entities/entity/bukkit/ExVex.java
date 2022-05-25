@@ -45,7 +45,8 @@ public class ExVex extends CraftVex implements EntityExtension<ExEntityMonster> 
     private final ExEntityMonster extension = new ExEntityMonster(this);
 
     public ExVex(World world, boolean loadDefaultPathfinders) {
-        super(((CraftServer) Bukkit.getServer()), new EntityVex(ExEntityType.VEX.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityVex(ExEntityType.VEX.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinders) {

@@ -45,7 +45,8 @@ public class ExCreeper extends CraftCreeper implements EntityExtension<ExEntityM
     private final ExEntityMonster extension = new ExEntityMonster(this);
 
     public ExCreeper(World world, boolean loadDefaultPathfinderGoals) {
-        super(((CraftServer) Bukkit.getServer()), new EntityCreeper(ExEntityType.CREEPER.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityCreeper(ExEntityType.CREEPER.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             public void u() {
                 if (loadDefaultPathfinderGoals) {

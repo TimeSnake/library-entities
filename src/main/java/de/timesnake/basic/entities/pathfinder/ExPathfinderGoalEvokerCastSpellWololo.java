@@ -23,7 +23,8 @@ public class ExPathfinderGoalEvokerCastSpellWololo extends ExPathfinderGoalIllag
 
     protected static class PathfinderGoalEvokerCastSpellWololo extends PathfinderGoalIllagerWizardCastSpell {
 
-        private final PathfinderTargetCondition e = PathfinderTargetCondition.b().a(16.0D).a((var0x) -> ((EntitySheep) var0x).t() == EnumColor.l);
+        private final PathfinderTargetCondition e =
+                PathfinderTargetCondition.b().a(16.0D).a((var0x) -> ((EntitySheep) var0x).t() == EnumColor.l);
 
 
         public PathfinderGoalEvokerCastSpellWololo(EntityEvoker entity) {

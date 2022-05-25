@@ -49,7 +49,8 @@ public class ExWitch extends CraftWitch implements EntityExtension<ExEntityRaide
     private ExPathfinderGoalNearestAttackableTargetWitch nearestAttackableTargetWitch;
 
     public ExWitch(World world, boolean loadDefaultPathfinderGoals) {
-        super(((CraftServer) Bukkit.getServer()), new EntityWitch(ExEntityType.WITCH.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityWitch(ExEntityType.WITCH.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinderGoals) {
@@ -79,7 +80,8 @@ public class ExWitch extends CraftWitch implements EntityExtension<ExEntityRaide
 
     public ExPathfinderGoalNearestAttackableTargetWitch getNearestAttackableTargetPathfinder() {
         if (this.nearestAttackableTargetWitch == null) {
-            this.nearestAttackableTargetWitch = new ExPathfinderGoalNearestAttackableTargetWitch(((PathfinderGoalNearestAttackableTargetWitch<?>) this.extension.getNMSField("bZ")));
+            this.nearestAttackableTargetWitch =
+                    new ExPathfinderGoalNearestAttackableTargetWitch(((PathfinderGoalNearestAttackableTargetWitch<?>) this.extension.getNMSField("bZ")));
         }
         return this.nearestAttackableTargetWitch;
     }
