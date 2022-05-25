@@ -191,7 +191,8 @@ public class ExEntity {
     }
 
     public double distanceSquared(ExBlockPosition position) {
-        return this.entity.getLocation().distanceSquared(new Location(this.entity.getWorld(), position.getX(), position.getY(), position.getZ()));
+        return this.entity.getLocation().distanceSquared(new Location(this.entity.getWorld(), position.getX(),
+                position.getY(), position.getZ()));
     }
 
 

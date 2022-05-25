@@ -45,7 +45,8 @@ public class ExSilverfish extends CraftSilverfish implements EntityExtension<ExE
     private final ExEntityMonster extension = new ExEntityMonster(this);
 
     public ExSilverfish(World world, boolean loadDefaultPathfinders) {
-        super(((CraftServer) Bukkit.getServer()), new EntitySilverfish(ExEntityType.SILVERFISH.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntitySilverfish(ExEntityType.SILVERFISH.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinders) {

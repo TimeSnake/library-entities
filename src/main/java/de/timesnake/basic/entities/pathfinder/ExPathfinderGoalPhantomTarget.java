@@ -42,7 +42,8 @@ public class ExPathfinderGoalPhantomTarget extends ExPathfinderGoal {
                 --this.c;
             } else {
                 this.c = 60;
-                List<EntityHuman> list = this.entity.getExtension().getNMSWorld().a(this.b, this.entity.getHandle(), this.entity.getExtension().getExBoundingBox().grow(16.0D, 64.0D, 16.0D).getNMS());
+                List<EntityHuman> list = this.entity.getExtension().getNMSWorld().a(this.b, this.entity.getHandle(),
+                        this.entity.getExtension().getExBoundingBox().grow(16.0D, 64.0D, 16.0D).getNMS());
                 if (!list.isEmpty()) {
                     list.sort(Comparator.comparing((e) -> new ExEntity(((Entity) e)).getY()).reversed());
 

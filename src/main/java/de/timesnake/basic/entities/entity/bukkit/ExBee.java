@@ -45,7 +45,8 @@ public class ExBee extends CraftBee {
     private final ExEntityAnimal extension = new ExEntityAnimal(this);
 
     public ExBee(World world, boolean loadDefaultPathfinders) {
-        super(((CraftServer) Bukkit.getServer()), new EntityBee(ExEntityType.BEE.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityBee(ExEntityType.BEE.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinders) {

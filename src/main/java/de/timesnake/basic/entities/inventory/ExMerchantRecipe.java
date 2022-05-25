@@ -10,8 +10,10 @@ public class ExMerchantRecipe {
 
     private final MerchantRecipe nms;
 
-    public ExMerchantRecipe(ItemStack item1, ItemStack item2, ItemStack sellingItem, int uses, int maxUses, int xp, float priceMultiplier) {
-        this.nms = new MerchantRecipe(CraftItemStack.asNMSCopy(item1), CraftItemStack.asNMSCopy(item2), CraftItemStack.asNMSCopy(sellingItem), uses, maxUses, xp, priceMultiplier);
+    public ExMerchantRecipe(ItemStack item1, ItemStack item2, ItemStack sellingItem, int uses, int maxUses, int xp,
+                            float priceMultiplier) {
+        this.nms = new MerchantRecipe(CraftItemStack.asNMSCopy(item1), CraftItemStack.asNMSCopy(item2),
+                CraftItemStack.asNMSCopy(sellingItem), uses, maxUses, xp, priceMultiplier);
     }
 
     public ExMerchantRecipe(MerchantRecipe nms) {

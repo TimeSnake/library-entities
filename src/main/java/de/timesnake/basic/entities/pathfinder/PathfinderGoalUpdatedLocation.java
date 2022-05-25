@@ -18,7 +18,8 @@ public abstract class PathfinderGoalUpdatedLocation extends PathfinderGoal {
     protected double y;
     protected double z;
 
-    public PathfinderGoalUpdatedLocation(ExEntityInsentient entity, double speed, double trackingDistance, double minDistance) {
+    public PathfinderGoalUpdatedLocation(ExEntityInsentient entity, double speed, double trackingDistance,
+                                         double minDistance) {
         this.entity = entity;
         this.speed = speed;
         this.trackingDistance = trackingDistance;
@@ -27,7 +28,8 @@ public abstract class PathfinderGoalUpdatedLocation extends PathfinderGoal {
 
     @Override
     public boolean a() {
-        Location loc = this.getNextLocation(new Location(this.entity.getNMSWorld().getWorld(), this.entity.getX(), this.entity.getY(), this.entity.getZ()));
+        Location loc = this.getNextLocation(new Location(this.entity.getNMSWorld().getWorld(), this.entity.getX(),
+                this.entity.getY(), this.entity.getZ()));
 
         if (loc == null) {
             return false;
@@ -37,7 +39,8 @@ public abstract class PathfinderGoalUpdatedLocation extends PathfinderGoal {
         this.y = loc.getY();
         this.z = loc.getZ();
 
-        if (this.entity.distanceSquared(x, y, z) < (this.minDistance * this.minDistance)) { // entity distance < minDistance
+        if (this.entity.distanceSquared(x, y, z) < (this.minDistance * this.minDistance)) { // entity distance <
+            // minDistance
             return false;
         } else {
             return !(this.entity.distanceSquared(x, y, z) > (this.trackingDistance * this.trackingDistance));

@@ -45,7 +45,8 @@ public class ExVindicator extends CraftVindicator implements EntityExtension<ExE
     private final ExEntityIllagerAbstract extension = new ExEntityIllagerAbstract(this);
 
     public ExVindicator(World world, boolean loadDefaultPathfinderGoals) {
-        super(((CraftServer) Bukkit.getServer()), new EntityVindicator(ExEntityType.VINDICATOR.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityVindicator(ExEntityType.VINDICATOR.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinderGoals) {

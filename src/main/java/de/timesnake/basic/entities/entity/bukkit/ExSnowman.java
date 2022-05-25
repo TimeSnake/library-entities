@@ -45,7 +45,8 @@ public class ExSnowman extends CraftSnowman implements EntityExtension<ExEntityG
     private final ExEntityGolem extension = new ExEntityGolem(this);
 
     public ExSnowman(World world, boolean loadDefaultPathfinderGoals) {
-        super(((CraftServer) Bukkit.getServer()), new EntitySnowman(ExEntityType.SNOW_GOLEM.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntitySnowman(ExEntityType.SNOW_GOLEM.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinderGoals) {

@@ -45,7 +45,8 @@ public class ExRavager extends CraftRavager implements EntityExtension<ExEntityR
     private final ExEntityRaider extension = new ExEntityRaider(this);
 
     public ExRavager(World world, boolean loadDefaultPathfinderGoals) {
-        super(((CraftServer) Bukkit.getServer()), new EntityRavager(ExEntityType.RAVAGER.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityRavager(ExEntityType.RAVAGER.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinderGoals) {

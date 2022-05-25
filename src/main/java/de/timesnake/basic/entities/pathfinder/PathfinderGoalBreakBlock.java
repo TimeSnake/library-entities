@@ -21,7 +21,8 @@ import java.util.*;
 @NmsReflection
 public class PathfinderGoalBreakBlock extends PathfinderGoal implements LocationTargetable {
 
-    private static final Integer[][] NEAR_BLOCK_VECTORS = new Integer[][]{{1, 1, 0}, {-1, 1, 0}, {0, 1, 1}, {0, 1, -1}, {1, 0, 0}, {-1, 0, 0}, {0, 0, 1}, {0, 0, -1}};
+    private static final Integer[][] NEAR_BLOCK_VECTORS = new Integer[][]{{1, 1, 0}, {-1, 1, 0}, {0, 1, 1}, {0, 1,
+            -1}, {1, 0, 0}, {-1, 0, 0}, {0, 0, 1}, {0, 0, -1}};
 
     private final ExEntityInsentient entity;
     private final List<Material> materials;
@@ -40,21 +41,25 @@ public class PathfinderGoalBreakBlock extends PathfinderGoal implements Location
 
     private final ExPathfinderGoalBreakBlock.BreakEvent event;
 
-    public PathfinderGoalBreakBlock(ExEntityInsentient entity, double speedModifier, boolean ignoreTarget, Material... materials) {
+    public PathfinderGoalBreakBlock(ExEntityInsentient entity, double speedModifier, boolean ignoreTarget,
+                                    Material... materials) {
         this(entity, speedModifier, ignoreTarget, null, Arrays.asList(materials));
     }
 
-    public PathfinderGoalBreakBlock(ExEntityInsentient entity, double speedModifier, boolean ignoreTarget, Collection<Material> materials) {
+    public PathfinderGoalBreakBlock(ExEntityInsentient entity, double speedModifier, boolean ignoreTarget,
+                                    Collection<Material> materials) {
         this(entity, speedModifier, ignoreTarget, null, materials);
     }
 
-    public PathfinderGoalBreakBlock(ExEntityInsentient entity, double speedModifier, boolean ignoreTarget, ExPathfinderGoalBreakBlock.BreakEvent event, Collection<Material> materials) {
+    public PathfinderGoalBreakBlock(ExEntityInsentient entity, double speedModifier, boolean ignoreTarget,
+                                    ExPathfinderGoalBreakBlock.BreakEvent event, Collection<Material> materials) {
         this.entity = entity;
         this.speedModifier = speedModifier;
         this.ignoreTarget = ignoreTarget;
         this.materials = new ArrayList<>(materials);
         this.event = event;
-        this.a(EnumSet.of(ExPathfinderGoal.Type.JUMP.getNMS(), ExPathfinderGoal.Type.MOVE.getNMS(), ExPathfinderGoal.Type.LOOK.getNMS()));
+        this.a(EnumSet.of(ExPathfinderGoal.Type.JUMP.getNMS(), ExPathfinderGoal.Type.MOVE.getNMS(),
+                ExPathfinderGoal.Type.LOOK.getNMS()));
     }
 
     public List<Material> getMaterials() {
@@ -173,7 +178,8 @@ public class PathfinderGoalBreakBlock extends PathfinderGoal implements Location
             return true;
         }
 
-        if (this.materials.contains(this.entity.getNMSWorld().getWorld().getBlockAt(block.getX(), block.getY(), block.getZ()).getType())) {
+        if (this.materials.contains(this.entity.getNMSWorld().getWorld().getBlockAt(block.getX(), block.getY(),
+                block.getZ()).getType())) {
             return true;
         }
 
@@ -188,7 +194,8 @@ public class PathfinderGoalBreakBlock extends PathfinderGoal implements Location
 
     @Override
     public boolean b() {
-        boolean cancel = !(this.currentBlock.getType().equals(this.currentBlockType) || this.entity.distanceSquared(this.currentBlock.getX() + 0.5, this.currentBlock.getY(), this.currentBlock.getZ() + 0.5) > 3.5);
+        boolean cancel =
+                !(this.currentBlock.getType().equals(this.currentBlockType) || this.entity.distanceSquared(this.currentBlock.getX() + 0.5, this.currentBlock.getY(), this.currentBlock.getZ() + 0.5) > 3.5);
 
         if (cancel) {
             this.currentBlock = null;
@@ -201,11 +208,13 @@ public class PathfinderGoalBreakBlock extends PathfinderGoal implements Location
         this.entity.setAggressive(true);
         this.entity.setTarget((EntityLiving) null);
         this.remainTime -= this.speedModifier / 20;
-        this.entity.getControllerLook().a(this.currentBlock.getX() + 0.5, this.currentBlock.getY() + 0.5, this.currentBlock.getZ() + 0.5);
+        this.entity.getControllerLook().a(this.currentBlock.getX() + 0.5, this.currentBlock.getY() + 0.5,
+                this.currentBlock.getZ() + 0.5);
         this.entity.getNavigation().a(this.position);
         if (this.soundDelay <= 0) {
             this.entity.swingHand(ExEnumHand.MAIN_HAND);
-            this.currentBlock.getWorld().playSound(this.currentBlock.getLocation(), Sound.ENTITY_ZOMBIE_ATTACK_WOODEN_DOOR, 0.5F, 1F);
+            this.currentBlock.getWorld().playSound(this.currentBlock.getLocation(),
+                    Sound.ENTITY_ZOMBIE_ATTACK_WOODEN_DOOR, 0.5F, 1F);
             this.soundDelay = 20;
         }
         this.soundDelay--;
@@ -216,7 +225,8 @@ public class PathfinderGoalBreakBlock extends PathfinderGoal implements Location
     @Override
     public void d() {
         if (this.currentBlock != null) {
-            this.currentBlock.getWorld().playEffect(this.currentBlock.getLocation(), Effect.STEP_SOUND, this.currentBlock.getType());
+            this.currentBlock.getWorld().playEffect(this.currentBlock.getLocation(), Effect.STEP_SOUND,
+                    this.currentBlock.getType());
             this.currentBlock.setType(Material.AIR);
 
             if (this.event != null) {

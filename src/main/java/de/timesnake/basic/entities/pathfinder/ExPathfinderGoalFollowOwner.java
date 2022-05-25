@@ -45,7 +45,8 @@ public class ExPathfinderGoalFollowOwner extends ExPathfinderGoal {
         private float i;
         private final boolean teleportOnLeaves;
 
-        public PathfinderGoalFollowOwner(ExEntityTameableAnimal entitytameableanimal, double speed, float distance, float cancelDistance, boolean teleportOnLeaves) {
+        public PathfinderGoalFollowOwner(ExEntityTameableAnimal entitytameableanimal, double speed, float distance,
+                                         float cancelDistance, boolean teleportOnLeaves) {
             this.entity = entitytameableanimal;
             this.speed = speed;
             this.distance = distance;
@@ -133,7 +134,8 @@ public class ExPathfinderGoalFollowOwner extends ExPathfinderGoal {
                 return false;
             } else {
                 CraftEntity entity = this.entity.getBukkitEntity();
-                Location to = new Location(entity.getWorld(), (double) i + 0.5D, j, (double) k + 0.5D, this.entity.getYaw(), this.entity.getPitch());
+                Location to = new Location(entity.getWorld(), (double) i + 0.5D, j, (double) k + 0.5D,
+                        this.entity.getYaw(), this.entity.getPitch());
                 EntityTeleportEvent event = new EntityTeleportEvent(entity, entity.getLocation(), to);
                 this.entity.getExWorld().getServer().getPluginManager().callEvent(event);
                 if (event.isCancelled()) {
@@ -157,7 +159,8 @@ public class ExPathfinderGoalFollowOwner extends ExPathfinderGoal {
                     return false;
                 } else {
                     BlockPosition blockposition1 = blockposition.b(this.entity.getChunkCoordinates());
-                    return this.worldReader.getCubes(this.entity.getNMS(), this.entity.getExBoundingBox().a(blockposition1));
+                    return this.worldReader.getCubes(this.entity.getNMS(),
+                            this.entity.getExBoundingBox().a(blockposition1));
                 }
             }
         }

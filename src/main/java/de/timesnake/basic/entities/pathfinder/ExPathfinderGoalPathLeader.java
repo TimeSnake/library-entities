@@ -12,20 +12,28 @@ import java.util.LinkedList;
 @NmsReflection
 public class ExPathfinderGoalPathLeader extends ExPathfinderGoalPath {
 
-    public ExPathfinderGoalPathLeader(Location target, double speed, double minDistance, ExEntityLiving follower, double maxfollowerDistance, Location... pathPoints) {
-        super(new PathfinderGoalPathLeader(null, target, speed, minDistance, follower, maxfollowerDistance, pathPoints));
+    public ExPathfinderGoalPathLeader(Location target, double speed, double minDistance, ExEntityLiving follower,
+                                      double maxfollowerDistance, Location... pathPoints) {
+        super(new PathfinderGoalPathLeader(null, target, speed, minDistance, follower, maxfollowerDistance,
+                pathPoints));
     }
 
-    public ExPathfinderGoalPathLeader(Location target, double speed, double minDistance, ExEntityHuman follower, double maxfollowerDistance, Location... pathPoints) {
-        super(new PathfinderGoalPathLeader(null, target, speed, minDistance, follower, maxfollowerDistance, pathPoints));
+    public ExPathfinderGoalPathLeader(Location target, double speed, double minDistance, ExEntityHuman follower,
+                                      double maxfollowerDistance, Location... pathPoints) {
+        super(new PathfinderGoalPathLeader(null, target, speed, minDistance, follower, maxfollowerDistance,
+                pathPoints));
     }
 
-    public ExPathfinderGoalPathLeader(Location target, double speed, double minDistance, ExEntityLiving follower, double maxfollowerDistance, LinkedList<Location> pathPoints) {
-        super(new PathfinderGoalPathLeader(null, target, speed, minDistance, follower, maxfollowerDistance, pathPoints));
+    public ExPathfinderGoalPathLeader(Location target, double speed, double minDistance, ExEntityLiving follower,
+                                      double maxfollowerDistance, LinkedList<Location> pathPoints) {
+        super(new PathfinderGoalPathLeader(null, target, speed, minDistance, follower, maxfollowerDistance,
+                pathPoints));
     }
 
-    public ExPathfinderGoalPathLeader(Location target, double speed, double minDistance, ExEntityHuman follower, double maxfollowerDistance, LinkedList<Location> pathPoints) {
-        super(new PathfinderGoalPathLeader(null, target, speed, minDistance, follower, maxfollowerDistance, pathPoints));
+    public ExPathfinderGoalPathLeader(Location target, double speed, double minDistance, ExEntityHuman follower,
+                                      double maxfollowerDistance, LinkedList<Location> pathPoints) {
+        super(new PathfinderGoalPathLeader(null, target, speed, minDistance, follower, maxfollowerDistance,
+                pathPoints));
     }
 
     public static class PathfinderGoalPathLeader extends PathfinderGoalPath {
@@ -33,13 +41,16 @@ public class ExPathfinderGoalPathLeader extends ExPathfinderGoalPath {
         private final ExEntity follower;
         private final double maxFollowerDistance;
 
-        public PathfinderGoalPathLeader(ExEntityInsentient entity, Location target, double speed, double minDistance, ExEntity follower, double maxfollowerDistance, Location... pathPoints) {
+        public PathfinderGoalPathLeader(ExEntityInsentient entity, Location target, double speed, double minDistance,
+                                        ExEntity follower, double maxfollowerDistance, Location... pathPoints) {
             super(entity, target, speed, minDistance, pathPoints);
             this.follower = follower;
             this.maxFollowerDistance = maxfollowerDistance;
         }
 
-        public PathfinderGoalPathLeader(ExEntityInsentient entity, Location target, double speed, double minDistance, ExEntity follower, double maxfollowerDistance, LinkedList<Location> pathPoints) {
+        public PathfinderGoalPathLeader(ExEntityInsentient entity, Location target, double speed, double minDistance,
+                                        ExEntity follower, double maxfollowerDistance,
+                                        LinkedList<Location> pathPoints) {
             super(entity, target, speed, minDistance, pathPoints);
             this.follower = follower;
             this.maxFollowerDistance = maxfollowerDistance;

@@ -6,7 +6,8 @@ import de.timesnake.library.reflection.NmsReflection;
 @NmsReflection
 public class ExPathfinderGoalLocation extends ExPathfinderGoal {
 
-    public ExPathfinderGoalLocation(double x, double y, double z, double speed, double trackingDistance, double minDistance) {
+    public ExPathfinderGoalLocation(double x, double y, double z, double speed, double trackingDistance,
+                                    double minDistance) {
         super(new PathfinderGoalLocation(null, x, y, z, speed, trackingDistance, minDistance));
     }
 

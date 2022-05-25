@@ -44,7 +44,8 @@ public class ExBat extends CraftBat {
     private final ExEntityAmbient extension = new ExEntityAmbient(this);
 
     public ExBat(World world, boolean loadDefaultPathfinders) {
-        super(((CraftServer) Bukkit.getServer()), new EntityBat(ExEntityType.BAT.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityBat(ExEntityType.BAT.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinders) {

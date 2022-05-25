@@ -17,11 +17,13 @@ import java.util.List;
 @NmsReflection
 public class ExPathfinderGoalFollowEntity extends ExPathfinderGoal {
 
-    public ExPathfinderGoalFollowEntity(EntityExtension<? extends ExEntityInsentient> leader, float speed, float maxDistance, float leaderSearchRadius) {
+    public ExPathfinderGoalFollowEntity(EntityExtension<? extends ExEntityInsentient> leader, float speed,
+                                        float maxDistance, float leaderSearchRadius) {
         super(new PathfinderGoalFollowEntity(null, leader.getExtension(), speed, maxDistance, leaderSearchRadius));
     }
 
-    public ExPathfinderGoalFollowEntity(EntityClass<? extends EntityInsentient> leader, float speed, float maxDistance, float leaderSearchRadius) {
+    public ExPathfinderGoalFollowEntity(EntityClass<? extends EntityInsentient> leader, float speed,
+                                        float maxDistance, float leaderSearchRadius) {
         super(new PathfinderGoalFollowEntity(null, leader.getNMSClass(), speed, maxDistance, leaderSearchRadius));
     }
 
@@ -46,7 +48,8 @@ public class ExPathfinderGoalFollowEntity extends ExPathfinderGoal {
         private final Class<? extends Entity> leaderClass;
         private ExEntityInsentient leader;
 
-        public PathfinderGoalFollowEntity(ExEntityInsentient entity, Class<? extends EntityInsentient> leaderClass, double speed, float maxDistance, float leaderSearchRadius) {
+        public PathfinderGoalFollowEntity(ExEntityInsentient entity, Class<? extends EntityInsentient> leaderClass,
+                                          double speed, float maxDistance, float leaderSearchRadius) {
             this.entity = entity;
             this.speed = speed;
             this.maxDistance = maxDistance;
@@ -55,7 +58,8 @@ public class ExPathfinderGoalFollowEntity extends ExPathfinderGoal {
             this.a(EnumSet.of(ExPathfinderGoal.Type.MOVE.getNMS(), ExPathfinderGoal.Type.LOOK.getNMS()));
         }
 
-        public PathfinderGoalFollowEntity(ExEntityInsentient entity, ExEntityInsentient leader, double speed, float maxDistance, float leaderSearchRadius) {
+        public PathfinderGoalFollowEntity(ExEntityInsentient entity, ExEntityInsentient leader, double speed,
+                                          float maxDistance, float leaderSearchRadius) {
             this(entity, leader.getNMS().getClass(), speed, maxDistance, leaderSearchRadius);
             this.leader = leader;
             this.leaderEntity = leader;
@@ -65,7 +69,8 @@ public class ExPathfinderGoalFollowEntity extends ExPathfinderGoal {
             if (this.leader != null) {
                 return this.entity.distanceSquared(this.leader) > this.maxDistance * this.maxDistance;
             } else {
-                List<? extends Entity> entities = this.entity.getExWorld().getNMS().a(this.leaderClass, this.entity.getExBoundingBox().grow(this.leaderSearchRadius).getNMS());
+                List<? extends Entity> entities = this.entity.getExWorld().getNMS().a(this.leaderClass,
+                        this.entity.getExBoundingBox().grow(this.leaderSearchRadius).getNMS());
                 if (!entities.isEmpty()) {
 
                     for (Entity entity : entities) {
@@ -117,7 +122,8 @@ public class ExPathfinderGoalFollowEntity extends ExPathfinderGoal {
                             double var9 = this.leaderEntity.getX() - this.entity.getX();
                             double var11 = this.leaderEntity.getZ() - this.entity.getZ();
 
-                            this.navigationAbstract.walkTo(this.entity.getX() - var9, this.entity.getY(), this.entity.getZ() - var11, this.speed);
+                            this.navigationAbstract.walkTo(this.entity.getX() - var9, this.entity.getY(),
+                                    this.entity.getZ() - var11, this.speed);
                         }
 
                     }

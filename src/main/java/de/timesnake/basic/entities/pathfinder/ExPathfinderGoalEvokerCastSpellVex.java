@@ -52,7 +52,8 @@ public class ExPathfinderGoalEvokerCastSpellVex extends ExPathfinderGoalIllagerW
 
             for (int var1 = 0; var1 < 3; ++var1) {
                 BlockPosition var2 =
-                        this.entity.cW().b(-2 + ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(5), 1, -2 + ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(5));
+                        this.entity.cW().b(-2 + ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(5), 1,
+                                -2 + ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(5));
                 EntityVex var3 = EntityTypes.aU.a(this.entity.s);
                 var3.a(var2, 0.0F, 0.0F);
                 var3.a(var0, this.entity.s.d_(var2), EnumMobSpawn.f, null, null);

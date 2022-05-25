@@ -44,7 +44,8 @@ public class ExPathfinderGoalCustomOwnerHurtByTarget extends ExPathfinderGoalTar
         }
 
         public void c() {
-            new ExEntityInsentient(this.e).setTarget(this.damager.getNMS(), EntityTargetEvent.TargetReason.TARGET_ATTACKED_OWNER, true);
+            new ExEntityInsentient(this.e).setTarget(this.damager.getNMS(),
+                    EntityTargetEvent.TargetReason.TARGET_ATTACKED_OWNER, true);
             if (this.owner != null) {
                 this.c = this.owner.getHurtTimestamp();
             }

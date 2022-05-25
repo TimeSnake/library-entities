@@ -18,8 +18,10 @@ public class ExPathfinderRavager extends ExPathfinderNormal {
         private PathfinderRavager() {
         }
 
-        protected PathType a(IBlockAccess iblockaccess, boolean flag, boolean flag1, BlockPosition blockposition, PathType pathtype) {
-            return pathtype == ExPathType.LEAVES.getNMS() ? ExPathType.OPEN.getNMS() : super.a(iblockaccess, flag, flag1, blockposition, pathtype);
+        protected PathType a(IBlockAccess iblockaccess, boolean flag, boolean flag1, BlockPosition blockposition,
+                             PathType pathtype) {
+            return pathtype == ExPathType.LEAVES.getNMS() ? ExPathType.OPEN.getNMS() : super.a(iblockaccess, flag,
+                    flag1, blockposition, pathtype);
         }
     }
 }

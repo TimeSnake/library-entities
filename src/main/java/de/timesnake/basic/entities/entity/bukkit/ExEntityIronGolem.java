@@ -45,7 +45,8 @@ public class ExEntityIronGolem extends CraftIronGolem implements EntityExtension
     private final ExEntityGolem extension = new ExEntityGolem(this);
 
     public ExEntityIronGolem(World world, boolean loadDefaultPathfinders) {
-        super(((CraftServer) Bukkit.getServer()), new EntityIronGolem(ExEntityType.IRON_GOLEM.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityIronGolem(ExEntityType.IRON_GOLEM.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinders) {

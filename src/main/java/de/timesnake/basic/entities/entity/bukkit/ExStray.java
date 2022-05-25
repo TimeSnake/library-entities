@@ -45,7 +45,8 @@ public class ExStray extends CraftStray implements EntityExtension<ExEntitySkele
     private final ExEntitySkeletonAbstract extension = new ExEntitySkeletonAbstract(this);
 
     public ExStray(World world, boolean loadDefaultPathfinderGoals) {
-        super(((CraftServer) Bukkit.getServer()), new EntitySkeletonStray(ExEntityType.STRAY.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntitySkeletonStray(ExEntityType.STRAY.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             public void u() {
                 if (loadDefaultPathfinderGoals) {

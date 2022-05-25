@@ -43,7 +43,8 @@ public class ExWolf extends CraftWolf implements EntityExtension<ExEntityTameabl
     private final ExEntityTameableAnimal extension = new ExEntityTameableAnimal(this);
 
     public ExWolf(World world, boolean loadDefaultPathfinders) {
-        super(((CraftServer) Bukkit.getServer()), new EntityWolf(ExEntityType.WOLF.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityWolf(ExEntityType.WOLF.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinders) {

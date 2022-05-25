@@ -21,7 +21,8 @@ import java.util.List;
 @NmsReflection
 public class PathfinderGoalBreakBlockToLocation extends PathfinderGoal {
 
-    private static final Integer[][] NEAR_BLOCK_VECTORS = new Integer[][]{{1, 1, 0}, {-1, 1, 0}, {0, 1, 1}, {0, 1, -1}, {1, 0, 0}, {-1, 0, 0}, {0, 0, 1}, {0, 0, -1}};
+    private static final Integer[][] NEAR_BLOCK_VECTORS = new Integer[][]{{1, 1, 0}, {-1, 1, 0}, {0, 1, 1}, {0, 1,
+            -1}, {1, 0, 0}, {-1, 0, 0}, {0, 0, 1}, {0, 0, -1}};
 
     private final ExEntityInsentient entity;
     private final List<Material> materials;
@@ -37,14 +38,16 @@ public class PathfinderGoalBreakBlockToLocation extends PathfinderGoal {
     private double remainTime;
     private int soundDelay;
 
-    public PathfinderGoalBreakBlockToLocation(ExEntityInsentient entity, double x, double y, double z, double speedModifier, Material... materials) {
+    public PathfinderGoalBreakBlockToLocation(ExEntityInsentient entity, double x, double y, double z,
+                                              double speedModifier, Material... materials) {
         this.entity = entity;
         this.targetX = x;
         this.targetY = y;
         this.targetZ = z;
         this.speedModifier = speedModifier;
         this.materials = Arrays.asList(materials);
-        this.a(EnumSet.of(ExPathfinderGoal.Type.JUMP.getNMS(), ExPathfinderGoal.Type.MOVE.getNMS(), ExPathfinderGoal.Type.LOOK.getNMS()));
+        this.a(EnumSet.of(ExPathfinderGoal.Type.JUMP.getNMS(), ExPathfinderGoal.Type.MOVE.getNMS(),
+                ExPathfinderGoal.Type.LOOK.getNMS()));
     }
 
     public List<Material> getMaterials() {
@@ -139,7 +142,8 @@ public class PathfinderGoalBreakBlockToLocation extends PathfinderGoal {
             return true;
         }
 
-        if (this.materials.contains(this.entity.getNMSWorld().getWorld().getBlockAt(block.getX(), block.getY(), block.getZ()).getType())) {
+        if (this.materials.contains(this.entity.getNMSWorld().getWorld().getBlockAt(block.getX(), block.getY(),
+                block.getZ()).getType())) {
             return true;
         }
 
@@ -153,16 +157,19 @@ public class PathfinderGoalBreakBlockToLocation extends PathfinderGoal {
     @Override
     public boolean b() {
         this.remainTime -= this.speedModifier / 20;
-        this.entity.getControllerLook().a(this.currentBlock.getX() + 0.5, this.currentBlock.getY() + 0.5, this.currentBlock.getZ() + 0.5);
+        this.entity.getControllerLook().a(this.currentBlock.getX() + 0.5, this.currentBlock.getY() + 0.5,
+                this.currentBlock.getZ() + 0.5);
         this.entity.getNavigation().a(this.position);
         if (this.soundDelay <= 0) {
             this.entity.swingHand(ExEnumHand.MAIN_HAND);
-            this.currentBlock.getWorld().playSound(this.currentBlock.getLocation(), Sound.ENTITY_ZOMBIE_ATTACK_WOODEN_DOOR, 0.5F, 1F);
+            this.currentBlock.getWorld().playSound(this.currentBlock.getLocation(),
+                    Sound.ENTITY_ZOMBIE_ATTACK_WOODEN_DOOR, 0.5F, 1F);
             this.soundDelay = 20;
         }
         this.soundDelay--;
 
-        boolean cancel = !(this.currentBlock.getType().equals(this.currentBlockType) && this.entity.distanceSquared(this.currentBlock.getX() + 0.5, this.currentBlock.getY(), this.currentBlock.getZ() + 0.5) < 2.5);
+        boolean cancel =
+                !(this.currentBlock.getType().equals(this.currentBlockType) && this.entity.distanceSquared(this.currentBlock.getX() + 0.5, this.currentBlock.getY(), this.currentBlock.getZ() + 0.5) < 2.5);
 
         if (cancel) {
             this.currentBlock = null;
@@ -174,7 +181,8 @@ public class PathfinderGoalBreakBlockToLocation extends PathfinderGoal {
     @Override
     public void d() {
         if (this.currentBlock != null) {
-            this.currentBlock.getWorld().playEffect(this.currentBlock.getLocation(), Effect.STEP_SOUND, this.currentBlock.getType());
+            this.currentBlock.getWorld().playEffect(this.currentBlock.getLocation(), Effect.STEP_SOUND,
+                    this.currentBlock.getType());
             this.currentBlock.setType(Material.AIR);
         }
 

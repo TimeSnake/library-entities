@@ -45,7 +45,8 @@ public class ExIllagerIllusioner extends CraftIllusioner implements EntityExtens
     private final ExEntityIllagerWizard extension = new ExEntityIllagerWizard(this);
 
     public ExIllagerIllusioner(World world, boolean loadDefaultPathfinderGoals) {
-        super(((CraftServer) Bukkit.getServer()), new EntityIllagerIllusioner(ExEntityType.ILLUSIONER.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityIllagerIllusioner(ExEntityType.ILLUSIONER.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinderGoals) {

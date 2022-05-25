@@ -11,10 +11,13 @@ import java.util.Arrays;
 @NmsReflection(usesReflection = true)
 public class ExPathfinderGoalBlazeFireball extends ExPathfinderGoal {
 
-    private static final Class<?> NMS_CLASS = Arrays.stream(EntityBlaze.class.getDeclaredClasses()).filter((c) -> c.getSimpleName().equals("PathfinderGoalBlazeFireball")).findFirst().get();
+    private static final Class<?> NMS_CLASS =
+            Arrays.stream(EntityBlaze.class.getDeclaredClasses()).filter((c) -> c.getSimpleName().equals(
+                    "PathfinderGoalBlazeFireball")).findFirst().get();
 
     public ExPathfinderGoalBlazeFireball() {
-        super.pathfinderGoal = ((PathfinderGoal) RefUtil.instantiate(NMS_CLASS, new Class[]{EntityBlaze.class}, (EntityBlaze) null));
+        super.pathfinderGoal = ((PathfinderGoal) RefUtil.instantiate(NMS_CLASS, new Class[]{EntityBlaze.class},
+                (EntityBlaze) null));
     }
 
     @Override

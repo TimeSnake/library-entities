@@ -43,7 +43,8 @@ public class ExSheep extends CraftSheep implements EntityExtension<ExEntityAnima
     private final ExEntityAnimal extension = new ExEntityAnimal(this);
 
     public ExSheep(World world, boolean loadDefaultPathfinderGoals) {
-        super(((CraftServer) Bukkit.getServer()), new EntitySheep(ExEntityType.SHEEP.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntitySheep(ExEntityType.SHEEP.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinderGoals) {

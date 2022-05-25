@@ -13,7 +13,7 @@ import net.minecraft.world.entity.projectile.EntityEvokerFangs;
 import net.minecraft.world.level.block.state.IBlockData;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-@NmsReflection
+@NmsReflection(usesReflection = true)
 public class ExPathfinderGoalEvokerCastSpellFangs extends ExPathfinderGoalIllagerWizardCastSpell {
 
     public ExPathfinderGoalEvokerCastSpellFangs() {
@@ -43,17 +43,20 @@ public class ExPathfinderGoalEvokerCastSpellFangs extends ExPathfinderGoalIllage
                 float var7x;
                 for (var6 = 0; var6 < 5; ++var6) {
                     var7x = var5 + (float) var6 * 3.1415927F * 0.4F;
-                    this.a(this.entity.dc() + (double) MathHelper.b(var7x) * 1.5D, this.entity.di() + (double) MathHelper.a(var7x) * 1.5D, var1, var3, var7x, 0);
+                    this.a(this.entity.dc() + (double) MathHelper.b(var7x) * 1.5D,
+                            this.entity.di() + (double) MathHelper.a(var7x) * 1.5D, var1, var3, var7x, 0);
                 }
 
                 for (var6 = 0; var6 < 8; ++var6) {
                     var7x = var5 + (float) var6 * 3.1415927F * 2.0F / 8.0F + 1.2566371F;
-                    this.a(this.entity.dc() + (double) MathHelper.b(var7x) * 2.5D, this.entity.di() + (double) MathHelper.a(var7x) * 2.5D, var1, var3, var7x, 3);
+                    this.a(this.entity.dc() + (double) MathHelper.b(var7x) * 2.5D,
+                            this.entity.di() + (double) MathHelper.a(var7x) * 2.5D, var1, var3, var7x, 3);
                 }
             } else {
                 for (var6 = 0; var6 < 16; ++var6) {
                     double var7 = 1.25D * (double) (var6 + 1);
-                    this.a(this.entity.dc() + (double) MathHelper.b(var5) * var7, this.entity.di() + (double) MathHelper.a(var5) * var7, var1, var3, var5, var6);
+                    this.a(this.entity.dc() + (double) MathHelper.b(var5) * var7,
+                            this.entity.di() + (double) MathHelper.a(var5) * var7, var1, var3, var5, var6);
                 }
             }
 

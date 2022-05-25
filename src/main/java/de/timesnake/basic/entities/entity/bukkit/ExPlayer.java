@@ -49,7 +49,8 @@ public class ExPlayer extends CraftPlayer implements EntityExtension<ExEntityHum
     }
 
     public ExPlayer(World world, String name) {
-        super(((CraftServer) Bukkit.getServer()), new EntityPlayer(getMcServer(), getWorldServer(world), getNewGameProfile(name)));
+        super(((CraftServer) Bukkit.getServer()), new EntityPlayer(getMcServer(), getWorldServer(world),
+                getNewGameProfile(name)));
     }
 
     private static MinecraftServer getMcServer() {

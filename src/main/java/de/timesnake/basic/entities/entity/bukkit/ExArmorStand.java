@@ -30,7 +30,8 @@ public class ExArmorStand extends CraftArmorStand implements EntityExtension<ExE
     private final ExEntity extension = new ExEntity(this);
 
     public ExArmorStand(World world) {
-        super(((CraftServer) Bukkit.getServer()), new EntityArmorStand(ExEntityType.ARMOR_STAND.getNMSType(), ((CraftWorld) world).getHandle()));
+        super(((CraftServer) Bukkit.getServer()), new EntityArmorStand(ExEntityType.ARMOR_STAND.getNMSType(),
+                ((CraftWorld) world).getHandle()));
     }
 
     public ExArmorStand(EntityArmorStand entity) {

@@ -21,8 +21,10 @@ import java.util.function.Predicate;
 @NmsReflection
 public class ExPathfinderGoalAvoidTarget extends ExPathfinderGoal {
 
-    public ExPathfinderGoalAvoidTarget(EntityClass<? extends EntityLiving> clazz, float innerRadius, double innerSpeed, float outerRadius, double outerSpeed) {
-        super(new PathfinderGoalAvoidTarget<>(null, clazz.getNMSClass(), innerRadius, outerRadius, innerSpeed, outerSpeed));
+    public ExPathfinderGoalAvoidTarget(EntityClass<? extends EntityLiving> clazz, float innerRadius,
+                                       double innerSpeed, float outerRadius, double outerSpeed) {
+        super(new PathfinderGoalAvoidTarget<>(null, clazz.getNMSClass(), innerRadius, outerRadius, innerSpeed,
+                outerSpeed));
     }
 
     @Override
@@ -35,25 +37,29 @@ public class ExPathfinderGoalAvoidTarget extends ExPathfinderGoal {
     public static class PathfinderGoalAvoidTarget<T extends EntityLiving> extends PathfinderGoal {
 
         protected final ExEntityCreature entity;
-        private final double outerSpeed;
-        private final double innerSpeed;
-        protected T entityAvoid;
         protected final float innerRadius;
-        protected ExPathEntity pathEntity;
-        protected ExNavigationAbstract navigation;
         protected final Class<T> entityAvoidClass;
         protected final Predicate<EntityLiving> predicate;
         protected final Predicate<EntityLiving> targetConditionPredicate;
+        private final double outerSpeed;
+        private final double innerSpeed;
         private final PathfinderTargetCondition targetCondition;
-
         private final float outerRadius;
+        protected T entityAvoid;
+        protected ExPathEntity pathEntity;
+        protected ExNavigationAbstract navigation;
 
-        public PathfinderGoalAvoidTarget(ExEntityCreature entity, Class<T> entityAvoidClass, float innerRadius, float outerRadius, double outerSpeed, double innerSpeed) {
+        public PathfinderGoalAvoidTarget(ExEntityCreature entity, Class<T> entityAvoidClass, float innerRadius,
+                                         float outerRadius, double outerSpeed, double innerSpeed) {
 
-            this(entity, entityAvoidClass, (var0x) -> true, innerRadius, outerRadius, outerSpeed, innerSpeed, IEntitySelector.e::test);
+            this(entity, entityAvoidClass, (var0x) -> true, innerRadius, outerRadius, outerSpeed, innerSpeed,
+                    IEntitySelector.e::test);
         }
 
-        public PathfinderGoalAvoidTarget(ExEntityCreature entity, Class<T> entityAvoidClass, Predicate<EntityLiving> predicate, float innerRadius, float outerRadius, double outerSpeed, double innerSpeed, Predicate<EntityLiving> targetConditionPredicate) {
+        public PathfinderGoalAvoidTarget(ExEntityCreature entity, Class<T> entityAvoidClass,
+                                         Predicate<EntityLiving> predicate, float innerRadius, float outerRadius,
+                                         double outerSpeed, double innerSpeed,
+                                         Predicate<EntityLiving> targetConditionPredicate) {
             this.entity = entity;
             this.entityAvoidClass = entityAvoidClass;
             this.predicate = predicate;
@@ -63,20 +69,29 @@ public class ExPathfinderGoalAvoidTarget extends ExPathfinderGoal {
             this.targetConditionPredicate = targetConditionPredicate;
             this.outerRadius = outerRadius;
             this.a(EnumSet.of(ExPathfinderGoal.Type.MOVE.getNMS()));
-            this.targetCondition = PathfinderTargetCondition.a().a(innerRadius).a(targetConditionPredicate.and(predicate));
+            this.targetCondition =
+                    PathfinderTargetCondition.a().a(innerRadius).a(targetConditionPredicate.and(predicate));
         }
 
-        public PathfinderGoalAvoidTarget(ExEntityCreature entity, Class<T> entityAvoidClass, float innerRadius, float outerRadius, double outerSpeed, double innerSpeed, Predicate<EntityLiving> targetConditionPredicate) {
+        public PathfinderGoalAvoidTarget(ExEntityCreature entity, Class<T> entityAvoidClass, float innerRadius,
+                                         float outerRadius, double outerSpeed, double innerSpeed,
+                                         Predicate<EntityLiving> targetConditionPredicate) {
 
-            this(entity, entityAvoidClass, (var0x) -> true, innerRadius, outerRadius, outerSpeed, innerSpeed, targetConditionPredicate);
+            this(entity, entityAvoidClass, (var0x) -> true, innerRadius, outerRadius, outerSpeed, innerSpeed,
+                    targetConditionPredicate);
         }
 
         public boolean a() {
-            this.entityAvoid = this.entity.getNMSWorld().a(this.entity.getNMSWorld().a(this.entityAvoidClass, this.entity.getExBoundingBox().grow(this.innerRadius, 3.0D, this.innerRadius).getNMS(), (v) -> true), this.targetCondition, this.entity.getNMS(), this.entity.getX(), this.entity.getY(), this.entity.getZ());
+            this.entityAvoid = this.entity.getNMSWorld().a(this.entity.getNMSWorld().a(this.entityAvoidClass,
+                            this.entity.getExBoundingBox().grow(this.innerRadius, 3.0D, this.innerRadius).getNMS(),
+                            (v) -> true), this.targetCondition, this.entity.getNMS(), this.entity.getX(),
+                    this.entity.getY(),
+                    this.entity.getZ());
             if (this.entityAvoid == null) {
                 return false;
             } else {
-                ExVec3D vec = new ExVec3D(DefaultRandomPos.a(this.entity.getNMS(), 16, 7, new ExEntity(this.entityAvoid).getPositionVector().getNMS()));
+                ExVec3D vec = new ExVec3D(DefaultRandomPos.a(this.entity.getNMS(), 16, 7,
+                        new ExEntity(this.entityAvoid).getPositionVector().getNMS()));
                 ExEntity entityAvoid = new ExEntity(this.entityAvoid);
                 if (vec == null) {
                     return false;

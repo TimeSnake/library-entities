@@ -13,7 +13,10 @@ public abstract class ExPathfinderGoal {
     public static final String NAME_SEPERATOR = "/";
 
     public enum Type {
-        MOVE(PathfinderGoal.Type.a), LOOK(PathfinderGoal.Type.b), JUMP(PathfinderGoal.Type.c), TARGET(PathfinderGoal.Type.d);
+        MOVE(PathfinderGoal.Type.a),
+        LOOK(PathfinderGoal.Type.b),
+        JUMP(PathfinderGoal.Type.c),
+        TARGET(PathfinderGoal.Type.d);
 
         private final PathfinderGoal.Type nmsType;
 

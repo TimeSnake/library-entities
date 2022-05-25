@@ -50,7 +50,8 @@ public class ExZombie extends CraftZombie implements EntityExtension<ExEntityMon
     private final ExEntityMonster extension = new ExEntityMonster(this);
 
     public ExZombie(World world, boolean loadDefaultPathfinders) {
-        super(((CraftServer) Bukkit.getServer()), new EntityZombie(ExEntityType.ZOMBIE.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityZombie(ExEntityType.ZOMBIE.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinders) {

@@ -79,7 +79,8 @@ public class ExPathfinderGoalBread extends ExPathfinderGoal {
 
         @Nullable
         private EntityAnimal getPartner() {
-            List<? extends EntityAnimal> entities = this.world.a(this.entityClass, d, this.animal.getNMS(), this.animal.getExBoundingBox().grow(8.0D).getNMS());
+            List<? extends EntityAnimal> entities = this.world.a(this.entityClass, d, this.animal.getNMS(),
+                    this.animal.getExBoundingBox().grow(8.0D).getNMS());
             double var1 = 1.7976931348623157E308D;
             EntityAnimal partner = null;
 

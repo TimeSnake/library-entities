@@ -39,24 +39,11 @@ import java.util.Random;
 @NmsReflection
 public class ExVillager extends CraftVillager implements EntityExtension<ExEntityVillagerAbstract> {
 
-    public enum Type {
-        DESERT(VillagerType.a), JUNGLE(VillagerType.b), PLAINS(VillagerType.c), SAVANNA(VillagerType.d), SNOW(VillagerType.e), SWAMP(VillagerType.f), TAIGA(VillagerType.g);
-
-        private final VillagerType type;
-
-        Type(VillagerType type) {
-            this.type = type;
-        }
-
-        public VillagerType getNMS() {
-            return type;
-        }
-    }
-
     private final ExEntityVillagerAbstract extension = new ExEntityVillagerAbstract(this);
 
     public ExVillager(org.bukkit.World world, Type type, boolean loadDefaultPathfinders, boolean loadAI) {
-        super(((CraftServer) Bukkit.getServer()), new EntityVillager(ExEntityType.VILLAGER.getNMSType(), ((CraftWorld) world).getHandle(), type.getNMS()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityVillager(ExEntityType.VILLAGER.getNMSType(),
+                ((CraftWorld) world).getHandle(), type.getNMS()) {
             @Override
             protected void u() {
                 if (loadDefaultPathfinders) {
@@ -76,11 +63,11 @@ public class ExVillager extends CraftVillager implements EntityExtension<ExEntit
         return extension;
     }
 
-    // delegated
-
     public void setPose(ExEntityPose pose) {
         getExtension().setPose(pose);
     }
+
+    // delegated
 
     public void setSlot(ExEnumItemSlot slot, ItemStack item) {
         getExtension().setSlot(slot, item);
@@ -118,12 +105,12 @@ public class ExVillager extends CraftVillager implements EntityExtension<ExEntit
         getExtension().setSecondsOnFire(seconds, callEvent);
     }
 
-    public void setRemainingFireTicks(int ticks) {
-        getExtension().setRemainingFireTicks(ticks);
-    }
-
     public int getRemainingFireTicks() {
         return getExtension().getRemainingFireTicks();
+    }
+
+    public void setRemainingFireTicks(int ticks) {
+        getExtension().setRemainingFireTicks(ticks);
     }
 
     public void clearFire() {
@@ -342,20 +329,20 @@ public class ExVillager extends CraftVillager implements EntityExtension<ExEntit
         return getExtension().getEntitySenses();
     }
 
-    public void setNoAI(boolean flag) {
-        getExtension().setNoAI(flag);
-    }
-
-    public void setAggressive(boolean flag) {
-        getExtension().setAggressive(flag);
-    }
-
     public boolean isNoAI() {
         return getExtension().isNoAI();
     }
 
+    public void setNoAI(boolean flag) {
+        getExtension().setNoAI(flag);
+    }
+
     public boolean isAggressive() {
         return getExtension().isAggressive();
+    }
+
+    public void setAggressive(boolean flag) {
+        getExtension().setAggressive(flag);
     }
 
     public boolean isNmsLeashed() {
@@ -402,10 +389,6 @@ public class ExVillager extends CraftVillager implements EntityExtension<ExEntit
         return getExtension().getBukkitAttribute(attribute);
     }
 
-    public void setDeathLoot(Collection<ItemStack> items) {
-        getExtension().setDeathLoot(items);
-    }
-
     public void addDeathLoot(Collection<ItemStack> items) {
         getExtension().addDeathLoot(items);
     }
@@ -414,12 +397,16 @@ public class ExVillager extends CraftVillager implements EntityExtension<ExEntit
         return getExtension().getDeathLoot();
     }
 
-    public void setMaxNoDamageTicks(int ticks) {
-        getExtension().setMaxNoDamageTicks(ticks);
+    public void setDeathLoot(Collection<ItemStack> items) {
+        getExtension().setDeathLoot(items);
     }
 
     public int getMaxNoDamageTicks() {
         return getExtension().getMaxNoDamageTicks();
+    }
+
+    public void setMaxNoDamageTicks(int ticks) {
+        getExtension().setMaxNoDamageTicks(ticks);
     }
 
     public void swingHand(ExEnumHand hand) {
@@ -444,5 +431,25 @@ public class ExVillager extends CraftVillager implements EntityExtension<ExEntit
 
     public EntityVillagerAbstract getNMS() {
         return getExtension().getNMS();
+    }
+
+    public enum Type {
+        DESERT(VillagerType.a),
+        JUNGLE(VillagerType.b),
+        PLAINS(VillagerType.c),
+        SAVANNA(VillagerType.d),
+        SNOW(VillagerType.e),
+        SWAMP(VillagerType.f),
+        TAIGA(VillagerType.g);
+
+        private final VillagerType type;
+
+        Type(VillagerType type) {
+            this.type = type;
+        }
+
+        public VillagerType getNMS() {
+            return type;
+        }
     }
 }

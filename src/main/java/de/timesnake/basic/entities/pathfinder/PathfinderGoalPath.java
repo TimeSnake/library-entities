@@ -22,7 +22,8 @@ public class PathfinderGoalPath extends PathfinderGoal {
 
     protected final Map<Integer, Location> pathPointsById = new HashMap<>();
 
-    public PathfinderGoalPath(ExEntityInsentient entity, Location target, double speed, double minDistance, Location... pathPoints) {
+    public PathfinderGoalPath(ExEntityInsentient entity, Location target, double speed, double minDistance,
+                              Location... pathPoints) {
         this.entity = entity;
         this.speed = speed;
         this.minDistance = minDistance;
@@ -36,7 +37,8 @@ public class PathfinderGoalPath extends PathfinderGoal {
         this.a(EnumSet.of(ExPathfinderGoal.Type.MOVE.getNMS()));
     }
 
-    public PathfinderGoalPath(ExEntityInsentient entity, Location target, double speed, double minDistance, LinkedList<Location> pathPoints) {
+    public PathfinderGoalPath(ExEntityInsentient entity, Location target, double speed, double minDistance,
+                              LinkedList<Location> pathPoints) {
         this.entity = entity;
         this.speed = speed;
         this.minDistance = minDistance;
@@ -67,7 +69,8 @@ public class PathfinderGoalPath extends PathfinderGoal {
             if (pathEntity != null) {
                 if (pathEntity.getLastExPathPoint().getExPosition().inRange(position, this.minDistance)) {
                     do {
-                        position = new ExBlockPosition(position.getX() + this.calcRandom(), position.getY(), position.getZ() + this.calcRandom());
+                        position = new ExBlockPosition(position.getX() + this.calcRandom(), position.getY(),
+                                position.getZ() + this.calcRandom());
                         pathEntity = this.entity.getNavigation().calcExPathTo(position);
                     } while (pathEntity == null);
                     this.currentPosition = position;
@@ -85,7 +88,8 @@ public class PathfinderGoalPath extends PathfinderGoal {
 
     @Override
     public void c() {
-        this.entity.getNavigation().walkTo(this.currentPosition.getX(), this.currentPosition.getY(), this.currentPosition.getZ(), this.speed);
+        this.entity.getNavigation().walkTo(this.currentPosition.getX(), this.currentPosition.getY(),
+                this.currentPosition.getZ(), this.speed);
     }
 
     @Override

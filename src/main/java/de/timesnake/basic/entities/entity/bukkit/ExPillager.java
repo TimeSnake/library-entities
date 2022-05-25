@@ -45,7 +45,8 @@ public class ExPillager extends CraftPillager implements EntityExtension<ExEntit
     private final ExEntityIllagerAbstract extension = new ExEntityIllagerAbstract(this);
 
     public ExPillager(World world, boolean loadDefaultPathfinders) {
-        super(((CraftServer) Bukkit.getServer()), new EntityPillager(ExEntityType.PILLAGER.getNMSType(), ((CraftWorld) world).getHandle()) {
+        super(((CraftServer) Bukkit.getServer()), new EntityPillager(ExEntityType.PILLAGER.getNMSType(),
+                ((CraftWorld) world).getHandle()) {
             @Override
             public void u() {
                 if (loadDefaultPathfinders) {
