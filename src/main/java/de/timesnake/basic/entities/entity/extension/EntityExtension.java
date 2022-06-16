@@ -1,4 +1,4 @@
-package de.timesnake.basic.entities.entity.extension;
+package de.timesnake.library.entities.entity.extension;
 
 import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.world.entity.Entity;
@@ -6,9 +6,6 @@ import net.minecraft.world.entity.Entity;
 import java.util.Random;
 
 public interface EntityExtension<E extends ExEntity> {
-
-    E getExtension();
-
 
     static boolean isVehicle(Entity entity) {
         return entity.bG();
@@ -37,5 +34,7 @@ public interface EntityExtension<E extends ExEntity> {
     static double getZ(Entity entity) {
         return entity.getBukkitEntity().getLocation().getZ();
     }
+
+    E getExtension();
 
 }

@@ -1,4 +1,4 @@
-package de.timesnake.basic.entities.entity.extension;
+package de.timesnake.library.entities.entity.extension;
 
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityAgeable;
@@ -24,12 +24,12 @@ public abstract class ExEntityAgeable extends ExEntityInsentient {
         this.getNMS().a(super.getNMSWorld(), entity.getNMS());
     }
 
-    public void setAge(int age) {
-        this.getNMS().a_(age);
-    }
-
     public int getAge() {
         return this.getNMS().j();
+    }
+
+    public void setAge(int age) {
+        this.getNMS().a_(age);
     }
 
     public void setBaby(boolean flag) {

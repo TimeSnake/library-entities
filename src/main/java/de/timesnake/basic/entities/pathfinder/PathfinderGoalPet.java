@@ -1,7 +1,7 @@
-package de.timesnake.basic.entities.pathfinder;
+package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.basic.entities.entity.bukkit.ExPlayer;
-import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.bukkit.ExPlayer;
+import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import org.bukkit.entity.Player;
@@ -12,12 +12,10 @@ import java.util.EnumSet;
 public class PathfinderGoalPet extends PathfinderGoal {
 
     private final ExEntityInsentient pet;
-    private ExPlayer owner;
-
     private final double speed;
     private final double teleportDistance;
     private final double minDistance;
-
+    private ExPlayer owner;
     private double x;
     private double y;
     private double z;

@@ -6,4 +6,6 @@
 .idea/dataSources
 /.gradle/
 /build/
+generator/build
+main/build
 gradle_build.out

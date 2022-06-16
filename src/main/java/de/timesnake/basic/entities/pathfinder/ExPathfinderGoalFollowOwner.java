@@ -1,12 +1,12 @@
-package de.timesnake.basic.entities.pathfinder;
+package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
-import de.timesnake.basic.entities.entity.extension.ExEntityLiving;
-import de.timesnake.basic.entities.entity.extension.ExEntityTameableAnimal;
-import de.timesnake.basic.entities.wrapper.ExIBlockData;
-import de.timesnake.basic.entities.wrapper.ExNavigationAbstract;
-import de.timesnake.basic.entities.wrapper.ExPathType;
-import de.timesnake.basic.entities.wrapper.ExWorldServer;
+import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.ExEntityLiving;
+import de.timesnake.library.entities.entity.extension.ExEntityTameableAnimal;
+import de.timesnake.library.entities.wrapper.ExIBlockData;
+import de.timesnake.library.entities.wrapper.ExNavigationAbstract;
+import de.timesnake.library.entities.wrapper.ExPathType;
+import de.timesnake.library.entities.wrapper.ExWorldServer;
 import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import net.minecraft.core.BlockPosition;
@@ -34,16 +34,16 @@ public class ExPathfinderGoalFollowOwner extends ExPathfinderGoal {
     }
 
     public static class PathfinderGoalFollowOwner extends PathfinderGoal {
+        private final double speed;
+        private final float cancelDistance;
+        private final float distance;
+        private final boolean teleportOnLeaves;
         private ExEntityTameableAnimal entity;
         private ExEntityLiving owner;
         private ExWorldServer worldReader;
-        private final double speed;
         private ExNavigationAbstract navigation;
         private int f;
-        private final float cancelDistance;
-        private final float distance;
         private float i;
-        private final boolean teleportOnLeaves;
 
         public PathfinderGoalFollowOwner(ExEntityTameableAnimal entitytameableanimal, double speed, float distance,
                                          float cancelDistance, boolean teleportOnLeaves) {

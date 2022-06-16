@@ -1,6 +1,6 @@
-package de.timesnake.basic.entities;
+package de.timesnake.library.entities;
 
-import de.timesnake.basic.entities.entity.extension.EntityExtension;
+import de.timesnake.library.entities.entity.extension.EntityExtension;
 import de.timesnake.library.reflection.NmsReflection;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;

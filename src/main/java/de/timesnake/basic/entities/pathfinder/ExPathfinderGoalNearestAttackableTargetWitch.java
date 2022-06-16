@@ -1,6 +1,6 @@
-package de.timesnake.basic.entities.pathfinder;
+package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.basic.entities.wrapper.EntityClass;
+import de.timesnake.library.entities.wrapper.EntityClass;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.raid.EntityRaider;

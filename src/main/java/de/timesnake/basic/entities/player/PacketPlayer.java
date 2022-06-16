@@ -1,6 +1,6 @@
-package de.timesnake.basic.entities.player;
+package de.timesnake.library.entities.player;
 
-import de.timesnake.basic.entities.entity.bukkit.ExPlayer;
+import de.timesnake.library.entities.entity.bukkit.ExPlayer;
 
 public class PacketPlayer {
 

@@ -1,7 +1,7 @@
-package de.timesnake.basic.entities.pathfinder;
+package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
-import de.timesnake.basic.entities.entity.extension.ExEntityLiving;
+import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.ExEntityLiving;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
@@ -22,16 +22,16 @@ public class ExPathfinderGoalArrowAttack extends ExPathfinderGoal {
     }
 
     public static class PathfinderGoalArrowAttack extends PathfinderGoal {
-        private ExEntityInsentient entity;
-        private IRangedEntity entityRanged;
-        private ExEntityLiving target;
-        private int delay;
         private final double speed;
-        private int f;
         private final int minimumTicksPerAttack;
         private final int ticksPerAttackAtMaxRange;
         private final float maxRange;
         private final float maxRangeSquared;
+        private ExEntityInsentient entity;
+        private IRangedEntity entityRanged;
+        private ExEntityLiving target;
+        private int delay;
+        private int f;
 
         public PathfinderGoalArrowAttack(ExEntityInsentient entity, double speed, int ticksPerAttack, float maxRange) {
             this(entity, speed, ticksPerAttack, ticksPerAttack, maxRange);

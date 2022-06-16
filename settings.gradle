@@ -3,3 +3,9 @@
  */
 
 rootProject.name = 'library-entities'
+
+include('library-entities')
+project(':library-entities').projectDir = file('main')
+
+include('generator')
+findProject('generator')?.name = 'generator'

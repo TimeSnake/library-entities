@@ -1,4 +1,4 @@
-package de.timesnake.basic.entities.inventory;
+package de.timesnake.library.entities.inventory;
 
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.item.trading.MerchantRecipe;

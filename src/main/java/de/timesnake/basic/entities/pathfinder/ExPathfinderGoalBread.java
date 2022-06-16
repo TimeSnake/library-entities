@@ -1,7 +1,7 @@
-package de.timesnake.basic.entities.pathfinder;
+package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.basic.entities.entity.extension.ExEntityAnimal;
-import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.ExEntityAnimal;
+import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.server.level.WorldServer;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
@@ -30,11 +30,11 @@ public class ExPathfinderGoalBread extends ExPathfinderGoal {
         private static final PathfinderTargetCondition d = PathfinderTargetCondition.b().c();
 
         protected final ExEntityAnimal animal;
-        private final Class<? extends EntityAnimal> entityClass;
         protected final World world;
+        private final Class<? extends EntityAnimal> entityClass;
+        private final double speed;
         protected ExEntityAnimal partner;
         private int f;
-        private final double speed;
 
         public PathfinderGoalBreed(ExEntityAnimal entity, double speed) {
             this(entity, speed, entity.getNMS().getClass());
