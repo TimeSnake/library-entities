@@ -1,7 +1,7 @@
-package de.timesnake.basic.entities.pathfinder;
+package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
-import de.timesnake.basic.entities.wrapper.ExPathEntity;
+import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.wrapper.ExPathEntity;
 import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
@@ -17,10 +17,8 @@ public class PathfinderGoalPath extends PathfinderGoal {
 
     protected final double speed;
     protected final double minDistance;
-
-    protected ExBlockPosition currentPosition;
-
     protected final Map<Integer, Location> pathPointsById = new HashMap<>();
+    protected ExBlockPosition currentPosition;
 
     public PathfinderGoalPath(ExEntityInsentient entity, Location target, double speed, double minDistance,
                               Location... pathPoints) {

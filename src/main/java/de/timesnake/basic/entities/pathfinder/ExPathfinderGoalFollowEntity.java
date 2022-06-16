@@ -1,11 +1,11 @@
-package de.timesnake.basic.entities.pathfinder;
+package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.basic.entities.entity.extension.EntityExtension;
-import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
-import de.timesnake.basic.entities.wrapper.EntityClass;
-import de.timesnake.basic.entities.wrapper.ExControllerLook;
-import de.timesnake.basic.entities.wrapper.ExNavigationAbstract;
-import de.timesnake.basic.entities.wrapper.ExPathType;
+import de.timesnake.library.entities.entity.extension.EntityExtension;
+import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.wrapper.EntityClass;
+import de.timesnake.library.entities.wrapper.ExControllerLook;
+import de.timesnake.library.entities.wrapper.ExNavigationAbstract;
+import de.timesnake.library.entities.wrapper.ExPathType;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityInsentient;
@@ -37,15 +37,14 @@ public class ExPathfinderGoalFollowEntity extends ExPathfinderGoal {
     public static class PathfinderGoalFollowEntity extends PathfinderGoal {
 
         private final ExEntityInsentient entity;
-        private ExEntityInsentient leaderEntity;
         private final double speed;
+        private final float maxDistance;
+        private final float leaderSearchRadius;
+        private final Class<? extends Entity> leaderClass;
+        private ExEntityInsentient leaderEntity;
         private ExNavigationAbstract navigationAbstract;
         private int f;
-        private final float maxDistance;
         private float h;
-        private final float leaderSearchRadius;
-
-        private final Class<? extends Entity> leaderClass;
         private ExEntityInsentient leader;
 
         public PathfinderGoalFollowEntity(ExEntityInsentient entity, Class<? extends EntityInsentient> leaderClass,

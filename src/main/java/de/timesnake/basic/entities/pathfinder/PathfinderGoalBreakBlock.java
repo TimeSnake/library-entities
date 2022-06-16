@@ -1,8 +1,8 @@
-package de.timesnake.basic.entities.pathfinder;
+package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
-import de.timesnake.basic.entities.wrapper.ExIBlockData;
-import de.timesnake.basic.entities.wrapper.ExNavigation;
+import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.wrapper.ExIBlockData;
+import de.timesnake.library.entities.wrapper.ExNavigation;
 import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import de.timesnake.library.reflection.wrapper.ExEnumHand;
@@ -28,18 +28,15 @@ public class PathfinderGoalBreakBlock extends PathfinderGoal implements Location
     private final List<Material> materials;
     private final double speedModifier;
     private final boolean ignoreTarget;
-
+    private final ExPathfinderGoalBreakBlock.BreakEvent event;
     private Double targetX;
     private Double targetY;
     private Double targetZ;
-
     private Block currentBlock;
     private ExBlockPosition position;
     private Material currentBlockType;
     private double remainTime;
     private int soundDelay;
-
-    private final ExPathfinderGoalBreakBlock.BreakEvent event;
 
     public PathfinderGoalBreakBlock(ExEntityInsentient entity, double speedModifier, boolean ignoreTarget,
                                     Material... materials) {

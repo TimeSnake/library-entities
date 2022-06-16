@@ -1,6 +1,6 @@
-package de.timesnake.basic.entities.pathfinder;
+package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import org.bukkit.Location;
@@ -9,11 +9,9 @@ import org.bukkit.Location;
 public abstract class PathfinderGoalUpdatedLocation extends PathfinderGoal {
 
     protected final ExEntityInsentient entity;
-
-    protected double speed;
     protected final double trackingDistance;
     protected final double minDistance;
-
+    protected double speed;
     protected double x;
     protected double y;
     protected double z;

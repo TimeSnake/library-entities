@@ -1,6 +1,6 @@
-package de.timesnake.basic.entities.pathfinder;
+package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
@@ -12,32 +12,12 @@ public abstract class ExPathfinderGoal {
 
     public static final String NAME_SEPERATOR = "/";
 
-    public enum Type {
-        MOVE(PathfinderGoal.Type.a),
-        LOOK(PathfinderGoal.Type.b),
-        JUMP(PathfinderGoal.Type.c),
-        TARGET(PathfinderGoal.Type.d);
-
-        private final PathfinderGoal.Type nmsType;
-
-        Type(PathfinderGoal.Type nmsType) {
-            this.nmsType = nmsType;
-        }
-
-        public PathfinderGoal.Type getNMS() {
-            return nmsType;
-        }
-    }
-
     public static ExPathfinderGoal fromConfigString(String configString) {
         String name = configString.split("/")[0];
         return null;
     }
-
-
     protected int priority = 1;
     protected PathfinderGoal pathfinderGoal;
-
     public ExPathfinderGoal(int priority, PathfinderGoal pathfinderGoal) {
         this.priority = priority;
         this.pathfinderGoal = pathfinderGoal;
@@ -80,6 +60,23 @@ public abstract class ExPathfinderGoal {
     }
 
     public abstract void injectEntity(ExEntityInsentient entity);
+
+    public enum Type {
+        MOVE(PathfinderGoal.Type.a),
+        LOOK(PathfinderGoal.Type.b),
+        JUMP(PathfinderGoal.Type.c),
+        TARGET(PathfinderGoal.Type.d);
+
+        private final PathfinderGoal.Type nmsType;
+
+        Type(PathfinderGoal.Type nmsType) {
+            this.nmsType = nmsType;
+        }
+
+        public PathfinderGoal.Type getNMS() {
+            return nmsType;
+        }
+    }
 
 
 }

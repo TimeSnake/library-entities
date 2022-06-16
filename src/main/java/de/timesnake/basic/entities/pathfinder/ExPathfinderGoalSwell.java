@@ -1,8 +1,8 @@
-package de.timesnake.basic.entities.pathfinder;
+package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.basic.entities.entity.bukkit.ExCreeper;
-import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
-import de.timesnake.basic.entities.entity.extension.ExEntityLiving;
+import de.timesnake.library.entities.entity.bukkit.ExCreeper;
+import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.ExEntityLiving;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 
@@ -23,10 +23,9 @@ public class ExPathfinderGoalSwell extends ExPathfinderGoal {
     public static class PathfinderGoalSwell extends PathfinderGoal {
 
         private final ExCreeper entity;
-        private ExEntityLiving target;
-
         private final double radius;
         private final double keepSwellingRadius;
+        private ExEntityLiving target;
 
         public PathfinderGoalSwell(ExCreeper entity, double radius, double keepSwellingRadius) {
             this.entity = entity;

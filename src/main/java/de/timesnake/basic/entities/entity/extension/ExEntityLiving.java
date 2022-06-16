@@ -1,4 +1,4 @@
-package de.timesnake.basic.entities.entity.extension;
+package de.timesnake.library.entities.entity.extension;
 
 import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExEnumHand;
@@ -36,17 +36,17 @@ public class ExEntityLiving extends ExEntity {
         return ((LivingEntity) this.getNMS().getBukkitEntity()).getAttribute(attribute);
     }
 
-    public void setDeathLoot(Collection<ItemStack> items) {
-        this.getNMS().drops.clear();
-        this.getNMS().drops.addAll(items);
-    }
-
     public void addDeathLoot(Collection<ItemStack> items) {
         this.getNMS().drops.addAll(items);
     }
 
     public List<ItemStack> getDeathLoot() {
         return this.getNMS().drops;
+    }
+
+    public void setDeathLoot(Collection<ItemStack> items) {
+        this.getNMS().drops.clear();
+        this.getNMS().drops.addAll(items);
     }
 
     public int getMaxNoDamageTicks() {

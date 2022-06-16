@@ -1,12 +1,12 @@
-package de.timesnake.basic.entities.pathfinder;
+package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.basic.entities.entity.extension.ExEntity;
-import de.timesnake.basic.entities.entity.extension.ExEntityCreature;
-import de.timesnake.basic.entities.entity.extension.ExEntityInsentient;
-import de.timesnake.basic.entities.wrapper.EntityClass;
-import de.timesnake.basic.entities.wrapper.ExNavigationAbstract;
-import de.timesnake.basic.entities.wrapper.ExPathEntity;
-import de.timesnake.basic.entities.wrapper.ExVec3D;
+import de.timesnake.library.entities.entity.extension.ExEntity;
+import de.timesnake.library.entities.entity.extension.ExEntityCreature;
+import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.wrapper.EntityClass;
+import de.timesnake.library.entities.wrapper.ExNavigationAbstract;
+import de.timesnake.library.entities.wrapper.ExPathEntity;
+import de.timesnake.library.entities.wrapper.ExVec3D;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityCreature;
 import net.minecraft.world.entity.EntityLiving;

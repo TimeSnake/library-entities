@@ -1,4 +1,4 @@
-package de.timesnake.basic.entities.pathfinder;
+package de.timesnake.library.entities.pathfinder;
 
 import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.RefUtil;
