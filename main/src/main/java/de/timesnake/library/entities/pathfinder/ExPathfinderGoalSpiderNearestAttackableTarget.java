@@ -19,7 +19,7 @@ public class ExPathfinderGoalSpiderNearestAttackableTarget extends ExPathfinderG
         }
 
         public boolean a() {
-            float f = this.e.bd();
+            float f = this.e.bh();
             return !(f >= 0.5F) && super.a();
         }
     }

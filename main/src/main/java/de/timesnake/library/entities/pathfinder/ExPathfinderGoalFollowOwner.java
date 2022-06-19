@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.BlockLeaves;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.PathfinderNormal;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEntity;
 import org.bukkit.event.entity.EntityTeleportEvent;
 
 import java.util.EnumSet;

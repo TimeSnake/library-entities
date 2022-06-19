@@ -1,5 +1,6 @@
 package de.timesnake.library.entities.pathfinder;
 
+import de.timesnake.library.entities.entity.extension.ExEntityIllagerWizard;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.sounds.SoundEffects;
@@ -7,7 +8,6 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityLiving;
-import net.minecraft.world.entity.monster.EntityIllagerIllusioner;
 import net.minecraft.world.entity.monster.EntityIllagerWizard;
 import org.bukkit.event.entity.EntityPotionEffectEvent;
 
@@ -22,24 +22,26 @@ public class ExPathfinderGoalIllagerIllusionerCastSpellBlindness extends ExPathf
 
         private int e;
 
-        private PathfinderGoalIllagerIllusionerCastSpellBlindness(EntityIllagerIllusioner entity) {
+        private PathfinderGoalIllagerIllusionerCastSpellBlindness(ExEntityIllagerWizard entity) {
             super(entity);
         }
 
         public boolean a() {
-            return super.a() && (this.entity.G() != null && (this.entity.G().ae() != this.e && this.entity.s.d_(this.entity.cW()).a((float) EnumDifficulty.c.ordinal())));
+            return super.a() && (this.entity.getNMS().G() != null
+                    && (this.entity.getNMS().G().ae() != this.e
+                    && this.entity.getNMS().s.d_(this.entity.getNMS().db()).a((float) EnumDifficulty.c.ordinal())));
         }
 
         public void c() {
             super.c();
-            EntityLiving entityliving = this.entity.G();
+            EntityLiving entityliving = this.entity.getNMS().G();
             if (entityliving != null) {
                 this.e = entityliving.ae();
             }
 
         }
 
-        protected int g() {
+        protected int h() {
             return 20;
         }
 
@@ -48,12 +50,12 @@ public class ExPathfinderGoalIllagerIllusionerCastSpellBlindness extends ExPathf
         }
 
         protected void k() {
-            this.entity.G().addEffect(new MobEffect(MobEffects.o, 400), this.entity,
+            this.entity.getNMS().G().addEffect(new MobEffect(MobEffects.o, 400), this.entity.getNMS(),
                     EntityPotionEffectEvent.Cause.ATTACK);
         }
 
         protected SoundEffect l() {
-            return SoundEffects.jc;
+            return SoundEffects.jJ;
         }
 
         protected EntityIllagerWizard.Spell m() {

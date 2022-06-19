@@ -1,19 +1,18 @@
 package de.timesnake.library.entities.pathfinder;
 
+import de.timesnake.library.entities.entity.extension.ExEntityIllagerWizard;
 import de.timesnake.library.reflection.NmsReflection;
-import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.server.level.WorldServer;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.sounds.SoundEffects;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.EnumMobSpawn;
 import net.minecraft.world.entity.ai.targeting.PathfinderTargetCondition;
-import net.minecraft.world.entity.monster.EntityEvoker;
 import net.minecraft.world.entity.monster.EntityIllagerWizard;
 import net.minecraft.world.entity.monster.EntityVex;
-
-import java.util.Random;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 
 @NmsReflection(usesReflection = true)
 public class ExPathfinderGoalEvokerCastSpellVex extends ExPathfinderGoalIllagerWizardCastSpell {
@@ -24,9 +23,9 @@ public class ExPathfinderGoalEvokerCastSpellVex extends ExPathfinderGoalIllagerW
 
     protected static class PathfinderGoalEvokerCastSpellVex extends PathfinderGoalIllagerWizardCastSpell {
 
-        private final PathfinderTargetCondition e = PathfinderTargetCondition.b().a(16.0D).d().e();
+        private final PathfinderTargetCondition e = PathfinderTargetCondition.b().a(16.0).d().e();
 
-        private PathfinderGoalEvokerCastSpellVex(EntityEvoker entity) {
+        PathfinderGoalEvokerCastSpellVex(ExEntityIllagerWizard entity) {
             super(entity);
         }
 
@@ -34,12 +33,13 @@ public class ExPathfinderGoalEvokerCastSpellVex extends ExPathfinderGoalIllagerW
             if (!super.a()) {
                 return false;
             } else {
-                int var0 = this.entity.s.a(EntityVex.class, this.e, this.entity, this.entity.cw().g(16.0D)).size();
-                return ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(8) + 1 > var0;
+                int i = this.entity.getNMS().s.a(EntityVex.class, this.e, this.entity.getNMS(),
+                        this.entity.getNMS().cz().g(16.0)).size();
+                return this.entity.getRandomSource().a(8) + 1 > i;
             }
         }
 
-        protected int g() {
+        protected int h() {
             return 100;
         }
 
@@ -48,25 +48,26 @@ public class ExPathfinderGoalEvokerCastSpellVex extends ExPathfinderGoalIllagerW
         }
 
         protected void k() {
-            WorldServer var0 = (WorldServer) this.entity.s;
+            WorldServer worldserver = (WorldServer) this.entity.getNMS().s;
 
-            for (int var1 = 0; var1 < 3; ++var1) {
-                BlockPosition var2 =
-                        this.entity.cW().b(-2 + ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(5), 1,
-                                -2 + ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(5));
-                EntityVex var3 = EntityTypes.aU.a(this.entity.s);
-                var3.a(var2, 0.0F, 0.0F);
-                var3.a(var0, this.entity.s.d_(var2), EnumMobSpawn.f, null, null);
-                var3.a(this.entity);
-                var3.g(var2);
-                var3.a(20 * (30 + ((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(90)));
-                var0.a_(var3);
+            for (int i = 0; i < 3; ++i) {
+
+                RandomSource rs = this.entity.getRandomSource();
+                BlockPosition blockposition = this.entity.getNMS().db().b(-2 + rs.a(5), 1, -2 + rs.a(5));
+                EntityVex entityvex = EntityTypes.aY.a(this.entity.getNMS().s);
+                entityvex.a(blockposition, 0.0F, 0.0F);
+                entityvex.a(worldserver, this.entity.getNMS().s.d_(blockposition), EnumMobSpawn.f, null,
+                        null);
+                entityvex.a(this.entity.getNMS());
+                entityvex.g(blockposition);
+                entityvex.a(20 * (30 + rs.a(90)));
+                worldserver.addFreshEntityWithPassengers(entityvex, CreatureSpawnEvent.SpawnReason.SPELL);
             }
 
         }
 
         protected SoundEffect l() {
-            return SoundEffects.fP;
+            return SoundEffects.fY;
         }
 
         protected EntityIllagerWizard.Spell m() {

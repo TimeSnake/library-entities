@@ -1,11 +1,11 @@
 package de.timesnake.library.entities.pathfinder;
 
+import de.timesnake.library.entities.entity.extension.ExEntityIllagerWizard;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.sounds.SoundEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.monster.EntityIllagerIllusioner;
 import net.minecraft.world.entity.monster.EntityIllagerWizard;
 import org.bukkit.event.entity.EntityPotionEffectEvent;
 
@@ -20,15 +20,15 @@ public class ExPathfinderGoalIllagerIllusionerCastSpellDisapear extends ExPathfi
 
     static class PathfinderGoalIllagerIllusionerCastSpellDisapear extends PathfinderGoalIllagerWizardCastSpell {
 
-        public PathfinderGoalIllagerIllusionerCastSpellDisapear(EntityIllagerIllusioner entity) {
+        public PathfinderGoalIllagerIllusionerCastSpellDisapear(ExEntityIllagerWizard entity) {
             super(entity);
         }
 
         public boolean a() {
-            return super.a() && !this.entity.a(MobEffects.n);
+            return super.a() && !this.entity.getNMS().a(MobEffects.n);
         }
 
-        protected int g() {
+        protected int h() {
             return 20;
         }
 
@@ -37,12 +37,11 @@ public class ExPathfinderGoalIllagerIllusionerCastSpellDisapear extends ExPathfi
         }
 
         protected void k() {
-            this.entity.addEffect(new MobEffect(MobEffects.n, 1200), EntityPotionEffectEvent.Cause.ILLUSION);
+            this.entity.getNMS().addEffect(new MobEffect(MobEffects.n, 1200), EntityPotionEffectEvent.Cause.ILLUSION);
         }
 
-        @Nullable
-        protected SoundEffect l() {
-            return SoundEffects.jd;
+        protected @Nullable SoundEffect l() {
+            return SoundEffects.jK;
         }
 
         protected EntityIllagerWizard.Spell m() {
