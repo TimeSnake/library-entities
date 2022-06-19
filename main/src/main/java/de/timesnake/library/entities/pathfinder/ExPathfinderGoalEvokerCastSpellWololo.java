@@ -1,18 +1,18 @@
 package de.timesnake.library.entities.pathfinder;
 
+import de.timesnake.library.entities.entity.extension.ExEntityIllagerWizard;
 import de.timesnake.library.reflection.NmsReflection;
-import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.sounds.SoundEffects;
 import net.minecraft.world.entity.ai.targeting.PathfinderTargetCondition;
 import net.minecraft.world.entity.animal.EntitySheep;
-import net.minecraft.world.entity.monster.EntityEvoker;
 import net.minecraft.world.entity.monster.EntityIllagerWizard;
 import net.minecraft.world.item.EnumColor;
 import net.minecraft.world.level.GameRules;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
-import java.util.Random;
 
 @NmsReflection(usesReflection = true)
 public class ExPathfinderGoalEvokerCastSpellWololo extends ExPathfinderGoalIllagerWizardCastSpell {
@@ -23,57 +23,67 @@ public class ExPathfinderGoalEvokerCastSpellWololo extends ExPathfinderGoalIllag
 
     protected static class PathfinderGoalEvokerCastSpellWololo extends PathfinderGoalIllagerWizardCastSpell {
 
-        private final PathfinderTargetCondition e =
-                PathfinderTargetCondition.b().a(16.0D).a((var0x) -> ((EntitySheep) var0x).t() == EnumColor.l);
+        private final PathfinderTargetCondition e = PathfinderTargetCondition.b().a(16.0).a((entityliving) ->
+                ((EntitySheep) entityliving).t() == EnumColor.l);
 
-
-        public PathfinderGoalEvokerCastSpellWololo(EntityEvoker entity) {
+        public PathfinderGoalEvokerCastSpellWololo(ExEntityIllagerWizard entity) {
             super(entity);
         }
 
         public boolean a() {
-            if (this.entity.G() != null) {
+            if (this.entity.getNMS().G() != null) {
                 return false;
-            } else if (this.entity.fJ()) {
+            } else if (this.entity.getNMS().fU()) {
                 return false;
-            } else if (this.entity.S < this.c) {
+            } else if (this.entity.getNMS().S < this.c) {
                 return false;
-            } else if (!this.entity.s.W().b(GameRules.c)) {
+            } else if (!this.entity.getNMS().s.W().b(GameRules.c)) {
                 return false;
             } else {
-                List<EntitySheep> var0 = this.entity.s.a(EntitySheep.class, this.e, this.entity,
-                        this.entity.cw().c(16.0D, 4.0D, 16.0D));
-                if (var0.isEmpty()) {
+                List<EntitySheep> list = this.entity.getNMS().s.a(EntitySheep.class, this.e, this.entity.getNMS(),
+                        this.entity.getNMS().cz().c(16.0, 4.0, 16.0));
+                if (list.isEmpty()) {
                     return false;
                 } else {
-                    this.entity.a(var0.get(((Random) RefUtil.getInstanceField(this.entity, "R")).nextInt(var0.size())));
+                    this.entity.getNMS().a(list.get(this.entity.getRandomSource().a(list.size())));
                     return true;
                 }
             }
         }
 
         public boolean b() {
-            return RefUtil.invokeMethod(this.entity, "fR") != null && this.b > 0;
+            try {
+                Method gd = this.entity.getNMS().getClass().getMethod("gd");
+                gd.setAccessible(true);
+                return gd.invoke(this.entity.getNMS().getClass()) != null && this.b > 0;
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         public void d() {
             super.d();
-            this.entity.a((EntitySheep) null);
+            this.entity.getNMS().a((EntitySheep) null);
         }
 
         protected void k() {
-            EntitySheep var0 = (EntitySheep) RefUtil.invokeMethod(this.entity, "fR");
-            if (var0 != null && var0.bl()) {
-                var0.b(EnumColor.o);
+            try {
+                Method gd = this.entity.getNMS().getClass().getMethod("gd");
+                gd.setAccessible(true);
+                EntitySheep entitysheep = (EntitySheep) gd.invoke(this.entity.getNMS().getClass());
+                if (entitysheep != null && entitysheep.bp()) {
+                    entitysheep.b(EnumColor.o);
+                }
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                throw new RuntimeException(e);
             }
-
         }
 
         protected int n() {
             return 40;
         }
 
-        protected int g() {
+        protected int h() {
             return 60;
         }
 
@@ -82,7 +92,7 @@ public class ExPathfinderGoalEvokerCastSpellWololo extends ExPathfinderGoalIllag
         }
 
         protected SoundEffect l() {
-            return SoundEffects.fQ;
+            return SoundEffects.fZ;
         }
 
         protected EntityIllagerWizard.Spell m() {

@@ -1,5 +1,6 @@
 package de.timesnake.library.entities.pathfinder;
 
+import de.timesnake.library.entities.entity.extension.ExEntityIllagerWizard;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.core.EnumDirection;
@@ -7,7 +8,6 @@ import net.minecraft.sounds.SoundEffect;
 import net.minecraft.sounds.SoundEffects;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.EntityLiving;
-import net.minecraft.world.entity.monster.EntityEvoker;
 import net.minecraft.world.entity.monster.EntityIllagerWizard;
 import net.minecraft.world.entity.projectile.EntityEvokerFangs;
 import net.minecraft.world.level.block.state.IBlockData;
@@ -21,11 +21,11 @@ public class ExPathfinderGoalEvokerCastSpellFangs extends ExPathfinderGoalIllage
     }
 
     protected static class PathfinderGoalEvokerCastSpellFangs extends PathfinderGoalIllagerWizardCastSpell {
-        private PathfinderGoalEvokerCastSpellFangs(EntityEvoker entity) {
+        public PathfinderGoalEvokerCastSpellFangs(ExEntityIllagerWizard entity) {
             super(entity);
         }
 
-        protected int g() {
+        protected int h() {
             return 40;
         }
 
@@ -34,67 +34,68 @@ public class ExPathfinderGoalEvokerCastSpellFangs extends ExPathfinderGoalIllage
         }
 
         protected void k() {
-            EntityLiving var0 = this.entity.G();
-            double var1 = Math.min(var0.de(), this.entity.de());
-            double var3 = Math.max(var0.de(), this.entity.de()) + 1.0D;
-            float var5 = (float) MathHelper.d(var0.di() - this.entity.di(), var0.dc() - this.entity.dc());
-            int var6;
-            if (this.entity.f(var0) < 9.0D) {
-                float var7x;
-                for (var6 = 0; var6 < 5; ++var6) {
-                    var7x = var5 + (float) var6 * 3.1415927F * 0.4F;
-                    this.a(this.entity.dc() + (double) MathHelper.b(var7x) * 1.5D,
-                            this.entity.di() + (double) MathHelper.a(var7x) * 1.5D, var1, var3, var7x, 0);
+            EntityLiving entityliving = this.entity.getNMS().G();
+            double d0 = Math.min(entityliving.di(), this.entity.getNMS().di());
+            double d1 = Math.max(entityliving.di(), this.entity.getNMS().di()) + 1.0;
+            float f = (float) MathHelper.d(entityliving.dm() - this.entity.getNMS().dm(),
+                    entityliving.dg() - this.entity.getNMS().dg());
+            int i;
+            if (this.entity.getNMS().f(entityliving) < 9.0) {
+                float f1;
+                for (i = 0; i < 5; ++i) {
+                    f1 = f + (float) i * 3.1415927F * 0.4F;
+                    this.a(this.entity.getNMS().dg() + (double) MathHelper.b(f1) * 1.5,
+                            this.entity.getNMS().dm() + (double) MathHelper.a(f1) * 1.5, d0, d1, f1, 0);
                 }
 
-                for (var6 = 0; var6 < 8; ++var6) {
-                    var7x = var5 + (float) var6 * 3.1415927F * 2.0F / 8.0F + 1.2566371F;
-                    this.a(this.entity.dc() + (double) MathHelper.b(var7x) * 2.5D,
-                            this.entity.di() + (double) MathHelper.a(var7x) * 2.5D, var1, var3, var7x, 3);
+                for (i = 0; i < 8; ++i) {
+                    f1 = f + (float) i * 3.1415927F * 2.0F / 8.0F + 1.2566371F;
+                    this.a(this.entity.getNMS().dg() + (double) MathHelper.b(f1) * 2.5,
+                            this.entity.getNMS().dm() + (double) MathHelper.a(f1) * 2.5, d0, d1, f1, 3);
                 }
             } else {
-                for (var6 = 0; var6 < 16; ++var6) {
-                    double var7 = 1.25D * (double) (var6 + 1);
-                    this.a(this.entity.dc() + (double) MathHelper.b(var5) * var7,
-                            this.entity.di() + (double) MathHelper.a(var5) * var7, var1, var3, var5, var6);
+                for (i = 0; i < 16; ++i) {
+                    double d2 = 1.25 * (double) (i + 1);
+                    int j = 1 * i;
+                    this.a(this.entity.getNMS().dg() + (double) MathHelper.b(f) * d2,
+                            this.entity.getNMS().dm() + (double) MathHelper.a(f) * d2, d0, d1, f, j);
                 }
             }
-
         }
 
-        private void a(double var0, double var2, double var4, double var6, float var8, int var9) {
-            BlockPosition var10 = new BlockPosition(var0, var6, var2);
-            boolean var11 = false;
-            double var12 = 0.0D;
+        private void a(double d0, double d1, double d2, double d3, float f, int i) {
+            BlockPosition blockposition = new BlockPosition(d0, d3, d1);
+            boolean flag = false;
+            double d4 = 0.0;
 
             do {
-                BlockPosition var14 = var10.c();
-                IBlockData var15 = this.entity.s.a_(var14);
-                if (var15.d(this.entity.s, var14, EnumDirection.b)) {
-                    if (!this.entity.s.w(var10)) {
-                        IBlockData var16 = this.entity.s.a_(var10);
-                        VoxelShape var17 = var16.k(this.entity.s, var10);
-                        if (!var17.b()) {
-                            var12 = var17.c(EnumDirection.EnumAxis.b);
+                BlockPosition blockposition1 = blockposition.c();
+                IBlockData iblockdata = this.entity.getNMS().s.a_(blockposition1);
+                if (iblockdata.d(this.entity.getNMS().s, blockposition1, EnumDirection.b)) {
+                    if (!this.entity.getNMS().s.x(blockposition)) {
+                        IBlockData iblockdata1 = this.entity.getNMS().s.a_(blockposition);
+                        VoxelShape voxelshape = iblockdata1.k(this.entity.getNMS().s, blockposition);
+                        if (!voxelshape.b()) {
+                            d4 = voxelshape.c(EnumDirection.EnumAxis.b);
                         }
                     }
 
-                    var11 = true;
+                    flag = true;
                     break;
                 }
 
-                var10 = var10.c();
-            } while (var10.v() >= MathHelper.b(var4) - 1);
+                blockposition = blockposition.c();
+            } while (blockposition.v() >= MathHelper.b(d2) - 1);
 
-            if (var11) {
-                this.entity.s.b(new EntityEvokerFangs(this.entity.s, var0, (double) var10.v() + var12, var2, var8,
-                        var9, this.entity));
+            if (flag) {
+                this.entity.getNMS().s.b(new EntityEvokerFangs(this.entity.getNMS().s, d0,
+                        (double) blockposition.v() + d4, d1, f, i, this.entity.getNMS()));
             }
 
         }
 
         protected SoundEffect l() {
-            return SoundEffects.fO;
+            return SoundEffects.fX;
         }
 
         protected EntityIllagerWizard.Spell m() {

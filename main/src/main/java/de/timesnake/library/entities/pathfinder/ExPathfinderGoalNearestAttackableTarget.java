@@ -108,24 +108,25 @@ public class ExPathfinderGoalNearestAttackableTarget extends ExPathfinderGoalTar
         }
 
         public boolean a() {
-            if (this.b > 0 && this.e.dL().nextInt(this.b) != 0) {
+            if (this.b > 0 && this.e.dR().a(this.b) != 0) {
                 return false;
             } else {
-                this.g();
+                this.h();
                 return this.c != null;
             }
         }
 
         protected AxisAlignedBB a(double d0) {
-            return this.e.cw().c(d0, 4.0D, d0);
+            return this.e.cz().c(d0, 4.0, d0);
         }
 
-        protected void g() {
+        protected void h() {
             if (this.a != EntityHuman.class && this.a != EntityPlayer.class) {
-                this.c = this.e.s.a(this.e.s.a(this.a, this.a(this.l()), (entityliving) -> true), this.d, this.e,
-                        this.e.dc(), this.e.dg(), this.e.di());
+                this.c = this.e.s.a(this.e.s.a(this.a, this.a(this.l()), (entityliving) -> {
+                    return true;
+                }), this.d, this.e, this.e.dg(), this.e.dk(), this.e.dm());
             } else {
-                this.c = this.e.s.a(this.d, this.e, this.e.dc(), this.e.dg(), this.e.di());
+                this.c = this.e.s.a(this.d, this.e, this.e.dg(), this.e.dk(), this.e.dm());
             }
 
         }

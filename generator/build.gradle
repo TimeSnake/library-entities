@@ -25,9 +25,8 @@ repositories {
 dependencies {
     implementation 'de.timesnake:library-basic:1.0-SNAPSHOT'
     implementation 'de.timesnake:library-reflection:1.0-SNAPSHOT'
-    implementation 'org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT'
-    implementation 'org.spigotmc:spigot:1.18.2-R0.1-SNAPSHOT'
-    implementation 'de.timesnake:library-entities:1.0-SNAPSHOT'
+    implementation 'org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT'
+    implementation 'org.spigotmc:spigot:1.19-R0.1-SNAPSHOT'
     implementation "org.freemarker:freemarker:2.3.31"
 }
 
@@ -59,13 +58,35 @@ tasks.withType(JavaCompile) {
 
 task buildFatJar(type: Jar) {
     manifest {
-        attributes 'Main-Class': 'de.timesnake.library.entities_generator.LibraryEntityGenerator'
+        attributes 'Main-Class': 'de.timesnake.library.entities.LibraryEntityGenerator'
     }
 
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     baseName = project.name
+    classifier = "all"
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
 
 jar.finalizedBy(buildFatJar)
+
+tasks.register('run') {
+    javaexec {
+        main = "-jar"
+        args = [
+                project(':generator').buildDir.absolutePath + "/libs/generator-1.0-SNAPSHOT-all.jar",
+                project(':library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/entity",
+                "de.timesnake.library.entities.entity",
+                project(':generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/entity/extension",
+                project(':generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/wrapper",
+                project(':library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/wrapper"
+        ]
+    }
+
+}
+
+/*
+/home/markus/BukkitPlugins/workspace_gradle/library-entities/main/src/main/java/de/timesnake/library/entities/entity de.timesnake.library.entities.entity /home/markus/BukkitPlugins/workspace_gradle/library-entities/generator/src/main/java/de/timesnake/library/entities/entity/extension/ /home/markus/BukkitPlugins/workspace_gradle/library-entities/generator/src/main/java/de/timesnake/library/entities/wrapper/ /home/markus/BukkitPlugins/workspace_gradle/library-entities/main/src/main/java/de/timesnake/library/entities/wrapper/
+
+
+ */

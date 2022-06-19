@@ -1,11 +1,9 @@
 package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.library.entities.entity.extension.EntityExtension;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalMeleeAttack;
 import net.minecraft.world.entity.monster.EntitySpider;
-import org.bukkit.event.entity.EntityTargetEvent;
 
 @NmsReflection
 public class ExPathfinderGoalSpiderMeleeAttack extends ExPathfinderGoalMeleeAttack {
@@ -20,13 +18,13 @@ public class ExPathfinderGoalSpiderMeleeAttack extends ExPathfinderGoalMeleeAtta
         }
 
         public boolean a() {
-            return super.a() && !EntityExtension.isVehicle(this.a);
+            return super.a() && !this.a.bK();
         }
 
         public boolean b() {
-            float f = EntityExtension.aR(this.a);
-            if (f >= 0.5F && EntityExtension.getRandom(this.a).nextInt(100) == 0) {
-                this.a.setTarget(null, EntityTargetEvent.TargetReason.CUSTOM, true);
+            float f = this.a.bh();
+            if (f >= 0.5F && this.a.dR().a(100) == 0) {
+                this.a.h((EntityLiving) null);
                 return false;
             } else {
                 return super.b();
@@ -34,7 +32,7 @@ public class ExPathfinderGoalSpiderMeleeAttack extends ExPathfinderGoalMeleeAtta
         }
 
         protected double a(EntityLiving entityliving) {
-            return 4.0F + EntityExtension.getWidth(entityliving);
+            return (double) (4.0F + entityliving.cX());
         }
     }
 }

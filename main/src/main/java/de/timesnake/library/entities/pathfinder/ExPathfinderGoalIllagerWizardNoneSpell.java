@@ -1,11 +1,13 @@
 package de.timesnake.library.entities.pathfinder;
 
+import de.timesnake.library.entities.entity.extension.ExEntityIllagerWizard;
 import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.library.reflection.NmsReflection;
-import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import net.minecraft.world.entity.monster.EntityIllagerWizard;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.EnumSet;
 
 @NmsReflection(usesReflection = true)
@@ -17,35 +19,44 @@ public class ExPathfinderGoalIllagerWizardNoneSpell extends ExPathfinderGoal {
 
     @Override
     public void injectEntity(ExEntityInsentient entity) {
-        super.setNMSField("entity", entity.getNMS());
+        super.setNMSField("entity", entity);
     }
 
     public static class PathfinderGoalIllagerWizardNoneSpell extends PathfinderGoal {
 
-        private final EntityIllagerWizard entity;
+        private final ExEntityIllagerWizard entity;
 
-        public PathfinderGoalIllagerWizardNoneSpell(EntityIllagerWizard entity) {
+        public PathfinderGoalIllagerWizardNoneSpell(ExEntityIllagerWizard entity) {
             this.entity = entity;
             this.a(EnumSet.of(Type.a, Type.b));
         }
 
         public boolean a() {
-            return ((int) RefUtil.invokeMethod(this.entity, "fK")) > 0;
+            int fW;
+            try {
+                Method fWMethod = this.entity.getNMS().getClass().getMethod("fW");
+                fWMethod.setAccessible(true);
+                fW = (int) fWMethod.invoke(this.entity.getNMS());
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+            return fW > 0;
         }
 
         public void c() {
             super.c();
-            this.entity.D().n();
+            this.entity.getNavigation().getNMS().n();
         }
 
         public void d() {
             super.d();
-            this.entity.a(EntityIllagerWizard.Spell.a);
+            this.entity.getNMS().a(EntityIllagerWizard.Spell.a);
         }
 
         public void e() {
-            if (this.entity.G() != null) {
-                this.entity.z().a(this.entity.G(), (float) this.entity.U(), (float) this.entity.T());
+            if (this.entity.getNMS().G() != null) {
+                this.entity.getNMS().z().a(this.entity.getNMS().G(), (float) this.entity.getNMS().V(),
+                        (float) this.entity.getNMS().U());
             }
 
         }

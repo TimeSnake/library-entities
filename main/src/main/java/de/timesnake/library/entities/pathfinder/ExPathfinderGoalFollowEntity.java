@@ -37,15 +37,14 @@ public class ExPathfinderGoalFollowEntity extends ExPathfinderGoal {
     public static class PathfinderGoalFollowEntity extends PathfinderGoal {
 
         private final ExEntityInsentient entity;
-        private ExEntityInsentient leaderEntity;
         private final double speed;
+        private final float maxDistance;
+        private final float leaderSearchRadius;
+        private final Class<? extends Entity> leaderClass;
+        private ExEntityInsentient leaderEntity;
         private ExNavigationAbstract navigationAbstract;
         private int f;
-        private final float maxDistance;
         private float h;
-        private final float leaderSearchRadius;
-
-        private final Class<? extends Entity> leaderClass;
         private ExEntityInsentient leader;
 
         public PathfinderGoalFollowEntity(ExEntityInsentient entity, Class<? extends EntityInsentient> leaderClass,
@@ -104,7 +103,7 @@ public class ExPathfinderGoalFollowEntity extends ExPathfinderGoal {
         }
 
         public void e() {
-            if (this.leaderEntity != null && !this.entity.isNmsLeashed()) {
+            if (this.leaderEntity != null && !this.entity.isLeashed()) {
                 this.entity.getControllerLook().a(this.leaderEntity, 10.0F, (float) this.entity.O());
                 if (--this.f <= 0) {
                     this.f = 10;

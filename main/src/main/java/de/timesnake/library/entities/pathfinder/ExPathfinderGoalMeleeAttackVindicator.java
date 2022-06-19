@@ -1,6 +1,5 @@
 package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.library.entities.entity.extension.ExEntity;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalMeleeAttack;
@@ -21,9 +20,9 @@ public class ExPathfinderGoalMeleeAttackVindicator extends ExPathfinderGoalMelee
         }
 
         protected double a(EntityLiving var0) {
-            if (new ExEntity(this.a).getVehicle() instanceof EntityRavager) {
-                float var1 = new ExEntity(new ExEntity(this.a).getVehicle()).getWidth() - 0.1F;
-                return var1 * 2.0F * var1 * 2.0F + new ExEntity(var0).getWidth();
+            if (this.a.cR() instanceof EntityRavager) {
+                float var1 = this.a.cR().cX() - 0.1F;
+                return var1 * 2.0F * var1 * 2.0F + var0.cX();
             } else {
                 return super.a(var0);
             }
