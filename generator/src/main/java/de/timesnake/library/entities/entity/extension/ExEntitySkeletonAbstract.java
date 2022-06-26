@@ -1,15 +1,20 @@
+/*
+    Copied from entity generator. Should only be edited in generator files
+*/
+
 package de.timesnake.library.entities.entity.extension;
 
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoalBowShoot;
 import de.timesnake.library.reflection.NmsReflection;
-import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalBowShoot;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalMeleeAttack;
 import net.minecraft.world.entity.monster.EntitySkeletonAbstract;
 import net.minecraft.world.entity.projectile.ProjectileHelper;
 import net.minecraft.world.item.Items;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftAbstractSkeleton;
+
+import java.lang.reflect.Field;
 
 @NmsReflection(usesReflection = true)
 public class ExEntitySkeletonAbstract extends ExEntityInsentient {
@@ -61,11 +66,24 @@ public class ExEntitySkeletonAbstract extends ExEntityInsentient {
 
     private void updateBowShootMeele(int priority) {
 
-        PathfinderGoalBowShoot<?> b =
-                ((PathfinderGoalBowShoot<?>) RefUtil.getInstanceField(EntitySkeletonAbstract.class, this.getNMS(), "b"
-                ));
-        PathfinderGoalMeleeAttack c =
-                (PathfinderGoalMeleeAttack) RefUtil.getInstanceField(EntitySkeletonAbstract.class, this.getNMS(), "c");
+        PathfinderGoalBowShoot<?> b;
+        try {
+            Field bField = EntitySkeletonAbstract.class.getDeclaredField("b");
+            bField.setAccessible(true);
+            b = (PathfinderGoalBowShoot<?>) bField.get(this.getNMS());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        PathfinderGoalMeleeAttack c;
+        try {
+            Field cField = EntitySkeletonAbstract.class.getDeclaredField("c");
+            cField.setAccessible(true);
+            c = (PathfinderGoalMeleeAttack) cField.get(this.getNMS());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
 
         if (this.getNMSWorld() != null && !this.getNMSWorld().y) {
             this.getGoalSelector().a(c);

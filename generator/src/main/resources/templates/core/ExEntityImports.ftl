@@ -1,4 +1,4 @@
-import ${extensionModuleName}.EntityExtension;
+import ${entityModuleName}.ExtendedCraftEntity;
 import ${extensionModuleName}.${extensionEntity.getName()};
 import ${nmsName};
 import de.timesnake.library.reflection.NmsReflection;

@@ -1,3 +1,7 @@
+/*
+    Copied from entity generator. Should only be edited in generator files
+*/
+
 package de.timesnake.library.entities.wrapper;
 
 import net.minecraft.world.entity.*;

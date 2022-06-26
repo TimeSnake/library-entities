@@ -1,5 +1,10 @@
+/*
+    Copied from entity generator. Should only be edited in generator files
+*/
+
 package de.timesnake.library.entities.entity.extension;
 
+import de.timesnake.library.entities.entity.ExtendedEntity;
 import de.timesnake.library.entities.wrapper.*;
 import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.RefUtil;
@@ -25,7 +30,7 @@ import java.lang.reflect.Field;
 import java.util.Random;
 
 @NmsReflection(usesReflection = true)
-public class ExEntity {
+public class ExEntity implements ExtendedEntity {
 
     protected final CraftEntity entity;
 
@@ -38,16 +43,24 @@ public class ExEntity {
         this.entity = entity.getBukkitEntity();
     }
 
+    @Deprecated
     public void setNMSField(String name, Object value) {
         RefUtil.setInstanceField(this.getHandle(), name, value);
     }
 
+    @Deprecated
     public void setNMSField(Class<? extends Entity> clazz, String name, Object value) {
         RefUtil.setInstanceField(clazz, this.getHandle(), name, value);
     }
 
+    @Deprecated
     public Object getNMSField(String name) {
         return RefUtil.getInstanceField(this, name);
+    }
+
+    @Override
+    public ExEntity getExtension() {
+        return this;
     }
 
     public Entity getNMS() {
@@ -171,11 +184,11 @@ public class ExEntity {
     }
 
     public boolean isInWater() {
-        return this.getNMS().getBukkitEntity().isInWater();
+        return this.getBukkitEntity().isInWater();
     }
 
     public float getYaw() {
-        return this.getNMS().getBukkitEntity().getLocation().getYaw();
+        return this.getBukkitEntity().getLocation().getYaw();
     }
 
     public void setYaw(float yaw) {
@@ -183,7 +196,7 @@ public class ExEntity {
     }
 
     public float getPitch() {
-        return (float) RefUtil.getInstanceField(this.getHandle(), "aB");
+        return this.getLocation().getPitch();
     }
 
     public void setPitch(float pitch) {
@@ -209,7 +222,7 @@ public class ExEntity {
     }
 
     public Location getLocation() {
-        return this.getLocation();
+        return this.getBukkitEntity().getLocation();
     }
 
     public ExVec3D getPositionVector() {
@@ -217,13 +230,21 @@ public class ExEntity {
     }
 
     public Random getRandom() {
-        return (Random) RefUtil.getInstanceField(this.getNMS(), "R");
+        Random random;
+        try {
+            Field randomField = Entity.class.getDeclaredField("R");
+            randomField.setAccessible(true);
+            random = (Random) randomField.get(this.getNMS());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+        return random;
     }
 
     public RandomSource getRandomSource() {
         RandomSource rs;
         try {
-            Field rsField = this.getNMS().getClass().getField("rs");
+            Field rsField = Entity.class.getDeclaredField("R");
             rsField.setAccessible(true);
             rs = (RandomSource) rsField.get(this.getNMS());
         } catch (NoSuchFieldException | IllegalAccessException e) {
