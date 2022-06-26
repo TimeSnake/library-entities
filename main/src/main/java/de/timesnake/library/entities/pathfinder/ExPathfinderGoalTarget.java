@@ -1,10 +1,7 @@
 package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.goal.target.PathfinderGoalTarget;
 
-@NmsReflection(usesReflection = true)
 public abstract class ExPathfinderGoalTarget extends ExPathfinderGoal {
 
     public ExPathfinderGoalTarget() {
@@ -14,13 +11,4 @@ public abstract class ExPathfinderGoalTarget extends ExPathfinderGoal {
         super(pathfinderGoalTarget);
     }
 
-    @Override
-    public void injectEntity(ExEntityInsentient entity) {
-        this.setNMSField("e", entity.getNMS());
-    }
-
-    public ExPathfinderGoalTarget a(int i) {
-        ((PathfinderGoalTarget) this.getNMS()).c(i);
-        return this;
-    }
 }

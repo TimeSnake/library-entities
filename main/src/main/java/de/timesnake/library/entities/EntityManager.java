@@ -1,7 +1,7 @@
 package de.timesnake.library.entities;
 
 import com.mojang.authlib.GameProfile;
-import de.timesnake.library.entities.entity.extension.EntityExtension;
+import de.timesnake.library.entities.entity.ExtendedCraftEntity;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.WorldServer;
@@ -26,7 +26,7 @@ public class EntityManager {
         ((CraftWorld) world).addEntity(((CraftEntity) entity).getHandle(), CreatureSpawnEvent.SpawnReason.CUSTOM);
     }
 
-    public static void spawnExEntity(World world, EntityExtension<?> entity) {
+    public static void spawnExEntity(World world, ExtendedCraftEntity<?> entity) {
         ((CraftWorld) world).addEntity(entity.getExtension().getNMS(), CreatureSpawnEvent.SpawnReason.CUSTOM);
     }
 

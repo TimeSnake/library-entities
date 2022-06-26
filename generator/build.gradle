@@ -58,7 +58,7 @@ tasks.withType(JavaCompile) {
 
 task buildFatJar(type: Jar) {
     manifest {
-        attributes 'Main-Class': 'de.timesnake.library.entities.LibraryEntityGenerator'
+        attributes 'Main-Class': 'de.timesnake.library.entities.generator.LibraryEntityGenerator'
     }
 
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -77,16 +77,18 @@ tasks.register('run') {
                 project(':generator').buildDir.absolutePath + "/libs/generator-1.0-SNAPSHOT-all.jar",
                 project(':library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/entity",
                 "de.timesnake.library.entities.entity",
-                project(':generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/entity/extension",
+                project(':generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/entity",
                 project(':generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/wrapper",
-                project(':library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/wrapper"
+                project(':library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/wrapper",
+                project(':generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/pathfinder",
+                project(':library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/pathfinder"
         ]
     }
 
 }
 
 /*
-/home/markus/BukkitPlugins/workspace_gradle/library-entities/main/src/main/java/de/timesnake/library/entities/entity de.timesnake.library.entities.entity /home/markus/BukkitPlugins/workspace_gradle/library-entities/generator/src/main/java/de/timesnake/library/entities/entity/extension/ /home/markus/BukkitPlugins/workspace_gradle/library-entities/generator/src/main/java/de/timesnake/library/entities/wrapper/ /home/markus/BukkitPlugins/workspace_gradle/library-entities/main/src/main/java/de/timesnake/library/entities/wrapper/
+java -jar /home/markus/BukkitPlugins/workspace_gradle/library-entities/generator/build/libs/generator-1.0-SNAPSHOT-all.jar /home/markus/BukkitPlugins/workspace_gradle/library-entities/main/src/main/java/de/timesnake/library/entities/entity de.timesnake.library.entities.entity /home/markus/BukkitPlugins/workspace_gradle/library-entities/generator/src/main/java/de/timesnake/library/entities/entity/extension/ /home/markus/BukkitPlugins/workspace_gradle/library-entities/generator/src/main/java/de/timesnake/library/entities/wrapper/ /home/markus/BukkitPlugins/workspace_gradle/library-entities/main/src/main/java/de/timesnake/library/entities/wrapper/ /home/markus/BukkitPlugins/workspace_gradle/library-entities/main/src/main/java/de/timesnake/library/entities/pathfinder_g/
 
 
  */

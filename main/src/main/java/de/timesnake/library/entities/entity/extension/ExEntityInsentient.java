@@ -1,3 +1,7 @@
+/*
+    Copied from entity generator. Should only be edited in generator files
+*/
+
 package de.timesnake.library.entities.entity.extension;
 
 import com.google.common.collect.Sets;
@@ -5,7 +9,6 @@ import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoalTarget;
 import de.timesnake.library.entities.wrapper.*;
 import de.timesnake.library.reflection.NmsReflection;
-import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalSelector;
@@ -13,11 +16,10 @@ import net.minecraft.world.level.pathfinder.PathType;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMob;
 import org.bukkit.event.entity.EntityTargetEvent;
 
+import java.lang.reflect.Field;
+
 @NmsReflection(usesReflection = true)
 public class ExEntityInsentient extends ExEntityLiving {
-
-    public static final String PATHFINDER_GOAL_SELECTOR = "bQ";
-    public static final String PATHFINDER_TARGET_SELECTOR = "bR";
 
     static void setTarget(EntityInsentient entity, EntityLiving target) {
         entity.setTarget(target, EntityTargetEvent.TargetReason.CUSTOM, true);
@@ -36,11 +38,27 @@ public class ExEntityInsentient extends ExEntityLiving {
     }
 
     public PathfinderGoalSelector getGoalSelector() {
-        return (PathfinderGoalSelector) RefUtil.getInstanceField(this.getNMS(), PATHFINDER_GOAL_SELECTOR);
+        PathfinderGoalSelector bS;
+        try {
+            Field bSField = this.getNMS().getClass().getField("bS");
+            bSField.setAccessible(true);
+            bS = (PathfinderGoalSelector) bSField.get(this.getNMS());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+        return bS;
     }
 
     public PathfinderGoalSelector getTargetSelector() {
-        return (PathfinderGoalSelector) RefUtil.getInstanceField(this.getNMS(), PATHFINDER_TARGET_SELECTOR);
+        PathfinderGoalSelector bT;
+        try {
+            Field bTField = this.getNMS().getClass().getField("bT");
+            bTField.setAccessible(true);
+            bT = (PathfinderGoalSelector) bTField.get(this.getNMS());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+        return bT;
     }
 
     public void addPathfinderGoal(ExPathfinderGoal pathfinderGoal) {
@@ -80,8 +98,21 @@ public class ExEntityInsentient extends ExEntityLiving {
     }
 
     public void clearPathfinderGoals() {
-        RefUtil.setInstanceField(this.getGoalSelector(), "d", Sets.newLinkedHashSet());
-        RefUtil.setInstanceField(this.getTargetSelector(), "d", Sets.newLinkedHashSet());
+        try {
+            Field d = this.getGoalSelector().getClass().getField("d");
+            d.setAccessible(true);
+            d.set(this.getGoalSelector(), Sets.newLinkedHashSet());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            Field d = this.getTargetSelector().getClass().getField("d");
+            d.setAccessible(true);
+            d.set(this.getTargetSelector(), Sets.newLinkedHashSet());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setTarget(ExEntityLiving target) {
@@ -115,8 +146,13 @@ public class ExEntityInsentient extends ExEntityLiving {
     }
 
     public void clearGoalTargets() {
-        RefUtil.setInstanceField(this.getNMS(), PATHFINDER_TARGET_SELECTOR,
-                new PathfinderGoalSelector(this.getNMS().s.ad()));
+        try {
+            Field bT = this.getNMS().getClass().getField("bT");
+            bT.setAccessible(true);
+            bT.set(this.getNMS(), new PathfinderGoalSelector(this.getNMS().s.ad()));
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public ExPathEntity calcPath(double x, double y, double z, int minDistance) {
