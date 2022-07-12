@@ -21,7 +21,7 @@ import org.bukkit.entity.Player;
 import java.util.UUID;
 
 @NmsReflection
-public class ExPlayer extends ExHumanEntity implements ExtendedCraftEntity<ExEntityHuman> {
+public class ExPlayer extends CraftPlayer implements ExtendedCraftEntity<ExEntityHuman> {
 
     private static MinecraftServer getMcServer() {
         return ((CraftServer) Bukkit.getServer()).getServer();
@@ -57,9 +57,5 @@ public class ExPlayer extends ExHumanEntity implements ExtendedCraftEntity<ExEnt
         return new Tuple<>(property.getValue(), property.getSignature());
     }
 
-
-    @Override
-    public EntityPlayer getNMS() {
-        return (EntityPlayer) super.getNMS();
-    }
+    <#include "core/ExEntityExtension.ftl">
 }
