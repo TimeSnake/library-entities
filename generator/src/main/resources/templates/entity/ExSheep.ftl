@@ -29,7 +29,7 @@ public class ExSheep extends CraftSheep implements ExtendedCraftEntity<ExEntityA
         });
 
         if (!loadDefaultPathfinderGoals) {
-            this.getExtension().setNMSField("cb", new PathfinderGoalEatTile(this.getExtension().getNMS()));
+            this.getExtension().setNMSField("cd", new PathfinderGoalEatTile(this.getExtension().getNMS()));
         }
     }
 
