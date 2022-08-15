@@ -1,0 +1,256 @@
+package de.timesnake.library.entities.generator;
+
+import de.timesnake.library.basic.util.Tuple;
+import net.minecraft.world.entity.ai.goal.*;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+
+public class GeneratePathfinderGoal<Clazz> {
+
+    public static final GeneratePathfinderGoal<ClimbOnTopOfPowderSnowGoal> CLIMB_ON_TOP_OF_POWDER_SNOW_GOAL = new GeneratePathfinderGoal<>(ClimbOnTopOfPowderSnowGoal.class, ClimbOnTopOfPowderSnowGoal.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalArrowAttack> ARROW_ATTACK = new GeneratePathfinderGoal<>(PathfinderGoalArrowAttack.class, PathfinderGoalArrowAttack.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalAvoidTarget> AVOID_TARGET = new GeneratePathfinderGoal<>(PathfinderGoalAvoidTarget.class, PathfinderGoalAvoidTarget.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalBeg> BEG = new GeneratePathfinderGoal<>(PathfinderGoalBeg.class, PathfinderGoalBeg.class, "a");
+//  public static final GeneratePathfinderGoal<PathfinderGoalBoat> BOAT = new GeneratePathfinderGoal<>(PathfinderGoalBoat.class, PathfinderGoalBoat.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalBowShoot> BOW_SHOOT = new GeneratePathfinderGoal<>(PathfinderGoalBowShoot.class, PathfinderGoalBowShoot.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalBreakDoor> BREAK_DOOR = new GeneratePathfinderGoal<>(PathfinderGoalBreakDoor.class, PathfinderGoalBreakDoor.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalBreath> BREATH = new GeneratePathfinderGoal<>(PathfinderGoalBreath.class, PathfinderGoalBreath.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalBreed> BREED = new GeneratePathfinderGoal<>(PathfinderGoalBreed.class, PathfinderGoalBreed.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalCatSitOnBed> CAT_SIT_ON_BED = new GeneratePathfinderGoal<>(PathfinderGoalCatSitOnBed.class, PathfinderGoalCatSitOnBed.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalCrossbowAttack> CROSSBOW_ATTACK = new GeneratePathfinderGoal<>(PathfinderGoalCrossbowAttack.class, PathfinderGoalCrossbowAttack.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalDoorInteract> DOOR_INTERACT = new GeneratePathfinderGoal<>(PathfinderGoalDoorInteract.class, PathfinderGoalDoorInteract.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalDoorOpen> DOOR_OPEN = new GeneratePathfinderGoal<>(PathfinderGoalDoorOpen.class, PathfinderGoalDoorOpen.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalEatTile> EAT_TILE = new GeneratePathfinderGoal<>(PathfinderGoalEatTile.class, PathfinderGoalEatTile.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalFishSchool> FISH_SCHOOL = new GeneratePathfinderGoal<>(PathfinderGoalFishSchool.class, PathfinderGoalFishSchool.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalFleeSun> FLEE_SUN = new GeneratePathfinderGoal<>(PathfinderGoalFleeSun.class, PathfinderGoalFleeSun.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalFloat> FLOAT = new GeneratePathfinderGoal<>(PathfinderGoalFloat.class, PathfinderGoalFloat.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalFollowBoat> FOLLOW_BOAT = new GeneratePathfinderGoal<>(PathfinderGoalFollowBoat.class, PathfinderGoalFollowBoat.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalFollowEntity> FOLLOW_ENTITY = new GeneratePathfinderGoal<>(PathfinderGoalFollowEntity.class, PathfinderGoalFollowEntity.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalFollowOwner> FOLLOW_OWNER = new GeneratePathfinderGoal<>(PathfinderGoalFollowOwner.class, PathfinderGoalFollowOwner.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalFollowParent> FOLLOW_PARENT = new GeneratePathfinderGoal<>(PathfinderGoalFollowParent.class, PathfinderGoalFollowParent.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalGotoTarget> GOTO_TARGET = new GeneratePathfinderGoal<>(PathfinderGoalGotoTarget.class, PathfinderGoalGotoTarget.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalInteract> INTERACT = new GeneratePathfinderGoal<>(PathfinderGoalInteract.class, PathfinderGoalInteract.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalJumpOnBlock> JUMP_ON_BLOCK = new GeneratePathfinderGoal<>(PathfinderGoalJumpOnBlock.class, PathfinderGoalJumpOnBlock.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalLeapAtTarget> LEAP_AT_TARGET = new GeneratePathfinderGoal<>(PathfinderGoalLeapAtTarget.class, PathfinderGoalLeapAtTarget.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalLlamaFollow> LLAMA_FOLLOW = new GeneratePathfinderGoal<>(PathfinderGoalLlamaFollow.class, PathfinderGoalLlamaFollow.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalLookAtPlayer> LOOK_AT_PLAYER = new GeneratePathfinderGoal<>(PathfinderGoalLookAtPlayer.class, PathfinderGoalLookAtPlayer.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalLookAtTradingPlayer> LOOK_AT_TRADING_PLAYER = new GeneratePathfinderGoal<>(PathfinderGoalLookAtTradingPlayer.class, PathfinderGoalLookAtTradingPlayer.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalMeleeAttack> MELEE_ATTACK = new GeneratePathfinderGoal<>(PathfinderGoalMeleeAttack.class, PathfinderGoalMeleeAttack.class, "a", new PathfinderParameter<>("speed", double.class), new PathfinderParameter<>("flag", boolean.class, false));
+    public static final GeneratePathfinderGoal<PathfinderGoalMoveTowardsRestriction> MOVE_TOWARDS_RESTRICTION = new GeneratePathfinderGoal<>(PathfinderGoalMoveTowardsRestriction.class, PathfinderGoalMoveTowardsRestriction.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalMoveTowardsTarget> MOVE_TOWARDS_TARGET = new GeneratePathfinderGoal<>(PathfinderGoalMoveTowardsTarget.class, PathfinderGoalMoveTowardsTarget.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalNearestVillage> NEAREST_VILLAGE = new GeneratePathfinderGoal<>(PathfinderGoalNearestVillage.class, PathfinderGoalNearestVillage.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalOcelotAttack> OCELOT_ATTACK = new GeneratePathfinderGoal<>(PathfinderGoalOcelotAttack.class, PathfinderGoalOcelotAttack.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalOfferFlower> OFFER_FLOWER = new GeneratePathfinderGoal<>(PathfinderGoalOfferFlower.class, PathfinderGoalOfferFlower.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalPanic> PANIC = new GeneratePathfinderGoal<>(PathfinderGoalPanic.class, PathfinderGoalPanic.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalPerch> PERCH = new GeneratePathfinderGoal<>(PathfinderGoalPerch.class, PathfinderGoalPerch.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalRaid> RAID = new GeneratePathfinderGoal<>(PathfinderGoalRaid.class, PathfinderGoalRaid.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalRandomFly> RANDOM_FLY = new GeneratePathfinderGoal<>(PathfinderGoalRandomFly.class, PathfinderGoalRandomFly.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalRandomLookaround> RANDOM_LOOKAROUND = new GeneratePathfinderGoal<>(PathfinderGoalRandomLookaround.class, PathfinderGoalRandomLookaround.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalRandomStroll> RANDOM_STROLL = new GeneratePathfinderGoal<>(PathfinderGoalRandomStroll.class, PathfinderGoalRandomStroll.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalRandomStrollLand> RANDOM_STROLL_LAND = new GeneratePathfinderGoal<>(PathfinderGoalRandomStrollLand.class, PathfinderGoalRandomStrollLand.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalRandomSwim> RANDOM_SWIM = new GeneratePathfinderGoal<>(PathfinderGoalRandomSwim.class, PathfinderGoalRandomSwim.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalRemoveBlock> REMOVE_BLOCK = new GeneratePathfinderGoal<>(PathfinderGoalRemoveBlock.class, PathfinderGoalRemoveBlock.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalRestrictSun> RESTRICT_SUN = new GeneratePathfinderGoal<>(PathfinderGoalRestrictSun.class, PathfinderGoalRestrictSun.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalSit> SIT = new GeneratePathfinderGoal<>(PathfinderGoalSit.class, PathfinderGoalSit.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalStrollVillage> STROLL_VILLAGE = new GeneratePathfinderGoal<>(PathfinderGoalStrollVillage.class, PathfinderGoalStrollVillage.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalStrollVillageGolem> STROLL_VILLAGE_GOLEM = new GeneratePathfinderGoal<>(PathfinderGoalStrollVillageGolem.class, PathfinderGoalStrollVillageGolem.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalSwell> SWELL = new GeneratePathfinderGoal<>(PathfinderGoalSwell.class, PathfinderGoalSwell.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalTame> TAME = new GeneratePathfinderGoal<>(PathfinderGoalTame.class, PathfinderGoalTame.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalTempt> TEMPT = new GeneratePathfinderGoal<>(PathfinderGoalTempt.class, PathfinderGoalTempt.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalTradeWithPlayer> TRADE_WITH_PLAYER = new GeneratePathfinderGoal<>(PathfinderGoalTradeWithPlayer.class, PathfinderGoalTradeWithPlayer.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalUseItem> USE_ITEM = new GeneratePathfinderGoal<>(PathfinderGoalUseItem.class, PathfinderGoalUseItem.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalMoveThroughVillage> MOVE_THROUGH_VILLAGE = new GeneratePathfinderGoal<>(PathfinderGoalMoveThroughVillage.class, PathfinderGoalMoveThroughVillage.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalWater> WATER = new GeneratePathfinderGoal<>(PathfinderGoalWater.class, PathfinderGoalWater.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalWaterJump> WATER_JUMP = new GeneratePathfinderGoal<>(PathfinderGoalWaterJump.class, PathfinderGoalWaterJump.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalWaterJumpAbstract> WATER_JUMP_ABSTRACT = new GeneratePathfinderGoal<>(PathfinderGoalWaterJumpAbstract.class, PathfinderGoalWaterJumpAbstract.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalWrapped> WRAPPED = new GeneratePathfinderGoal<>(PathfinderGoalWrapped.class, PathfinderGoalWrapped.class, "a");
+    public static final GeneratePathfinderGoal<PathfinderGoalZombieAttack> ZOMBIE_ATTACK = new GeneratePathfinderGoal<>(PathfinderGoalZombieAttack.class, PathfinderGoalZombieAttack.class, "a");
+
+
+
+    public static final List<GeneratePathfinderGoal<?>> TYPES = new LinkedList<>();
+
+
+    static {
+        TYPES.add(CLIMB_ON_TOP_OF_POWDER_SNOW_GOAL);
+        TYPES.add(ARROW_ATTACK);
+        TYPES.add(AVOID_TARGET);
+        TYPES.add(BEG);
+//      TYPES.add(BOAT);
+        TYPES.add(BOW_SHOOT);
+        TYPES.add(BREAK_DOOR);
+        TYPES.add(BREATH);
+        TYPES.add(BREED);
+        TYPES.add(CAT_SIT_ON_BED);
+        TYPES.add(CROSSBOW_ATTACK);
+        TYPES.add(DOOR_INTERACT);
+        TYPES.add(DOOR_OPEN);
+        TYPES.add(EAT_TILE);
+        TYPES.add(FISH_SCHOOL);
+        TYPES.add(FLEE_SUN);
+        TYPES.add(FLOAT);
+        TYPES.add(FOLLOW_BOAT);
+        TYPES.add(FOLLOW_ENTITY);
+        TYPES.add(FOLLOW_OWNER);
+        TYPES.add(FOLLOW_PARENT);
+        TYPES.add(GOTO_TARGET);
+        TYPES.add(INTERACT);
+        TYPES.add(JUMP_ON_BLOCK);
+        TYPES.add(LEAP_AT_TARGET);
+        TYPES.add(LLAMA_FOLLOW);
+        TYPES.add(LOOK_AT_PLAYER);
+        TYPES.add(LOOK_AT_TRADING_PLAYER);
+        TYPES.add(MELEE_ATTACK);
+        TYPES.add(MOVE_TOWARDS_RESTRICTION);
+        TYPES.add(MOVE_TOWARDS_TARGET);
+        TYPES.add(NEAREST_VILLAGE);
+        TYPES.add(OCELOT_ATTACK);
+        TYPES.add(OFFER_FLOWER);
+        TYPES.add(PANIC);
+        TYPES.add(PERCH);
+        TYPES.add(RAID);
+        TYPES.add(RANDOM_FLY);
+        TYPES.add(RANDOM_LOOKAROUND);
+        TYPES.add(RANDOM_STROLL);
+        TYPES.add(RANDOM_STROLL_LAND);
+        TYPES.add(RANDOM_SWIM);
+        TYPES.add(REMOVE_BLOCK);
+        TYPES.add(RESTRICT_SUN);
+        TYPES.add(SIT);
+        TYPES.add(STROLL_VILLAGE);
+        TYPES.add(STROLL_VILLAGE_GOLEM);
+        TYPES.add(SWELL);
+        TYPES.add(TAME);
+        TYPES.add(TEMPT);
+        TYPES.add(TRADE_WITH_PLAYER);
+        TYPES.add(USE_ITEM);
+        TYPES.add(MOVE_THROUGH_VILLAGE);
+        TYPES.add(WATER);
+        TYPES.add(WATER_JUMP);
+        TYPES.add(WATER_JUMP_ABSTRACT);
+        TYPES.add(WRAPPED);
+        TYPES.add(ZOMBIE_ATTACK);
+    }
+
+
+    private final Class<Clazz> clazz;
+    private final Class<?> fieldClass;
+    private final String entityFieldName;
+    private final PathfinderParameter<?>[] constructorParameters;
+
+    public GeneratePathfinderGoal(Class<Clazz> clazz, Class<?> fieldClass, String entityFieldName,
+                                  PathfinderParameter<?>... constructorParameters) {
+        this.clazz = clazz;
+        this.fieldClass = fieldClass;
+        this.entityFieldName = entityFieldName;
+        this.constructorParameters = constructorParameters;
+    }
+
+    public void checkEntityField() throws NoSuchFieldException {
+        this.fieldClass.getDeclaredField(this.entityFieldName);
+    }
+
+    public String getExName() {
+        return "Ex" + this.getName();
+    }
+
+    public String getName() {
+        return this.clazz.getSimpleName();
+    }
+
+    public Class<Clazz> getNmsClass() {
+        return clazz;
+    }
+
+    public Class<?> getFieldClass() {
+        return fieldClass;
+    }
+
+    public String getEntityFieldName() {
+        return this.entityFieldName;
+    }
+
+    public List<Tuple<String, String>> getParametersList() {
+        if (this.constructorParameters.length == 0) {
+            return List.of(new Tuple<>("", ""));
+        }
+
+        LinkedList<Tuple<StringBuilder, StringBuilder>> parametersList = new LinkedList<>();
+
+        parametersList.add(new Tuple<>(new StringBuilder(), new StringBuilder()));
+
+        for (PathfinderParameter<?> parameter : constructorParameters) {
+            if (!parameter.hasDefaultValue()) {
+                for (Tuple<StringBuilder, StringBuilder> parameters : parametersList) {
+                    parameters.getA().append(parameter.getTypeClassName()).append(" ").append(parameter.getName()).append(", ");
+                    parameters.getB().append(parameter.getName()).append(", ");
+                }
+            } else {
+                LinkedList<Tuple<StringBuilder, StringBuilder>> listsWithoutParameter = new LinkedList<>();
+                for (Tuple<StringBuilder, StringBuilder> parameters : parametersList) {
+                    listsWithoutParameter.addLast(new Tuple<>(new StringBuilder(parameters.getA()),
+                            new StringBuilder(parameters.getB()).append(parameter.getDefaultValue().orElse(null)).append(", ")));
+
+                    parameters.getA().append(parameter.getTypeClassName()).append(" ").append(parameter.getName()).append(", ");
+                    parameters.getB().append(parameter.getName()).append(", ");
+                }
+
+                for (Tuple<StringBuilder, StringBuilder> listWithoutParameter : listsWithoutParameter) {
+                    parametersList.addLast(listWithoutParameter);
+                }
+            }
+        }
+
+        LinkedList<Tuple<String, String>> parameterCallList = new LinkedList<>();
+
+        for (Tuple<StringBuilder, StringBuilder> parameterCallTuple : parametersList) {
+            parameterCallTuple.getA().delete(parameterCallTuple.getA().length() - 2,
+                    parameterCallTuple.getA().length());
+            parameterCallTuple.getB().delete(parameterCallTuple.getB().length() - 2,
+                    parameterCallTuple.getB().length());
+
+            parameterCallList.addLast(new Tuple<>(parameterCallTuple.getA().toString(),
+                    parameterCallTuple.getB().toString()));
+        }
+
+        return parameterCallList;
+    }
+
+    public static class PathfinderParameter<Type> {
+
+        private final String name;
+        private final Class<Type> typeClass;
+        private final Optional<Type> defaultValue;
+
+        public PathfinderParameter(String name, Class<Type> typeClass) {
+            this.name = name;
+            this.typeClass = typeClass;
+            this.defaultValue = Optional.empty();
+        }
+
+        public PathfinderParameter(String name, Class<Type> typeClass, Type defaultValue) {
+            this.name = name;
+            this.typeClass = typeClass;
+            this.defaultValue = Optional.of(defaultValue);
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getTypeClassName() {
+            return typeClass.getName();
+        }
+
+        public boolean hasDefaultValue() {
+            return this.defaultValue.isPresent();
+        }
+
+        public Optional<Type> getDefaultValue() {
+            return defaultValue;
+        }
+    }
+
+}
