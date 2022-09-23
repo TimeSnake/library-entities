@@ -8,6 +8,9 @@ import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.level.pathfinder.PathEntity;
 import net.minecraft.world.level.pathfinder.PathPoint;
 
+import java.lang.reflect.Field;
+import java.util.List;
+
 @NmsReflection
 public class ExPathEntity {
 
@@ -63,6 +66,20 @@ public class ExPathEntity {
 
     public void setCurrentIndex(int index) {
         this.path.c(index);
+    }
+
+    public List<PathPoint> getPathPoints() {
+        try {
+            Field pathListField = PathEntity.class.getDeclaredField("a");
+            pathListField.setAccessible(true);
+            return (List<PathPoint>) pathListField.get(this.getNMS());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<ExPathPoint> getExPathPoints() {
+        return this.getPathPoints().stream().map(ExPathPoint::new).toList();
     }
 
 }
