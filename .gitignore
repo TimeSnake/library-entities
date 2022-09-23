@@ -9,8 +9,6 @@
 generator/build
 main/build
 gradle_build.out
-gradlew
-gradlew.bat
 /main/src/main/java/de/timesnake/library/entities/entity/
 /main/src/main/java/de/timesnake/library/entities/pathfinder/*.java
 /main/src/main/java/de/timesnake/library/entities/wrapper/
