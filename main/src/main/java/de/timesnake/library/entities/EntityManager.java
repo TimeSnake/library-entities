@@ -44,10 +44,18 @@ public class EntityManager {
         ((CraftWorld) world).addEntity(((CraftEntity) entity).getHandle(), CreatureSpawnEvent.SpawnReason.CUSTOM);
     }
 
+    public static void spawnEntity(World world, org.bukkit.entity.Entity entity, boolean randomizeData) {
+        ((CraftWorld) world).addEntity(((CraftEntity) entity).getHandle(), CreatureSpawnEvent.SpawnReason.CUSTOM,
+                null, randomizeData);
+    }
+
     public static void spawnExEntity(World world, ExtendedCraftEntity<?> entity) {
         ((CraftWorld) world).addEntity(entity.getExtension().getNMS(), CreatureSpawnEvent.SpawnReason.CUSTOM);
     }
 
+    public static void spawnExEntity(World world, ExtendedCraftEntity<?> entity, boolean randomizeData) {
+        ((CraftWorld) world).addEntity(entity.getExtension().getNMS(), CreatureSpawnEvent.SpawnReason.CUSTOM, null, randomizeData);
+    }
 
     public static MinecraftServer getPlayerMcServer() {
         return ((CraftServer) Bukkit.getServer()).getServer();

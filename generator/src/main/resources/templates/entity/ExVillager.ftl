@@ -13,11 +13,18 @@ import org.bukkit.craftbukkit.${version}.CraftServer;
 import org.bukkit.craftbukkit.${version}.CraftWorld;
 import org.bukkit.craftbukkit.${version}.entity.CraftVillager;
 
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.DifficultyDamageScaler;
+import net.minecraft.world.entity.EnumMobSpawn;
+import net.minecraft.world.entity.GroupDataEntity;
+import net.minecraft.world.level.WorldAccess;
+
+import javax.annotation.Nullable;
+
 @NmsReflection
 public class ExVillager extends CraftVillager implements ExtendedCraftEntity<ExEntityVillagerAbstract> {
 
-    public ExVillager(org.bukkit.World world, Type type,
-                      boolean loadDefaultPathfinders, boolean loadAI) {
+    public ExVillager(org.bukkit.World world, Type type, boolean loadDefaultPathfinders, boolean loadAI, boolean randomizeData) {
         super(((CraftServer) Bukkit.getServer()), new EntityVillager(EntityTypes.aZ,
                 ((CraftWorld) world).getHandle(), type.getNMS()) {
             @Override
@@ -25,6 +32,14 @@ public class ExVillager extends CraftVillager implements ExtendedCraftEntity<ExE
                 if (loadDefaultPathfinders) {
                     super.u();
                 }
+            }
+
+            @Override
+            public @Nullable GroupDataEntity a(WorldAccess worldaccess, DifficultyDamageScaler difficultydamagescaler, EnumMobSpawn enummobspawn, @Nullable GroupDataEntity groupdataentity, @Nullable NBTTagCompound nbttagcompound) {
+                if (randomizeData) {
+                    return super.a(worldaccess, difficultydamagescaler, enummobspawn, groupdataentity, nbttagcompound);
+                }
+                return null;
             }
         });
 

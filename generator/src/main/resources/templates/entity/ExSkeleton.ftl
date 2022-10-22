@@ -20,10 +20,18 @@ import org.bukkit.craftbukkit.${version}.entity.CraftSkeleton;
 import org.bukkit.craftbukkit.${version}.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.DifficultyDamageScaler;
+import net.minecraft.world.entity.EnumMobSpawn;
+import net.minecraft.world.entity.GroupDataEntity;
+import net.minecraft.world.level.WorldAccess;
+
+import javax.annotation.Nullable;
+
 @NmsReflection
 public class ExSkeleton extends CraftSkeleton implements ExtendedCraftEntity<ExEntitySkeletonAbstract> {
 
-    public ExSkeleton(World world, boolean loadDefaultPathfinderGoals) {
+    public ExSkeleton(World world, boolean loadDefaultPathfinderGoals, boolean randomizeData) {
         super(((CraftServer) Bukkit.getServer()), new EntitySkeleton(EntityTypes.aE,
                 ((CraftWorld) world).getHandle()) {
             @Override
@@ -31,6 +39,14 @@ public class ExSkeleton extends CraftSkeleton implements ExtendedCraftEntity<ExE
                 if (loadDefaultPathfinderGoals) {
                     super.u();
                 }
+            }
+
+            @Override
+            public @Nullable GroupDataEntity a(WorldAccess worldaccess, DifficultyDamageScaler difficultydamagescaler, EnumMobSpawn enummobspawn, @Nullable GroupDataEntity groupdataentity, @Nullable NBTTagCompound nbttagcompound) {
+                if (randomizeData) {
+                    return super.a(worldaccess, difficultydamagescaler, enummobspawn, groupdataentity, nbttagcompound);
+                }
+                return null;
             }
         });
     }
