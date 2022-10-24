@@ -39,10 +39,6 @@ import java.lang.reflect.Field;
 @NmsReflection(usesReflection = true)
 public class ExEntityInsentient extends ExEntityLiving {
 
-    static void setTarget(EntityInsentient entity, EntityLiving target) {
-        entity.setTarget(target, EntityTargetEvent.TargetReason.CUSTOM, true);
-    }
-
     public ExEntityInsentient(CraftMob entity) {
         super(entity);
     }
@@ -51,6 +47,12 @@ public class ExEntityInsentient extends ExEntityLiving {
         super(entity);
     }
 
+    @Override
+    public Mob getExEntity() {
+        return (Mob) super.getExEntity();
+    }
+
+    @Override
     public EntityInsentient getNMS() {
         return (EntityInsentient) super.getNMS();
     }
@@ -84,7 +86,7 @@ public class ExEntityInsentient extends ExEntityLiving {
             return;
         }
 
-        pathfinderGoal.injectEntity(this);
+        pathfinderGoal.injectEntity(this.getExEntity());
 
         if (pathfinderGoal.getNMS() == null) {
             return;
@@ -98,7 +100,7 @@ public class ExEntityInsentient extends ExEntityLiving {
             return;
         }
 
-        pathfinderGoal.injectEntity(this);
+        pathfinderGoal.injectEntity(this.getExEntity());
 
         if (pathfinderGoal instanceof ExPathfinderGoalTarget) {
             this.getTargetSelector().a(priority, pathfinderGoal.getNMS());

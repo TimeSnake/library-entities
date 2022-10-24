@@ -29,7 +29,7 @@ import net.minecraft.world.level.WorldAccess;
 import javax.annotation.Nullable;
 
 @NmsReflection
-public class ExSkeleton extends CraftSkeleton implements ExtendedCraftEntity<ExEntitySkeletonAbstract> {
+public class ExSkeleton extends CraftSkeleton implements ${moduleName}.Skeleton {
 
     public ExSkeleton(World world, boolean loadDefaultPathfinderGoals, boolean randomizeData) {
         super(((CraftServer) Bukkit.getServer()), new EntitySkeleton(EntityTypes.aE,

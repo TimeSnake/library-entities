@@ -16,16 +16,10 @@
  * along with this program; If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-    Copied from entity generator. Should only be edited in generator files
-*/
+package de.timesnake.library.entities.entity.extension;
 
-package de.timesnake.library.entities.entity;
+import de.timesnake.library.entities.generator.Placeholder;
 
-import de.timesnake.library.entities.entity.extension.ExEntity;
-
-public interface ExtendedCraftEntity<ExtensionEntity extends ExEntity> extends ExtendedEntity {
-
-    @Override
-    ExtensionEntity getExtension();
+@Placeholder
+public interface Mob extends LivingEntity {
 }

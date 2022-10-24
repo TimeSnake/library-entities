@@ -18,7 +18,7 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.Mob;
 import org.bukkit.entity.Player;
 
 public class ExCustomPathfinderGoalPet extends ExCustomPathfinderGoal {
@@ -28,7 +28,7 @@ public class ExCustomPathfinderGoalPet extends ExCustomPathfinderGoal {
     }
 
     @Override
-    public void injectEntity(ExEntityInsentient entity) {
+    public void injectEntity(Mob entity) {
         this.setNMSField("pet", entity);
     }
 

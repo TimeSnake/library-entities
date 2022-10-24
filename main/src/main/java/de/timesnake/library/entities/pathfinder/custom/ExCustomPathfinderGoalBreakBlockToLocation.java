@@ -18,7 +18,7 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.reflection.NmsReflection;
 import org.bukkit.Material;
 
@@ -31,7 +31,7 @@ public class ExCustomPathfinderGoalBreakBlockToLocation extends ExCustomPathfind
     }
 
     @Override
-    public void injectEntity(ExEntityInsentient entity) {
+    public void injectEntity(Mob entity) {
         super.setNMSField("entity", entity);
     }
 

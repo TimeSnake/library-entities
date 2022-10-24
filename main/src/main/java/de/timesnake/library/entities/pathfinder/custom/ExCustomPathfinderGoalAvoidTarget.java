@@ -20,8 +20,9 @@ package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.ExEntity;
 import de.timesnake.library.entities.entity.extension.ExEntityCreature;
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
-import de.timesnake.library.entities.wrapper.EntityClass;
+import de.timesnake.library.entities.entity.extension.LivingEntity;
+import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.entity.type.EntityMapper;
 import de.timesnake.library.entities.wrapper.ExNavigationAbstract;
 import de.timesnake.library.entities.wrapper.ExPathEntity;
 import de.timesnake.library.entities.wrapper.ExVec3D;
@@ -39,14 +40,14 @@ import java.util.function.Predicate;
 @NmsReflection
 public class ExCustomPathfinderGoalAvoidTarget extends ExCustomPathfinderGoal {
 
-    public ExCustomPathfinderGoalAvoidTarget(EntityClass<? extends EntityLiving> clazz, float innerRadius,
+    public ExCustomPathfinderGoalAvoidTarget(Class<? extends LivingEntity> clazz, float innerRadius,
                                              double innerSpeed, float outerRadius, double outerSpeed) {
-        super(new PathfinderGoalAvoidTarget<>(null, clazz.getNMSClass(), innerRadius, outerRadius, innerSpeed,
+        super(new PathfinderGoalAvoidTarget<>(null, EntityMapper.mapExClassToNmsClass(clazz), innerRadius, outerRadius, innerSpeed,
                 outerSpeed));
     }
 
     @Override
-    public void injectEntity(ExEntityInsentient entity) {
+    public void injectEntity(Mob entity) {
         this.setNMSField("entity", entity);
         ((PathfinderGoalAvoidTarget<?>) this.pathfinderGoal).navigation = entity.getNavigation();
     }

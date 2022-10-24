@@ -18,8 +18,8 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.library.entities.entity.extension.ExEntityLiving;
+import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
@@ -35,7 +35,7 @@ public class ExCustomPathfinderGoalArrowAttack extends ExCustomPathfinderGoal {
     }
 
     @Override
-    public void injectEntity(ExEntityInsentient entity) {
+    public void injectEntity(Mob entity) {
         ((PathfinderGoalArrowAttack) super.pathfinderGoal).init(entity);
     }
 
@@ -45,17 +45,17 @@ public class ExCustomPathfinderGoalArrowAttack extends ExCustomPathfinderGoal {
         private final int ticksPerAttackAtMaxRange;
         private final float maxRange;
         private final float maxRangeSquared;
-        private ExEntityInsentient entity;
+        private Mob entity;
         private IRangedEntity entityRanged;
         private ExEntityLiving target;
         private int delay;
         private int f;
 
-        public PathfinderGoalArrowAttack(ExEntityInsentient entity, double speed, int ticksPerAttack, float maxRange) {
+        public PathfinderGoalArrowAttack(Mob entity, double speed, int ticksPerAttack, float maxRange) {
             this(entity, speed, ticksPerAttack, ticksPerAttack, maxRange);
         }
 
-        public PathfinderGoalArrowAttack(ExEntityInsentient entity, double speed, int minimumTicksPerAttack,
+        public PathfinderGoalArrowAttack(Mob entity, double speed, int minimumTicksPerAttack,
                                          int ticksPerAttackAtMaxRange, float maxRange) {
             this.delay = -1;
             this.entity = entity;
@@ -67,7 +67,7 @@ public class ExCustomPathfinderGoalArrowAttack extends ExCustomPathfinderGoal {
             this.a(EnumSet.of(Type.a, Type.b));
         }
 
-        public void init(ExEntityInsentient entity) {
+        public void init(Mob entity) {
             this.entity = entity;
             this.entityRanged = ((IRangedEntity) entity.getNMS());
         }

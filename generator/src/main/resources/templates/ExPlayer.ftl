@@ -3,8 +3,6 @@
 package ${moduleName};
 
 import de.timesnake.library.basic.util.Tuple;
-import ${entityModuleName}.ExtendedCraftEntity;
-import ${extensionModuleName}.ExEntityHuman;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import de.timesnake.library.reflection.NmsReflection;
@@ -21,7 +19,7 @@ import org.bukkit.entity.Player;
 import java.util.UUID;
 
 @NmsReflection
-public class ExPlayer extends CraftPlayer implements ExtendedCraftEntity<ExEntityHuman> {
+public class ExPlayer extends CraftPlayer implements ${moduleName}.HumanEntity {
 
     private static MinecraftServer getMcServer() {
         return ((CraftServer) Bukkit.getServer()).getServer();

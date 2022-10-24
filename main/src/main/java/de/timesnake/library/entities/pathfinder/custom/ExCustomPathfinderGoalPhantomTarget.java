@@ -20,7 +20,7 @@ package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.bukkit.ExPhantom;
 import de.timesnake.library.entities.entity.extension.ExEntity;
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityLiving;
@@ -39,7 +39,7 @@ public class ExCustomPathfinderGoalPhantomTarget extends ExCustomPathfinderGoal 
     }
 
     @Override
-    public void injectEntity(ExEntityInsentient entity) {
+    public void injectEntity(Mob entity) {
         this.setNMSField("entity", entity.getNMS());
     }
 

@@ -1,5 +1,5 @@
 /*
- * library-entities.library-entities.main
+ * library-entities.generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -16,22 +16,12 @@
  * along with this program; If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.timesnake.library.entities.pathfinder.custom;
+// placeholder
+package de.timesnake.library.entities.entity.extension;
 
-import de.timesnake.library.entities.entity.extension.Mob;
-import de.timesnake.library.reflection.NmsReflection;
-import net.minecraft.world.entity.ai.goal.PathfinderGoalMoveTowardsTarget;
+import de.timesnake.library.entities.generator.Placeholder;
 
-@NmsReflection(usesReflection = true)
-public class ExCustomPathfinderGoalMoveTowardsTarget extends ExCustomPathfinderGoal {
-
-    public ExCustomPathfinderGoalMoveTowardsTarget(double speed, float radius) {
-        super(new PathfinderGoalMoveTowardsTarget(null, speed, radius));
-    }
-
-    @Override
-    public void injectEntity(Mob entity) {
-        super.setNMSField("a", entity.getNMS());
-    }
+@Placeholder
+public interface LivingEntity extends Entity {
 
 }

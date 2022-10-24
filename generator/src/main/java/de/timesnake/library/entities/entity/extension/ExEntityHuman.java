@@ -30,7 +30,7 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftHumanEntity;
 import java.util.UUID;
 
 @NmsReflection
-public class ExEntityHuman extends ExEntity {
+public class ExEntityHuman extends ExEntityLiving {
 
     public ExEntityHuman(CraftHumanEntity entityHuman) {
         super(entityHuman);

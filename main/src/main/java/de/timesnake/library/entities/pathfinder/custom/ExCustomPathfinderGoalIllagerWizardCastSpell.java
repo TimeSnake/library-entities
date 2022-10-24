@@ -19,7 +19,7 @@
 package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.ExEntityIllagerWizard;
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.world.entity.EntityLiving;
@@ -44,7 +44,7 @@ public abstract class ExCustomPathfinderGoalIllagerWizardCastSpell extends ExCus
     }
 
     @Override
-    public void injectEntity(ExEntityInsentient entity) {
+    public void injectEntity(Mob entity) {
         super.setNMSField("entity", entity);
     }
 

@@ -18,7 +18,8 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.wrapper.EntityClass;
+import de.timesnake.library.entities.entity.extension.LivingEntity;
+import de.timesnake.library.entities.entity.type.EntityMapper;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.raid.EntityRaider;
@@ -29,9 +30,10 @@ import java.util.function.Predicate;
 @NmsReflection
 public class ExCustomPathfinderGoalNearestAttackableTargetWitch extends ExCustomPathfinderGoalNearestAttackableTarget {
 
-    public ExCustomPathfinderGoalNearestAttackableTargetWitch(EntityClass<? extends EntityLiving> target, int chance,
+    public ExCustomPathfinderGoalNearestAttackableTargetWitch(Class<? extends LivingEntity> target, int chance,
                                                               boolean checkIfCanSee, boolean onlyIfPathExists) {
-        super(new PathfinderGoalNearestAttackableTargetWitch<>(null, target.getNMSClass(), chance, checkIfCanSee,
+        super(new PathfinderGoalNearestAttackableTargetWitch<>(null,
+                EntityMapper.mapExClassToNmsClass(target), chance, checkIfCanSee,
                 onlyIfPathExists, null));
     }
 

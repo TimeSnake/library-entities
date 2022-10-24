@@ -23,7 +23,7 @@ import net.minecraft.world.level.WorldAccess;
 import javax.annotation.Nullable;
 
 @NmsReflection(usesReflection = true)
-public class ExSheep extends CraftSheep implements ExtendedCraftEntity<ExEntityAnimal> {
+public class ExSheep extends CraftSheep implements ${moduleName}.Sheep {
 
     public ExSheep(World world, boolean loadDefaultPathfinderGoals, boolean randomizeData) {
         super(((CraftServer) Bukkit.getServer()), new EntitySheep(EntityTypes.aA,

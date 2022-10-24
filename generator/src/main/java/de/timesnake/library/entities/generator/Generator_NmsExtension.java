@@ -21,11 +21,10 @@ package de.timesnake.library.entities.generator;
 import de.timesnake.library.entities.entity.extension.ExEntity;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.lang.reflect.Modifier;
+import java.util.*;
 
-public class NmsExtensionBasis {
+public class Generator_NmsExtension {
 
     public static final List<Method> EXCLUDED_METHODS;
 
@@ -55,40 +54,64 @@ public class NmsExtensionBasis {
         }
     }
 
-    private final String name;
-    private final List<ExtensionMethod> methods;
+    private final Class<?> exClass;
+    private final String exInterface;
+    private final Map<Integer, Generator_Method> methodsByHash;
     private final Class<?> bukkitClass;
 
-    public NmsExtensionBasis(Class<?> extensionClass, Class<?> bukkitClass) {
-        this.name = extensionClass.getSimpleName();
+    public Generator_NmsExtension(Class<?> extensionClass, String extensionInterface, Class<?> bukkitClass) {
+        this.exClass = extensionClass;
+        this.exInterface = extensionInterface;
         this.bukkitClass = bukkitClass;
-        this.methods = new LinkedList<>();
+        this.methodsByHash = new LinkedHashMap<>();
 
         List<Method> bukkitMethods = Arrays.stream(bukkitClass.getMethods()).toList();
 
+        // read methods from extension class and its super classes
         do {
-            for (Method method : extensionClass.getMethods()) {
+            for (Method method : extensionClass.getDeclaredMethods()) {
+                if (!Modifier.isPublic(method.getModifiers())) {
+                    continue;
+                }
+
+                // check if method already exists in bukkit, then skip
                 if (canMethodOverride(bukkitMethods, method)) {
-                    ExtensionMethod extensionMethod = new ExtensionMethod(method);
-                    if (!this.methods.contains(extensionMethod)) {
-                        this.methods.add(extensionMethod);
+                    Generator_Method extensionMethod = new Generator_Method(method);
+                    int hashCode = extensionMethod.hashCode();
+                    // if method is already parsed, check for return type, else skip
+                    if (!this.methodsByHash.containsKey(hashCode)) {
+                        this.methodsByHash.put(hashCode, extensionMethod);
+                    } else {
+                        Generator_Method existingMethod = this.methodsByHash.get(hashCode);
+                        // check if return type is more specific
+                        if (existingMethod.getMethod().getReturnType().isAssignableFrom(method.getReturnType())) {
+                            this.methodsByHash.put(hashCode, extensionMethod);
+                        }
                     }
                 }
             }
 
             extensionClass = extensionClass.getSuperclass();
-        } while (extensionClass != null && !extensionClass.getSimpleName().equals("Object"));
+        } while (extensionClass != null && !extensionClass.equals(Object.class));
     }
 
-    public String getName() {
-        return name;
+    public Class<?> getExClass() {
+        return exClass;
+    }
+
+    public String getExInterfaceName() {
+        return exInterface;
+    }
+
+    public Class<?> getBukkitClass() {
+        return bukkitClass;
     }
 
     public String getBukkitMethods() {
         return Arrays.toString(Arrays.stream(bukkitClass.getMethods()).map(Method::getName).toList().toArray());
     }
 
-    public List<ExtensionMethod> getMethods() {
-        return methods;
+    public Collection<Generator_Method> getMethods() {
+        return methodsByHash.values();
     }
 }

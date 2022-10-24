@@ -63,12 +63,12 @@ public class PathfinderGenerator implements EntitiesGenerator {
                 Files.createDirectory(outputDir.toPath());
             }
 
-            for (GeneratePathfinderGoal<?> pathfinderGoal : GeneratePathfinderGoal.TYPES) {
+            for (Generator_PathfinderGoal<?> pathfinderGoal : Generator_PathfinderGoal.TYPES) {
                 this.copyPathfinderBasis();
                 this.generatePathfinderGoal(pathfinderGoal, false);
             }
 
-            for (GeneratePathfinderGoal<?> pathfinderGoal : GeneratePathfinderGoal.TARGET_TYPES) {
+            for (Generator_PathfinderGoal<?> pathfinderGoal : Generator_PathfinderGoal.TARGET_TYPES) {
                 this.generatePathfinderGoal(pathfinderGoal, true);
             }
 
@@ -78,7 +78,7 @@ public class PathfinderGenerator implements EntitiesGenerator {
         return true;
     }
 
-    private void generatePathfinderGoal(GeneratePathfinderGoal<?> pathfinderGoal, boolean isTargetGoal) throws IOException,
+    private void generatePathfinderGoal(Generator_PathfinderGoal<?> pathfinderGoal, boolean isTargetGoal) throws IOException,
             TemplateException {
 
         Template temp;

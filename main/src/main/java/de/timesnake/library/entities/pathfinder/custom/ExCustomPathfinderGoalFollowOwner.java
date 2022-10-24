@@ -18,9 +18,9 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.library.entities.entity.extension.ExEntityLiving;
 import de.timesnake.library.entities.entity.extension.ExEntityTameableAnimal;
+import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.wrapper.ExIBlockData;
 import de.timesnake.library.entities.wrapper.ExNavigationAbstract;
 import de.timesnake.library.entities.wrapper.ExPathType;
@@ -48,7 +48,7 @@ public class ExCustomPathfinderGoalFollowOwner extends ExCustomPathfinderGoal {
     }
 
     @Override
-    public void injectEntity(ExEntityInsentient entity) {
+    public void injectEntity(Mob entity) {
         ((PathfinderGoalFollowOwner) super.getNMS()).inject(((ExEntityTameableAnimal) entity));
     }
 
@@ -81,7 +81,7 @@ public class ExCustomPathfinderGoalFollowOwner extends ExCustomPathfinderGoal {
         }
 
         public boolean a() {
-            EntityLiving entitylive = this.entity.getOwner();
+            EntityLiving entitylive = this.entity.getExOwner();
             if (entitylive == null) {
                 return false;
             }

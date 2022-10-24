@@ -18,9 +18,8 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.entity.ExtendedCraftEntity;
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
-import de.timesnake.library.entities.wrapper.EntityClass;
+import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.entity.type.EntityMapper;
 import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import net.minecraft.world.entity.EntityInsentient;
@@ -34,36 +33,34 @@ import java.util.List;
 @NmsReflection
 public abstract class ExCustomPathfinderGoalSpawnArmy extends ExCustomPathfinderGoal {
 
-    public ExCustomPathfinderGoalSpawnArmy(EntityClass<? extends EntityInsentient> armyClass, int amountOnRespawn) {
+    public ExCustomPathfinderGoalSpawnArmy(Class<? extends Mob> armyClass, int amountOnRespawn) {
         this(armyClass, amountOnRespawn, 0);
     }
 
-    public ExCustomPathfinderGoalSpawnArmy(EntityClass<? extends EntityInsentient> armyClass, int amountOnRespawn,
-                                           int cooldownInTicks) {
+    public ExCustomPathfinderGoalSpawnArmy(Class<? extends Mob> armyClass, int amountOnRespawn, int cooldownInTicks) {
         super();
-        super.pathfinderGoal = new PathfinderGoalSpawnArmy(null, armyClass.getNMSClass(), amountOnRespawn,
-                cooldownInTicks) {
+        super.pathfinderGoal = new PathfinderGoalSpawnArmy(null,
+                EntityMapper.mapExClassToNmsClass(armyClass), amountOnRespawn, cooldownInTicks) {
 
             @Override
-            public List<? extends ExtendedCraftEntity<? extends ExEntityInsentient>> getArmy() {
+            public List<? extends de.timesnake.library.entities.entity.extension.Mob> getArmy() {
                 return ExCustomPathfinderGoalSpawnArmy.this.getArmee(this.getExEntity());
             }
         };
     }
 
     @Override
-    public void injectEntity(ExEntityInsentient entity) {
+    public void injectEntity(Mob entity) {
         super.setNMSField("exEntity", entity.getBukkitEntity());
     }
 
 
-    public abstract List<? extends ExtendedCraftEntity<? extends ExEntityInsentient>> getArmee(ExtendedCraftEntity<?
-            extends ExEntityInsentient> entity);
+    public abstract List<? extends de.timesnake.library.entities.entity.extension.Mob> getArmee(de.timesnake.library.entities.entity.extension.Mob entity);
 
 
     public abstract static class PathfinderGoalSpawnArmy extends PathfinderGoal {
 
-        private final ExtendedCraftEntity<? extends ExEntityInsentient> exEntity;
+        private final de.timesnake.library.entities.entity.extension.Mob exEntity;
         private final Class<? extends EntityInsentient> armyClass;
         private final PathfinderTargetCondition targetCondition;
 
@@ -72,12 +69,12 @@ public abstract class ExCustomPathfinderGoalSpawnArmy extends ExCustomPathfinder
         private final int cooldown;
         private int currentCooldown = 0;
 
-        public PathfinderGoalSpawnArmy(ExtendedCraftEntity<? extends ExEntityInsentient> entity, Class<?
+        public PathfinderGoalSpawnArmy(de.timesnake.library.entities.entity.extension.Mob entity, Class<?
                 extends EntityInsentient> armyClass, int spawn) {
             this(entity, armyClass, spawn, 0);
         }
 
-        public PathfinderGoalSpawnArmy(ExtendedCraftEntity<? extends ExEntityInsentient> entity, Class<?
+        public PathfinderGoalSpawnArmy(de.timesnake.library.entities.entity.extension.Mob entity, Class<?
                 extends EntityInsentient> armyClass, int spawn, int cooldown) {
             this.exEntity = entity;
             this.armyClass = armyClass;
@@ -89,33 +86,35 @@ public abstract class ExCustomPathfinderGoalSpawnArmy extends ExCustomPathfinder
 
         @Override
         public boolean a() {
-            int var0 = exEntity.getExtension().getNMSWorld().a(this.armyClass, this.targetCondition,
-                    exEntity.getExtension().getNMS(), exEntity.getExtension().getExBoundingBox().grow(8.0D).getNMS()).size();
+            int var0 = exEntity.getNMSWorld().a(this.armyClass, this.targetCondition,
+                    exEntity.getNMS(), exEntity.getExtension().getExBoundingBox().grow(8.0D).getNMS()).size();
             this.currentCooldown--;
             return exEntity.getExtension().getRandom().nextInt(spawn) >= var0 && this.currentCooldown <= 0;
         }
 
         @Override
         public void c() {
-            for (ExtendedCraftEntity<? extends ExEntityInsentient> entity : this.getArmy()) {
+            for (de.timesnake.library.entities.entity.extension.Mob entity : this.getArmy()) {
                 ExBlockPosition position =
-                        new ExBlockPosition(this.exEntity.getExtension().getChunkCoordinates().b(-2 + this.exEntity.getExtension().getRandom().nextInt(5), 0, -2 + this.exEntity.getExtension().getRandom().nextInt(5)));
+                        new ExBlockPosition(this.exEntity.getExtension().getChunkCoordinates().b(-2 +
+                                this.exEntity.getRandom().nextInt(5), 0, -2 +
+                                this.exEntity.getRandom().nextInt(5)));
 
-                entity.getExtension().setTarget(this.exEntity.getExtension().getNMSTarget(),
+                entity.setTarget(this.exEntity.getNMSTarget(),
                         EntityTargetEvent.TargetReason.CUSTOM, true);
-                entity.getExtension().setPositionRotation(position, 0, 0);
+                entity.setPositionRotation(position, 0, 0);
 
-                this.exEntity.getExtension().getExWorld().addEntity(entity.getExtension().getNMS());
+                this.exEntity.getExWorld().addEntity(entity.getExtension().getNMS());
             }
 
             this.currentCooldown = this.cooldown;
         }
 
-        public ExtendedCraftEntity<? extends ExEntityInsentient> getExEntity() {
+        public de.timesnake.library.entities.entity.extension.Mob getExEntity() {
             return exEntity;
         }
 
-        public abstract List<? extends ExtendedCraftEntity<? extends ExEntityInsentient>> getArmy();
+        public abstract List<? extends de.timesnake.library.entities.entity.extension.Mob> getArmy();
 
 
     }

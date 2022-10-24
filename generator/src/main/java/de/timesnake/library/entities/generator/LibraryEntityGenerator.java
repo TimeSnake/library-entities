@@ -18,22 +18,21 @@
 
 package de.timesnake.library.entities.generator;
 
-import de.timesnake.library.entities.entity.extension.ExEntityHuman;
 import freemarker.template.Configuration;
-import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
-import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 
-import java.io.*;
-import java.util.HashMap;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.logging.Logger;
 
 public class LibraryEntityGenerator {
 
     public static final String VERSION = "v1_19_R1";
+
+    public static final Logger LOGGER = Logger.getLogger("library-entities");
 
     public static void main(String[] args) throws IOException, TemplateException, ClassNotFoundException {
         new LibraryEntityGenerator().generate(args);
@@ -56,8 +55,6 @@ public class LibraryEntityGenerator {
         return classes;
     }
 
-    private final String extensionModule = "de.timesnake.library.entities.entity.extension";
-    private final String destEntityDir = "bukkit";
     private Configuration cfg;
 
     private String entityOutputDir;
@@ -97,6 +94,7 @@ public class LibraryEntityGenerator {
 
         LinkedList<EntitiesGenerator> generators = new LinkedList<>();
 
+        // add generators
         generators.addLast(new EntityGenerator(cfg, entitySrcDir, entityOutputDir, entityOutputModule));
 
         generators.addLast(new WrapperGenerator(cfg, new File(wrapperSrcDir),
@@ -104,31 +102,9 @@ public class LibraryEntityGenerator {
 
         generators.addLast(new PathfinderGenerator(cfg, new File(pathfinderSrcDir), new File(pathfinderOutputDir)));
 
+        // run generators
         generators.forEach(EntitiesGenerator::clean);
         generators.forEach(EntitiesGenerator::generate);
-
-        generatePlayerExtension();
-    }
-
-    private void generatePlayerExtension() throws IOException, TemplateException {
-        Template temp = cfg.getTemplate("templates/ExPlayer.ftl");
-
-        NmsExtensionBasis extension = new NmsExtensionBasis(ExEntityHuman.class, CraftPlayer.class);
-
-        Map<String, Object> root = new HashMap<>();
-        root.put("moduleName", entityOutputModule + "." + destEntityDir);
-        root.put("entityModuleName", entityOutputModule);
-        root.put("extensionModuleName", extensionModule);
-        root.put("version", VERSION);
-        root.put("wrapperModuleName", WrapperGenerator.WRAPPER_MODULE);
-        root.put("craftName", CraftPlayer.class.getName());
-        root.put("extensionEntity", extension);
-
-
-        Writer out =
-                new OutputStreamWriter(new FileOutputStream(entityOutputDir + File.separator + destEntityDir + File.separator + "ExPlayer.java"));
-        temp.process(root, out);
-        out.close();
     }
 
 

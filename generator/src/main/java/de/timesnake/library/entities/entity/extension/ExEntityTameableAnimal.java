@@ -81,7 +81,7 @@ public class ExEntityTameableAnimal extends ExEntityAnimal {
 
     }
 
-    public EntityLiving getOwner() {
+    public EntityLiving getExOwner() {
         return this.getNMS().fL();
     }
 

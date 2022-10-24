@@ -22,7 +22,7 @@ import net.minecraft.world.level.WorldAccess;
 import javax.annotation.Nullable;
 
 @NmsReflection
-public class ExVillager extends CraftVillager implements ExtendedCraftEntity<ExEntityVillagerAbstract> {
+public class ExVillager extends CraftVillager implements ${moduleName}.Villager {
 
     public ExVillager(org.bukkit.World world, Type type, boolean loadDefaultPathfinders, boolean loadAI, boolean randomizeData) {
         super(((CraftServer) Bukkit.getServer()), new EntityVillager(EntityTypes.aZ,
