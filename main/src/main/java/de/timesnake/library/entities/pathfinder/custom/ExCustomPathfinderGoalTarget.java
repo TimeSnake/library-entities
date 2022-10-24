@@ -18,7 +18,7 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.goal.target.PathfinderGoalTarget;
 
@@ -33,7 +33,7 @@ public abstract class ExCustomPathfinderGoalTarget extends ExCustomPathfinderGoa
     }
 
     @Override
-    public void injectEntity(ExEntityInsentient entity) {
+    public void injectEntity(Mob entity) {
         this.setNMSField("e", entity.getNMS());
     }
 

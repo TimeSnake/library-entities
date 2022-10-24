@@ -22,7 +22,7 @@
 
 package de.timesnake.library.entities.entity.extension;
 
-import de.timesnake.library.entities.entity.ExtendedEntity;
+import de.timesnake.library.entities.entity.type.ExtendedEntity;
 import de.timesnake.library.entities.wrapper.*;
 import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.RefUtil;
@@ -61,6 +61,10 @@ public class ExEntity implements ExtendedEntity {
         this.entity = entity.getBukkitEntity();
     }
 
+    public de.timesnake.library.entities.entity.extension.Entity getExEntity() {
+        return null;
+    }
+
     @Deprecated
     public void setNMSField(String name, Object value) {
         RefUtil.setInstanceField(this.getHandle(), name, value);
@@ -76,11 +80,11 @@ public class ExEntity implements ExtendedEntity {
         return RefUtil.getInstanceField(this, name);
     }
 
-    @Override
     public ExEntity getExtension() {
         return this;
     }
 
+    @Override
     public Entity getNMS() {
         return this.getHandle();
     }
@@ -351,7 +355,7 @@ public class ExEntity implements ExtendedEntity {
         return this.getNMS().bJ();
     }
 
-    public Entity getVehicle() {
+    public Entity getExVehicle() {
         return ((CraftEntity) this.getBukkitEntity().getVehicle()).getHandle();
     }
 

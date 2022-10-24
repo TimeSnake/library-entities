@@ -18,25 +18,27 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
-import de.timesnake.library.entities.wrapper.EntityClass;
+import de.timesnake.library.entities.entity.extension.Entity;
+import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.entity.type.EntityMapper;
 import de.timesnake.library.reflection.NmsReflection;
-import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalLookAtPlayer;
 
 @NmsReflection(usesReflection = true)
 public class ExCustomPathfinderGoalLookAtPlayer extends ExCustomPathfinderGoal {
 
-    public ExCustomPathfinderGoalLookAtPlayer(EntityClass<? extends EntityLiving> exClass) {
-        super.pathfinderGoal = new PathfinderGoalLookAtPlayer(null, exClass.getNMSClass(), 8.0F);
+    public ExCustomPathfinderGoalLookAtPlayer(Class<? extends Entity> exClass) {
+        super.pathfinderGoal = new PathfinderGoalLookAtPlayer(null,
+                EntityMapper.mapExClassToNmsClass(exClass), 8.0F);
     }
 
-    public ExCustomPathfinderGoalLookAtPlayer(EntityClass<? extends EntityLiving> exClass, float chance) {
-        super.pathfinderGoal = new PathfinderGoalLookAtPlayer(null, exClass.getNMSClass(), 8.0F, chance);
+    public ExCustomPathfinderGoalLookAtPlayer(Class<? extends Entity> exClass, float chance) {
+        super.pathfinderGoal = new PathfinderGoalLookAtPlayer(null,
+                EntityMapper.mapExClassToNmsClass(exClass), 8.0F, chance);
     }
 
     @Override
-    public void injectEntity(ExEntityInsentient entity) {
+    public void injectEntity(Mob entity) {
         this.setNMSField("b", entity.getNMS());
     }
 

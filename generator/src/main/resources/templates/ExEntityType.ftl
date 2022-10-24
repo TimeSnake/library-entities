@@ -3,95 +3,68 @@
 package ${moduleName};
 
 import ${extensionModuleName}.ExEntity;
-import ${entityModuleName}.ExtendedEntity;
-import ${entityModuleName}.ExtendedCraftEntity;
 import de.timesnake.library.entities.entity.bukkit.*;
 import org.bukkit.entity.EntityType;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityTypes;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
-public class ExEntityType<NmsType extends Entity> {
+public class ExEntityType<NmsType extends Entity, ExClass extends ${extensionModuleName}.Entity & org.bukkit.entity.Entity> {
 
 <#list entities as entity>
-    public static final ExEntityType<${entity.getNmsClass().getName()}> ${entity.getBukkitTypeName()} = new ExEntityType<>(EntityTypes.${entity.getNmsTypeName()}, ${entity.getNmsClass().getName()}.class, Ex${entity.getName()}.class);
+    public static final ExEntityType<${entity.getNmsClass().getName()}, Ex${entity.getName()}> ${entity.getBukkitTypeName()} = new ExEntityType<>(EntityTypes.${entity.getNmsTypeName()}, ${entity.getNmsClass().getName()}.class, Ex${entity.getName()}.class);
 </#list>
 
-    public static final List<ExEntityType<? extends Entity>> TYPES = List.of(
+    public static final List<ExEntityType<?, ?>> TYPES = List.of(
 <#list entities as entity>
             ${entity.getBukkitTypeName()}<#if entity_has_next>,</#if>
 </#list>
     );
 
-    public static final Map<Class<? extends ExtendedCraftEntity<?>>, ExEntityType<? extends Entity>> EX_TYPES_BY_EX_CLASS = new HashMap<>();
-    public static final Map<EntityTypes<?>, ExEntityType<? extends Entity>> EX_TYPES_BY_NMS_TYPE = new HashMap<>();
-    public static final Map<Class<? extends ExtendedCraftEntity<?>>, Class<? extends Entity>> NMS_CLASS_BY_EX_CLASS = new HashMap<>();
-    public static final Map<Class<? extends Entity>, Class<? extends ExtendedCraftEntity<?>>> EX_CLASS_BY_NMS_CLASS = new HashMap<>();
+public static final Map<Class<? extends de.timesnake.library.entities.entity.extension.Entity>, ExEntityType<?, ?>> TYPE_BY_EX_CLASS =
+            TYPES.stream().collect(Collectors.toMap(ExEntityType::getExClass, t -> t));
+    public static final Map<Class<? extends net.minecraft.world.entity.Entity>, ExEntityType<?, ?>> TYPE_BY_NMS_CLASS =
+            TYPES.stream().collect(Collectors.toMap(ExEntityType::getNMSClass, t -> t));
 
-
-    public static ExEntityType<? extends Entity> getTypeByString(String type) {
-        if (type == null) {
-            return null;
-        }
-
-        Optional<EntityTypes<?>> opt = EntityTypes.a(type);
-        return opt.map(ExEntityType::getTypeByNMSType).orElse(null);
-
+    @Deprecated
+    public static ExEntityType<?, ?> getByExClass(Class<? extends de.timesnake.library.entities.entity.extension.Entity> clazz) {
+        return TYPE_BY_EX_CLASS.get(clazz);
     }
 
-    public static ExEntityType<? extends Entity> getTypeByNMSType(EntityTypes<?> nmsType) {
-        return EX_TYPES_BY_NMS_TYPE.get(nmsType);
-    }
-
-    public static ExEntityType<? extends Entity> getTypeByExClass(Class<? extends ExEntity> clazz) {
-        return EX_TYPES_BY_EX_CLASS.get(clazz);
-    }
-
-    public static Class<? extends Entity> getNmsClassByExClass(Class<? extends ExEntity> clazz) {
-        Class<? extends Entity> nmsClazz = NMS_CLASS_BY_EX_CLASS.get(clazz);
-        if (nmsClazz != null) return nmsClazz;
-        return ExAbstractEntityType.getAbstractNmsClassByExClass(clazz);
-    }
-
-    public static Class<? extends Entity>[] getNmsClassesByExClasses(Class<? extends ExEntity>... exClasses) {
-        Class<? extends Entity>[] nmsClasses = new Class[exClasses.length];
+    @Deprecated
+    public static ExEntityType<?, ?>[] getByExClasses(Class<? extends de.timesnake.library.entities.entity.extension.Entity>... exClasses) {
+        ExEntityType<?, ?>[] nmsClasses = new ExEntityType[exClasses.length];
         for (int i = 0; i < exClasses.length; i++) {
-            nmsClasses[i] = getNmsClassByExClass(exClasses[i]);
-            if (nmsClasses[i] == null) {
-                nmsClasses[i] = ExAbstractEntityType.getAbstractNmsClassByExClass(exClasses[i]);
-            }
+            nmsClasses[i] = getByExClass(exClasses[i]);
+
         }
         return nmsClasses;
     }
 
-    public static Class<? extends ExtendedEntity> getExClassByNmsClass(Class<? extends Entity> clazz) {
-        Class<? extends ExtendedEntity> nmsClazz = EX_CLASS_BY_NMS_CLASS.get(clazz);
-        if (nmsClazz != null) return nmsClazz;
-        return ExAbstractEntityType.getAbstractExClassByNmsClass(clazz);
+    @Deprecated
+    public static ExEntityType<?, ?> getByNmsClass(Class<? extends net.minecraft.world.entity.Entity> clazz) {
+        return TYPE_BY_NMS_CLASS.get(clazz);
     }
 
-    public static Class<? extends ExtendedEntity>[] getExClassesByNmsClasses(Class<? extends Entity>... nmsClasses) {
-        Class<? extends ExtendedEntity>[] exClasses = new Class[nmsClasses.length];
+    @Deprecated
+    public static ExEntityType<?, ?>[] getByNmsClasses(Class<? extends net.minecraft.world.entity.Entity>... nmsClasses) {
+        ExEntityType<?, ?>[] exClasses = new ExEntityType[nmsClasses.length];
         for (int i = 0; i < nmsClasses.length; i++) {
-            exClasses[i] = getExClassByNmsClass(nmsClasses[i]);
-            if (exClasses[i] == null) {
-                exClasses[i] = ExAbstractEntityType.getAbstractExClassByNmsClass(nmsClasses[i]);
-            }
+            exClasses[i] = getByNmsClass(nmsClasses[i]);
+
         }
         return exClasses;
     }
 
     private final EntityTypes<NmsType> nmsType;
     private final Class<NmsType> nmsClass;
-    private final Class<? extends org.bukkit.entity.Entity> exClass;
+    private final Class<ExClass> exClass;
 
-    public ExEntityType(EntityTypes<NmsType> nmsType, Class<NmsType> nmsClass, Class<?
-            extends org.bukkit.entity.Entity> exClass) {
+    public ExEntityType(EntityTypes<NmsType> nmsType, Class<NmsType> nmsClass, Class<ExClass> exClass) {
         this.nmsType = nmsType;
         this.nmsClass = nmsClass;
         this.exClass = exClass;
@@ -105,7 +78,7 @@ public class ExEntityType<NmsType extends Entity> {
         return nmsClass;
     }
 
-    public Class<? extends org.bukkit.entity.Entity> getExClass() {
+    public Class<ExClass> getExClass() {
         return exClass;
     }
 }

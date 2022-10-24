@@ -16,19 +16,12 @@
  * along with this program; If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-    Copied from entity generator. Should only be edited in generator files
-*/
+package de.timesnake.library.entities.entity.extension;
 
-package de.timesnake.library.entities.entity;
+import de.timesnake.library.entities.generator.Placeholder;
 
-import de.timesnake.library.entities.entity.extension.ExEntity;
-import net.minecraft.world.entity.Entity;
+@Placeholder
+public interface Entity {
 
-public interface ExtendedEntity {
-
-    ExEntity getExtension();
-
-    Entity getNMS();
-
+    Class<net.minecraft.world.entity.Entity> NMS_CLASS = net.minecraft.world.entity.Entity.class;
 }

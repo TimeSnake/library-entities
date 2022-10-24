@@ -18,7 +18,7 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.goal.target.PathfinderGoalOwnerHurtByTarget;
 
@@ -30,7 +30,7 @@ public class ExCustomPathfinderGoalOwnerHurtByTarget extends ExCustomPathfinderG
     }
 
     @Override
-    public void injectEntity(ExEntityInsentient entity) {
+    public void injectEntity(Mob entity) {
         super.setNMSField("a", entity.getNMS());
         super.injectEntity(entity);
     }

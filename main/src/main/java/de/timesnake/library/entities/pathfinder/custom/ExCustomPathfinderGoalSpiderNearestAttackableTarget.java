@@ -18,7 +18,8 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.wrapper.EntityClass;
+import de.timesnake.library.entities.entity.extension.LivingEntity;
+import de.timesnake.library.entities.entity.type.EntityMapper;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.monster.EntitySpider;
@@ -26,8 +27,9 @@ import net.minecraft.world.entity.monster.EntitySpider;
 @NmsReflection
 public class ExCustomPathfinderGoalSpiderNearestAttackableTarget extends ExCustomPathfinderGoalNearestAttackableTarget {
 
-    public ExCustomPathfinderGoalSpiderNearestAttackableTarget(EntityClass<EntityLiving> target) {
-        super(new PathfinderGoalSpiderNearestAttackableTarget(null, target.getNMSClass()));
+    public ExCustomPathfinderGoalSpiderNearestAttackableTarget(Class<? extends LivingEntity> target) {
+        super(new PathfinderGoalSpiderNearestAttackableTarget(null,
+                EntityMapper.mapExClassToNmsClass(target)));
     }
 
     static class PathfinderGoalSpiderNearestAttackableTarget<T extends EntityLiving> extends PathfinderGoalNearestAttackableTarget<T> {

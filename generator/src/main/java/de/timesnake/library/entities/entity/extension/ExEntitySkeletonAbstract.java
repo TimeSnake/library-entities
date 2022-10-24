@@ -35,7 +35,7 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftAbstractSkeleton;
 import java.lang.reflect.Field;
 
 @NmsReflection(usesReflection = true)
-public class ExEntitySkeletonAbstract extends ExEntityInsentient {
+public class ExEntitySkeletonAbstract extends ExEntityMonster {
 
     public ExEntitySkeletonAbstract(CraftAbstractSkeleton entity) {
         super(entity);
@@ -57,7 +57,7 @@ public class ExEntitySkeletonAbstract extends ExEntityInsentient {
                 return;
             }
 
-            pathfinderGoal.injectEntity(this);
+            pathfinderGoal.injectEntity(this.getExEntity());
 
             super.setNMSField(EntitySkeletonAbstract.class, "b", pathfinderGoal.getNMS());
             this.updateBowShootMeele(priority);
@@ -73,7 +73,7 @@ public class ExEntitySkeletonAbstract extends ExEntityInsentient {
                 return;
             }
 
-            pathfinderGoal.injectEntity(this);
+            pathfinderGoal.injectEntity(this.getExEntity());
 
             super.setNMSField(EntitySkeletonAbstract.class, "b", pathfinderGoal.getNMS());
             this.updateBowShootMeele(pathfinderGoal.getPriority());

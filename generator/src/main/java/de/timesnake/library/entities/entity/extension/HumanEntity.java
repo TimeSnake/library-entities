@@ -1,5 +1,5 @@
 /*
- * library-entities.library-entities.main
+ * library-entities.generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -16,22 +16,20 @@
  * along with this program; If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.timesnake.library.entities.pathfinder.custom;
+/*
+    Copied from entity generator. Should only be edited in generator files
+*/
 
-import de.timesnake.library.entities.entity.extension.Mob;
-import de.timesnake.library.reflection.NmsReflection;
+package de.timesnake.library.entities.entity.extension;
 
-@NmsReflection
-public class ExCustomPathfinderGoalLocation extends ExCustomPathfinderGoal {
+import com.mojang.authlib.GameProfile;
 
-    public ExCustomPathfinderGoalLocation(double x, double y, double z, double speed, double trackingDistance,
-                                          double minDistance) {
-        super(new CustomPathfinderGoalLocation(null, x, y, z, speed, trackingDistance, minDistance));
-    }
+import java.util.UUID;
 
-    @Override
-    public void injectEntity(Mob entity) {
-        this.setNMSField("entity", entity);
-    }
+public interface HumanEntity extends LivingEntity, org.bukkit.entity.HumanEntity {
+    net.minecraft.world.entity.player.EntityHuman getNMS();
 
+    UUID getUniqueID();
+
+    GameProfile getProfile();
 }

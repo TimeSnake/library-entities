@@ -18,9 +18,10 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.entity.ExtendedEntity;
 import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
-import de.timesnake.library.entities.wrapper.EntityClass;
+import de.timesnake.library.entities.entity.extension.LivingEntity;
+import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.entity.type.EntityMapper;
 import de.timesnake.library.entities.wrapper.ExControllerLook;
 import de.timesnake.library.entities.wrapper.ExNavigationAbstract;
 import de.timesnake.library.entities.wrapper.ExPathType;
@@ -35,20 +36,21 @@ import java.util.List;
 @NmsReflection
 public class ExCustomPathfinderGoalFollowEntity extends ExCustomPathfinderGoal {
 
-    public ExCustomPathfinderGoalFollowEntity(ExtendedEntity leader, float speed,
+    public ExCustomPathfinderGoalFollowEntity(LivingEntity leader, float speed,
                                               float maxDistance, float leaderSearchRadius) {
         super(new PathfinderGoalFollowEntity(null, (ExEntityInsentient) leader.getExtension(), speed, maxDistance,
                 leaderSearchRadius));
     }
 
-    public ExCustomPathfinderGoalFollowEntity(EntityClass<? extends EntityInsentient> leader, float speed,
+    public ExCustomPathfinderGoalFollowEntity(Class<? extends Mob> leader, float speed,
                                               float maxDistance, float leaderSearchRadius) {
-        super(new PathfinderGoalFollowEntity(null, leader.getNMSClass(), speed, maxDistance, leaderSearchRadius));
+        super(new PathfinderGoalFollowEntity(null,
+                EntityMapper.mapExClassToNmsClass(leader), speed, maxDistance, leaderSearchRadius));
     }
 
 
     @Override
-    public void injectEntity(ExEntityInsentient entity) {
+    public void injectEntity(Mob entity) {
         super.setNMSField("entity", entity);
         ((PathfinderGoalFollowEntity) super.getNMS()).navigationAbstract = entity.getNavigation();
     }

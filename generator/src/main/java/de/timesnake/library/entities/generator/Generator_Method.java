@@ -23,19 +23,25 @@ import java.lang.reflect.Parameter;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class ExtensionMethod {
+public class Generator_Method {
 
     private final String name;
     private final Parameter[] parameters;
     private final Type returnType;
+    private final Method method;
 
-
-    public ExtensionMethod(Method method) {
+    public Generator_Method(Method method) {
         this.name = method.getName();
         this.parameters = method.getParameters();
         this.returnType = method.getGenericReturnType();
+        this.method = method;
+    }
+
+    public Method getMethod() {
+        return method;
     }
 
     public String getName() {
@@ -85,7 +91,12 @@ public class ExtensionMethod {
     public boolean equals(Object obj) {
         if (obj == null) return false;
         if (this == obj) return true;
-        if (!(obj instanceof ExtensionMethod)) return false;
-        return ((ExtensionMethod) obj).name.equals(this.name) && ((ExtensionMethod) obj).getParameterTypeList().equals(this.getParameterTypeList());
+        if (!(obj instanceof Generator_Method)) return false;
+        return ((Generator_Method) obj).name.equals(this.name) && ((Generator_Method) obj).getParameterTypeList().equals(this.getParameterTypeList());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.name, this.getParameterTypeList());
     }
 }

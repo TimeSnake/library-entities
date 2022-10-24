@@ -18,7 +18,7 @@
 
 package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
@@ -79,7 +79,7 @@ public abstract class ExPathfinderGoal {
         this.priority = priority;
     }
 
-    public abstract void injectEntity(ExEntityInsentient entity);
+    public abstract void injectEntity(Mob entity);
 
     public enum Type {
         MOVE(PathfinderGoal.Type.a),

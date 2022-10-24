@@ -21,6 +21,6 @@
 </#if>
 
     @Override
-    public void injectEntity(ExEntityInsentient entity) {
+    public void injectEntity(Mob entity) {
         super.pathfinderGoal = new ${name}((${pathfinder.getEntityFieldClass().getName()}) entity.getNMS()<#list pathfinder.getPathfinderFields() as field>, ${field.getName()}</#list>);
     }

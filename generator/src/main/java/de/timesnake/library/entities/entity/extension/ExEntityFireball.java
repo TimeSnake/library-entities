@@ -16,22 +16,18 @@
  * along with this program; If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-    Copied from entity generator. Should only be edited in generator files
-*/
-
 package de.timesnake.library.entities.entity.extension;
 
-import net.minecraft.world.entity.animal.EntityFishSchool;
-import org.bukkit.craftbukkit.v1_19_R1.entity.CraftFish;
+import net.minecraft.world.entity.projectile.EntityFireball;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftFireball;
 
-public class ExEntityFishSchool extends ExEntityFish {
+public class ExEntityFireball extends ExIProjectile {
 
-    public ExEntityFishSchool(CraftFish entity) {
+    public ExEntityFireball(CraftFireball entity) {
         super(entity);
     }
 
-    public ExEntityFishSchool(EntityFishSchool entity) {
+    public ExEntityFireball(EntityFireball entity) {
         super(entity);
     }
 }

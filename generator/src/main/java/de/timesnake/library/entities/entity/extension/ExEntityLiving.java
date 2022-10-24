@@ -46,8 +46,14 @@ public class ExEntityLiving extends ExEntity {
         super(entity);
     }
 
+    @Override
     public EntityLiving getNMS() {
         return (EntityLiving) super.getNMS();
+    }
+
+    @Override
+    public de.timesnake.library.entities.entity.extension.LivingEntity getExEntity() {
+        return (de.timesnake.library.entities.entity.extension.LivingEntity) super.getExEntity();
     }
 
     public void setMaxHealth(float maxHealth) {
@@ -92,7 +98,7 @@ public class ExEntityLiving extends ExEntity {
     }
 
     public ExEntityLiving getExLastDamager() {
-        return new ExEntityLiving(this.getNMS().dU());
+        return new ExEntityLiving(this.getNMS().dU()) {};
     }
 
     public int getHurtTimestamp() {

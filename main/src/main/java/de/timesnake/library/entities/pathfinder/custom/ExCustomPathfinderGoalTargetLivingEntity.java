@@ -18,22 +18,22 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
-import de.timesnake.library.entities.entity.extension.ExEntityLiving;
+import de.timesnake.library.entities.entity.extension.LivingEntity;
+import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.reflection.NmsReflection;
 
 @NmsReflection
 public class ExCustomPathfinderGoalTargetLivingEntity extends ExCustomPathfinderGoalTarget {
 
-    private final ExEntityLiving target;
+    private final LivingEntity target;
 
-    public ExCustomPathfinderGoalTargetLivingEntity(ExEntityLiving target) {
+    public ExCustomPathfinderGoalTargetLivingEntity(LivingEntity target) {
         super();
         this.target = target;
     }
 
     @Override
-    public void injectEntity(ExEntityInsentient entity) {
+    public void injectEntity(Mob entity) {
         super.pathfinderGoal = new CustomPathfinderGoalTargetLivingEntity(entity.getNMS(), target.getNMS());
     }
 

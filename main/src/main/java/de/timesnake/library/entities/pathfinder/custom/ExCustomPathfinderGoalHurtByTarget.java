@@ -18,9 +18,9 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.wrapper.EntityClass;
+import de.timesnake.library.entities.entity.extension.LivingEntity;
+import de.timesnake.library.entities.entity.type.EntityMapper;
 import de.timesnake.library.reflection.NmsReflection;
-import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.target.PathfinderGoalHurtByTarget;
 
 import java.util.List;
@@ -29,20 +29,14 @@ import java.util.List;
 public class ExCustomPathfinderGoalHurtByTarget extends ExCustomPathfinderGoalTarget {
 
     @SafeVarargs
-    public ExCustomPathfinderGoalHurtByTarget(EntityClass<? extends EntityLiving>... excludedClasses) {
-        Class<?>[] nmsClasses = new Class[excludedClasses.length];
-        for (int i = 0; i < excludedClasses.length; i++) {
-            nmsClasses[i] = excludedClasses[i].getNMSClass();
-        }
-        super.pathfinderGoal = new PathfinderGoalHurtByTarget(null, nmsClasses);
+    public ExCustomPathfinderGoalHurtByTarget(Class<? extends LivingEntity>... excludedClasses) {
+        super.pathfinderGoal = new PathfinderGoalHurtByTarget(null,
+                EntityMapper.mapExClassesToNmsClasses(excludedClasses));
     }
 
-    public ExCustomPathfinderGoalHurtByTarget(List<EntityClass<? extends EntityLiving>> excludedClasses) {
-        Class<?>[] nmsClasses = new Class[excludedClasses.size()];
-        for (int i = 0; i < excludedClasses.size(); i++) {
-            nmsClasses[i] = excludedClasses.get(i).getNMSClass();
-        }
-        super.pathfinderGoal = new PathfinderGoalHurtByTarget(null, nmsClasses);
+    public ExCustomPathfinderGoalHurtByTarget(List<Class<? extends LivingEntity>> excludedClasses) {
+        super.pathfinderGoal = new PathfinderGoalHurtByTarget(null,
+                EntityMapper.mapExClassesToNmsClasses(excludedClasses.toArray(Class[]::new)));
     }
 
     public ExCustomPathfinderGoalHurtByTarget a(Class<?>... aclass) {
