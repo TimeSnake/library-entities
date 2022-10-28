@@ -18,7 +18,7 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 
@@ -28,7 +28,7 @@ import java.util.EnumSet;
 public class CustomPathfinderGoalLocation extends PathfinderGoal {
 
 
-    private final ExEntityInsentient entity;
+    private final Mob entity;
 
     private final double speed;
     private final double trackingDistance;
@@ -38,7 +38,7 @@ public class CustomPathfinderGoalLocation extends PathfinderGoal {
     private final double y;
     private final double z;
 
-    public CustomPathfinderGoalLocation(ExEntityInsentient entity, double x, double y, double z, double speed,
+    public CustomPathfinderGoalLocation(Mob entity, double x, double y, double z, double speed,
                                         double trackingDistance, double minDistance) {
         this.entity = entity;
         this.speed = speed;
