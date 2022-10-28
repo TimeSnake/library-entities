@@ -37,7 +37,7 @@ public class ExCustomPathfinderGoalIllagerWizardNoneSpell extends ExCustomPathfi
 
     @Override
     public void injectEntity(Mob entity) {
-        super.setNMSField("entity", entity);
+        super.setNMSField("entity", entity.getNMS());
     }
 
     public static class PathfinderGoalIllagerWizardNoneSpell extends PathfinderGoal {

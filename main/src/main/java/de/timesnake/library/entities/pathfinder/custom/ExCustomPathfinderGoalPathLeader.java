@@ -19,9 +19,9 @@
 package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.Entity;
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.library.entities.entity.extension.HumanEntity;
 import de.timesnake.library.entities.entity.extension.LivingEntity;
+import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.reflection.NmsReflection;
 import org.bukkit.Location;
 
@@ -59,7 +59,7 @@ public class ExCustomPathfinderGoalPathLeader extends ExCustomPathfinderGoalPath
         private final Entity follower;
         private final double maxFollowerDistance;
 
-        public CustomPathfinderGoalPathLeader(ExEntityInsentient entity, Location target, double speed,
+        public CustomPathfinderGoalPathLeader(Mob entity, Location target, double speed,
                                               double minDistance,
                                               Entity follower, double maxfollowerDistance, Location... pathPoints) {
             super(entity, target, speed, minDistance, pathPoints);
@@ -67,7 +67,7 @@ public class ExCustomPathfinderGoalPathLeader extends ExCustomPathfinderGoalPath
             this.maxFollowerDistance = maxfollowerDistance;
         }
 
-        public CustomPathfinderGoalPathLeader(ExEntityInsentient entity, Location target, double speed,
+        public CustomPathfinderGoalPathLeader(Mob entity, Location target, double speed,
                                               double minDistance,
                                               Entity follower, double maxfollowerDistance,
                                               LinkedList<Location> pathPoints) {
@@ -90,7 +90,7 @@ public class ExCustomPathfinderGoalPathLeader extends ExCustomPathfinderGoalPath
                 return true;
             }
 
-            if (this.follower.distanceSquared(this.entity) < this.maxFollowerDistance) {
+            if (this.follower.distanceSquared(this.entity.getNMS()) < this.maxFollowerDistance) {
                 return true;
             }
 
@@ -99,7 +99,10 @@ public class ExCustomPathfinderGoalPathLeader extends ExCustomPathfinderGoalPath
 
         @Override
         public boolean b() {
-            return !this.entity.getNavigation().isPathFinished() && this.entity.distanceSquared(this.currentPosition.getX(), this.currentPosition.getY(), this.currentPosition.getZ()) < (this.minDistance * this.minDistance) && this.follower.distanceSquared(this.entity) < this.maxFollowerDistance;
+            return !this.entity.getNavigation().isPathFinished()
+                    && this.entity.distanceSquared(this.currentPosition.getX(), this.currentPosition.getY(),
+                    this.currentPosition.getZ()) < (this.minDistance * this.minDistance)
+                    && this.follower.distanceSquared(this.entity.getNMS()) < this.maxFollowerDistance;
         }
 
 

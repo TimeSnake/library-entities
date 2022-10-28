@@ -34,7 +34,7 @@ public class ExCustomPathfinderGoalLocationSwell extends ExCustomPathfinderGoal 
 
     @Override
     public void injectEntity(Mob entity) {
-        super.setNMSField("entity", entity.getBukkitEntity());
+        super.setNMSField("entity", entity);
     }
 
     public static class PathfinderGoalCustomSwell extends PathfinderGoal implements LocationTargetable {

@@ -40,7 +40,7 @@ public class ExCustomPathfinderGoalPath extends ExCustomPathfinderGoal {
 
     @Override
     public void injectEntity(Mob entity) {
-        super.setNMSField("entity", entity);
+        super.setNMSField("entity", entity.getNMS());
     }
 
 

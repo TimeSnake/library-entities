@@ -18,7 +18,7 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.wrapper.ExIBlockData;
 import de.timesnake.library.entities.wrapper.ExNavigation;
 import de.timesnake.library.entities.wrapper.ExPathEntity;
@@ -42,7 +42,7 @@ public class CustomPathfinderGoalBreakBlockToLocation extends PathfinderGoal {
     private static final Integer[][] NEAR_BLOCK_VECTORS = new Integer[][]{{1, 1, 0}, {-1, 1, 0}, {0, 1, 1}, {0, 1,
             -1}, {1, 0, 0}, {-1, 0, 0}, {0, 0, 1}, {0, 0, -1}};
 
-    private final ExEntityInsentient entity;
+    private final Mob entity;
     private final List<Material> materials;
     private final double speedModifier;
 
@@ -56,7 +56,7 @@ public class CustomPathfinderGoalBreakBlockToLocation extends PathfinderGoal {
     private double remainTime;
     private int soundDelay;
 
-    public CustomPathfinderGoalBreakBlockToLocation(ExEntityInsentient entity, double x, double y, double z,
+    public CustomPathfinderGoalBreakBlockToLocation(Mob entity, double x, double y, double z,
                                                     double speedModifier, Material... materials) {
         this.entity = entity;
         this.targetX = x;

@@ -18,7 +18,7 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.wrapper.ExIBlockData;
 import de.timesnake.library.entities.wrapper.ExNavigation;
 import de.timesnake.library.reflection.NmsReflection;
@@ -39,10 +39,7 @@ import java.util.*;
 @NmsReflection
 public class CustomPathfinderGoalBreakBlock extends PathfinderGoal implements LocationTargetable {
 
-    private static final Integer[][] NEAR_BLOCK_VECTORS = new Integer[][]{{1, 1, 0}, {-1, 1, 0}, {0, 1, 1}, {0, 1,
-            -1}, {1, 0, 0}, {-1, 0, 0}, {0, 0, 1}, {0, 0, -1}};
-
-    private final ExEntityInsentient entity;
+    private final Mob entity;
     private final List<Material> materials;
     private final double speedModifier;
     private final boolean ignoreTarget;
@@ -56,17 +53,17 @@ public class CustomPathfinderGoalBreakBlock extends PathfinderGoal implements Lo
     private double remainTime;
     private int soundDelay;
 
-    public CustomPathfinderGoalBreakBlock(ExEntityInsentient entity, double speedModifier, boolean ignoreTarget,
+    public CustomPathfinderGoalBreakBlock(Mob entity, double speedModifier, boolean ignoreTarget,
                                           Material... materials) {
         this(entity, speedModifier, ignoreTarget, null, Arrays.asList(materials));
     }
 
-    public CustomPathfinderGoalBreakBlock(ExEntityInsentient entity, double speedModifier, boolean ignoreTarget,
+    public CustomPathfinderGoalBreakBlock(Mob entity, double speedModifier, boolean ignoreTarget,
                                           Collection<Material> materials) {
         this(entity, speedModifier, ignoreTarget, null, materials);
     }
 
-    public CustomPathfinderGoalBreakBlock(ExEntityInsentient entity, double speedModifier, boolean ignoreTarget,
+    public CustomPathfinderGoalBreakBlock(Mob entity, double speedModifier, boolean ignoreTarget,
                                           ExCustomPathfinderGoalBreakBlock.BreakEvent event,
                                           Collection<Material> materials) {
         this.entity = entity;

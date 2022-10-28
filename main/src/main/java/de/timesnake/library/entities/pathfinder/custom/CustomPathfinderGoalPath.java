@@ -18,7 +18,7 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.wrapper.ExPathEntity;
 import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
@@ -31,14 +31,14 @@ import java.util.*;
 public class CustomPathfinderGoalPath extends PathfinderGoal {
 
 
-    protected final ExEntityInsentient entity;
+    protected final Mob entity;
 
     protected final double speed;
     protected final double minDistance;
     protected final Map<Integer, Location> pathPointsById = new HashMap<>();
     protected ExBlockPosition currentPosition;
 
-    public CustomPathfinderGoalPath(ExEntityInsentient entity, Location target, double speed, double minDistance,
+    public CustomPathfinderGoalPath(Mob entity, Location target, double speed, double minDistance,
                                     Location... pathPoints) {
         this.entity = entity;
         this.speed = speed;
@@ -53,7 +53,7 @@ public class CustomPathfinderGoalPath extends PathfinderGoal {
         this.a(EnumSet.of(ExCustomPathfinderGoal.Type.MOVE.getNMS()));
     }
 
-    public CustomPathfinderGoalPath(ExEntityInsentient entity, Location target, double speed, double minDistance,
+    public CustomPathfinderGoalPath(Mob entity, Location target, double speed, double minDistance,
                                     LinkedList<Location> pathPoints) {
         this.entity = entity;
         this.speed = speed;
