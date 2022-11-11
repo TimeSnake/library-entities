@@ -7,8 +7,11 @@
 /.gradle/
 /build/
 generator/build
-main/build
+library-entities/build
 gradle_build.out
-/main/src/main/java/de/timesnake/library/entities/entity/
-/main/src/main/java/de/timesnake/library/entities/pathfinder/*.java
-/main/src/main/java/de/timesnake/library/entities/wrapper/
+/gradle/
+gradlew
+gradlew.bat
+/library-entities/src/main/java/de/timesnake/library/entities/entity/
+/library-entities/src/main/java/de/timesnake/library/entities/pathfinder/*.java
+/library-entities/src/main/java/de/timesnake/library/entities/wrapper/
