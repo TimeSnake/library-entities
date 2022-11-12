@@ -28,7 +28,7 @@ dependencies {
 
 group = project.group
 version = '1.0-SNAPSHOT'
-description = 'library-entities'
+archivesBaseName = 'library-entities'
 java.sourceCompatibility = 1.17
 java.targetCompatibility = 1.17
 
