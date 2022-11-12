@@ -1,0 +1,267 @@
+/*
+ * workspace.library-entities.library-entities.main
+ * Copyright (C) 2022 timesnake
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package de.timesnake.library.entities.pathfinder.custom;
+
+import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.wrapper.ExIBlockData;
+import de.timesnake.library.entities.wrapper.ExNavigation;
+import de.timesnake.library.reflection.NmsReflection;
+import de.timesnake.library.reflection.wrapper.ExBlockPosition;
+import de.timesnake.library.reflection.wrapper.ExEnumHand;
+import net.minecraft.core.BlockPosition;
+import net.minecraft.world.entity.EntityLiving;
+import net.minecraft.world.entity.ai.goal.PathfinderGoal;
+import net.minecraft.world.entity.ai.navigation.Navigation;
+import net.minecraft.world.level.pathfinder.PathEntity;
+import org.bukkit.Effect;
+import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.block.Block;
+
+import java.util.*;
+
+@NmsReflection
+public class CustomPathfinderGoalBreakBlock extends PathfinderGoal implements LocationTargetable {
+
+    private final Mob entity;
+    private final List<Material> materials;
+    private final double speedModifier;
+    private final boolean ignoreTarget;
+    private final ExCustomPathfinderGoalBreakBlock.BreakEvent event;
+    private Double targetX;
+    private Double targetY;
+    private Double targetZ;
+    private Block currentBlock;
+    private ExBlockPosition position;
+    private Material currentBlockType;
+    private double remainTime;
+    private int soundDelay;
+
+    public CustomPathfinderGoalBreakBlock(Mob entity, double speedModifier, boolean ignoreTarget,
+                                          Material... materials) {
+        this(entity, speedModifier, ignoreTarget, null, Arrays.asList(materials));
+    }
+
+    public CustomPathfinderGoalBreakBlock(Mob entity, double speedModifier, boolean ignoreTarget,
+                                          Collection<Material> materials) {
+        this(entity, speedModifier, ignoreTarget, null, materials);
+    }
+
+    public CustomPathfinderGoalBreakBlock(Mob entity, double speedModifier, boolean ignoreTarget,
+                                          ExCustomPathfinderGoalBreakBlock.BreakEvent event,
+                                          Collection<Material> materials) {
+        this.entity = entity;
+        this.speedModifier = speedModifier;
+        this.ignoreTarget = ignoreTarget;
+        this.materials = new ArrayList<>(materials);
+        this.event = event;
+        this.a(EnumSet.of(ExCustomPathfinderGoal.Type.JUMP.getNMS(), ExCustomPathfinderGoal.Type.MOVE.getNMS(),
+                ExCustomPathfinderGoal.Type.LOOK.getNMS()));
+    }
+
+    public List<Material> getMaterials() {
+        return materials;
+    }
+
+    @Override
+    public boolean a() {
+        if (targetX == null || targetY == null || targetZ == null) {
+            return false;
+        }
+
+        double x = this.entity.getX();
+        double y = this.entity.getY();
+        double z = this.entity.getZ();
+
+        BlockPosition target = this.entity.getNavigation().h();
+
+        if (target == null && !this.ignoreTarget) {
+            return false;
+        }
+
+        ExNavigation navigation = new ExNavigation((Navigation) this.entity.getNavigation().getNMS());
+        PathEntity pathEntity = navigation.k();
+
+        if (remainTime > 0) {
+            return false;
+        }
+
+        if (pathEntity != null && navigation.f()) {
+            this.position = new ExBlockPosition(x, y, z);
+
+            if (this.isBlockBreakable(this.position)) {
+                this.setCurrentBlock(this.position);
+                return true;
+            }
+
+            // calc look block, check reachable
+            double deltaX = this.targetX - x;
+            double deltaZ = this.targetZ - z;
+
+            if (deltaX != 0) {
+                if (deltaX > 0) {
+                    if (this.checkBlock(x + 1, y, z)) {
+                        return true;
+                    }
+                } else {
+                    if (this.checkBlock(x - 1, y, z)) {
+                        return true;
+                    }
+                }
+            }
+
+            if (deltaZ != 0) {
+                if (deltaZ > 0) {
+                    if (this.checkBlock(x, y, z + 1)) {
+                        return true;
+                    }
+                } else {
+                    if (this.checkBlock(x, y, z - 1)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private boolean checkBlock(double x, double y, double z) {
+        ExBlockPosition position = new ExBlockPosition(x, y, z);
+
+        double deltaY = this.targetY - y;
+
+        if (this.isBlockBreakable(position)) {
+            this.setCurrentBlock(position);
+            return true;
+        }
+
+        position = new ExBlockPosition(x, y + 1, z);
+
+        if (this.isBlockBreakable(position)) {
+            this.setCurrentBlock(position);
+            return true;
+        }
+
+        if (deltaY > 0) {
+            position = new ExBlockPosition(x, y + 2, z); // make stairs
+        } else {
+            position = new ExBlockPosition(x, y - 1, z);// make tunnel
+        }
+
+        if (this.isBlockBreakable(position)) {
+            this.setCurrentBlock(position);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void setCurrentBlock(ExBlockPosition block) {
+        this.position = block;
+        this.currentBlock = this.entity.getNMSWorld().getWorld().getBlockAt(block.getX(), block.getY(), block.getZ());
+        this.currentBlockType = this.currentBlock.getType();
+        this.remainTime = this.currentBlock.getType().getHardness();
+        this.soundDelay = 0;
+    }
+
+    private boolean isBlockBreakable(ExBlockPosition block) {
+        ExIBlockData blockData = this.entity.getExWorld().getType(block);
+        if (blockData.isAir() || blockData.getExMaterial().isLiquid()) {
+            return false;
+        }
+
+        if (this.materials.isEmpty()) {
+            return true;
+        }
+
+        if (this.materials.contains(this.entity.getNMSWorld().getWorld().getBlockAt(block.getX(), block.getY(),
+                block.getZ()).getType())) {
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public void c() {
+
+
+    }
+
+    @Override
+    public boolean b() {
+        boolean cancel =
+                !(this.currentBlock.getType().equals(this.currentBlockType) || this.entity.distanceSquared(this.currentBlock.getX() + 0.5, this.currentBlock.getY(), this.currentBlock.getZ() + 0.5) > 3.5);
+
+        if (cancel) {
+            this.currentBlock = null;
+        }
+
+        if (this.remainTime <= 0 || cancel) {
+            return false;
+        }
+
+        this.entity.setAggressive(true);
+        this.entity.setTarget((EntityLiving) null);
+        this.remainTime -= this.speedModifier / 20;
+        this.entity.getControllerLook().a(this.currentBlock.getX() + 0.5, this.currentBlock.getY() + 0.5,
+                this.currentBlock.getZ() + 0.5);
+        this.entity.getNavigation().a(this.position);
+        if (this.soundDelay <= 0) {
+            this.entity.swingHand(ExEnumHand.MAIN_HAND);
+            this.currentBlock.getWorld().playSound(this.currentBlock.getLocation(),
+                    Sound.ENTITY_ZOMBIE_ATTACK_WOODEN_DOOR, 0.5F, 1F);
+            this.soundDelay = 20;
+        }
+        this.soundDelay--;
+
+        return true;
+    }
+
+    @Override
+    public void d() {
+        if (this.currentBlock != null) {
+            this.currentBlock.getWorld().playEffect(this.currentBlock.getLocation(), Effect.STEP_SOUND,
+                    this.currentBlock.getType());
+            this.currentBlock.setType(Material.AIR);
+
+            if (this.event != null) {
+                this.event.onBlockBreak(this.currentBlock);
+            }
+        }
+
+        this.entity.setAggressive(false);
+
+        this.remainTime = 0;
+        this.soundDelay = 0;
+        this.currentBlockType = null;
+        this.currentBlock = null;
+
+        this.targetX = null;
+        this.targetY = null;
+        this.targetZ = null;
+    }
+
+    public void setTarget(Double x, Double y, Double z) {
+        this.targetX = x;
+        this.targetY = y;
+        this.targetZ = z;
+    }
+}
