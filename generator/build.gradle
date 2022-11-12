@@ -30,7 +30,7 @@ dependencies {
 
 group = project.group
 version = '1.0-SNAPSHOT'
-description = 'library-entities-generator'
+archivesBaseName = 'generator'
 java.sourceCompatibility = 1.17
 java.targetCompatibility = 1.17
 
@@ -61,7 +61,7 @@ task buildFatJar(type: Jar) {
     }
 
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    baseName = project(':library-entities:generator').name
+    baseName = archivesBaseName
     classifier = "all"
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
