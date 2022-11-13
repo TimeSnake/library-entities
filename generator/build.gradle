@@ -1,18 +1,11 @@
-plugins {
-    id 'java'
-    id 'maven-publish'
-}
-
 repositories {
     mavenLocal()
     maven {
         url = uri 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
     }
-
     maven {
         url = uri 'https://papermc.io/repo/repository/maven-public/'
     }
-
     maven {
         url = uri 'https://repo.maven.apache.org/maven2/'
     }
@@ -31,43 +24,17 @@ dependencies {
 group = project.group
 version = '1.0-SNAPSHOT'
 archivesBaseName = 'generator'
-java.sourceCompatibility = 1.17
-java.targetCompatibility = 1.17
-
-
-task sourceJar(type: Jar) {
-    from sourceSets.main.allJava
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-
-            artifact sourceJar {
-                classifier "sources"
-            }
-        }
-    }
-}
-
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
 
 task buildFatJar(type: Jar) {
     manifest {
         attributes 'Main-Class': 'de.timesnake.library.entities.generator.LibraryEntityGenerator'
     }
-
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     baseName = archivesBaseName
     classifier = "all"
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
-
-jar.finalizedBy(buildFatJar)
 
 task runFinalJar(type: JavaExec) {
     classpath = files('build/libs/generator-1.0-SNAPSHOT-all.jar')
@@ -84,10 +51,5 @@ task runFinalJar(type: JavaExec) {
     ]
 }
 
+jar.finalizedBy(buildFatJar)
 runFinalJar.dependsOn(jar)
-
-/*
-java -jar /home/markus/BukkitPlugins/workspace_gradle/library-entities/generator/build/libs/generator-1.0-SNAPSHOT-all.jar /home/markus/BukkitPlugins/workspace_gradle/library-entities/main/src/main/java/de/timesnake/library/entities/entity de.timesnake.library.entities.entity /home/markus/BukkitPlugins/workspace_gradle/library-entities/generator/src/main/java/de/timesnake/library/entities/entity/extension/ /home/markus/BukkitPlugins/workspace_gradle/library-entities/generator/src/main/java/de/timesnake/library/entities/wrapper/ /home/markus/BukkitPlugins/workspace_gradle/library-entities/main/src/main/java/de/timesnake/library/entities/wrapper/ /home/markus/BukkitPlugins/workspace_gradle/library-entities/main/src/main/java/de/timesnake/library/entities/pathfinder_g/
-
-
- */
