@@ -74,13 +74,13 @@ task runFinalJar(type: JavaExec) {
     classpath += sourceSets.main.runtimeClasspath
     main = "de.timesnake.library.entities.generator.LibraryEntityGenerator"
     args = [
-            project(':library-entities:library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/entity",
+            project(':library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/entity",
             "de.timesnake.library.entities.entity",
-            project(':library-entities:generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/entity",
-            project(':library-entities:generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/wrapper",
-            project(':library-entities:library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/wrapper",
-            project(':library-entities:generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/pathfinder",
-            project(':library-entities:library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/pathfinder"
+            project(':library-entities-generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/entity",
+            project(':library-entities-generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/wrapper",
+            project(':library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/wrapper",
+            project(':library-entities-generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/pathfinder",
+            project(':library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/pathfinder"
     ]
 }
 
