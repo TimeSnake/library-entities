@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -245,7 +245,7 @@ public class Generator_PathfinderGoal<Clazz> {
                     List.of(new PathfinderField("speed", double.class),
                             new PathfinderField("var0", float.class)),
                     List.of(new PathfinderParameter<>("speed", double.class),
-                            new PathfinderParameter<>("var0", float.class)));
+                            new PathfinderParameter<>("var0", float.class, "0.001F")));
     public static final Generator_PathfinderGoal<PathfinderGoalRandomSwim> RANDOM_SWIM =
             new Generator_PathfinderGoal<>(PathfinderGoalRandomSwim.class, EntityCreature.class,
                     List.of(new PathfinderField("speed", double.class),
