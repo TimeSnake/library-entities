@@ -30,7 +30,6 @@ task buildFatJar(type: Jar) {
         attributes 'Main-Class': 'de.timesnake.library.entities.generator.LibraryEntityGenerator'
     }
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    baseName = archivesBaseName
     classifier = "all"
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
