@@ -1,5 +1,5 @@
 <#list pathfinder.getPathfinderFields() as field>
-    private final ${field.getTypeClassName()} ${field.getName()}<#if field.hasDefaultValue()> = ${field.getDefaultValue()}</#if>;
+    protected final ${field.getTypeClassName()} ${field.getName()}<#if field.hasDefaultValue()> = ${field.getDefaultValue()}</#if>;
 </#list>
 
 <#if pathfinder.getConstructorsParametersSize() != 0>

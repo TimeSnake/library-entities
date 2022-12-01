@@ -4,7 +4,6 @@ package ${moduleName};
 
 <#include "../core/ExEntityImports.ftl">
 
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalEatTile;
 import net.minecraft.world.entity.animal.EntitySheep;
@@ -21,8 +20,8 @@ import net.minecraft.world.entity.GroupDataEntity;
 import net.minecraft.world.level.WorldAccess;
 
 import javax.annotation.Nullable;
+import java.lang.reflect.Field;
 
-@NmsReflection(usesReflection = true)
 public class ExSheep extends CraftSheep implements ${moduleName}.Sheep {
 
     public ExSheep(World world, boolean loadDefaultPathfinderGoals, boolean randomizeData) {
@@ -45,7 +44,13 @@ public class ExSheep extends CraftSheep implements ${moduleName}.Sheep {
         });
 
         if (!loadDefaultPathfinderGoals) {
-            this.getExtension().setNMSField("cd", new PathfinderGoalEatTile(this.getExtension().getNMS()));
+            try {
+                Field cd = EntitySheep.class.getDeclaredField("cd");
+                cd.setAccessible(true);
+                cd.set(this.getNMS(), new PathfinderGoalEatTile(this.getNMS()));
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

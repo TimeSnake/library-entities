@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -24,7 +24,6 @@ package de.timesnake.library.entities.entity.extension;
 
 import de.timesnake.library.entities.entity.type.ExtendedEntity;
 import de.timesnake.library.entities.wrapper.*;
-import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.RefUtil;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import de.timesnake.library.reflection.wrapper.ExEntityPose;
@@ -47,7 +46,6 @@ import org.bukkit.inventory.ItemStack;
 import java.lang.reflect.Field;
 import java.util.Random;
 
-@NmsReflection(usesReflection = true)
 public class ExEntity implements ExtendedEntity {
 
     protected final CraftEntity entity;
