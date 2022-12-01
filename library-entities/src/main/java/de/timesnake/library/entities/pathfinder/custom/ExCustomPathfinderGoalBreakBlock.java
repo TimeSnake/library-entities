@@ -20,13 +20,11 @@ package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
-import de.timesnake.library.reflection.NmsReflection;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
 import java.util.Collection;
 
-@NmsReflection
 public class ExCustomPathfinderGoalBreakBlock extends ExPathfinderGoal {
 
     public ExCustomPathfinderGoalBreakBlock(double speedModifier, boolean ignoreTarget) {

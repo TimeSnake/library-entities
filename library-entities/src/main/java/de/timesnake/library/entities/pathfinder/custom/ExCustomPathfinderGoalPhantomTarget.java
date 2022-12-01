@@ -22,7 +22,6 @@ import de.timesnake.library.entities.entity.bukkit.ExPhantom;
 import de.timesnake.library.entities.entity.extension.ExEntity;
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
@@ -32,7 +31,6 @@ import net.minecraft.world.entity.player.EntityHuman;
 import java.util.Comparator;
 import java.util.List;
 
-@NmsReflection
 public class ExCustomPathfinderGoalPhantomTarget extends ExPathfinderGoal {
 
     public ExCustomPathfinderGoalPhantomTarget() {

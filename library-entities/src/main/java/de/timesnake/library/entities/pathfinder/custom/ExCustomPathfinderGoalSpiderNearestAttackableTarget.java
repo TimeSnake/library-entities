@@ -21,12 +21,10 @@ package de.timesnake.library.entities.pathfinder.custom;
 import de.timesnake.library.entities.entity.extension.LivingEntity;
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoalNearestAttackableTarget;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.target.PathfinderGoalNearestAttackableTarget;
 import net.minecraft.world.entity.monster.EntitySpider;
 
-@NmsReflection
 public class ExCustomPathfinderGoalSpiderNearestAttackableTarget extends ExPathfinderGoalNearestAttackableTarget {
 
     public ExCustomPathfinderGoalSpiderNearestAttackableTarget(Class<? extends LivingEntity> target) {

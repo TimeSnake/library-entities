@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -19,7 +19,6 @@
 package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.ExEntityIllagerWizard;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.server.level.WorldServer;
 import net.minecraft.sounds.SoundEffect;
@@ -32,7 +31,6 @@ import net.minecraft.world.entity.monster.EntityIllagerWizard;
 import net.minecraft.world.entity.monster.EntityVex;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
-@NmsReflection(usesReflection = true)
 public class ExCustomPathfinderGoalEvokerCastSpellVex extends ExCustomPathfinderGoalIllagerWizardCastSpell {
 
     public ExCustomPathfinderGoalEvokerCastSpellVex() {

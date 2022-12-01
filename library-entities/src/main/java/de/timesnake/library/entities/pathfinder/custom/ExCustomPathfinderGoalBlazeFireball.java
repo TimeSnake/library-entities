@@ -20,14 +20,12 @@ package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
-import de.timesnake.library.reflection.NmsReflection;
-import de.timesnake.library.reflection.RefUtil;
+import de.timesnake.library.reflection.Util;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import net.minecraft.world.entity.monster.EntityBlaze;
 
 import java.util.Arrays;
 
-@NmsReflection(usesReflection = true)
 public class ExCustomPathfinderGoalBlazeFireball extends ExPathfinderGoal {
 
     private static final Class<?> NMS_CLASS =
@@ -35,7 +33,7 @@ public class ExCustomPathfinderGoalBlazeFireball extends ExPathfinderGoal {
                     "PathfinderGoalBlazeFireball")).findFirst().get();
 
     public ExCustomPathfinderGoalBlazeFireball() {
-        super.pathfinderGoal = ((PathfinderGoal) RefUtil.instantiate(NMS_CLASS, new Class[]{EntityBlaze.class},
+        super.pathfinderGoal = ((PathfinderGoal) Util.instantiate(NMS_CLASS, new Class[]{EntityBlaze.class},
                 (EntityBlaze) null));
     }
 

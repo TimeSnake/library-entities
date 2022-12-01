@@ -20,12 +20,7 @@ package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
-import de.timesnake.library.entities.wrapper.ExIBlockData;
-import de.timesnake.library.entities.wrapper.ExNavigation;
-import de.timesnake.library.entities.wrapper.ExPathEntity;
-import de.timesnake.library.entities.wrapper.ExWrapper;
-import de.timesnake.library.reflection.wrapper.ExBlockPosition;
-import de.timesnake.library.reflection.wrapper.ExEnumHand;
+import de.timesnake.library.entities.wrapper.*;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import org.bukkit.Effect;
 import org.bukkit.Material;

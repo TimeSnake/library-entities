@@ -20,12 +20,10 @@ package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoalMeleeAttack;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalMeleeAttack;
 import net.minecraft.world.entity.monster.EntitySpider;
 
-@NmsReflection
 public class ExCustomPathfinderGoalSpiderMeleeAttack extends ExPathfinderGoalMeleeAttack {
 
     public ExCustomPathfinderGoalSpiderMeleeAttack(float speed) {

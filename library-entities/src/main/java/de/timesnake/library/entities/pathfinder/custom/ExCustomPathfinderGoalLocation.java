@@ -20,9 +20,7 @@ package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
-import de.timesnake.library.reflection.NmsReflection;
 
-@NmsReflection
 public class ExCustomPathfinderGoalLocation extends ExPathfinderGoal {
 
     public ExCustomPathfinderGoalLocation(double x, double y, double z, double speed, double trackingDistance,

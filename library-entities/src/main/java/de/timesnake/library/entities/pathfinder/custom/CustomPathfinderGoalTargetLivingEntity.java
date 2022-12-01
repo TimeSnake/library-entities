@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -18,12 +18,10 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.target.PathfinderGoalNearestAttackableTarget;
 
-@NmsReflection
 public class CustomPathfinderGoalTargetLivingEntity extends PathfinderGoalNearestAttackableTarget {
 
     private final EntityLiving target;

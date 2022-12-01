@@ -20,11 +20,10 @@ package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
+import de.timesnake.library.entities.wrapper.ExBlockPosition;
+import de.timesnake.library.entities.wrapper.ExEnumHand;
 import de.timesnake.library.entities.wrapper.ExIBlockData;
 import de.timesnake.library.entities.wrapper.ExNavigation;
-import de.timesnake.library.reflection.NmsReflection;
-import de.timesnake.library.reflection.wrapper.ExBlockPosition;
-import de.timesnake.library.reflection.wrapper.ExEnumHand;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
@@ -37,7 +36,6 @@ import org.bukkit.block.Block;
 
 import java.util.*;
 
-@NmsReflection
 public class CustomPathfinderGoalBreakBlock extends PathfinderGoal implements LocationTargetable {
 
     private final Mob entity;

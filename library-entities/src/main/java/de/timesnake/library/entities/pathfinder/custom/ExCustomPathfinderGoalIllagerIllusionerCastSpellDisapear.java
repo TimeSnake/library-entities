@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -19,7 +19,6 @@
 package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.ExEntityIllagerWizard;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.sounds.SoundEffects;
 import net.minecraft.world.effect.MobEffect;
@@ -29,7 +28,6 @@ import org.bukkit.event.entity.EntityPotionEffectEvent;
 
 import javax.annotation.Nullable;
 
-@NmsReflection
 public class ExCustomPathfinderGoalIllagerIllusionerCastSpellDisapear extends ExCustomPathfinderGoalIllagerWizardCastSpell {
 
     public ExCustomPathfinderGoalIllagerIllusionerCastSpellDisapear() {

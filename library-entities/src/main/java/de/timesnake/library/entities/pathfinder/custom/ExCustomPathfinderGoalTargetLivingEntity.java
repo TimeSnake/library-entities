@@ -21,9 +21,7 @@ package de.timesnake.library.entities.pathfinder.custom;
 import de.timesnake.library.entities.entity.extension.LivingEntity;
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoalTarget;
-import de.timesnake.library.reflection.NmsReflection;
 
-@NmsReflection
 public class ExCustomPathfinderGoalTargetLivingEntity extends ExPathfinderGoalTarget {
 
     private final LivingEntity target;
