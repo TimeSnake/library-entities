@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -18,6 +18,8 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
+import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoalMeleeAttack;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalMeleeAttack;
@@ -25,10 +27,15 @@ import net.minecraft.world.entity.monster.EntityRavager;
 import net.minecraft.world.entity.monster.EntityVindicator;
 
 @NmsReflection
-public class ExCustomPathfinderGoalMeleeAttackVindicator extends ExCustomPathfinderGoalMeleeAttack {
+public class ExCustomPathfinderGoalMeleeAttackVindicator extends ExPathfinderGoalMeleeAttack {
 
     public ExCustomPathfinderGoalMeleeAttackVindicator(double speed) {
-        super(new PathfinderGoalMeleeAttackVindicator(null, speed));
+        super(speed);
+    }
+
+    @Override
+    public void injectEntity(Mob entity) {
+        super.pathfinderGoal = new PathfinderGoalMeleeAttackVindicator(((EntityVindicator) entity.getNMS()), this.speed);
     }
 
     protected static class PathfinderGoalMeleeAttackVindicator extends PathfinderGoalMeleeAttack {

@@ -18,16 +18,23 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
+import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoalMeleeAttack;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalMeleeAttack;
 import net.minecraft.world.entity.monster.EntityVindicator;
 
 @NmsReflection
-public class ExCustomPathfinderGoalMeleeAttackRavager extends ExCustomPathfinderGoalMeleeAttack {
+public class ExCustomPathfinderGoalMeleeAttackRavager extends ExPathfinderGoalMeleeAttack {
 
     public ExCustomPathfinderGoalMeleeAttackRavager(double speed) {
-        super(new PathfinderGoalMeleeAttackRavager(null, speed));
+        super(speed);
+    }
+
+    @Override
+    public void injectEntity(Mob entity) {
+        super.pathfinderGoal = new PathfinderGoalMeleeAttackRavager(((EntityVindicator) entity.getNMS()), this.speed);
     }
 
     protected static class PathfinderGoalMeleeAttackRavager extends PathfinderGoalMeleeAttack {

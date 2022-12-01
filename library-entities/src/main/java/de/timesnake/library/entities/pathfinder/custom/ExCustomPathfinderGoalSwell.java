@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -21,13 +21,14 @@ package de.timesnake.library.entities.pathfinder.custom;
 import de.timesnake.library.entities.entity.bukkit.ExCreeper;
 import de.timesnake.library.entities.entity.extension.ExEntityLiving;
 import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 
 import java.util.EnumSet;
 
 @NmsReflection
-public class ExCustomPathfinderGoalSwell extends ExCustomPathfinderGoal {
+public class ExCustomPathfinderGoalSwell extends ExPathfinderGoal {
 
     public ExCustomPathfinderGoalSwell(double swellRadius, double keepSwellingRadius) {
         super(new PathfinderGoalSwell(null, swellRadius, keepSwellingRadius));
@@ -49,7 +50,7 @@ public class ExCustomPathfinderGoalSwell extends ExCustomPathfinderGoal {
             this.entity = entity;
             this.radius = radius;
             this.keepSwellingRadius = keepSwellingRadius;
-            this.a(EnumSet.of(ExCustomPathfinderGoal.Type.MOVE.getNMS()));
+            this.a(EnumSet.of(ExPathfinderGoal.Type.MOVE.getNMS()));
         }
 
         public boolean a() {

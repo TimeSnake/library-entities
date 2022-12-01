@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -20,6 +20,7 @@ package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.bukkit.ExPlayer;
 import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import org.bukkit.entity.Player;
@@ -45,7 +46,7 @@ public class CustomPathfinderGoalPet extends PathfinderGoal {
         this.speed = speed;
         this.minDistance = minDistance;
         this.teleportDistance = teleportDistance;
-        this.a(EnumSet.of(ExCustomPathfinderGoal.Type.MOVE.getNMS()));
+        this.a(EnumSet.of(ExPathfinderGoal.Type.MOVE.getNMS()));
     }
 
 

@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -20,6 +20,7 @@ package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.ExEntityIllagerWizard;
 import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import net.minecraft.world.entity.monster.EntityIllagerWizard;
@@ -29,7 +30,7 @@ import java.lang.reflect.Method;
 import java.util.EnumSet;
 
 @NmsReflection(usesReflection = true)
-public class ExCustomPathfinderGoalIllagerWizardNoneSpell extends ExCustomPathfinderGoal {
+public class ExCustomPathfinderGoalIllagerWizardNoneSpell extends ExPathfinderGoal {
 
     public ExCustomPathfinderGoalIllagerWizardNoneSpell() {
         super(new PathfinderGoalIllagerWizardNoneSpell(null));

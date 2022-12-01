@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -19,6 +19,7 @@
 package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.RefUtil;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
@@ -27,7 +28,7 @@ import net.minecraft.world.entity.monster.EntityBlaze;
 import java.util.Arrays;
 
 @NmsReflection(usesReflection = true)
-public class ExCustomPathfinderGoalBlazeFireball extends ExCustomPathfinderGoal {
+public class ExCustomPathfinderGoalBlazeFireball extends ExPathfinderGoal {
 
     private static final Class<?> NMS_CLASS =
             Arrays.stream(EntityBlaze.class.getDeclaredClasses()).filter((c) -> c.getSimpleName().equals(

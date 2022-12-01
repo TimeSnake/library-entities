@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -19,9 +19,10 @@
 package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import org.bukkit.entity.Player;
 
-public class ExCustomPathfinderGoalPet extends ExCustomPathfinderGoal {
+public class ExCustomPathfinderGoalPet extends ExPathfinderGoal {
 
     public ExCustomPathfinderGoalPet(Player owner, double entitySpeed, float minDistance, float teleportDistance) {
         super(new CustomPathfinderGoalPet(null, owner, entitySpeed, minDistance, teleportDistance));

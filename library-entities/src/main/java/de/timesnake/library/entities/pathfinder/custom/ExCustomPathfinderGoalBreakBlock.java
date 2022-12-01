@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -19,6 +19,7 @@
 package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.reflection.NmsReflection;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -26,7 +27,7 @@ import org.bukkit.block.Block;
 import java.util.Collection;
 
 @NmsReflection
-public class ExCustomPathfinderGoalBreakBlock extends ExCustomPathfinderGoal {
+public class ExCustomPathfinderGoalBreakBlock extends ExPathfinderGoal {
 
     public ExCustomPathfinderGoalBreakBlock(double speedModifier, boolean ignoreTarget) {
         super(new CustomPathfinderGoalBreakBlock(null, speedModifier, ignoreTarget));
