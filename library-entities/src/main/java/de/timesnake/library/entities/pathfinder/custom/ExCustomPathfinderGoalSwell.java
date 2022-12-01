@@ -22,12 +22,10 @@ import de.timesnake.library.entities.entity.bukkit.ExCreeper;
 import de.timesnake.library.entities.entity.extension.ExEntityLiving;
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 
 import java.util.EnumSet;
 
-@NmsReflection
 public class ExCustomPathfinderGoalSwell extends ExPathfinderGoal {
 
     public ExCustomPathfinderGoalSwell(double swellRadius, double keepSwellingRadius) {

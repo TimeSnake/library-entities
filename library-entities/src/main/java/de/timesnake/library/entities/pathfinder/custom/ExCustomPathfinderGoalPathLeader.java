@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -22,12 +22,10 @@ import de.timesnake.library.entities.entity.extension.Entity;
 import de.timesnake.library.entities.entity.extension.HumanEntity;
 import de.timesnake.library.entities.entity.extension.LivingEntity;
 import de.timesnake.library.entities.entity.extension.Mob;
-import de.timesnake.library.reflection.NmsReflection;
 import org.bukkit.Location;
 
 import java.util.LinkedList;
 
-@NmsReflection
 public class ExCustomPathfinderGoalPathLeader extends ExCustomPathfinderGoalPath {
 
     public ExCustomPathfinderGoalPathLeader(Location target, double speed, double minDistance, LivingEntity follower,

@@ -21,7 +21,6 @@ package de.timesnake.library.entities.pathfinder.custom;
 import de.timesnake.library.entities.entity.extension.ExEntityIllagerWizard;
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import net.minecraft.world.entity.monster.EntityIllagerWizard;
 
@@ -29,7 +28,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.EnumSet;
 
-@NmsReflection(usesReflection = true)
+
 public class ExCustomPathfinderGoalIllagerWizardNoneSpell extends ExPathfinderGoal {
 
     public ExCustomPathfinderGoalIllagerWizardNoneSpell() {

@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -19,7 +19,6 @@
 package de.timesnake.library.entities;
 
 import com.mojang.authlib.GameProfile;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.WorldServer;
 import org.bukkit.Bukkit;
@@ -31,7 +30,6 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 
 import java.util.UUID;
 
-@NmsReflection
 public class EntityManager {
 
     public static void spawnEntity(org.bukkit.entity.Entity entity) {

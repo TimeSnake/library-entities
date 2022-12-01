@@ -23,7 +23,6 @@ import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.entity.type.EntityMapper;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoalTarget;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.EntityLiving;
@@ -38,7 +37,6 @@ import java.lang.reflect.Field;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
-@NmsReflection
 public class ExCustomPathfinderGoalNearestAttackableTarget extends ExPathfinderGoalTarget {
 
     public ExCustomPathfinderGoalNearestAttackableTarget(Class<? extends LivingEntity> target) {
