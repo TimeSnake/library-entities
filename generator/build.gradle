@@ -22,7 +22,7 @@ dependencies {
 }
 
 group = project.group
-version = '1.0-SNAPSHOT'
+version = '1.1-SNAPSHOT'
 archivesBaseName = 'generator'
 
 task buildFatJar(type: Jar) {
@@ -36,7 +36,7 @@ task buildFatJar(type: Jar) {
 }
 
 task runFinalJar(type: JavaExec) {
-    classpath = files('build/libs/generator-1.0-SNAPSHOT-all.jar')
+    classpath = files('build/libs/generator-1.1-SNAPSHOT-all.jar')
     classpath += sourceSets.main.runtimeClasspath
     main = "de.timesnake.library.entities.generator.LibraryEntityGenerator"
     args = [
