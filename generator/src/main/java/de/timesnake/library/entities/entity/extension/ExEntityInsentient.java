@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -26,7 +26,6 @@ import com.google.common.collect.Sets;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoalTarget;
 import de.timesnake.library.entities.wrapper.*;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalSelector;
@@ -36,7 +35,6 @@ import org.bukkit.event.entity.EntityTargetEvent;
 
 import java.lang.reflect.Field;
 
-@NmsReflection(usesReflection = true)
 public class ExEntityInsentient extends ExEntityLiving {
 
     public ExEntityInsentient(CraftMob entity) {

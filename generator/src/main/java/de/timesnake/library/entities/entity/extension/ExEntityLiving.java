@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -22,8 +22,7 @@
 
 package de.timesnake.library.entities.entity.extension;
 
-import de.timesnake.library.reflection.NmsReflection;
-import de.timesnake.library.reflection.wrapper.ExEnumHand;
+import de.timesnake.library.entities.wrapper.ExEnumHand;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.targeting.PathfinderTargetCondition;
 import org.bukkit.attribute.Attribute;
@@ -35,7 +34,6 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Collection;
 import java.util.List;
 
-@NmsReflection
 public class ExEntityLiving extends ExEntity {
 
     public ExEntityLiving(CraftLivingEntity entity) {

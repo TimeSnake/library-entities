@@ -4,7 +4,6 @@ package ${moduleName};
 
 <#include "../core/ExEntityImports.ftl">
 
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalEatTile;
 import net.minecraft.world.entity.animal.EntitySheep;
@@ -14,7 +13,6 @@ import org.bukkit.craftbukkit.${version}.CraftServer;
 import org.bukkit.craftbukkit.${version}.CraftWorld;
 import org.bukkit.craftbukkit.${version}.entity.CraftSheep;
 
-@NmsReflection(usesReflection = true)
 public class ExSheep extends CraftSheep implements ExtendedCraftEntity<ExEntityAnimal> {
 
     public ExSheep(World world, boolean loadDefaultPathfinderGoals) {

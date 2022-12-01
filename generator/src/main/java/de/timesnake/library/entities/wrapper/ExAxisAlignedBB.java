@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -22,12 +22,9 @@
 
 package de.timesnake.library.entities.wrapper;
 
-import de.timesnake.library.reflection.NmsReflection;
-import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.world.phys.AxisAlignedBB;
 
-@NmsReflection
 public class ExAxisAlignedBB {
 
     private final AxisAlignedBB axis;

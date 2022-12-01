@@ -1,7 +1,6 @@
 import ${entityModuleName}.ExtendedCraftEntity;
 import ${extensionModuleName}.${extensionEntity.getName()};
 import ${nmsName};
-import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.entities.wrapper.*;
 import de.timesnake.library.reflection.wrapper.*;
 import org.bukkit.Bukkit;

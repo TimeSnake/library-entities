@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -23,11 +23,9 @@
 package de.timesnake.library.entities.wrapper;
 
 import de.timesnake.library.entities.entity.extension.ExEntity;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.control.ControllerLook;
 
-@NmsReflection
 public class ExControllerLook {
 
     private final ControllerLook controller;

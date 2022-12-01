@@ -7,7 +7,6 @@ import ${entityModuleName}.ExtendedCraftEntity;
 import ${extensionModuleName}.ExEntityHuman;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.server.level.WorldServer;
@@ -20,7 +19,6 @@ import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-@NmsReflection
 public class ExPlayer extends CraftPlayer implements ExtendedCraftEntity<ExEntityHuman> {
 
     private static MinecraftServer getMcServer() {
