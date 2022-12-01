@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -22,7 +22,6 @@
 
 package de.timesnake.library.entities.entity.extension;
 
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.advancements.CriterionTriggers;
 import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.world.entity.EntityLiving;
@@ -32,7 +31,6 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftTameableAnimal;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-@NmsReflection
 public class ExEntityTameableAnimal extends ExEntityAnimal {
 
     public ExEntityTameableAnimal(EntityTameableAnimal entity) {

@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -24,7 +24,6 @@ package de.timesnake.library.entities.entity.extension;
 
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoalBowShoot;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalBowShoot;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalMeleeAttack;
 import net.minecraft.world.entity.monster.EntitySkeletonAbstract;
@@ -34,7 +33,7 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftAbstractSkeleton;
 
 import java.lang.reflect.Field;
 
-@NmsReflection(usesReflection = true)
+
 public class ExEntitySkeletonAbstract extends ExEntityMonster {
 
     public ExEntitySkeletonAbstract(CraftAbstractSkeleton entity) {

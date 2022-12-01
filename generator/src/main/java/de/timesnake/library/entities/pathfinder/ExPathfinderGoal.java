@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -19,11 +19,9 @@
 package de.timesnake.library.entities.pathfinder;
 
 import de.timesnake.library.entities.entity.extension.Mob;
-import de.timesnake.library.reflection.NmsReflection;
-import de.timesnake.library.reflection.RefUtil;
+import de.timesnake.library.reflection.Util;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 
-@NmsReflection
 public abstract class ExPathfinderGoal {
 
     public static final String PATHFINDER_GOAL_PREFIX = "ExPathfinderGoal";
@@ -60,15 +58,15 @@ public abstract class ExPathfinderGoal {
     }
 
     public void setNMSField(String name, Object value) {
-        RefUtil.setInstanceField(this.getNMS(), name, value);
+        Util.setInstanceField(this.getNMS(), name, value);
     }
 
     public Object invokeNMSMethod(String name, Object... args) {
-        return RefUtil.invokeMethod(this, name, args);
+        return Util.invokeMethod(this, name, args);
     }
 
     public Object invokeNMSMethod(String name, Class<?>[] argClasses, Object... args) {
-        return RefUtil.invokeMethod(this, name, argClasses, args);
+        return Util.invokeMethod(this, name, argClasses, args);
     }
 
     public int getPriority() {

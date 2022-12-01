@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -23,14 +23,11 @@
 package de.timesnake.library.entities.wrapper;
 
 import de.timesnake.library.entities.entity.extension.ExEntity;
-import de.timesnake.library.reflection.NmsReflection;
-import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.navigation.NavigationAbstract;
 import net.minecraft.world.level.pathfinder.PathEntity;
 
-@NmsReflection
 public class ExNavigationAbstract {
 
     protected final NavigationAbstract navigation;

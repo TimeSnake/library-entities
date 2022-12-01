@@ -5,7 +5,6 @@ package ${moduleName};
 <#include "../core/ExEntityImports.ftl">
 
 import ${wrapperModuleName}.ExMobEffects;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.monster.EntitySkeleton;
@@ -20,7 +19,6 @@ import org.bukkit.craftbukkit.${version}.entity.CraftSkeleton;
 import org.bukkit.craftbukkit.${version}.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
-@NmsReflection
 public class ExSkeleton extends CraftSkeleton implements ExtendedCraftEntity<ExEntitySkeletonAbstract> {
 
     public ExSkeleton(World world, boolean loadDefaultPathfinderGoals) {

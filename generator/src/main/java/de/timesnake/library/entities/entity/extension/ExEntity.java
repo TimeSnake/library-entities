@@ -24,10 +24,7 @@ package de.timesnake.library.entities.entity.extension;
 
 import de.timesnake.library.entities.entity.type.ExtendedEntity;
 import de.timesnake.library.entities.wrapper.*;
-import de.timesnake.library.reflection.RefUtil;
-import de.timesnake.library.reflection.wrapper.ExBlockPosition;
-import de.timesnake.library.reflection.wrapper.ExEntityPose;
-import de.timesnake.library.reflection.wrapper.ExEnumItemSlot;
+import de.timesnake.library.reflection.Util;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.network.syncher.DataWatcher;
 import net.minecraft.server.level.WorldServer;
@@ -65,17 +62,17 @@ public class ExEntity implements ExtendedEntity {
 
     @Deprecated
     public void setNMSField(String name, Object value) {
-        RefUtil.setInstanceField(this.getHandle(), name, value);
+        Util.setInstanceField(this.getHandle(), name, value);
     }
 
     @Deprecated
     public void setNMSField(Class<? extends Entity> clazz, String name, Object value) {
-        RefUtil.setInstanceField(clazz, this.getHandle(), name, value);
+        Util.setInstanceField(clazz, this.getHandle(), name, value);
     }
 
     @Deprecated
     public Object getNMSField(String name) {
-        return RefUtil.getInstanceField(this, name);
+        return Util.getInstanceField(this, name);
     }
 
     public ExEntity getExtension() {

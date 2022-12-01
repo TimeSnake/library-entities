@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -22,8 +22,6 @@
 
 package de.timesnake.library.entities.wrapper;
 
-import de.timesnake.library.reflection.NmsReflection;
-import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.World;
@@ -31,7 +29,6 @@ import net.minecraft.world.level.block.state.IBlockData;
 import net.minecraft.world.phys.AxisAlignedBB;
 import org.bukkit.craftbukkit.v1_19_R1.CraftServer;
 
-@NmsReflection
 public class ExWorld {
 
     protected final World world;

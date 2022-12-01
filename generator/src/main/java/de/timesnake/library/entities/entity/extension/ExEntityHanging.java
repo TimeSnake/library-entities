@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -22,12 +22,10 @@
 
 package de.timesnake.library.entities.entity.extension;
 
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.world.entity.decoration.EntityHanging;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftHanging;
 
-@NmsReflection
 public class ExEntityHanging extends ExEntity {
 
     public ExEntityHanging(CraftHanging entity) {

@@ -4,7 +4,6 @@ package ${moduleName};
 
 <#include "ExEntityImports.ftl">
 
-@NmsReflection
 public class ${entityName} extends ${craftName} implements ExtendedCraftEntity<${extensionEntity.getName()}> {
 
     public ${entityName}(World world, boolean loadDefaultPathfinders) {

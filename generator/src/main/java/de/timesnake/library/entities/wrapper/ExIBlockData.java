@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -22,15 +22,11 @@
 
 package de.timesnake.library.entities.wrapper;
 
-import de.timesnake.library.reflection.NmsReflection;
-import de.timesnake.library.reflection.wrapper.ExBlockPosition;
-import de.timesnake.library.reflection.wrapper.ExEnumDirection;
 import net.minecraft.world.level.IBlockAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.IBlockData;
 import net.minecraft.world.level.material.Material;
 
-@NmsReflection
 public class ExIBlockData {
 
     private final IBlockData data;

@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -22,11 +22,9 @@
 
 package de.timesnake.library.entities.entity.extension;
 
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityCreature;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftCreature;
 
-@NmsReflection
 public class ExEntityCreature extends ExEntityInsentient {
 
     public ExEntityCreature(CraftCreature entity) {

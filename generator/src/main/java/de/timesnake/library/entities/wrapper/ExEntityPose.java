@@ -16,37 +16,28 @@
  * along with this program; If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-    Copied from entity generator. Should only be edited in generator files
-*/
-
 package de.timesnake.library.entities.wrapper;
 
-import de.timesnake.library.entities.entity.extension.ExEntity;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.ai.sensing.EntitySenses;
+import net.minecraft.world.entity.EntityPose;
 
-public class ExEntitySenses {
+public enum ExEntityPose {
 
-    private final EntitySenses senses;
+    STANDING(EntityPose.a),
+    FALL_FLYING(EntityPose.b),
+    SLEEPING(EntityPose.c),
+    SWIMMING(EntityPose.d),
+    SPIN_ATTACK(EntityPose.e),
+    CROUCHING(EntityPose.f),
+    DYING(EntityPose.g);
 
-    public ExEntitySenses(EntitySenses senses) {
-        this.senses = senses;
+    private final EntityPose pose;
+
+    ExEntityPose(EntityPose pose) {
+        this.pose = pose;
     }
 
-    public EntitySenses getNMS() {
-        return this.senses;
+    public EntityPose getPose() {
+        return pose;
     }
 
-    public void a() {
-        this.senses.a();
-    }
-
-    public boolean a(Entity entity) {
-        return this.senses.a(entity);
-    }
-
-    public boolean a(ExEntity entity) {
-        return this.senses.a(entity.getNMS());
-    }
 }

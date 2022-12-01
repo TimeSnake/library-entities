@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -18,12 +18,10 @@
 
 package de.timesnake.library.entities.wrapper;
 
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.server.level.WorldServer;
 import net.minecraft.world.entity.Entity;
 
-@NmsReflection
 public class ExWorldServer extends ExWorld {
 
     public ExWorldServer(WorldServer world) {

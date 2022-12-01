@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -22,10 +22,8 @@
 
 package de.timesnake.library.entities.wrapper;
 
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.phys.Vec3D;
 
-@NmsReflection
 public class ExVec3D {
 
     private final Vec3D vec;

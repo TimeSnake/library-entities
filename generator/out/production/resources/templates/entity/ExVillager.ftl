@@ -4,7 +4,6 @@ package ${moduleName};
 
 <#include "../core/ExEntityImports.ftl">
 
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.npc.EntityVillager;
 import net.minecraft.world.entity.npc.VillagerType;
@@ -13,7 +12,6 @@ import org.bukkit.craftbukkit.${version}.CraftServer;
 import org.bukkit.craftbukkit.${version}.CraftWorld;
 import org.bukkit.craftbukkit.${version}.entity.CraftVillager;
 
-@NmsReflection
 public class ExVillager extends CraftVillager implements ExtendedCraftEntity<ExEntityVillagerAbstract> {
 
     public ExVillager(org.bukkit.World world, Type type,

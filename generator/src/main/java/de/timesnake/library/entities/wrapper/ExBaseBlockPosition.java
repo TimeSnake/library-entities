@@ -16,40 +16,48 @@
  * along with this program; If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-    Copied from entity generator. Should only be edited in generator files
-*/
-
 package de.timesnake.library.entities.wrapper;
 
+import net.minecraft.core.BaseBlockPosition;
 import net.minecraft.core.BlockPosition;
-import net.minecraft.world.level.pathfinder.PathPoint;
 
-public class ExPathPoint {
+public class ExBaseBlockPosition {
 
-    private final PathPoint point;
+    protected final BaseBlockPosition block;
 
-    public ExPathPoint(PathPoint pathPoint) {
-        this.point = pathPoint;
+    public ExBaseBlockPosition(BaseBlockPosition block) {
+        this.block = block;
     }
 
-    public BlockPosition getPosition() {
-        return this.point.a();
+    public ExBaseBlockPosition(int x, int y, int z) {
+        this.block = new BlockPosition(x, y, z);
     }
 
-    public ExBlockPosition getExPosition() {
-        return new ExBlockPosition(this.point.a());
+    public ExBaseBlockPosition(double x, double y, double z) {
+        this.block = new BlockPosition(x, y, z);
+    }
+
+    public BaseBlockPosition getNMS() {
+        return this.block;
     }
 
     public int getX() {
-        return this.point.a;
+        return this.block.u();
     }
 
     public int getY() {
-        return this.point.b;
+        return this.block.v();
     }
 
     public int getZ() {
-        return this.point.c;
+        return this.block.w();
+    }
+
+    public boolean inRange(BaseBlockPosition position, double range) {
+        return this.block.a(position, range);
+    }
+
+    public boolean inRange(ExBaseBlockPosition position, double range) {
+        return this.inRange(position, range);
     }
 }

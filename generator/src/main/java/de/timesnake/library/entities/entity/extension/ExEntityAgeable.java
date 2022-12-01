@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -23,11 +23,9 @@
 package de.timesnake.library.entities.entity.extension;
 
 import de.timesnake.library.entities.entity.type.ExtendedEntity;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityAgeable;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftAgeable;
 
-@NmsReflection
 public abstract class ExEntityAgeable extends ExEntityInsentient implements ExtendedEntity {
 
     public ExEntityAgeable(CraftAgeable entity) {
