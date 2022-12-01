@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -18,20 +18,27 @@
 
 package de.timesnake.library.entities.pathfinder.custom;
 
+import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoalMeleeAttack;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalMeleeAttack;
 import net.minecraft.world.entity.monster.EntitySpider;
 
 @NmsReflection
-public class ExCustomPathfinderGoalSpiderMeleeAttack extends ExCustomPathfinderGoalMeleeAttack {
+public class ExCustomPathfinderGoalSpiderMeleeAttack extends ExPathfinderGoalMeleeAttack {
 
     public ExCustomPathfinderGoalSpiderMeleeAttack(float speed) {
-        super(new PathfinderGoalSpiderMeleeAttack(null, speed));
+        super(speed);
+    }
+
+    @Override
+    public void injectEntity(Mob entity) {
+        super.pathfinderGoal = new PathfinderGoalSpiderMeleeAttack(((EntitySpider) entity.getNMS()), this.speed);
     }
 
     static class PathfinderGoalSpiderMeleeAttack extends PathfinderGoalMeleeAttack {
-        public PathfinderGoalSpiderMeleeAttack(EntitySpider entityspider, float speed) {
+        public PathfinderGoalSpiderMeleeAttack(EntitySpider entityspider, double speed) {
             super(entityspider, speed, true);
         }
 

@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -20,10 +20,11 @@ package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.LivingEntity;
 import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoalTarget;
 import de.timesnake.library.reflection.NmsReflection;
 
 @NmsReflection
-public class ExCustomPathfinderGoalTargetLivingEntity extends ExCustomPathfinderGoalTarget {
+public class ExCustomPathfinderGoalTargetLivingEntity extends ExPathfinderGoalTarget {
 
     private final LivingEntity target;
 

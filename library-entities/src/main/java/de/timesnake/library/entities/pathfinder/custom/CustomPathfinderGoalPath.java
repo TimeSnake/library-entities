@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -19,15 +19,14 @@
 package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.entities.wrapper.ExPathEntity;
-import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import org.bukkit.Location;
 
 import java.util.*;
 
-@NmsReflection
 public class CustomPathfinderGoalPath extends PathfinderGoal {
 
 
@@ -50,7 +49,7 @@ public class CustomPathfinderGoalPath extends PathfinderGoal {
         }
         this.pathPointsById.put(i, target);
 
-        this.a(EnumSet.of(ExCustomPathfinderGoal.Type.MOVE.getNMS()));
+        this.a(EnumSet.of(ExPathfinderGoal.Type.MOVE.getNMS()));
     }
 
     public CustomPathfinderGoalPath(Mob entity, Location target, double speed, double minDistance,
@@ -66,7 +65,7 @@ public class CustomPathfinderGoalPath extends PathfinderGoal {
         }
         this.pathPointsById.put(i, target);
 
-        this.a(EnumSet.of(ExCustomPathfinderGoal.Type.MOVE.getNMS()));
+        this.a(EnumSet.of(ExPathfinderGoal.Type.MOVE.getNMS()));
     }
 
     @Override

@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -20,6 +20,7 @@ package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.entity.type.EntityMapper;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import net.minecraft.world.entity.EntityInsentient;
@@ -31,7 +32,7 @@ import java.util.EnumSet;
 import java.util.List;
 
 @NmsReflection
-public abstract class ExCustomPathfinderGoalSpawnArmy extends ExCustomPathfinderGoal {
+public abstract class ExCustomPathfinderGoalSpawnArmy extends ExPathfinderGoal {
 
     public ExCustomPathfinderGoalSpawnArmy(Class<? extends Mob> armyClass, int amountOnRespawn) {
         this(armyClass, amountOnRespawn, 0);
@@ -81,7 +82,7 @@ public abstract class ExCustomPathfinderGoalSpawnArmy extends ExCustomPathfinder
             this.spawn = spawn;
             this.cooldown = cooldown;
             this.targetCondition = PathfinderTargetCondition.a().a(8.0D).c().e().a().b();
-            this.a(EnumSet.of(ExCustomPathfinderGoal.Type.MOVE.getNMS()));
+            this.a(EnumSet.of(ExPathfinderGoal.Type.MOVE.getNMS()));
         }
 
         @Override

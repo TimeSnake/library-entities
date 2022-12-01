@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -22,6 +22,7 @@ import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
 import de.timesnake.library.entities.entity.extension.LivingEntity;
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.entity.type.EntityMapper;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.entities.wrapper.ExControllerLook;
 import de.timesnake.library.entities.wrapper.ExNavigationAbstract;
 import de.timesnake.library.entities.wrapper.ExPathType;
@@ -34,7 +35,7 @@ import java.util.EnumSet;
 import java.util.List;
 
 @NmsReflection
-public class ExCustomPathfinderGoalFollowEntity extends ExCustomPathfinderGoal {
+public class ExCustomPathfinderGoalFollowEntity extends ExPathfinderGoal {
 
     public ExCustomPathfinderGoalFollowEntity(LivingEntity leader, float speed,
                                               float maxDistance, float leaderSearchRadius) {
@@ -75,7 +76,7 @@ public class ExCustomPathfinderGoalFollowEntity extends ExCustomPathfinderGoal {
             this.maxDistance = maxDistance;
             this.leaderSearchRadius = leaderSearchRadius;
             this.leaderClass = leaderClass;
-            this.a(EnumSet.of(ExCustomPathfinderGoal.Type.MOVE.getNMS(), ExCustomPathfinderGoal.Type.LOOK.getNMS()));
+            this.a(EnumSet.of(ExPathfinderGoal.Type.MOVE.getNMS(), ExPathfinderGoal.Type.LOOK.getNMS()));
         }
 
         public PathfinderGoalFollowEntity(ExEntityInsentient entity, ExEntityInsentient leader, double speed,

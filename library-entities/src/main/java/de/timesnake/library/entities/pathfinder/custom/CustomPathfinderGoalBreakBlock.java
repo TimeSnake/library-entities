@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -19,6 +19,7 @@
 package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.entities.wrapper.ExIBlockData;
 import de.timesnake.library.entities.wrapper.ExNavigation;
 import de.timesnake.library.reflection.NmsReflection;
@@ -71,8 +72,8 @@ public class CustomPathfinderGoalBreakBlock extends PathfinderGoal implements Lo
         this.ignoreTarget = ignoreTarget;
         this.materials = new ArrayList<>(materials);
         this.event = event;
-        this.a(EnumSet.of(ExCustomPathfinderGoal.Type.JUMP.getNMS(), ExCustomPathfinderGoal.Type.MOVE.getNMS(),
-                ExCustomPathfinderGoal.Type.LOOK.getNMS()));
+        this.a(EnumSet.of(ExPathfinderGoal.Type.JUMP.getNMS(), ExPathfinderGoal.Type.MOVE.getNMS(),
+                ExPathfinderGoal.Type.LOOK.getNMS()));
     }
 
     public List<Material> getMaterials() {

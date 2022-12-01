@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -19,17 +19,23 @@
 package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.LivingEntity;
-import de.timesnake.library.entities.entity.type.EntityMapper;
+import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoalNearestAttackableTarget;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.EntityLiving;
+import net.minecraft.world.entity.ai.goal.target.PathfinderGoalNearestAttackableTarget;
 import net.minecraft.world.entity.monster.EntitySpider;
 
 @NmsReflection
-public class ExCustomPathfinderGoalSpiderNearestAttackableTarget extends ExCustomPathfinderGoalNearestAttackableTarget {
+public class ExCustomPathfinderGoalSpiderNearestAttackableTarget extends ExPathfinderGoalNearestAttackableTarget {
 
     public ExCustomPathfinderGoalSpiderNearestAttackableTarget(Class<? extends LivingEntity> target) {
-        super(new PathfinderGoalSpiderNearestAttackableTarget(null,
-                EntityMapper.mapExClassToNmsClass(target)));
+        super(target, false);
+    }
+
+    @Override
+    public void injectEntity(Mob entity) {
+        super.pathfinderGoal = new PathfinderGoalSpiderNearestAttackableTarget<>(((EntitySpider) entity.getNMS()), this.clazz);
     }
 
     static class PathfinderGoalSpiderNearestAttackableTarget<T extends EntityLiving> extends PathfinderGoalNearestAttackableTarget<T> {

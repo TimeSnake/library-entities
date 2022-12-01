@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -19,11 +19,11 @@
 package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.entities.wrapper.ExIBlockData;
 import de.timesnake.library.entities.wrapper.ExNavigation;
 import de.timesnake.library.entities.wrapper.ExPathEntity;
 import de.timesnake.library.entities.wrapper.ExWrapper;
-import de.timesnake.library.reflection.NmsReflection;
 import de.timesnake.library.reflection.wrapper.ExBlockPosition;
 import de.timesnake.library.reflection.wrapper.ExEnumHand;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
@@ -36,11 +36,7 @@ import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 
-@NmsReflection
 public class CustomPathfinderGoalBreakBlockToLocation extends PathfinderGoal {
-
-    private static final Integer[][] NEAR_BLOCK_VECTORS = new Integer[][]{{1, 1, 0}, {-1, 1, 0}, {0, 1, 1}, {0, 1,
-            -1}, {1, 0, 0}, {-1, 0, 0}, {0, 0, 1}, {0, 0, -1}};
 
     private final Mob entity;
     private final List<Material> materials;
@@ -64,8 +60,8 @@ public class CustomPathfinderGoalBreakBlockToLocation extends PathfinderGoal {
         this.targetZ = z;
         this.speedModifier = speedModifier;
         this.materials = Arrays.asList(materials);
-        this.a(EnumSet.of(ExCustomPathfinderGoal.Type.JUMP.getNMS(), ExCustomPathfinderGoal.Type.MOVE.getNMS(),
-                ExCustomPathfinderGoal.Type.LOOK.getNMS()));
+        this.a(EnumSet.of(ExPathfinderGoal.Type.JUMP.getNMS(), ExPathfinderGoal.Type.MOVE.getNMS(),
+                ExPathfinderGoal.Type.LOOK.getNMS()));
     }
 
     public List<Material> getMaterials() {

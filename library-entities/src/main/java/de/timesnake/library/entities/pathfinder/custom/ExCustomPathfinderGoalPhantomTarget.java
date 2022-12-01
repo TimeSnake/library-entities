@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -21,6 +21,7 @@ package de.timesnake.library.entities.pathfinder.custom;
 import de.timesnake.library.entities.entity.bukkit.ExPhantom;
 import de.timesnake.library.entities.entity.extension.ExEntity;
 import de.timesnake.library.entities.entity.extension.Mob;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityLiving;
@@ -32,7 +33,7 @@ import java.util.Comparator;
 import java.util.List;
 
 @NmsReflection
-public class ExCustomPathfinderGoalPhantomTarget extends ExCustomPathfinderGoal {
+public class ExCustomPathfinderGoalPhantomTarget extends ExPathfinderGoal {
 
     public ExCustomPathfinderGoalPhantomTarget() {
         super(new PathfinderGoalPhantomTargetEntity(null));

@@ -1,5 +1,5 @@
 /*
- * workspace.library-entities.library-entities.main
+ * de.timesnake.workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -21,6 +21,8 @@ package de.timesnake.library.entities.pathfinder.custom;
 import de.timesnake.library.entities.entity.extension.LivingEntity;
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.entity.type.EntityMapper;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
+import de.timesnake.library.entities.pathfinder.ExPathfinderGoalTarget;
 import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.world.entity.EntityInsentient;
@@ -32,11 +34,12 @@ import net.minecraft.world.phys.AxisAlignedBB;
 import org.bukkit.event.entity.EntityTargetEvent;
 
 import javax.annotation.Nullable;
+import java.lang.reflect.Field;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
 @NmsReflection
-public class ExCustomPathfinderGoalNearestAttackableTarget extends ExCustomPathfinderGoalTarget {
+public class ExCustomPathfinderGoalNearestAttackableTarget extends ExPathfinderGoalTarget {
 
     public ExCustomPathfinderGoalNearestAttackableTarget(Class<? extends LivingEntity> target) {
         this(target, true);
@@ -88,7 +91,13 @@ public class ExCustomPathfinderGoalNearestAttackableTarget extends ExCustomPathf
 
     @Override
     public void injectEntity(Mob entity) {
-        super.injectEntity(entity);
+        try {
+            Field e = PathfinderGoalTarget.class.getDeclaredField("e");
+            e.setAccessible(true);
+            e.set(this.pathfinderGoal, entity.getNMS());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
         ((PathfinderGoalNearestAttackableTarget<?>) super.pathfinderGoal).init();
     }
 
@@ -124,7 +133,7 @@ public class ExCustomPathfinderGoalNearestAttackableTarget extends ExCustomPathf
             this.a = oclass;
             this.b = i;
             this.predicate = predicate;
-            this.a(EnumSet.of(ExCustomPathfinderGoal.Type.TARGET.getNMS()));
+            this.a(EnumSet.of(ExPathfinderGoal.Type.TARGET.getNMS()));
         }
 
         protected void init() {
