@@ -4,7 +4,6 @@ package ${moduleName};
 
 <#include "ExEntityImports.ftl">
 
-@NmsReflection
 public class ${exName} extends ${craftName} implements ${moduleName}.${name} {
 
     public ${exName}(World world) {

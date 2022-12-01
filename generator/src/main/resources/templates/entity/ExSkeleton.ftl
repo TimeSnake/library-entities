@@ -5,7 +5,6 @@ package ${moduleName};
 <#include "../core/ExEntityImports.ftl">
 
 import ${wrapperModuleName}.ExMobEffects;
-import de.timesnake.library.reflection.NmsReflection;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.monster.EntitySkeleton;
@@ -28,7 +27,6 @@ import net.minecraft.world.level.WorldAccess;
 
 import javax.annotation.Nullable;
 
-@NmsReflection
 public class ExSkeleton extends CraftSkeleton implements ${moduleName}.Skeleton {
 
     public ExSkeleton(World world, boolean loadDefaultPathfinderGoals, boolean randomizeData) {

@@ -12,7 +12,6 @@ import net.minecraft.world.level.WorldAccess;
 import javax.annotation.Nullable;
 
 
-@NmsReflection
 public class ${exName} extends ${craftName} implements ${moduleName}.${name} {
 
     public ${exName}(World world, boolean loadDefaultPathfinders, boolean randomizeData) {
