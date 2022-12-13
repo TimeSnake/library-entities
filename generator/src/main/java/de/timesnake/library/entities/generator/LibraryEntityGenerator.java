@@ -1,5 +1,5 @@
 /*
- * library-entities.generator.main
+ * workspace.library-entities-generator.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -24,15 +24,38 @@ import freemarker.template.TemplateExceptionHandler;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class LibraryEntityGenerator {
 
     public static final String VERSION = "v1_19_R1";
 
-    public static final Logger LOGGER = Logger.getLogger("library-entities");
+    public static final Logger LOGGER;
+
+    static {
+        LOGGER = Logger.getLogger("library-entities");
+        LOGGER.setUseParentHandlers(false);
+        ConsoleHandler handler = new ConsoleHandler();
+        handler.setFormatter(new SimpleFormatter() {
+            private static final String format = "[%2$-7s] %3$s %n";
+
+            @Override
+            public synchronized String format(LogRecord lr) {
+                return String.format(format,
+                        new Date(lr.getMillis()),
+                        lr.getLevel().getLocalizedName(),
+                        lr.getMessage()
+                );
+            }
+        });
+        LOGGER.addHandler(handler);
+    }
 
     public static void main(String[] args) throws IOException, TemplateException, ClassNotFoundException {
         new LibraryEntityGenerator().generate(args);
