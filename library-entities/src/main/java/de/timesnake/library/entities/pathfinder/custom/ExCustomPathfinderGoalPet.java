@@ -1,5 +1,5 @@
 /*
- * de.timesnake.workspace.library-entities.main
+ * workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -30,7 +30,7 @@ public class ExCustomPathfinderGoalPet extends ExPathfinderGoal {
 
     @Override
     public void injectEntity(Mob entity) {
-        this.setNMSField("pet", entity);
+        this.setNMSField("pet", entity.getExtension());
     }
 
 }
