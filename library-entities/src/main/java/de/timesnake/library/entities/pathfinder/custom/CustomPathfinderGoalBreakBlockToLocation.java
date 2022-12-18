@@ -1,5 +1,5 @@
 /*
- * de.timesnake.workspace.library-entities.main
+ * workspace.library-entities.main
  * Copyright (C) 2022 timesnake
  *
  * This program is free software; you can redistribute it and/or
@@ -106,9 +106,6 @@ public class CustomPathfinderGoalBreakBlockToLocation extends PathfinderGoal {
 
                 ExBlockPosition position = new ExBlockPosition(x, y, z);
 
-                //System.out.println("first");
-                //System.out.println(position.getX() + " " + position.getY() + " " + position.getZ());
-
                 if (this.isBlockBreakable(position)) {
                     this.setCurrentBlock(position);
                     return true;
@@ -120,11 +117,7 @@ public class CustomPathfinderGoalBreakBlockToLocation extends PathfinderGoal {
                     position = new ExBlockPosition(x, y - 1, z);// make tunnel
                 }
 
-                //System.out.println("second");
-                // System.out.println(position.getX() + " " + position.getY() + " " + position.getZ());
-
                 if (this.isBlockBreakable(position)) {
-                    // System.out.println("second break");
                     this.setCurrentBlock(position);
                     return true;
                 }
