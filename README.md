@@ -2,8 +2,7 @@
 
 This module is part of the plugin-project and won't run without
 the [root module](https://git.timesnake.de/timesnake/plugin-root-project) [1].
-
----
+[root module](https://git.timesnake.de/timesnake/plugin-root-project)
 
 This module consists of two submodules. The generator module generates a main part of the main (
 library-entities)
@@ -126,8 +125,7 @@ This package contains all information about the generation of the entities and p
 [de.timesnake.library.entities.wrapper]: generator/src/main/java/de/timesnake/library/entities/wrapper
 
 [templates]: generator/src/main/resources/templates
-
----
+[root module](https://git.timesnake.de/timesnake/plugin-root-project)
 
 ## Code Style
 
