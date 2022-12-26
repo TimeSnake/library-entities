@@ -35,6 +35,8 @@ task buildFatJar(type: Jar) {
     with jar
 }
 
+jar.finalizedBy(buildFatJar)
+
 task runFinalJar(type: JavaExec) {
     classpath = files('build/libs/generator-1.1-SNAPSHOT-all.jar')
     classpath += sourceSets.main.runtimeClasspath
@@ -50,5 +52,4 @@ task runFinalJar(type: JavaExec) {
     ]
 }
 
-jar.finalizedBy(buildFatJar)
 runFinalJar.dependsOn(jar)
