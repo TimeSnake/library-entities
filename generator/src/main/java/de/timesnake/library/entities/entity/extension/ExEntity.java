@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 /*
@@ -9,8 +9,17 @@
 package de.timesnake.library.entities.entity.extension;
 
 import de.timesnake.library.entities.entity.type.ExtendedEntity;
-import de.timesnake.library.entities.wrapper.*;
+import de.timesnake.library.entities.wrapper.ExAxisAlignedBB;
+import de.timesnake.library.entities.wrapper.ExBlockPosition;
+import de.timesnake.library.entities.wrapper.ExDamageSource;
+import de.timesnake.library.entities.wrapper.ExEntityMoveType;
+import de.timesnake.library.entities.wrapper.ExEntityPose;
+import de.timesnake.library.entities.wrapper.ExEnumItemSlot;
+import de.timesnake.library.entities.wrapper.ExVec3D;
+import de.timesnake.library.entities.wrapper.ExWorldServer;
 import de.timesnake.library.reflection.Util;
+import java.lang.reflect.Field;
+import java.util.Random;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.network.syncher.DataWatcher;
 import net.minecraft.server.level.WorldServer;
@@ -25,9 +34,6 @@ import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
-
-import java.lang.reflect.Field;
-import java.util.Random;
 
 public class ExEntity implements ExtendedEntity {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities.pathfinder.custom;
@@ -8,9 +8,8 @@ import de.timesnake.library.entities.entity.bukkit.ExCreeper;
 import de.timesnake.library.entities.entity.extension.ExEntityLiving;
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
-import net.minecraft.world.entity.ai.goal.PathfinderGoal;
-
 import java.util.EnumSet;
+import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 
 public class ExCustomPathfinderGoalSwell extends ExPathfinderGoal {
 

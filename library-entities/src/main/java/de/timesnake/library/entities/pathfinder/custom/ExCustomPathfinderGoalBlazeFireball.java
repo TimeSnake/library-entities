@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities.pathfinder.custom;
@@ -7,10 +7,9 @@ package de.timesnake.library.entities.pathfinder.custom;
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.reflection.Util;
+import java.util.Arrays;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import net.minecraft.world.entity.monster.EntityBlaze;
-
-import java.util.Arrays;
 
 public class ExCustomPathfinderGoalBlazeFireball extends ExPathfinderGoal {
 

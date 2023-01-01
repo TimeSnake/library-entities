@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 /*
@@ -10,7 +10,6 @@ package de.timesnake.library.entities.entity.type;
 
 
 import de.timesnake.library.entities.entity.extension.Entity;
-
 import java.util.Arrays;
 import java.util.Objects;
 

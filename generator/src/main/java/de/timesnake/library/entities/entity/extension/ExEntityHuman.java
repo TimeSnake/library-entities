@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 /*
@@ -9,10 +9,9 @@
 package de.timesnake.library.entities.entity.extension;
 
 import com.mojang.authlib.GameProfile;
+import java.util.UUID;
 import net.minecraft.world.entity.player.EntityHuman;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftHumanEntity;
-
-import java.util.UUID;
 
 public class ExEntityHuman extends ExEntityLiving {
 

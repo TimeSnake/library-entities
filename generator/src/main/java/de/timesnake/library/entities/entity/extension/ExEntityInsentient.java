@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 /*
@@ -11,15 +11,21 @@ package de.timesnake.library.entities.entity.extension;
 import com.google.common.collect.Sets;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoalTarget;
-import de.timesnake.library.entities.wrapper.*;
+import de.timesnake.library.entities.wrapper.ExControllerJump;
+import de.timesnake.library.entities.wrapper.ExControllerLook;
+import de.timesnake.library.entities.wrapper.ExControllerMove;
+import de.timesnake.library.entities.wrapper.ExEntitySenses;
+import de.timesnake.library.entities.wrapper.ExNavigationAbstract;
+import de.timesnake.library.entities.wrapper.ExPathEntity;
+import de.timesnake.library.entities.wrapper.ExPathType;
+import de.timesnake.library.entities.wrapper.ExWrapper;
+import java.lang.reflect.Field;
 import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalSelector;
 import net.minecraft.world.level.pathfinder.PathType;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMob;
 import org.bukkit.event.entity.EntityTargetEvent;
-
-import java.lang.reflect.Field;
 
 public class ExEntityInsentient extends ExEntityLiving {
 

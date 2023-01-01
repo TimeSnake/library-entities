@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 /*
@@ -9,6 +9,8 @@
 package de.timesnake.library.entities.entity.extension;
 
 import de.timesnake.library.entities.wrapper.ExEnumHand;
+import java.util.Collection;
+import java.util.List;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.targeting.PathfinderTargetCondition;
 import org.bukkit.attribute.Attribute;
@@ -16,9 +18,6 @@ import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftLivingEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.Collection;
-import java.util.List;
 
 public class ExEntityLiving extends ExEntity {
 

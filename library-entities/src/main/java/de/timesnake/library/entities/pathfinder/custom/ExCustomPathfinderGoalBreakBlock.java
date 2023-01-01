@@ -1,15 +1,14 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
+import java.util.Collection;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-
-import java.util.Collection;
 
 public class ExCustomPathfinderGoalBreakBlock extends ExPathfinderGoal {
 

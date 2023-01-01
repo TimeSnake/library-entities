@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities.pathfinder.custom;
@@ -7,21 +7,21 @@ package de.timesnake.library.entities.pathfinder.custom;
 import de.timesnake.library.entities.entity.extension.ExEntityIllagerWizard;
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import javax.annotation.Nullable;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import net.minecraft.world.entity.monster.EntityIllagerWizard;
 import org.bukkit.craftbukkit.v1_19_R1.event.CraftEventFactory;
 
-import javax.annotation.Nullable;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 
 public abstract class ExCustomPathfinderGoalIllagerWizardCastSpell extends ExPathfinderGoal {
 
-    public ExCustomPathfinderGoalIllagerWizardCastSpell(PathfinderGoalIllagerWizardCastSpell pathfinder) {
+    public ExCustomPathfinderGoalIllagerWizardCastSpell(
+            PathfinderGoalIllagerWizardCastSpell pathfinder) {
         super(pathfinder);
     }
 
@@ -31,7 +31,7 @@ public abstract class ExCustomPathfinderGoalIllagerWizardCastSpell extends ExPat
 
     @Override
     public void injectEntity(Mob entity) {
-        super.setNMSField("entity", entity.getNMS());
+        super.setNMSField("entity", entity.getExtension());
     }
 
     public static abstract class PathfinderGoalIllagerWizardCastSpell extends PathfinderGoal {
@@ -88,7 +88,8 @@ public abstract class ExCustomPathfinderGoalIllagerWizardCastSpell extends ExPat
                     Method fK = this.entity.getClass().getMethod("fk");
                     fK.setAccessible(true);
                     this.entity.getNMS().a((SoundEffect) fK.invoke(this.entity), 1.0F, 1.0F);
-                } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                } catch (NoSuchMethodException | InvocationTargetException |
+                         IllegalAccessException e) {
                     throw new RuntimeException(e);
                 }
             }

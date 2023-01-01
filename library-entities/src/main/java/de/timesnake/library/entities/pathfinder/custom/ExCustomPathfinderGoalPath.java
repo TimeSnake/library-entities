@@ -1,14 +1,13 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
-import org.bukkit.Location;
-
 import java.util.LinkedList;
+import org.bukkit.Location;
 
 public class ExCustomPathfinderGoalPath extends ExPathfinderGoal {
 

@@ -1,16 +1,85 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities.generator;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.BooleanSupplier;
+import java.util.function.Predicate;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.world.entity.EntityCreature;
 import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.EntityTameableAnimal;
-import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.*;
-import net.minecraft.world.entity.animal.*;
+import net.minecraft.world.entity.ai.goal.ClimbOnTopOfPowderSnowGoal;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalArrowAttack;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalAvoidTarget;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalBeg;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalBowShoot;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalBreakDoor;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalBreath;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalBreed;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalCatSitOnBed;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalCrossbowAttack;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalDoorOpen;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalEatTile;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalFishSchool;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalFleeSun;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalFloat;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalFollowBoat;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalFollowEntity;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalFollowOwner;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalFollowParent;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalInteract;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalJumpOnBlock;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalLeapAtTarget;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalLlamaFollow;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalLookAtPlayer;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalLookAtTradingPlayer;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalMeleeAttack;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalMoveThroughVillage;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalMoveTowardsRestriction;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalMoveTowardsTarget;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalNearestVillage;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalOcelotAttack;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalOfferFlower;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalPanic;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalPerch;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalRaid;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalRandomFly;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalRandomLookaround;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalRandomStroll;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalRandomStrollLand;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalRandomSwim;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalRestrictSun;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalSit;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalStrollVillage;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalStrollVillageGolem;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalSwell;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalTame;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalTradeWithPlayer;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalUseItem;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalWater;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalWaterJump;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalZombieAttack;
+import net.minecraft.world.entity.ai.goal.target.PathfinderGoalDefendVillage;
+import net.minecraft.world.entity.ai.goal.target.PathfinderGoalHurtByTarget;
+import net.minecraft.world.entity.ai.goal.target.PathfinderGoalNearestAttackableTarget;
+import net.minecraft.world.entity.ai.goal.target.PathfinderGoalNearestAttackableTargetWitch;
+import net.minecraft.world.entity.ai.goal.target.PathfinderGoalNearestHealableRaider;
+import net.minecraft.world.entity.ai.goal.target.PathfinderGoalOwnerHurtByTarget;
+import net.minecraft.world.entity.ai.goal.target.PathfinderGoalOwnerHurtTarget;
+import net.minecraft.world.entity.ai.goal.target.PathfinderGoalRandomTargetNonTamed;
+import net.minecraft.world.entity.ai.goal.target.PathfinderGoalUniversalAngerReset;
+import net.minecraft.world.entity.animal.EntityAnimal;
+import net.minecraft.world.entity.animal.EntityCat;
+import net.minecraft.world.entity.animal.EntityDolphin;
+import net.minecraft.world.entity.animal.EntityFishSchool;
+import net.minecraft.world.entity.animal.EntityIronGolem;
+import net.minecraft.world.entity.animal.EntityPerchable;
+import net.minecraft.world.entity.animal.EntityWolf;
 import net.minecraft.world.entity.animal.horse.EntityHorseAbstract;
 import net.minecraft.world.entity.animal.horse.EntityLlama;
 import net.minecraft.world.entity.monster.EntityCreeper;
@@ -21,12 +90,6 @@ import net.minecraft.world.entity.npc.EntityVillagerAbstract;
 import net.minecraft.world.entity.raid.EntityRaider;
 import net.minecraft.world.item.ItemStack;
 import org.bukkit.World;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.BooleanSupplier;
-import java.util.function.Predicate;
 
 public class Generator_PathfinderGoal<Clazz> {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 /*
@@ -8,14 +8,13 @@
 
 package de.timesnake.library.entities.entity.extension;
 
+import java.util.UUID;
+import javax.annotation.Nullable;
 import net.minecraft.advancements.CriterionTriggers;
 import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.EntityTameableAnimal;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftTameableAnimal;
-
-import javax.annotation.Nullable;
-import java.util.UUID;
 
 public class ExEntityTameableAnimal extends ExEntityAnimal {
 

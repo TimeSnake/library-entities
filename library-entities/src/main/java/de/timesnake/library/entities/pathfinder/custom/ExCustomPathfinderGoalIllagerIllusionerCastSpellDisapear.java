@@ -1,18 +1,17 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.ExEntityIllagerWizard;
+import javax.annotation.Nullable;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.sounds.SoundEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.monster.EntityIllagerWizard;
 import org.bukkit.event.entity.EntityPotionEffectEvent;
-
-import javax.annotation.Nullable;
 
 public class ExCustomPathfinderGoalIllagerIllusionerCastSpellDisapear extends ExCustomPathfinderGoalIllagerWizardCastSpell {
 

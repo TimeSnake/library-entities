@@ -1,10 +1,11 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities;
 
 import com.mojang.authlib.GameProfile;
+import java.util.UUID;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.WorldServer;
 import org.bukkit.Bukkit;
@@ -13,8 +14,6 @@ import org.bukkit.craftbukkit.v1_19_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
-
-import java.util.UUID;
 
 public class EntityManager {
 

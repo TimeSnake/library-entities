@@ -1,10 +1,13 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities.pathfinder.custom;
 
 import de.timesnake.library.entities.entity.extension.ExEntityIllagerWizard;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.List;
 import net.minecraft.sounds.SoundEffect;
 import net.minecraft.sounds.SoundEffects;
 import net.minecraft.world.entity.ai.targeting.PathfinderTargetCondition;
@@ -12,10 +15,6 @@ import net.minecraft.world.entity.animal.EntitySheep;
 import net.minecraft.world.entity.monster.EntityIllagerWizard;
 import net.minecraft.world.item.EnumColor;
 import net.minecraft.world.level.GameRules;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.List;
 
 public class ExCustomPathfinderGoalEvokerCastSpellWololo extends ExCustomPathfinderGoalIllagerWizardCastSpell {
 
