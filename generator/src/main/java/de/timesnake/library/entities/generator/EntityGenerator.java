@@ -50,7 +50,8 @@ public class EntityGenerator implements EntitiesGenerator {
 
     private final Map<Class<?>, String> interfaceNameByAbstractEntityClass = new HashMap<>();
 
-    public EntityGenerator(Configuration cfg, String entitySrcDir, String entityOutputDir, String entityOutputModule) {
+    public EntityGenerator(Configuration cfg, String entitySrcDir, String entityOutputDir,
+            String entityOutputModule) {
         this.cfg = cfg;
         this.entityOutputDir = entityOutputDir;
         this.entityOutputModule = entityOutputModule;
@@ -101,7 +102,8 @@ public class EntityGenerator implements EntitiesGenerator {
         Template temp = cfg.getTemplate("templates/ExPlayer.ftl");
 
         Generator_NmsExtension extension = new Generator_NmsExtension(ExEntityHuman.class,
-                EXTENSION_INTERFACE_MODULE + "." + HumanEntity.class.getSimpleName(), CraftPlayer.class);
+                EXTENSION_INTERFACE_MODULE + "." + HumanEntity.class.getSimpleName(),
+                CraftPlayer.class);
 
         Map<String, Object> root = new HashMap<>();
         root.put("moduleName", entityOutputModule + "." + EntityGenerator.DEST_ENTITY_DIR);
@@ -120,7 +122,8 @@ public class EntityGenerator implements EntitiesGenerator {
     }
 
     private void generateExAbstractEntityInterfaces() throws TemplateException, IOException {
-        File outputEntityDirFile = new File(entityOutputDir + File.separator + DEST_EXTENSION_INTERFACE_DIR);
+        File outputEntityDirFile = new File(
+                entityOutputDir + File.separator + DEST_EXTENSION_INTERFACE_DIR);
 
         if (!outputEntityDirFile.exists()) {
             Files.createDirectories(outputEntityDirFile.toPath());
@@ -133,7 +136,8 @@ public class EntityGenerator implements EntitiesGenerator {
         }
     }
 
-    private String generateExAbstractEntityInterface(Generator_ExAbstractEntityType<?> type) throws TemplateException, IOException {
+    private String generateExAbstractEntityInterface(Generator_ExAbstractEntityType<?> type)
+            throws TemplateException, IOException {
         Class<? extends net.minecraft.world.entity.Entity> nmsClass = type.getNMSClass();
         Class<? extends ExEntity> exClass = type.getExClass();
         Class<? extends Entity> bukkitInterface = type.getBukkitInterface();
@@ -143,9 +147,12 @@ public class EntityGenerator implements EntitiesGenerator {
         Class<?> superExClass = exClass.getSuperclass();
 
         while (superInterfaceName == null && ExEntity.class.isAssignableFrom(superExClass)) {
-            Generator_ExAbstractEntityType<?> superType = Generator_ExAbstractEntityType.getByExClass(((Class<? extends ExEntity>) superExClass));
+            Generator_ExAbstractEntityType<?> superType = Generator_ExAbstractEntityType.getByExClass(
+                    ((Class<? extends ExEntity>) superExClass));
             if (superType != null) {
-                superInterfaceName = EXTENSION_INTERFACE_MODULE + "." + superType.getBukkitInterface().getSimpleName();
+                superInterfaceName =
+                        EXTENSION_INTERFACE_MODULE + "." + superType.getBukkitInterface()
+                                .getSimpleName();
             } else {
                 superExClass = superExClass.getSuperclass();
             }
@@ -154,9 +161,9 @@ public class EntityGenerator implements EntitiesGenerator {
         // fallback super interface
         if (superInterfaceName == null && !exClass.equals(ExEntity.class)) {
             superInterfaceName = EXTENSION_INTERFACE_MODULE + "." +
-                    Generator_ExAbstractEntityType.getByExClass(ExEntity.class).getBukkitInterface().getSimpleName();
+                    Generator_ExAbstractEntityType.getByExClass(ExEntity.class).getBukkitInterface()
+                            .getSimpleName();
         }
-
 
         // get methods from extension class
         Map<Integer, Generator_Method> methodsByHash = new LinkedHashMap<>();
@@ -174,7 +181,8 @@ public class EntityGenerator implements EntitiesGenerator {
             } else {
                 Generator_Method existingMethod = methodsByHash.get(hashCode);
                 // check if return type is more specific
-                if (existingMethod.getMethod().getReturnType().isAssignableFrom(method.getReturnType())) {
+                if (existingMethod.getMethod().getReturnType()
+                        .isAssignableFrom(method.getReturnType())) {
                     methodsByHash.put(hashCode, extensionMethod);
                 }
             }
@@ -191,8 +199,9 @@ public class EntityGenerator implements EntitiesGenerator {
         root.put("methods", methodsByHash.values());
         root.put("superInterface", Optional.ofNullable(superInterfaceName));
 
-        OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(entityOutputDir + File.separator +
-                DEST_EXTENSION_INTERFACE_DIR + File.separator + name + ".java"));
+        OutputStreamWriter out = new OutputStreamWriter(
+                new FileOutputStream(entityOutputDir + File.separator +
+                        DEST_EXTENSION_INTERFACE_DIR + File.separator + name + ".java"));
         interfaceTemplate.process(root, out);
         out.close();
 
@@ -208,13 +217,15 @@ public class EntityGenerator implements EntitiesGenerator {
 
     private void copyEntityTypes() throws IOException {
 
-        List<String> files = List.of("ExAbstractEntityType.java", "ExtendedEntity.java", "EntityMapper.java");
+        List<String> files = List.of("ExAbstractEntityType.java", "ExtendedEntity.java",
+                "EntityMapper.java");
 
         File src = new File(entitySrcDir + File.separator + DEST_TYPE_DIR);
         File dest = new File(entityOutputDir + File.separator + DEST_TYPE_DIR);
 
         for (File file : src.listFiles(f -> f.isFile() && files.contains(f.getName()))) {
-            FileUtils.copyFile(file, new File(dest.getAbsolutePath() + File.separator + file.getName()));
+            FileUtils.copyFile(file,
+                    new File(dest.getAbsolutePath() + File.separator + file.getName()));
         }
     }
 
@@ -229,7 +240,8 @@ public class EntityGenerator implements EntitiesGenerator {
             Class<? extends Entity> bukkitClass = generatorEntity.getBukkitClass();
 
             if (Modifier.isFinal(bukkitClass.getModifiers())) {
-                LibraryEntityGenerator.LOGGER.info("Skipped " + generatorEntity.getName() + ", craft bukkit class is final");
+                LibraryEntityGenerator.LOGGER.info(
+                        "Skipped " + generatorEntity.getName() + ", craft bukkit class is final");
                 continue;
             }
 
@@ -253,12 +265,14 @@ public class EntityGenerator implements EntitiesGenerator {
         // search extension class
         Class<? extends ExEntity> exClass = null;
         try {
-            exClass = (Class<? extends ExEntity>) Class.forName(EXTENSION_CLASS_MODULE + ".Ex" + nmsClass.getSimpleName());
+            exClass = (Class<? extends ExEntity>) Class.forName(
+                    EXTENSION_CLASS_MODULE + ".Ex" + nmsClass.getSimpleName());
         } catch (ClassNotFoundException e) {
             Class<?> superNmsClass = nmsClass.getSuperclass();
             do {
                 try {
-                    exClass = (Class<? extends ExEntity>) Class.forName(EXTENSION_CLASS_MODULE + ".Ex" + superNmsClass.getSimpleName());
+                    exClass = (Class<? extends ExEntity>) Class.forName(
+                            EXTENSION_CLASS_MODULE + ".Ex" + superNmsClass.getSimpleName());
                 } catch (ClassNotFoundException ignored) {
                 }
 
@@ -269,12 +283,15 @@ public class EntityGenerator implements EntitiesGenerator {
         String superExInterfaceName = this.interfaceNameByAbstractEntityClass.get(exClass);
 
         if (superExInterfaceName == null) {
-            LibraryEntityGenerator.LOGGER.warning("Could not find super interface '" + superExInterfaceName + "' for entity '" + simpleName + "'");
+            LibraryEntityGenerator.LOGGER.warning(
+                    "Could not find super interface '" + superExInterfaceName + "' for entity '"
+                            + simpleName + "'");
             return;
         }
 
         // collect extension stuff, like methods
-        Generator_NmsExtension extension = new Generator_NmsExtension(exClass, superExInterfaceName, bukkitClass);
+        Generator_NmsExtension extension = new Generator_NmsExtension(exClass, superExInterfaceName,
+                bukkitClass);
 
         // search template
 
@@ -283,7 +300,8 @@ public class EntityGenerator implements EntitiesGenerator {
 
         try {
             classTemplate = cfg.getTemplate(ENTITY_TEMPLATE_DIR + File.separator + exName + ".ftl");
-            interfaceTemplate = cfg.getTemplate(ENTITY_TEMPLATE_DIR + File.separator + "I" + exName + ".ftl");
+            interfaceTemplate = cfg.getTemplate(
+                    ENTITY_TEMPLATE_DIR + File.separator + "I" + exName + ".ftl");
         } catch (TemplateNotFoundException ignored) {
 
         }
@@ -321,7 +339,6 @@ public class EntityGenerator implements EntitiesGenerator {
         root.put("nmsTypeName", generatorEntity.getNmsTypeName());
         root.put("extension", extension);
 
-
         Writer out = new OutputStreamWriter(new FileOutputStream(entityOutputDir + File.separator +
                 DEST_ENTITY_DIR + File.separator + exName + ".java"));
         classTemplate.process(root, out);
@@ -345,8 +362,9 @@ public class EntityGenerator implements EntitiesGenerator {
         root.put("extensionModuleName", EXTENSION_CLASS_MODULE);
         root.put("entities", types);
 
-        Writer out = new OutputStreamWriter(new FileOutputStream(entityOutputDir + File.separator + DEST_TYPE_DIR
-                + File.separator + "ExEntityType.java"));
+        Writer out = new OutputStreamWriter(
+                new FileOutputStream(entityOutputDir + File.separator + DEST_TYPE_DIR
+                        + File.separator + "ExEntityType.java"));
         temp.process(root, out);
         out.close();
 

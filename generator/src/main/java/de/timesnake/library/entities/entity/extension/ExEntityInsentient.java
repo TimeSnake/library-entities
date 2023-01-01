@@ -137,7 +137,8 @@ public class ExEntityInsentient extends ExEntityLiving {
         this.getNMS().setTarget(target, EntityTargetEvent.TargetReason.CUSTOM, true);
     }
 
-    public void setTarget(EntityLiving entityliving, EntityTargetEvent.TargetReason reason, boolean fireEvent) {
+    public void setTarget(EntityLiving entityliving, EntityTargetEvent.TargetReason reason,
+            boolean fireEvent) {
         this.getNMS().setTarget(entityliving, reason, fireEvent);
     }
 

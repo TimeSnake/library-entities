@@ -42,18 +42,18 @@ public class CustomPathfinderGoalBreakBlock extends PathfinderGoal implements Lo
     private int soundDelay;
 
     public CustomPathfinderGoalBreakBlock(Mob entity, double speedModifier, boolean ignoreTarget,
-                                          Material... materials) {
+            Material... materials) {
         this(entity, speedModifier, ignoreTarget, null, Arrays.asList(materials));
     }
 
     public CustomPathfinderGoalBreakBlock(Mob entity, double speedModifier, boolean ignoreTarget,
-                                          Collection<Material> materials) {
+            Collection<Material> materials) {
         this(entity, speedModifier, ignoreTarget, null, materials);
     }
 
     public CustomPathfinderGoalBreakBlock(Mob entity, double speedModifier, boolean ignoreTarget,
-                                          ExCustomPathfinderGoalBreakBlock.BreakEvent event,
-                                          Collection<Material> materials) {
+            ExCustomPathfinderGoalBreakBlock.BreakEvent event,
+            Collection<Material> materials) {
         this.entity = entity;
         this.speedModifier = speedModifier;
         this.ignoreTarget = ignoreTarget;
@@ -83,7 +83,8 @@ public class CustomPathfinderGoalBreakBlock extends PathfinderGoal implements Lo
             return false;
         }
 
-        ExNavigation navigation = new ExNavigation((Navigation) this.entity.getNavigation().getNMS());
+        ExNavigation navigation = new ExNavigation(
+                (Navigation) this.entity.getNavigation().getNMS());
         PathEntity pathEntity = navigation.k();
 
         if (remainTime > 0) {
@@ -163,7 +164,8 @@ public class CustomPathfinderGoalBreakBlock extends PathfinderGoal implements Lo
 
     private void setCurrentBlock(ExBlockPosition block) {
         this.position = block;
-        this.currentBlock = this.entity.getNMSWorld().getWorld().getBlockAt(block.getX(), block.getY(), block.getZ());
+        this.currentBlock = this.entity.getNMSWorld().getWorld()
+                .getBlockAt(block.getX(), block.getY(), block.getZ());
         this.currentBlockType = this.currentBlock.getType();
         this.remainTime = this.currentBlock.getType().getHardness();
         this.soundDelay = 0;
@@ -179,8 +181,9 @@ public class CustomPathfinderGoalBreakBlock extends PathfinderGoal implements Lo
             return true;
         }
 
-        if (this.materials.contains(this.entity.getNMSWorld().getWorld().getBlockAt(block.getX(), block.getY(),
-                block.getZ()).getType())) {
+        if (this.materials.contains(
+                this.entity.getNMSWorld().getWorld().getBlockAt(block.getX(), block.getY(),
+                        block.getZ()).getType())) {
             return true;
         }
 
@@ -190,13 +193,14 @@ public class CustomPathfinderGoalBreakBlock extends PathfinderGoal implements Lo
     @Override
     public void c() {
 
-
     }
 
     @Override
     public boolean b() {
         boolean cancel =
-                !(this.currentBlock.getType().equals(this.currentBlockType) || this.entity.distanceSquared(this.currentBlock.getX() + 0.5, this.currentBlock.getY(), this.currentBlock.getZ() + 0.5) > 3.5);
+                !(this.currentBlock.getType().equals(this.currentBlockType) ||
+                        this.entity.distanceSquared(this.currentBlock.getX() + 0.5,
+                                this.currentBlock.getY(), this.currentBlock.getZ() + 0.5) > 3.5);
 
         if (cancel) {
             this.currentBlock = null;
@@ -209,8 +213,9 @@ public class CustomPathfinderGoalBreakBlock extends PathfinderGoal implements Lo
         this.entity.setAggressive(true);
         this.entity.setTarget((EntityLiving) null);
         this.remainTime -= this.speedModifier / 20;
-        this.entity.getControllerLook().a(this.currentBlock.getX() + 0.5, this.currentBlock.getY() + 0.5,
-                this.currentBlock.getZ() + 0.5);
+        this.entity.getControllerLook()
+                .a(this.currentBlock.getX() + 0.5, this.currentBlock.getY() + 0.5,
+                        this.currentBlock.getZ() + 0.5);
         this.entity.getNavigation().a(this.position);
         if (this.soundDelay <= 0) {
             this.entity.swingHand(ExEnumHand.MAIN_HAND);
@@ -226,8 +231,9 @@ public class CustomPathfinderGoalBreakBlock extends PathfinderGoal implements Lo
     @Override
     public void d() {
         if (this.currentBlock != null) {
-            this.currentBlock.getWorld().playEffect(this.currentBlock.getLocation(), Effect.STEP_SOUND,
-                    this.currentBlock.getType());
+            this.currentBlock.getWorld()
+                    .playEffect(this.currentBlock.getLocation(), Effect.STEP_SOUND,
+                            this.currentBlock.getType());
             this.currentBlock.setType(Material.AIR);
 
             if (this.event != null) {

@@ -213,13 +213,15 @@ public class ExEntity implements ExtendedEntity {
     }
 
     public double distanceSquared(ExBlockPosition position) {
-        return this.getLocation().distanceSquared(new Location(this.getBukkitEntity().getWorld(), position.getX(),
-                position.getY(), position.getZ()));
+        return this.getLocation()
+                .distanceSquared(new Location(this.getBukkitEntity().getWorld(), position.getX(),
+                        position.getY(), position.getZ()));
     }
 
 
     public double distanceSquared(double x, double y, double z) {
-        return this.getLocation().distanceSquared(new Location(this.getBukkitEntity().getWorld(), x, y, z));
+        return this.getLocation()
+                .distanceSquared(new Location(this.getBukkitEntity().getWorld(), x, y, z));
     }
 
     public double distanceSquared(ExEntity entity) {

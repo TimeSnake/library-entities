@@ -22,8 +22,9 @@ public class CustomPathfinderGoalPet extends PathfinderGoal {
     private double y;
     private double z;
 
-    public CustomPathfinderGoalPet(ExEntityInsentient pet, Player owner, double speed, float minDistance,
-                                   float teleportDistance) {
+    public CustomPathfinderGoalPet(ExEntityInsentient pet, Player owner, double speed,
+            float minDistance,
+            float teleportDistance) {
         this.pet = pet;
         this.owner = new ExPlayer(owner);
         this.speed = speed;
@@ -39,7 +40,8 @@ public class CustomPathfinderGoalPet extends PathfinderGoal {
             this.owner = null;
             return false;
 
-        } else if (this.owner.distanceSquared(this.pet) > (this.teleportDistance * this.teleportDistance) && this.teleportDistance > 0) {
+        } else if (this.owner.distanceSquared(this.pet) > (this.teleportDistance
+                * this.teleportDistance) && this.teleportDistance > 0) {
             pet.setPosition(this.owner.getX(), this.owner.getY(), this.owner.getZ());
             return false;
 
@@ -63,6 +65,7 @@ public class CustomPathfinderGoalPet extends PathfinderGoal {
 
     @Override
     public boolean b() {
-        return !this.pet.getNavigation().m() && this.owner.distanceSquared(this.pet) < (this.teleportDistance * this.teleportDistance);
+        return !this.pet.getNavigation().m() && this.owner.distanceSquared(this.pet) < (
+                this.teleportDistance * this.teleportDistance);
     }
 }

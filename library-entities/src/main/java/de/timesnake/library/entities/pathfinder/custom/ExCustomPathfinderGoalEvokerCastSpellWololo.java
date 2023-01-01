@@ -16,16 +16,19 @@ import net.minecraft.world.entity.monster.EntityIllagerWizard;
 import net.minecraft.world.item.EnumColor;
 import net.minecraft.world.level.GameRules;
 
-public class ExCustomPathfinderGoalEvokerCastSpellWololo extends ExCustomPathfinderGoalIllagerWizardCastSpell {
+public class ExCustomPathfinderGoalEvokerCastSpellWololo extends
+        ExCustomPathfinderGoalIllagerWizardCastSpell {
 
     public ExCustomPathfinderGoalEvokerCastSpellWololo() {
         super(new PathfinderGoalEvokerCastSpellWololo(null));
     }
 
-    protected static class PathfinderGoalEvokerCastSpellWololo extends PathfinderGoalIllagerWizardCastSpell {
+    protected static class PathfinderGoalEvokerCastSpellWololo extends
+            PathfinderGoalIllagerWizardCastSpell {
 
-        private final PathfinderTargetCondition e = PathfinderTargetCondition.b().a(16.0).a((entityliving) ->
-                ((EntitySheep) entityliving).t() == EnumColor.l);
+        private final PathfinderTargetCondition e = PathfinderTargetCondition.b().a(16.0)
+                .a((entityliving) ->
+                        ((EntitySheep) entityliving).t() == EnumColor.l);
 
         public PathfinderGoalEvokerCastSpellWololo(ExEntityIllagerWizard entity) {
             super(entity);
@@ -41,7 +44,8 @@ public class ExCustomPathfinderGoalEvokerCastSpellWololo extends ExCustomPathfin
             } else if (!this.entity.getNMS().s.W().b(GameRules.c)) {
                 return false;
             } else {
-                List<EntitySheep> list = this.entity.getNMS().s.a(EntitySheep.class, this.e, this.entity.getNMS(),
+                List<EntitySheep> list = this.entity.getNMS().s.a(EntitySheep.class, this.e,
+                        this.entity.getNMS(),
                         this.entity.getNMS().cz().c(16.0, 4.0, 16.0));
                 if (list.isEmpty()) {
                     return false;

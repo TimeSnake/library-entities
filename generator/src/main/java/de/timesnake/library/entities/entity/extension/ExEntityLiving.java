@@ -40,7 +40,8 @@ public class ExEntityLiving extends ExEntity {
     }
 
     public void setMaxHealth(float maxHealth) {
-        ((LivingEntity) this.getNMS().getBukkitEntity()).getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(maxHealth);
+        ((LivingEntity) this.getNMS().getBukkitEntity()).getAttribute(Attribute.GENERIC_MAX_HEALTH)
+                .setBaseValue(maxHealth);
     }
 
     public AttributeInstance getBukkitAttribute(Attribute attribute) {
@@ -81,7 +82,8 @@ public class ExEntityLiving extends ExEntity {
     }
 
     public ExEntityLiving getExLastDamager() {
-        return new ExEntityLiving(this.getNMS().dU()) {};
+        return new ExEntityLiving(this.getNMS().dU()) {
+        };
     }
 
     public int getHurtTimestamp() {

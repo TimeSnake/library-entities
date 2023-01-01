@@ -38,7 +38,7 @@ public class CustomPathfinderGoalBreakBlockToLocation extends PathfinderGoal {
     private int soundDelay;
 
     public CustomPathfinderGoalBreakBlockToLocation(Mob entity, double x, double y, double z,
-                                                    double speedModifier, Material... materials) {
+            double speedModifier, Material... materials) {
         this.entity = entity;
         this.targetX = x;
         this.targetY = y;
@@ -118,7 +118,8 @@ public class CustomPathfinderGoalBreakBlockToLocation extends PathfinderGoal {
     }
 
     private void setCurrentBlock(ExBlockPosition block) {
-        this.currentBlock = this.entity.getNMSWorld().getWorld().getBlockAt(block.getX(), block.getY(), block.getZ());
+        this.currentBlock = this.entity.getNMSWorld().getWorld()
+                .getBlockAt(block.getX(), block.getY(), block.getZ());
         this.currentBlockType = this.currentBlock.getType();
         this.remainTime = this.currentBlock.getType().getHardness();
         this.soundDelay = 0;
@@ -134,8 +135,9 @@ public class CustomPathfinderGoalBreakBlockToLocation extends PathfinderGoal {
             return true;
         }
 
-        if (this.materials.contains(this.entity.getNMSWorld().getWorld().getBlockAt(block.getX(), block.getY(),
-                block.getZ()).getType())) {
+        if (this.materials.contains(
+                this.entity.getNMSWorld().getWorld().getBlockAt(block.getX(), block.getY(),
+                        block.getZ()).getType())) {
             return true;
         }
 
@@ -149,8 +151,9 @@ public class CustomPathfinderGoalBreakBlockToLocation extends PathfinderGoal {
     @Override
     public boolean b() {
         this.remainTime -= this.speedModifier / 20;
-        this.entity.getControllerLook().a(this.currentBlock.getX() + 0.5, this.currentBlock.getY() + 0.5,
-                this.currentBlock.getZ() + 0.5);
+        this.entity.getControllerLook()
+                .a(this.currentBlock.getX() + 0.5, this.currentBlock.getY() + 0.5,
+                        this.currentBlock.getZ() + 0.5);
         this.entity.getNavigation().a(this.position);
         if (this.soundDelay <= 0) {
             this.entity.swingHand(ExEnumHand.MAIN_HAND);
@@ -161,7 +164,9 @@ public class CustomPathfinderGoalBreakBlockToLocation extends PathfinderGoal {
         this.soundDelay--;
 
         boolean cancel =
-                !(this.currentBlock.getType().equals(this.currentBlockType) && this.entity.distanceSquared(this.currentBlock.getX() + 0.5, this.currentBlock.getY(), this.currentBlock.getZ() + 0.5) < 2.5);
+                !(this.currentBlock.getType().equals(this.currentBlockType) &&
+                        this.entity.distanceSquared(this.currentBlock.getX() + 0.5,
+                                this.currentBlock.getY(), this.currentBlock.getZ() + 0.5) < 2.5);
 
         if (cancel) {
             this.currentBlock = null;
@@ -173,8 +178,9 @@ public class CustomPathfinderGoalBreakBlockToLocation extends PathfinderGoal {
     @Override
     public void d() {
         if (this.currentBlock != null) {
-            this.currentBlock.getWorld().playEffect(this.currentBlock.getLocation(), Effect.STEP_SOUND,
-                    this.currentBlock.getType());
+            this.currentBlock.getWorld()
+                    .playEffect(this.currentBlock.getLocation(), Effect.STEP_SOUND,
+                            this.currentBlock.getType());
             this.currentBlock.setType(Material.AIR);
         }
 

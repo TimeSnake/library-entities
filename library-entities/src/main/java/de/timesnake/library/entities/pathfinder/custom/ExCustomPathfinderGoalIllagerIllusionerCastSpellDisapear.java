@@ -13,13 +13,15 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.monster.EntityIllagerWizard;
 import org.bukkit.event.entity.EntityPotionEffectEvent;
 
-public class ExCustomPathfinderGoalIllagerIllusionerCastSpellDisapear extends ExCustomPathfinderGoalIllagerWizardCastSpell {
+public class ExCustomPathfinderGoalIllagerIllusionerCastSpellDisapear extends
+        ExCustomPathfinderGoalIllagerWizardCastSpell {
 
     public ExCustomPathfinderGoalIllagerIllusionerCastSpellDisapear() {
         super(new PathfinderGoalIllagerIllusionerCastSpellDisapear(null));
     }
 
-    static class PathfinderGoalIllagerIllusionerCastSpellDisapear extends PathfinderGoalIllagerWizardCastSpell {
+    static class PathfinderGoalIllagerIllusionerCastSpellDisapear extends
+            PathfinderGoalIllagerWizardCastSpell {
 
         public PathfinderGoalIllagerIllusionerCastSpellDisapear(ExEntityIllagerWizard entity) {
             super(entity);
@@ -38,7 +40,8 @@ public class ExCustomPathfinderGoalIllagerIllusionerCastSpellDisapear extends Ex
         }
 
         protected void k() {
-            this.entity.getNMS().addEffect(new MobEffect(MobEffects.n, 1200), EntityPotionEffectEvent.Cause.ILLUSION);
+            this.entity.getNMS().addEffect(new MobEffect(MobEffects.n, 1200),
+                    EntityPotionEffectEvent.Cause.ILLUSION);
         }
 
         protected @Nullable SoundEffect l() {

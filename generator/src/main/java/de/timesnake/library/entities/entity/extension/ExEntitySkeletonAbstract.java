@@ -77,7 +77,6 @@ public class ExEntitySkeletonAbstract extends ExEntityMonster {
             throw new RuntimeException(e);
         }
 
-
         PathfinderGoalMeleeAttack c;
         try {
             Field cField = EntitySkeletonAbstract.class.getDeclaredField("c");
@@ -91,7 +90,8 @@ public class ExEntitySkeletonAbstract extends ExEntityMonster {
             this.getGoalSelector().a(c);
             this.getGoalSelector().a(b);
 
-            net.minecraft.world.item.ItemStack itemStack = this.getNMS().b(ProjectileHelper.a(this.getNMS(), Items.mg));
+            net.minecraft.world.item.ItemStack itemStack = this.getNMS()
+                    .b(ProjectileHelper.a(this.getNMS(), Items.mg));
             if (itemStack.a(Items.mg)) {
                 this.getGoalSelector().a(priority, b);
             } else {

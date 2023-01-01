@@ -15,7 +15,8 @@ import java.util.Objects;
 
 public class EntityMapper {
 
-    public static <T extends net.minecraft.world.entity.Entity> Class<T> mapExClassToNmsClass(Class<? extends Entity> clazz) {
+    public static <T extends net.minecraft.world.entity.Entity> Class<T> mapExClassToNmsClass(
+            Class<? extends Entity> clazz) {
         try {
             return (Class<T>) clazz.getField("NMS_CLASS").get(null);
         } catch (NoSuchFieldException | IllegalAccessException ignored) {
@@ -23,7 +24,9 @@ public class EntityMapper {
         return null;
     }
 
-    public static <T extends net.minecraft.world.entity.Entity> Class<T>[] mapExClassesToNmsClasses(Class<? extends Entity>[] classes) {
-        return Arrays.stream(classes).map(EntityMapper::mapExClassToNmsClass).filter(Objects::nonNull).toArray(Class[]::new);
+    public static <T extends net.minecraft.world.entity.Entity> Class<T>[] mapExClassesToNmsClasses(
+            Class<? extends Entity>[] classes) {
+        return Arrays.stream(classes).map(EntityMapper::mapExClassToNmsClass)
+                .filter(Objects::nonNull).toArray(Class[]::new);
     }
 }

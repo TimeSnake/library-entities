@@ -27,7 +27,7 @@ public class CustomPathfinderGoalPath extends PathfinderGoal {
     protected ExBlockPosition currentPosition;
 
     public CustomPathfinderGoalPath(Mob entity, Location target, double speed, double minDistance,
-                                    Location... pathPoints) {
+            Location... pathPoints) {
         this.entity = entity;
         this.speed = speed;
         this.minDistance = minDistance;
@@ -42,7 +42,7 @@ public class CustomPathfinderGoalPath extends PathfinderGoal {
     }
 
     public CustomPathfinderGoalPath(Mob entity, Location target, double speed, double minDistance,
-                                    LinkedList<Location> pathPoints) {
+            LinkedList<Location> pathPoints) {
         this.entity = entity;
         this.speed = speed;
         this.minDistance = minDistance;
@@ -62,18 +62,22 @@ public class CustomPathfinderGoalPath extends PathfinderGoal {
 
         for (int i = this.pathPointsById.size() - 1; i >= 0; i--) {
             Location target = this.pathPointsById.get(i);
-            ExBlockPosition position = new ExBlockPosition(target.getX(), target.getY(), target.getZ());
+            ExBlockPosition position = new ExBlockPosition(target.getX(), target.getY(),
+                    target.getZ());
 
-            if (this.entity.distanceSquared(target.getX(), target.getY(), target.getZ()) > (32 * 32)) {
+            if (this.entity.distanceSquared(target.getX(), target.getY(), target.getZ()) > (32
+                    * 32)) {
                 continue;
             }
 
             ExPathEntity pathEntity = this.entity.getNavigation().calcExPathTo(position);
 
             if (pathEntity != null) {
-                if (pathEntity.getLastExPathPoint().getExPosition().inRange(position, this.minDistance)) {
+                if (pathEntity.getLastExPathPoint().getExPosition()
+                        .inRange(position, this.minDistance)) {
                     do {
-                        position = new ExBlockPosition(position.getX() + this.calcRandom(), position.getY(),
+                        position = new ExBlockPosition(position.getX() + this.calcRandom(),
+                                position.getY(),
                                 position.getZ() + this.calcRandom());
                         pathEntity = this.entity.getNavigation().calcExPathTo(position);
                     } while (pathEntity == null);
@@ -98,7 +102,10 @@ public class CustomPathfinderGoalPath extends PathfinderGoal {
 
     @Override
     public boolean b() {
-        return !this.entity.getNavigation().isPathFinished() && this.entity.distanceSquared(this.currentPosition.getX(), this.currentPosition.getY(), this.currentPosition.getZ()) < (this.minDistance * this.minDistance);
+        return !this.entity.getNavigation().isPathFinished() &&
+                this.entity.distanceSquared(this.currentPosition.getX(),
+                        this.currentPosition.getY(), this.currentPosition.getZ()) < (
+                        this.minDistance * this.minDistance);
     }
 
 }

@@ -44,10 +44,13 @@ public class ExCustomPathfinderGoalPhantomTarget extends ExPathfinderGoal {
                 --this.c;
             } else {
                 this.c = 60;
-                List<EntityHuman> list = this.entity.getExtension().getNMSWorld().a(this.b, this.entity.getHandle(),
-                        this.entity.getExtension().getExBoundingBox().grow(16.0D, 64.0D, 16.0D).getNMS());
+                List<EntityHuman> list = this.entity.getExtension().getNMSWorld()
+                        .a(this.b, this.entity.getHandle(),
+                                this.entity.getExtension().getExBoundingBox()
+                                        .grow(16.0D, 64.0D, 16.0D).getNMS());
                 if (!list.isEmpty()) {
-                    list.sort(Comparator.comparing((e) -> new ExEntity(((Entity) e)).getY()).reversed());
+                    list.sort(Comparator.comparing((e) -> new ExEntity(((Entity) e)).getY())
+                            .reversed());
 
                     for (EntityHuman entityhuman : list) {
                         this.entity.getExtension().setTarget(entityhuman);
@@ -61,7 +64,8 @@ public class ExCustomPathfinderGoalPhantomTarget extends ExPathfinderGoal {
 
         public boolean b() {
             EntityLiving entityliving = this.entity.getExtension().getNMSTarget();
-            return entityliving != null && this.entity.getExtension().a(entityliving, PathfinderTargetCondition.a);
+            return entityliving != null && this.entity.getExtension()
+                    .a(entityliving, PathfinderTargetCondition.a);
         }
     }
 }

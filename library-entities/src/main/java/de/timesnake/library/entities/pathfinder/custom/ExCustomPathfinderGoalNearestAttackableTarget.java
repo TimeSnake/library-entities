@@ -29,38 +29,42 @@ public class ExCustomPathfinderGoalNearestAttackableTarget extends ExPathfinderG
     }
 
     public ExCustomPathfinderGoalNearestAttackableTarget(Class<? extends LivingEntity> target,
-                                                         Double maxDistance) {
+            Double maxDistance) {
         this(target, true, false, maxDistance);
     }
 
     public ExCustomPathfinderGoalNearestAttackableTarget(Class<? extends LivingEntity> target,
-                                                         boolean checkIfCanSee) {
+            boolean checkIfCanSee) {
         this(target, checkIfCanSee, false);
     }
 
     public ExCustomPathfinderGoalNearestAttackableTarget(Class<? extends LivingEntity> target,
-                                                         boolean checkIfCanSee,
-                                                         boolean onlyIfPathExists) {
+            boolean checkIfCanSee,
+            boolean onlyIfPathExists) {
         this(target, 10, checkIfCanSee, onlyIfPathExists);
     }
 
     public ExCustomPathfinderGoalNearestAttackableTarget(Class<? extends LivingEntity> target,
-                                                         boolean checkIfCanSee,
-                                                         boolean onlyIfPathExists, Double maxDistance) {
+            boolean checkIfCanSee,
+            boolean onlyIfPathExists, Double maxDistance) {
         super(new PathfinderGoalNearestAttackableTarget(null,
-                EntityMapper.mapExClassToNmsClass(target), checkIfCanSee, onlyIfPathExists, maxDistance));
+                EntityMapper.mapExClassToNmsClass(target), checkIfCanSee, onlyIfPathExists,
+                maxDistance));
     }
 
-    public ExCustomPathfinderGoalNearestAttackableTarget(Class<? extends LivingEntity> target, int chance,
-                                                         boolean checkIfCanSee, boolean onlyIfPathExists) {
+    public ExCustomPathfinderGoalNearestAttackableTarget(Class<? extends LivingEntity> target,
+            int chance,
+            boolean checkIfCanSee, boolean onlyIfPathExists) {
         this(target, chance, checkIfCanSee, onlyIfPathExists, null);
     }
 
-    public ExCustomPathfinderGoalNearestAttackableTarget(Class<? extends LivingEntity> target, int chance,
-                                                         boolean checkIfCanSee, boolean onlyIfPathExists,
-                                                         @Nullable Predicate<EntityLiving> condition) {
+    public ExCustomPathfinderGoalNearestAttackableTarget(Class<? extends LivingEntity> target,
+            int chance,
+            boolean checkIfCanSee, boolean onlyIfPathExists,
+            @Nullable Predicate<EntityLiving> condition) {
         super(new PathfinderGoalNearestAttackableTarget(null,
-                EntityMapper.mapExClassToNmsClass(target), chance, checkIfCanSee, onlyIfPathExists, condition));
+                EntityMapper.mapExClassToNmsClass(target), chance, checkIfCanSee, onlyIfPathExists,
+                condition));
     }
 
     protected ExCustomPathfinderGoalNearestAttackableTarget(PathfinderGoalNearestAttackableTarget<?
@@ -68,7 +72,8 @@ public class ExCustomPathfinderGoalNearestAttackableTarget extends ExPathfinderG
         super(pathfinderGoal);
     }
 
-    protected ExCustomPathfinderGoalNearestAttackableTarget(net.minecraft.world.entity.ai.goal.target.PathfinderGoalNearestAttackableTarget<? extends EntityLiving> pathfinderGoal) {
+    protected ExCustomPathfinderGoalNearestAttackableTarget(
+            net.minecraft.world.entity.ai.goal.target.PathfinderGoalNearestAttackableTarget<? extends EntityLiving> pathfinderGoal) {
         super(pathfinderGoal);
     }
 
@@ -84,7 +89,9 @@ public class ExCustomPathfinderGoalNearestAttackableTarget extends ExPathfinderG
         ((PathfinderGoalNearestAttackableTarget<?>) super.pathfinderGoal).init();
     }
 
-    public static class PathfinderGoalNearestAttackableTarget<T extends EntityLiving> extends PathfinderGoalTarget {
+    public static class PathfinderGoalNearestAttackableTarget<T extends EntityLiving> extends
+            PathfinderGoalTarget {
+
         protected final Class<T> a;
         protected final int b;
         protected EntityLiving c;
@@ -94,24 +101,28 @@ public class ExCustomPathfinderGoalNearestAttackableTarget extends ExPathfinderG
 
         protected Double maxDistance;
 
-        public PathfinderGoalNearestAttackableTarget(EntityInsentient entityinsentient, Class<T> oclass, boolean flag) {
+        public PathfinderGoalNearestAttackableTarget(EntityInsentient entityinsentient,
+                Class<T> oclass, boolean flag) {
             this(entityinsentient, oclass, flag, false);
         }
 
-        public PathfinderGoalNearestAttackableTarget(EntityInsentient entityinsentient, Class<T> oclass, boolean flag
+        public PathfinderGoalNearestAttackableTarget(EntityInsentient entityinsentient,
+                Class<T> oclass, boolean flag
                 , boolean flag1) {
             this(entityinsentient, oclass, 10, flag, flag1, null);
         }
 
-        public PathfinderGoalNearestAttackableTarget(EntityInsentient entityinsentient, Class<T> oclass, boolean flag
+        public PathfinderGoalNearestAttackableTarget(EntityInsentient entityinsentient,
+                Class<T> oclass, boolean flag
                 , boolean flag1, Double maxDistance) {
             this(entityinsentient, oclass, 10, flag, flag1, null);
             this.maxDistance = maxDistance;
         }
 
-        public PathfinderGoalNearestAttackableTarget(EntityInsentient entityinsentient, Class<T> oclass, int i,
-                                                     boolean flag, boolean flag1,
-                                                     @Nullable Predicate<EntityLiving> predicate) {
+        public PathfinderGoalNearestAttackableTarget(EntityInsentient entityinsentient,
+                Class<T> oclass, int i,
+                boolean flag, boolean flag1,
+                @Nullable Predicate<EntityLiving> predicate) {
             super(entityinsentient, flag, flag1);
             this.a = oclass;
             this.b = i;
@@ -148,8 +159,9 @@ public class ExCustomPathfinderGoalNearestAttackableTarget extends ExPathfinderG
         }
 
         public void c() {
-            this.e.setTarget(this.c, this.c instanceof EntityPlayer ? EntityTargetEvent.TargetReason.CLOSEST_PLAYER :
-                    EntityTargetEvent.TargetReason.CLOSEST_ENTITY, true);
+            this.e.setTarget(this.c,
+                    this.c instanceof EntityPlayer ? EntityTargetEvent.TargetReason.CLOSEST_PLAYER :
+                            EntityTargetEvent.TargetReason.CLOSEST_ENTITY, true);
             super.c();
         }
 

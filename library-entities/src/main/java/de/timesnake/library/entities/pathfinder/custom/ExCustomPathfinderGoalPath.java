@@ -15,12 +15,13 @@ public class ExCustomPathfinderGoalPath extends ExPathfinderGoal {
         super(customPathfinderGoalPath);
     }
 
-    public ExCustomPathfinderGoalPath(Location target, double speed, double minDistance, Location... pathPoints) {
+    public ExCustomPathfinderGoalPath(Location target, double speed, double minDistance,
+            Location... pathPoints) {
         super(new CustomPathfinderGoalPath(null, target, speed, minDistance, pathPoints));
     }
 
     public ExCustomPathfinderGoalPath(Location target, double speed, double minDistance,
-                                      LinkedList<Location> pathPoints) {
+            LinkedList<Location> pathPoints) {
         super(new CustomPathfinderGoalPath(null, target, speed, minDistance, pathPoints));
     }
 

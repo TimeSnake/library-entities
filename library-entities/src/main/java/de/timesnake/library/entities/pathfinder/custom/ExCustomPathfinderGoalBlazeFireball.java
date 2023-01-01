@@ -14,11 +14,13 @@ import net.minecraft.world.entity.monster.EntityBlaze;
 public class ExCustomPathfinderGoalBlazeFireball extends ExPathfinderGoal {
 
     private static final Class<?> NMS_CLASS =
-            Arrays.stream(EntityBlaze.class.getDeclaredClasses()).filter((c) -> c.getSimpleName().equals(
-                    "PathfinderGoalBlazeFireball")).findFirst().get();
+            Arrays.stream(EntityBlaze.class.getDeclaredClasses())
+                    .filter((c) -> c.getSimpleName().equals(
+                            "PathfinderGoalBlazeFireball")).findFirst().get();
 
     public ExCustomPathfinderGoalBlazeFireball() {
-        super.pathfinderGoal = ((PathfinderGoal) Util.instantiate(NMS_CLASS, new Class[]{EntityBlaze.class},
+        super.pathfinderGoal = ((PathfinderGoal) Util.instantiate(NMS_CLASS,
+                new Class[]{EntityBlaze.class},
                 (EntityBlaze) null));
     }
 

@@ -23,7 +23,7 @@ public class CustomPathfinderGoalLocation extends PathfinderGoal {
     private final double z;
 
     public CustomPathfinderGoalLocation(Mob entity, double x, double y, double z, double speed,
-                                        double trackingDistance, double minDistance) {
+            double trackingDistance, double minDistance) {
         this.entity = entity;
         this.speed = speed;
         this.trackingDistance = trackingDistance;
@@ -37,10 +37,12 @@ public class CustomPathfinderGoalLocation extends PathfinderGoal {
     @Override
     public boolean a() {
 
-        if (this.entity.distanceSquared(x, y, z) < (this.minDistance * this.minDistance)) { // entity distance <
+        if (this.entity.distanceSquared(x, y, z) < (this.minDistance
+                * this.minDistance)) { // entity distance <
             // minDistance
             return false;
-        } else if (this.entity.distanceSquared(x, y, z) > (this.trackingDistance * this.trackingDistance)) { //
+        } else if (this.entity.distanceSquared(x, y, z) > (this.trackingDistance
+                * this.trackingDistance)) { //
             // entity not in tracking distance
             return false;
         } else {
@@ -56,7 +58,8 @@ public class CustomPathfinderGoalLocation extends PathfinderGoal {
 
     @Override
     public boolean b() {
-        return !this.entity.getNavigation().m() && this.entity.distanceSquared(x, y, z) < (this.minDistance * this.minDistance);
+        return !this.entity.getNavigation().m() && this.entity.distanceSquared(x, y, z) < (
+                this.minDistance * this.minDistance);
     }
 
     @Override
