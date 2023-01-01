@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 /*
@@ -9,7 +9,6 @@
 package de.timesnake.library.entities.entity.extension;
 
 import com.mojang.authlib.GameProfile;
-
 import java.util.UUID;
 
 public interface HumanEntity extends LivingEntity, org.bukkit.entity.HumanEntity {

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 /*
@@ -10,11 +10,31 @@ package de.timesnake.library.entities.entity.type;
 
 import de.timesnake.library.entities.entity.extension.ExEntity;
 import de.timesnake.library.entities.entity.extension.HumanEntity;
-import org.bukkit.entity.*;
-
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.bukkit.entity.AbstractArrow;
+import org.bukkit.entity.AbstractSkeleton;
+import org.bukkit.entity.AbstractVillager;
+import org.bukkit.entity.Ageable;
+import org.bukkit.entity.Ambient;
+import org.bukkit.entity.Animals;
+import org.bukkit.entity.Creature;
+import org.bukkit.entity.Creeper;
+import org.bukkit.entity.Fish;
+import org.bukkit.entity.Flying;
+import org.bukkit.entity.Golem;
+import org.bukkit.entity.Hanging;
+import org.bukkit.entity.Illager;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Mob;
+import org.bukkit.entity.Monster;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Raider;
+import org.bukkit.entity.Spellcaster;
+import org.bukkit.entity.Spider;
+import org.bukkit.entity.Tameable;
+import org.bukkit.entity.WaterMob;
 
 public class ExAbstractEntityType<NmsType extends net.minecraft.world.entity.Entity> {
 

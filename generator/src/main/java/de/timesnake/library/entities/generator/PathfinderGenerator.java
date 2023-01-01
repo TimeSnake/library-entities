@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities.generator;
@@ -7,12 +7,15 @@ package de.timesnake.library.entities.generator;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import org.apache.commons.io.FileUtils;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
+import org.apache.commons.io.FileUtils;
 
 public class PathfinderGenerator implements EntitiesGenerator {
 

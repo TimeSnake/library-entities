@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities.generator;
@@ -7,7 +7,6 @@ package de.timesnake.library.entities.generator;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;

@@ -1,15 +1,14 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities.generator;
 
 import freemarker.template.Configuration;
-import org.apache.commons.io.FileUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import org.apache.commons.io.FileUtils;
 
 public class WrapperGenerator implements EntitiesGenerator {
 

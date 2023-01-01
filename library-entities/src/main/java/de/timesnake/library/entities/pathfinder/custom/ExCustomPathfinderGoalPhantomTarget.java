@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities.pathfinder.custom;
@@ -8,14 +8,13 @@ import de.timesnake.library.entities.entity.bukkit.ExPhantom;
 import de.timesnake.library.entities.entity.extension.ExEntity;
 import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
+import java.util.Comparator;
+import java.util.List;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import net.minecraft.world.entity.ai.targeting.PathfinderTargetCondition;
 import net.minecraft.world.entity.player.EntityHuman;
-
-import java.util.Comparator;
-import java.util.List;
 
 public class ExCustomPathfinderGoalPhantomTarget extends ExPathfinderGoal {
 

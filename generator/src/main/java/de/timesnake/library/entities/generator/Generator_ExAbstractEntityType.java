@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 /*
@@ -8,31 +8,86 @@
 
 package de.timesnake.library.entities.generator;
 
-import de.timesnake.library.entities.entity.extension.*;
+import de.timesnake.library.entities.entity.extension.ExEntity;
+import de.timesnake.library.entities.entity.extension.ExEntityAgeable;
+import de.timesnake.library.entities.entity.extension.ExEntityAmbient;
+import de.timesnake.library.entities.entity.extension.ExEntityAnimal;
+import de.timesnake.library.entities.entity.extension.ExEntityArrow;
+import de.timesnake.library.entities.entity.extension.ExEntityCreature;
+import de.timesnake.library.entities.entity.extension.ExEntityCreeper;
+import de.timesnake.library.entities.entity.extension.ExEntityFireball;
+import de.timesnake.library.entities.entity.extension.ExEntityFish;
+import de.timesnake.library.entities.entity.extension.ExEntityFlying;
+import de.timesnake.library.entities.entity.extension.ExEntityGolem;
+import de.timesnake.library.entities.entity.extension.ExEntityHanging;
+import de.timesnake.library.entities.entity.extension.ExEntityHuman;
+import de.timesnake.library.entities.entity.extension.ExEntityIllagerAbstract;
+import de.timesnake.library.entities.entity.extension.ExEntityIllagerWizard;
+import de.timesnake.library.entities.entity.extension.ExEntityInsentient;
+import de.timesnake.library.entities.entity.extension.ExEntityLiving;
+import de.timesnake.library.entities.entity.extension.ExEntityMonster;
+import de.timesnake.library.entities.entity.extension.ExEntityPlayer;
+import de.timesnake.library.entities.entity.extension.ExEntityRaider;
+import de.timesnake.library.entities.entity.extension.ExEntitySkeletonAbstract;
+import de.timesnake.library.entities.entity.extension.ExEntitySpider;
+import de.timesnake.library.entities.entity.extension.ExEntityTameableAnimal;
+import de.timesnake.library.entities.entity.extension.ExEntityVillagerAbstract;
+import de.timesnake.library.entities.entity.extension.ExEntityWaterAnimal;
+import de.timesnake.library.entities.entity.extension.ExIProjectile;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import net.minecraft.server.level.EntityPlayer;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntityAgeable;
+import net.minecraft.world.entity.EntityCreature;
+import net.minecraft.world.entity.EntityFlying;
+import net.minecraft.world.entity.EntityInsentient;
+import net.minecraft.world.entity.EntityLiving;
+import net.minecraft.world.entity.EntityTameableAnimal;
 import net.minecraft.world.entity.ambient.EntityAmbient;
 import net.minecraft.world.entity.animal.EntityAnimal;
 import net.minecraft.world.entity.animal.EntityFish;
 import net.minecraft.world.entity.animal.EntityGolem;
 import net.minecraft.world.entity.animal.EntityWaterAnimal;
 import net.minecraft.world.entity.decoration.EntityHanging;
-import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.monster.EntityCreeper;
+import net.minecraft.world.entity.monster.EntityIllagerAbstract;
+import net.minecraft.world.entity.monster.EntityIllagerWizard;
+import net.minecraft.world.entity.monster.EntityMonster;
+import net.minecraft.world.entity.monster.EntitySkeletonAbstract;
+import net.minecraft.world.entity.monster.EntitySpider;
 import net.minecraft.world.entity.npc.EntityVillagerAbstract;
 import net.minecraft.world.entity.player.EntityHuman;
 import net.minecraft.world.entity.projectile.EntityArrow;
 import net.minecraft.world.entity.projectile.EntityFireball;
 import net.minecraft.world.entity.projectile.IProjectile;
 import net.minecraft.world.entity.raid.EntityRaider;
+import org.bukkit.entity.AbstractArrow;
+import org.bukkit.entity.AbstractSkeleton;
+import org.bukkit.entity.AbstractVillager;
+import org.bukkit.entity.Ageable;
+import org.bukkit.entity.Ambient;
+import org.bukkit.entity.Animals;
+import org.bukkit.entity.Creature;
+import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Fireball;
+import org.bukkit.entity.Fish;
+import org.bukkit.entity.Flying;
+import org.bukkit.entity.Golem;
+import org.bukkit.entity.Hanging;
 import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Illager;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
-import org.bukkit.entity.*;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.bukkit.entity.Monster;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
+import org.bukkit.entity.Raider;
+import org.bukkit.entity.Spellcaster;
+import org.bukkit.entity.Spider;
+import org.bukkit.entity.Tameable;
+import org.bukkit.entity.WaterMob;
 
 public class Generator_ExAbstractEntityType<NmsType extends net.minecraft.world.entity.Entity> {
 

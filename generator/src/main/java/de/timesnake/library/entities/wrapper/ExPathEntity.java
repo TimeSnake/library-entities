@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 /*
@@ -8,11 +8,10 @@
 
 package de.timesnake.library.entities.wrapper;
 
-import net.minecraft.world.level.pathfinder.PathEntity;
-import net.minecraft.world.level.pathfinder.PathPoint;
-
 import java.lang.reflect.Field;
 import java.util.List;
+import net.minecraft.world.level.pathfinder.PathEntity;
+import net.minecraft.world.level.pathfinder.PathPoint;
 
 public class ExPathEntity {
 

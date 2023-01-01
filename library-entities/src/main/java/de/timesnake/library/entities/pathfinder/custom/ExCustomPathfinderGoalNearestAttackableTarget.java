@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities.pathfinder.custom;
@@ -9,6 +9,10 @@ import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.entity.type.EntityMapper;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoalTarget;
+import java.lang.reflect.Field;
+import java.util.EnumSet;
+import java.util.function.Predicate;
+import javax.annotation.Nullable;
 import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.EntityLiving;
@@ -17,11 +21,6 @@ import net.minecraft.world.entity.ai.targeting.PathfinderTargetCondition;
 import net.minecraft.world.entity.player.EntityHuman;
 import net.minecraft.world.phys.AxisAlignedBB;
 import org.bukkit.event.entity.EntityTargetEvent;
-
-import javax.annotation.Nullable;
-import java.lang.reflect.Field;
-import java.util.EnumSet;
-import java.util.function.Predicate;
 
 public class ExCustomPathfinderGoalNearestAttackableTarget extends ExPathfinderGoalTarget {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities.pathfinder.custom;
@@ -8,13 +8,12 @@ import de.timesnake.library.entities.entity.extension.Mob;
 import de.timesnake.library.entities.entity.type.EntityMapper;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.entities.wrapper.ExBlockPosition;
+import java.util.EnumSet;
+import java.util.List;
 import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import net.minecraft.world.entity.ai.targeting.PathfinderTargetCondition;
 import org.bukkit.event.entity.EntityTargetEvent;
-
-import java.util.EnumSet;
-import java.util.List;
 
 public abstract class ExCustomPathfinderGoalSpawnArmy extends ExPathfinderGoal {
 

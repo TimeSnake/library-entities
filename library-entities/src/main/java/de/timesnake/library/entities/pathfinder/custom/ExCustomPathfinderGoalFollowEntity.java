@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities.pathfinder.custom;
@@ -12,12 +12,11 @@ import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.entities.wrapper.ExControllerLook;
 import de.timesnake.library.entities.wrapper.ExNavigationAbstract;
 import de.timesnake.library.entities.wrapper.ExPathType;
+import java.util.EnumSet;
+import java.util.List;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
-
-import java.util.EnumSet;
-import java.util.List;
 
 public class ExCustomPathfinderGoalFollowEntity extends ExPathfinderGoal {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 package de.timesnake.library.entities.pathfinder.custom;
@@ -8,9 +8,8 @@ import de.timesnake.library.entities.entity.extension.Entity;
 import de.timesnake.library.entities.entity.extension.HumanEntity;
 import de.timesnake.library.entities.entity.extension.LivingEntity;
 import de.timesnake.library.entities.entity.extension.Mob;
-import org.bukkit.Location;
-
 import java.util.LinkedList;
+import org.bukkit.Location;
 
 public class ExCustomPathfinderGoalPathLeader extends ExCustomPathfinderGoalPath {
 

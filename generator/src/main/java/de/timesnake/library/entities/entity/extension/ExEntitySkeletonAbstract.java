@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 timesnake
+ * Copyright (C) 2023 timesnake
  */
 
 /*
@@ -10,14 +10,13 @@ package de.timesnake.library.entities.entity.extension;
 
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 import de.timesnake.library.entities.pathfinder.ExPathfinderGoalBowShoot;
+import java.lang.reflect.Field;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalBowShoot;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalMeleeAttack;
 import net.minecraft.world.entity.monster.EntitySkeletonAbstract;
 import net.minecraft.world.entity.projectile.ProjectileHelper;
 import net.minecraft.world.item.Items;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftAbstractSkeleton;
-
-import java.lang.reflect.Field;
 
 
 public class ExEntitySkeletonAbstract extends ExEntityMonster {
