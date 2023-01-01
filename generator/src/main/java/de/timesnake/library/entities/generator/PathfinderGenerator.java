@@ -19,7 +19,8 @@ import org.apache.commons.io.FileUtils;
 
 public class PathfinderGenerator implements EntitiesGenerator {
 
-    private final List<String> FILES_TO_COPY = List.of("ExPathfinderGoal.java", "ExPathfinderGoalTarget.java");
+    private final List<String> FILES_TO_COPY = List.of("ExPathfinderGoal.java",
+            "ExPathfinderGoalTarget.java");
 
     private final Configuration cfg;
 
@@ -67,7 +68,8 @@ public class PathfinderGenerator implements EntitiesGenerator {
         return true;
     }
 
-    private void generatePathfinderGoal(Generator_PathfinderGoal<?> pathfinderGoal, boolean isTargetGoal) throws IOException,
+    private void generatePathfinderGoal(Generator_PathfinderGoal<?> pathfinderGoal,
+            boolean isTargetGoal) throws IOException,
             TemplateException {
 
         Template temp;
@@ -83,8 +85,9 @@ public class PathfinderGenerator implements EntitiesGenerator {
         root.put("pathfinder", pathfinderGoal);
 
         Writer out =
-                new OutputStreamWriter(new FileOutputStream(outputDir.getAbsolutePath() + File.separator +
-                        pathfinderGoal.getExName() + ".java"));
+                new OutputStreamWriter(
+                        new FileOutputStream(outputDir.getAbsolutePath() + File.separator +
+                                pathfinderGoal.getExName() + ".java"));
         temp.process(root, out);
         out.close();
     }
@@ -92,7 +95,8 @@ public class PathfinderGenerator implements EntitiesGenerator {
 
     private void copyPathfinderBasis() throws IOException {
         for (File file : srcDir.listFiles(f -> f.isFile() && FILES_TO_COPY.contains(f.getName()))) {
-            FileUtils.copyFile(file, new File(outputDir.getAbsolutePath() + File.separator + file.getName()));
+            FileUtils.copyFile(file,
+                    new File(outputDir.getAbsolutePath() + File.separator + file.getName()));
         }
     }
 }

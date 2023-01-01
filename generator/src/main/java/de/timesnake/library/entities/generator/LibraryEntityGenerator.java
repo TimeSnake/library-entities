@@ -42,7 +42,8 @@ public class LibraryEntityGenerator {
         LOGGER.addHandler(handler);
     }
 
-    public static void main(String[] args) throws IOException, TemplateException, ClassNotFoundException {
+    public static void main(String[] args)
+            throws IOException, TemplateException, ClassNotFoundException {
         new LibraryEntityGenerator().generate(args);
     }
 
@@ -103,12 +104,14 @@ public class LibraryEntityGenerator {
         LinkedList<EntitiesGenerator> generators = new LinkedList<>();
 
         // add generators
-        generators.addLast(new EntityGenerator(cfg, entitySrcDir, entityOutputDir, entityOutputModule));
+        generators.addLast(
+                new EntityGenerator(cfg, entitySrcDir, entityOutputDir, entityOutputModule));
 
         generators.addLast(new WrapperGenerator(cfg, new File(wrapperSrcDir),
                 new File(wrapperOutputDir)));
 
-        generators.addLast(new PathfinderGenerator(cfg, new File(pathfinderSrcDir), new File(pathfinderOutputDir)));
+        generators.addLast(new PathfinderGenerator(cfg, new File(pathfinderSrcDir),
+                new File(pathfinderOutputDir)));
 
         // run generators
         generators.forEach(EntitiesGenerator::clean);

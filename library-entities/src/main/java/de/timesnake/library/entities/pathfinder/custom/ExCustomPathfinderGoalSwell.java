@@ -38,7 +38,9 @@ public class ExCustomPathfinderGoalSwell extends ExPathfinderGoal {
 
         public boolean a() {
             ExEntityLiving target = this.entity.getExtension().getExTarget();
-            return this.entity.eK() > 0 || target != null && this.entity.getExtension().distanceSquared(target) < this.radius * this.radius;
+            return this.entity.eK() > 0 || target != null
+                    && this.entity.getExtension().distanceSquared(target)
+                    < this.radius * this.radius;
         }
 
         public void c() {
@@ -53,7 +55,8 @@ public class ExCustomPathfinderGoalSwell extends ExPathfinderGoal {
         public void e() {
             if (this.target == null) {
                 this.entity.a(-1);
-            } else if (this.entity.getExtension().distanceSquared(this.target) > this.keepSwellingRadius * this.keepSwellingRadius) {
+            } else if (this.entity.getExtension().distanceSquared(this.target)
+                    > this.keepSwellingRadius * this.keepSwellingRadius) {
                 this.entity.a(-1);
             } else if (!this.entity.getExtension().getEntitySenses().a(this.target)) {
                 this.entity.a(-1);

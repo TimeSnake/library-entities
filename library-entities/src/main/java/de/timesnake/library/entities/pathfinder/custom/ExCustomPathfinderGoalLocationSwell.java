@@ -21,7 +21,8 @@ public class ExCustomPathfinderGoalLocationSwell extends ExPathfinderGoal {
         super.setNMSField("entity", entity);
     }
 
-    public static class PathfinderGoalCustomSwell extends PathfinderGoal implements LocationTargetable {
+    public static class PathfinderGoalCustomSwell extends PathfinderGoal implements
+            LocationTargetable {
 
         private final ExCreeper entity;
         private final double radius;
@@ -30,7 +31,8 @@ public class ExCustomPathfinderGoalLocationSwell extends ExPathfinderGoal {
         private Double y;
         private Double z;
 
-        public PathfinderGoalCustomSwell(ExCreeper entity, double radius, double keepSwellingRadius) {
+        public PathfinderGoalCustomSwell(ExCreeper entity, double radius,
+                double keepSwellingRadius) {
             this.entity = entity;
             this.radius = radius;
             this.keepSwellingRadius = keepSwellingRadius;
@@ -42,7 +44,8 @@ public class ExCustomPathfinderGoalLocationSwell extends ExPathfinderGoal {
             if (this.x == null || this.y == null || this.z == null) {
                 return false;
             }
-            return this.entity.q() > 0 || this.entity.getExtension().distanceSquared(x, y, z) <= this.radius * this.radius;
+            return this.entity.q() > 0 || this.entity.getExtension().distanceSquared(x, y, z)
+                    <= this.radius * this.radius;
         }
 
         public void c() {
@@ -59,7 +62,8 @@ public class ExCustomPathfinderGoalLocationSwell extends ExPathfinderGoal {
         public void e() {
             if (this.x == null || this.y == null || this.z == null) {
                 this.entity.a(-1);
-            } else if (this.entity.getExtension().distanceSquared(x, y, z) > this.keepSwellingRadius * this.keepSwellingRadius) {
+            } else if (this.entity.getExtension().distanceSquared(x, y, z)
+                    > this.keepSwellingRadius * this.keepSwellingRadius) {
                 this.entity.a(-1);
             } else {
                 this.entity.a(1);

@@ -21,13 +21,14 @@ import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 public class ExCustomPathfinderGoalFollowEntity extends ExPathfinderGoal {
 
     public ExCustomPathfinderGoalFollowEntity(LivingEntity leader, float speed,
-                                              float maxDistance, float leaderSearchRadius) {
-        super(new PathfinderGoalFollowEntity(null, (ExEntityInsentient) leader.getExtension(), speed, maxDistance,
+            float maxDistance, float leaderSearchRadius) {
+        super(new PathfinderGoalFollowEntity(null, (ExEntityInsentient) leader.getExtension(),
+                speed, maxDistance,
                 leaderSearchRadius));
     }
 
     public ExCustomPathfinderGoalFollowEntity(Class<? extends Mob> leader, float speed,
-                                              float maxDistance, float leaderSearchRadius) {
+            float maxDistance, float leaderSearchRadius) {
         super(new PathfinderGoalFollowEntity(null,
                 EntityMapper.mapExClassToNmsClass(leader), speed, maxDistance, leaderSearchRadius));
     }
@@ -52,18 +53,21 @@ public class ExCustomPathfinderGoalFollowEntity extends ExPathfinderGoal {
         private float h;
         private ExEntityInsentient leader;
 
-        public PathfinderGoalFollowEntity(ExEntityInsentient entity, Class<? extends EntityInsentient> leaderClass,
-                                          double speed, float maxDistance, float leaderSearchRadius) {
+        public PathfinderGoalFollowEntity(ExEntityInsentient entity,
+                Class<? extends EntityInsentient> leaderClass,
+                double speed, float maxDistance, float leaderSearchRadius) {
             this.entity = entity;
             this.speed = speed;
             this.maxDistance = maxDistance;
             this.leaderSearchRadius = leaderSearchRadius;
             this.leaderClass = leaderClass;
-            this.a(EnumSet.of(ExPathfinderGoal.Type.MOVE.getNMS(), ExPathfinderGoal.Type.LOOK.getNMS()));
+            this.a(EnumSet.of(ExPathfinderGoal.Type.MOVE.getNMS(),
+                    ExPathfinderGoal.Type.LOOK.getNMS()));
         }
 
-        public PathfinderGoalFollowEntity(ExEntityInsentient entity, ExEntityInsentient leader, double speed,
-                                          float maxDistance, float leaderSearchRadius) {
+        public PathfinderGoalFollowEntity(ExEntityInsentient entity, ExEntityInsentient leader,
+                double speed,
+                float maxDistance, float leaderSearchRadius) {
             this(entity, leader.getNMS().getClass(), speed, maxDistance, leaderSearchRadius);
             this.leader = leader;
             this.leaderEntity = leader;
@@ -71,14 +75,18 @@ public class ExCustomPathfinderGoalFollowEntity extends ExPathfinderGoal {
 
         public boolean a() {
             if (this.leader != null) {
-                return this.entity.distanceSquared(this.leader) > this.maxDistance * this.maxDistance;
+                return this.entity.distanceSquared(this.leader)
+                        > this.maxDistance * this.maxDistance;
             } else {
-                List<? extends Entity> entities = this.entity.getExWorld().getNMS().a(this.leaderClass,
-                        this.entity.getExBoundingBox().grow(this.leaderSearchRadius).getNMS());
+                List<? extends Entity> entities = this.entity.getExWorld().getNMS()
+                        .a(this.leaderClass,
+                                this.entity.getExBoundingBox().grow(this.leaderSearchRadius)
+                                        .getNMS());
                 if (!entities.isEmpty()) {
 
                     for (Entity entity : entities) {
-                        if (entity instanceof EntityInsentient && !new ExEntityInsentient((EntityInsentient) entity).isInvisible()) {
+                        if (entity instanceof EntityInsentient && !new ExEntityInsentient(
+                                (EntityInsentient) entity).isInvisible()) {
                             this.leaderEntity = new ExEntityInsentient((EntityInsentient) entity);
                             return true;
                         }
@@ -90,7 +98,9 @@ public class ExCustomPathfinderGoalFollowEntity extends ExPathfinderGoal {
         }
 
         public boolean b() {
-            return this.leaderEntity != null && !this.navigationAbstract.m() && this.entity.distanceSquared(this.leaderEntity) > (double) (this.maxDistance * this.maxDistance);
+            return this.leaderEntity != null && !this.navigationAbstract.m()
+                    && this.entity.distanceSquared(this.leaderEntity) > (double) (this.maxDistance
+                    * this.maxDistance);
         }
 
         public void c() {
@@ -109,7 +119,8 @@ public class ExCustomPathfinderGoalFollowEntity extends ExPathfinderGoal {
 
         public void e() {
             if (this.leaderEntity != null && !this.entity.isLeashed()) {
-                this.entity.getControllerLook().a(this.leaderEntity, 10.0F, (float) this.entity.O());
+                this.entity.getControllerLook()
+                        .a(this.leaderEntity, 10.0F, (float) this.entity.O());
                 if (--this.f <= 0) {
                     this.f = 10;
                     double deltaX = this.entity.getX() - this.leaderEntity.getX();
@@ -121,12 +132,16 @@ public class ExCustomPathfinderGoalFollowEntity extends ExPathfinderGoal {
                     } else {
                         this.navigationAbstract.o();
                         ExControllerLook controllerLook = this.leaderEntity.getControllerLook();
-                        if (distanceSquared <= (double) this.maxDistance || controllerLook.d() == this.entity.getX() && controllerLook.e() == this.entity.getY() && controllerLook.f() == this.entity.getZ()) {
+                        if (distanceSquared <= (double) this.maxDistance
+                                || controllerLook.d() == this.entity.getX()
+                                && controllerLook.e() == this.entity.getY()
+                                && controllerLook.f() == this.entity.getZ()) {
 
                             double var9 = this.leaderEntity.getX() - this.entity.getX();
                             double var11 = this.leaderEntity.getZ() - this.entity.getZ();
 
-                            this.navigationAbstract.walkTo(this.entity.getX() - var9, this.entity.getY(),
+                            this.navigationAbstract.walkTo(this.entity.getX() - var9,
+                                    this.entity.getY(),
                                     this.entity.getZ() - var11, this.speed);
                         }
 

@@ -23,11 +23,14 @@ public class EntityManager {
     }
 
     public static void spawnEntity(World world, org.bukkit.entity.Entity entity) {
-        ((CraftWorld) world).addEntity(((CraftEntity) entity).getHandle(), CreatureSpawnEvent.SpawnReason.CUSTOM);
+        ((CraftWorld) world).addEntity(((CraftEntity) entity).getHandle(),
+                CreatureSpawnEvent.SpawnReason.CUSTOM);
     }
 
-    public static void spawnEntity(World world, org.bukkit.entity.Entity entity, boolean randomizeData) {
-        ((CraftWorld) world).addEntity(((CraftEntity) entity).getHandle(), CreatureSpawnEvent.SpawnReason.CUSTOM,
+    public static void spawnEntity(World world, org.bukkit.entity.Entity entity,
+            boolean randomizeData) {
+        ((CraftWorld) world).addEntity(((CraftEntity) entity).getHandle(),
+                CreatureSpawnEvent.SpawnReason.CUSTOM,
                 null, randomizeData);
     }
 

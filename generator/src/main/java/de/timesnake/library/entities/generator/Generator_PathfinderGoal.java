@@ -124,7 +124,8 @@ public class Generator_PathfinderGoal<Clazz> {
                             new PathfinderParameter<>("radius", float.class),
                             new PathfinderParameter<>("outerSpeed", double.class),
                             new PathfinderParameter<>("innerSpeed", double.class),
-                            new PathfinderParameter<>("predicate", Predicate.class).defaultValue("p -> true")));
+                            new PathfinderParameter<>("predicate", Predicate.class).defaultValue(
+                                    "p -> true")));
     public static final Generator_PathfinderGoal<PathfinderGoalBeg> BEG =
             new Generator_PathfinderGoal<>(PathfinderGoalBeg.class, EntityWolf.class,
                     List.of(new PathfinderField("radius", float.class)),
@@ -150,7 +151,8 @@ public class Generator_PathfinderGoal<Clazz> {
                             new PathfinderParameter<>("predicate", Predicate.class)));
 
     public static final Generator_PathfinderGoal<PathfinderGoalBreath> BREATH =
-            new Generator_PathfinderGoal<>(PathfinderGoalBreath.class, EntityCreature.class, List.of());
+            new Generator_PathfinderGoal<>(PathfinderGoalBreath.class, EntityCreature.class,
+                    List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalBreed> BREED =
             new Generator_PathfinderGoal<>(PathfinderGoalBreed.class, EntityAnimal.class,
@@ -180,10 +182,12 @@ public class Generator_PathfinderGoal<Clazz> {
                     List.of(new PathfinderParameter<>("var0", boolean.class)));
 
     public static final Generator_PathfinderGoal<PathfinderGoalEatTile> EAT_TILE =
-            new Generator_PathfinderGoal<>(PathfinderGoalEatTile.class, EntityInsentient.class, List.of());
+            new Generator_PathfinderGoal<>(PathfinderGoalEatTile.class, EntityInsentient.class,
+                    List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalFishSchool> FISH_SCHOOL =
-            new Generator_PathfinderGoal<>(PathfinderGoalFishSchool.class, EntityFishSchool.class, List.of());
+            new Generator_PathfinderGoal<>(PathfinderGoalFishSchool.class, EntityFishSchool.class,
+                    List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalFleeSun> FLEE_SUN =
             new Generator_PathfinderGoal<>(PathfinderGoalFleeSun.class, EntityCreature.class,
@@ -191,10 +195,12 @@ public class Generator_PathfinderGoal<Clazz> {
                     List.of(new PathfinderParameter<>("speed", double.class)));
 
     public static final Generator_PathfinderGoal<PathfinderGoalFloat> FLOAT =
-            new Generator_PathfinderGoal<>(PathfinderGoalFloat.class, EntityInsentient.class, List.of());
+            new Generator_PathfinderGoal<>(PathfinderGoalFloat.class, EntityInsentient.class,
+                    List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalFollowBoat> FOLLOW_BOAT =
-            new Generator_PathfinderGoal<>(PathfinderGoalFollowBoat.class, EntityCreature.class, List.of());
+            new Generator_PathfinderGoal<>(PathfinderGoalFollowBoat.class, EntityCreature.class,
+                    List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalFollowEntity> FOLLOW_ENTITY =
             new Generator_PathfinderGoal<>(PathfinderGoalFollowEntity.class, EntityInsentient.class,
@@ -206,7 +212,8 @@ public class Generator_PathfinderGoal<Clazz> {
                             new PathfinderParameter<>("searchRadius", float.class)));
 
     public static final Generator_PathfinderGoal<PathfinderGoalFollowOwner> FOLLOW_OWNER =
-            new Generator_PathfinderGoal<>(PathfinderGoalFollowOwner.class, EntityTameableAnimal.class,
+            new Generator_PathfinderGoal<>(PathfinderGoalFollowOwner.class,
+                    EntityTameableAnimal.class,
                     List.of(new PathfinderField("speed", double.class),
                             new PathfinderField("maxDistance", float.class),
                             new PathfinderField("searchRadius", float.class),
@@ -263,7 +270,8 @@ public class Generator_PathfinderGoal<Clazz> {
                     List.of(new EntityClassWrapperParameter("clazz"),
                             new PathfinderParameter<>("distance", float.class),
                             new PathfinderParameter<>("chance", float.class).defaultValue("0.02F"),
-                            new PathfinderParameter<>("lookHorizontal", boolean.class).defaultValue("false")));
+                            new PathfinderParameter<>("lookHorizontal", boolean.class).defaultValue(
+                                    "false")));
 
     public static final Generator_PathfinderGoal<PathfinderGoalLookAtTradingPlayer> LOOK_AT_TRADING_PLAYER =
             new Generator_PathfinderGoal<>(PathfinderGoalLookAtTradingPlayer.class,
@@ -274,15 +282,18 @@ public class Generator_PathfinderGoal<Clazz> {
                     List.of(new PathfinderField("speed", double.class),
                             new PathfinderField("flag", boolean.class)),
                     List.of(new PathfinderParameter<>("speed", double.class),
-                            new PathfinderParameter<>("flag", boolean.class).defaultValue("false")));
+                            new PathfinderParameter<>("flag", boolean.class).defaultValue(
+                                    "false")));
 
     public static final Generator_PathfinderGoal<PathfinderGoalMoveTowardsRestriction> MOVE_TOWARDS_RESTRICTION =
-            new Generator_PathfinderGoal<>(PathfinderGoalMoveTowardsRestriction.class, EntityCreature.class,
+            new Generator_PathfinderGoal<>(PathfinderGoalMoveTowardsRestriction.class,
+                    EntityCreature.class,
                     List.of(new PathfinderField("speed", double.class)),
                     List.of(new PathfinderParameter<>("speed", double.class)));
 
     public static final Generator_PathfinderGoal<PathfinderGoalMoveTowardsTarget> MOVE_TOWARDS_TARGET =
-            new Generator_PathfinderGoal<>(PathfinderGoalMoveTowardsTarget.class, EntityCreature.class,
+            new Generator_PathfinderGoal<>(PathfinderGoalMoveTowardsTarget.class,
+                    EntityCreature.class,
                     List.of(new PathfinderField("speed", double.class),
                             new PathfinderField("trackingDistance", float.class)),
                     List.of(new PathfinderParameter<>("speed", double.class),
@@ -294,17 +305,20 @@ public class Generator_PathfinderGoal<Clazz> {
                     List.of(new PathfinderParameter<>("var0", int.class)));
 
     public static final Generator_PathfinderGoal<PathfinderGoalOcelotAttack> OCELOT_ATTACK =
-            new Generator_PathfinderGoal<>(PathfinderGoalOcelotAttack.class, EntityInsentient.class, List.of());
+            new Generator_PathfinderGoal<>(PathfinderGoalOcelotAttack.class, EntityInsentient.class,
+                    List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalOfferFlower> OFFER_FLOWER =
-            new Generator_PathfinderGoal<>(PathfinderGoalOfferFlower.class, EntityIronGolem.class, List.of());
+            new Generator_PathfinderGoal<>(PathfinderGoalOfferFlower.class, EntityIronGolem.class,
+                    List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalPanic> PANIC =
             new Generator_PathfinderGoal<>(PathfinderGoalPanic.class, EntityCreature.class,
                     List.of(new PathfinderField("speed", double.class)),
                     List.of(new PathfinderParameter<>("speed", double.class)));
     public static final Generator_PathfinderGoal<PathfinderGoalPerch> PERCH =
-            new Generator_PathfinderGoal<>(PathfinderGoalPerch.class, EntityPerchable.class, List.of());
+            new Generator_PathfinderGoal<>(PathfinderGoalPerch.class, EntityPerchable.class,
+                    List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalRaid> RAID =
             new Generator_PathfinderGoal<>(PathfinderGoalRaid.class, EntityRaider.class, List.of());
@@ -315,7 +329,8 @@ public class Generator_PathfinderGoal<Clazz> {
                     List.of(new PathfinderParameter<>("speed", double.class)));
 
     public static final Generator_PathfinderGoal<PathfinderGoalRandomLookaround> RANDOM_LOOKAROUND =
-            new Generator_PathfinderGoal<>(PathfinderGoalRandomLookaround.class, EntityInsentient.class,
+            new Generator_PathfinderGoal<>(PathfinderGoalRandomLookaround.class,
+                    EntityInsentient.class,
                     List.of());
     public static final Generator_PathfinderGoal<PathfinderGoalRandomStroll> RANDOM_STROLL =
             new Generator_PathfinderGoal<>(PathfinderGoalRandomStroll.class, EntityCreature.class,
@@ -327,7 +342,8 @@ public class Generator_PathfinderGoal<Clazz> {
                             new PathfinderParameter<>("var1", boolean.class).defaultValue("true")));
 
     public static final Generator_PathfinderGoal<PathfinderGoalRandomStrollLand> RANDOM_STROLL_LAND =
-            new Generator_PathfinderGoal<>(PathfinderGoalRandomStrollLand.class, EntityCreature.class,
+            new Generator_PathfinderGoal<>(PathfinderGoalRandomStrollLand.class,
+                    EntityCreature.class,
                     List.of(new PathfinderField("speed", double.class),
                             new PathfinderField("var0", float.class)),
                     List.of(new PathfinderParameter<>("speed", double.class),
@@ -343,10 +359,12 @@ public class Generator_PathfinderGoal<Clazz> {
     //public static final GeneratePathfinderGoal<PathfinderGoalRemoveBlock> REMOVE_BLOCK =
     //        new GeneratePathfinderGoal<>(PathfinderGoalRemoveBlock.class, EntityInsentient.class, List.of());
     public static final Generator_PathfinderGoal<PathfinderGoalRestrictSun> RESTRICT_SUN =
-            new Generator_PathfinderGoal<>(PathfinderGoalRestrictSun.class, EntityCreature.class, List.of());
+            new Generator_PathfinderGoal<>(PathfinderGoalRestrictSun.class, EntityCreature.class,
+                    List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalSit> SIT =
-            new Generator_PathfinderGoal<>(PathfinderGoalSit.class, EntityTameableAnimal.class, List.of());
+            new Generator_PathfinderGoal<>(PathfinderGoalSit.class, EntityTameableAnimal.class,
+                    List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalStrollVillage> STROLL_VILLAGE =
             new Generator_PathfinderGoal<>(PathfinderGoalStrollVillage.class, EntityCreature.class,
@@ -356,12 +374,14 @@ public class Generator_PathfinderGoal<Clazz> {
                             new PathfinderParameter<>("var0", boolean.class)));
 
     public static final Generator_PathfinderGoal<PathfinderGoalStrollVillageGolem> STROLL_VILLAGE_GOLEM =
-            new Generator_PathfinderGoal<>(PathfinderGoalStrollVillageGolem.class, EntityCreature.class,
+            new Generator_PathfinderGoal<>(PathfinderGoalStrollVillageGolem.class,
+                    EntityCreature.class,
                     List.of(new PathfinderField("speed", double.class)),
                     List.of(new PathfinderParameter<>("speed", double.class)));
 
     public static final Generator_PathfinderGoal<PathfinderGoalSwell> SWELL =
-            new Generator_PathfinderGoal<>(PathfinderGoalSwell.class, EntityCreeper.class, List.of());
+            new Generator_PathfinderGoal<>(PathfinderGoalSwell.class, EntityCreeper.class,
+                    List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalTame> TAME =
             new Generator_PathfinderGoal<>(PathfinderGoalTame.class, EntityHorseAbstract.class,
@@ -373,7 +393,8 @@ public class Generator_PathfinderGoal<Clazz> {
     //        new GeneratePathfinderGoal<>(PathfinderGoalTempt.class, EntityCreature.class, List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalTradeWithPlayer> TRADE_WITH_PLAYER =
-            new Generator_PathfinderGoal<>(PathfinderGoalTradeWithPlayer.class, EntityVillagerAbstract.class,
+            new Generator_PathfinderGoal<>(PathfinderGoalTradeWithPlayer.class,
+                    EntityVillagerAbstract.class,
                     List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalUseItem> USE_ITEM =
@@ -386,7 +407,8 @@ public class Generator_PathfinderGoal<Clazz> {
                             new PathfinderParameter<>("predicate", Predicate.class)));
 
     public static final Generator_PathfinderGoal<PathfinderGoalMoveThroughVillage> MOVE_THROUGH_VILLAGE =
-            new Generator_PathfinderGoal<>(PathfinderGoalMoveThroughVillage.class, EntityCreature.class,
+            new Generator_PathfinderGoal<>(PathfinderGoalMoveThroughVillage.class,
+                    EntityCreature.class,
                     List.of(new PathfinderField("speed", double.class),
                             new PathfinderField("var0", boolean.class),
                             new PathfinderField("var1", int.class),
@@ -397,7 +419,8 @@ public class Generator_PathfinderGoal<Clazz> {
                             new PathfinderParameter<>("supplier", BooleanSupplier.class)));
 
     public static final Generator_PathfinderGoal<PathfinderGoalWater> WATER =
-            new Generator_PathfinderGoal<>(PathfinderGoalWater.class, EntityCreature.class, List.of());
+            new Generator_PathfinderGoal<>(PathfinderGoalWater.class, EntityCreature.class,
+                    List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalWaterJump> WATER_JUMP =
             new Generator_PathfinderGoal<>(PathfinderGoalWaterJump.class, EntityDolphin.class,
@@ -418,7 +441,8 @@ public class Generator_PathfinderGoal<Clazz> {
 
     // TARGET PATHFINDERS
     public static final Generator_PathfinderGoal<PathfinderGoalDefendVillage> DEFEND_VILLAGE =
-            new Generator_PathfinderGoal<>(PathfinderGoalDefendVillage.class, EntityIronGolem.class, List.of());
+            new Generator_PathfinderGoal<>(PathfinderGoalDefendVillage.class, EntityIronGolem.class,
+                    List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalHurtByTarget> HURT_BY_TARGET =
             new Generator_PathfinderGoal<>(PathfinderGoalHurtByTarget.class, EntityCreature.class,
@@ -426,7 +450,8 @@ public class Generator_PathfinderGoal<Clazz> {
                     List.of(new EntityClassesWrapperParameter("excludedClasses")));
 
     public static final Generator_PathfinderGoal<PathfinderGoalNearestAttackableTarget> NEAREST_ATTACKABLE_TARGET =
-            new Generator_PathfinderGoal<>(PathfinderGoalNearestAttackableTarget.class, EntityInsentient.class,
+            new Generator_PathfinderGoal<>(PathfinderGoalNearestAttackableTarget.class,
+                    EntityInsentient.class,
                     List.of(new PathfinderField("clazz", Class.class),
                             new PathfinderField("chance", int.class),
                             new PathfinderField("checkIfCanSee", boolean.class),
@@ -435,11 +460,14 @@ public class Generator_PathfinderGoal<Clazz> {
                     List.of(new PathfinderParameter<>("clazz", Class.class),
                             new PathfinderParameter<>("chance", int.class).defaultValue("10"),
                             new PathfinderParameter<>("checkIfCanSee", boolean.class),
-                            new PathfinderParameter<>("onlyIfPathExists", boolean.class).defaultValue("false"),
-                            new PathfinderParameter<>("predicate", Predicate.class).defaultValue("null")));
+                            new PathfinderParameter<>("onlyIfPathExists",
+                                    boolean.class).defaultValue("false"),
+                            new PathfinderParameter<>("predicate", Predicate.class).defaultValue(
+                                    "null")));
 
     public static final Generator_PathfinderGoal<PathfinderGoalNearestAttackableTargetWitch> NEAREST_ATTACKABLE_TARGET_WITCH =
-            new Generator_PathfinderGoal<>(PathfinderGoalNearestAttackableTargetWitch.class, EntityRaider.class,
+            new Generator_PathfinderGoal<>(PathfinderGoalNearestAttackableTargetWitch.class,
+                    EntityRaider.class,
                     List.of(new PathfinderField("clazz", Class.class),
                             new PathfinderField("chance", int.class),
                             new PathfinderField("checkIfCanSee", boolean.class),
@@ -449,10 +477,12 @@ public class Generator_PathfinderGoal<Clazz> {
                             new PathfinderParameter<>("chance", int.class),
                             new PathfinderParameter<>("checkIfCanSee", boolean.class),
                             new PathfinderParameter<>("onlyIfPathExists", boolean.class),
-                            new PathfinderParameter<>("predicate", Predicate.class).defaultValue("null")));
+                            new PathfinderParameter<>("predicate", Predicate.class).defaultValue(
+                                    "null")));
 
     public static final Generator_PathfinderGoal<PathfinderGoalNearestHealableRaider> NEAREST_HEALABLE_RAIDER =
-            new Generator_PathfinderGoal<>(PathfinderGoalNearestHealableRaider.class, EntityRaider.class,
+            new Generator_PathfinderGoal<>(PathfinderGoalNearestHealableRaider.class,
+                    EntityRaider.class,
                     List.of(new PathfinderField("clazz", Class.class),
                             new PathfinderField("var0", boolean.class),
                             new PathfinderField("predicate", Predicate.class)),
@@ -461,13 +491,16 @@ public class Generator_PathfinderGoal<Clazz> {
                             new PathfinderParameter<>("predicate", Predicate.class)));
 
     public static final Generator_PathfinderGoal<PathfinderGoalOwnerHurtByTarget> OWNER_HURT_BY_TARGET =
-            new Generator_PathfinderGoal<>(PathfinderGoalOwnerHurtByTarget.class, EntityTameableAnimal.class, List.of());
+            new Generator_PathfinderGoal<>(PathfinderGoalOwnerHurtByTarget.class,
+                    EntityTameableAnimal.class, List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalOwnerHurtTarget> OWNER_HURT_TARGET =
-            new Generator_PathfinderGoal<>(PathfinderGoalOwnerHurtTarget.class, EntityTameableAnimal.class, List.of());
+            new Generator_PathfinderGoal<>(PathfinderGoalOwnerHurtTarget.class,
+                    EntityTameableAnimal.class, List.of());
 
     public static final Generator_PathfinderGoal<PathfinderGoalRandomTargetNonTamed> RANDOM_TARGET_NON_TAMED =
-            new Generator_PathfinderGoal<>(PathfinderGoalRandomTargetNonTamed.class, EntityTameableAnimal.class,
+            new Generator_PathfinderGoal<>(PathfinderGoalRandomTargetNonTamed.class,
+                    EntityTameableAnimal.class,
                     List.of(new PathfinderField("clazz", Class.class),
                             new PathfinderField("var0", boolean.class),
                             new PathfinderField("predicate", Predicate.class)),
@@ -481,7 +514,8 @@ public class Generator_PathfinderGoal<Clazz> {
     //                List.of(new PathfinderParameter<>("var0", boolean.class)));
 
     public static final Generator_PathfinderGoal<PathfinderGoalUniversalAngerReset> UNIVERSAL_ANGER_RESET =
-            new Generator_PathfinderGoal<>(PathfinderGoalUniversalAngerReset.class, EntityInsentient.class,
+            new Generator_PathfinderGoal<>(PathfinderGoalUniversalAngerReset.class,
+                    EntityInsentient.class,
                     List.of(new PathfinderField("var0", boolean.class)),
                     List.of(new PathfinderParameter<>("var0", boolean.class)));
 
@@ -551,7 +585,6 @@ public class Generator_PathfinderGoal<Clazz> {
         //      TYPES.add(WRAPPED);
         TYPES.add(ZOMBIE_ATTACK);
 
-
         TARGET_TYPES.add(DEFEND_VILLAGE);
         TARGET_TYPES.add(HURT_BY_TARGET);
         TARGET_TYPES.add(NEAREST_ATTACKABLE_TARGET);
@@ -572,8 +605,8 @@ public class Generator_PathfinderGoal<Clazz> {
     private final LinkedList<LinkedList<PathfinderParameter<?>>> constructorsParameters;
 
     public Generator_PathfinderGoal(Class<Clazz> clazz, Class<?> entityFieldClass,
-                                    List<PathfinderField> fields,
-                                    List<PathfinderParameter<?>>... parametersList) {
+            List<PathfinderField> fields,
+            List<PathfinderParameter<?>>... parametersList) {
         this.clazz = clazz;
         this.entityFieldClass = entityFieldClass;
         this.pathfinderFields = fields;
@@ -593,7 +626,8 @@ public class Generator_PathfinderGoal<Clazz> {
                             new LinkedList<>();
 
                     PathfinderParameter<?> parameterWithoutDefault =
-                            new PathfinderParameter<>(parameter.getName(), parameter.getFieldNames(),
+                            new PathfinderParameter<>(parameter.getName(),
+                                    parameter.getFieldNames(),
                                     parameter.getTypeClass());
 
                     for (LinkedList<PathfinderParameter<?>> list : derivateConstructorParameters) {
@@ -750,8 +784,9 @@ public class Generator_PathfinderGoal<Clazz> {
 
         protected final String extractor;
 
-        public WrapperPathfinderParameter(String name, List<String> fieldNames, Class<Type> typeClass,
-                                          String extractor) {
+        public WrapperPathfinderParameter(String name, List<String> fieldNames,
+                Class<Type> typeClass,
+                String extractor) {
             super(name, fieldNames, typeClass);
             this.extractor = extractor;
         }
@@ -777,7 +812,9 @@ public class Generator_PathfinderGoal<Clazz> {
     public static class EntityClassWrapperParameter extends WrapperPathfinderParameter<Class> {
 
         public EntityClassWrapperParameter(String name) {
-            super(name, Class.class, "de.timesnake.library.entities.entity.type.EntityMapper.mapExClassToNmsClass(" + name + ")");
+            super(name, Class.class,
+                    "de.timesnake.library.entities.entity.type.EntityMapper.mapExClassToNmsClass("
+                            + name + ")");
         }
 
         @Override
@@ -794,8 +831,10 @@ public class Generator_PathfinderGoal<Clazz> {
     public static class EntityClassesWrapperParameter extends WrapperPathfinderParameter<Class> {
 
         public EntityClassesWrapperParameter(String name) {
-            super(name, Class.class, "de.timesnake.library.entities.entity.type.EntityMapper.mapExClassesToNmsClasses" +
-                    "(" + name + ")");
+            super(name, Class.class,
+                    "de.timesnake.library.entities.entity.type.EntityMapper.mapExClassesToNmsClasses"
+                            +
+                            "(" + name + ")");
         }
 
         @Override
@@ -813,16 +852,19 @@ public class Generator_PathfinderGoal<Clazz> {
 
         public WorldWrapperParameter(String name) {
             super(name, World.class,
-                    "((org.bukkit.craftbukkit." + LibraryEntityGenerator.VERSION + ".CraftWorld) " + name + ")" +
+                    "((org.bukkit.craftbukkit." + LibraryEntityGenerator.VERSION + ".CraftWorld) "
+                            + name + ")" +
                             ".getHandle()");
         }
     }
 
-    public static class ItemStackWrapperParameter extends WrapperPathfinderParameter<org.bukkit.inventory.ItemStack> {
+    public static class ItemStackWrapperParameter extends
+            WrapperPathfinderParameter<org.bukkit.inventory.ItemStack> {
 
         public ItemStackWrapperParameter(String name) {
             super(name, org.bukkit.inventory.ItemStack.class,
-                    "org.bukkit.craftbukkit." + LibraryEntityGenerator.VERSION + ".inventory.CraftItemStack.asNMSCopy" +
+                    "org.bukkit.craftbukkit." + LibraryEntityGenerator.VERSION
+                            + ".inventory.CraftItemStack.asNMSCopy" +
                             "(" + name + ");");
         }
     }

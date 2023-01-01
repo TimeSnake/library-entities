@@ -27,7 +27,8 @@ public class Generator_NmsExtension {
         for (Method method : methods) {
             Class<?>[] parameterTypes = method.getParameterTypes();
 
-            if (method.getName().equals(overrider.getName()) && Arrays.equals(overriderParameterTypes,
+            if (method.getName().equals(overrider.getName()) && Arrays.equals(
+                    overriderParameterTypes,
                     parameterTypes)) {
                 return false;
             }
@@ -48,7 +49,8 @@ public class Generator_NmsExtension {
     private final Map<Integer, Generator_Method> methodsByHash;
     private final Class<?> bukkitClass;
 
-    public Generator_NmsExtension(Class<?> extensionClass, String extensionInterface, Class<?> bukkitClass) {
+    public Generator_NmsExtension(Class<?> extensionClass, String extensionInterface,
+            Class<?> bukkitClass) {
         this.exClass = extensionClass;
         this.exInterface = extensionInterface;
         this.bukkitClass = bukkitClass;
@@ -73,7 +75,8 @@ public class Generator_NmsExtension {
                     } else {
                         Generator_Method existingMethod = this.methodsByHash.get(hashCode);
                         // check if return type is more specific
-                        if (existingMethod.getMethod().getReturnType().isAssignableFrom(method.getReturnType())) {
+                        if (existingMethod.getMethod().getReturnType()
+                                .isAssignableFrom(method.getReturnType())) {
                             this.methodsByHash.put(hashCode, extensionMethod);
                         }
                     }
@@ -97,7 +100,8 @@ public class Generator_NmsExtension {
     }
 
     public String getBukkitMethods() {
-        return Arrays.toString(Arrays.stream(bukkitClass.getMethods()).map(Method::getName).toList().toArray());
+        return Arrays.toString(
+                Arrays.stream(bukkitClass.getMethods()).map(Method::getName).toList().toArray());
     }
 
     public Collection<Generator_Method> getMethods() {

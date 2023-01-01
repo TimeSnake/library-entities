@@ -58,8 +58,9 @@ public class ExCustomPathfinderGoalIllagerWizardNoneSpell extends ExPathfinderGo
 
         public void e() {
             if (this.entity.getNMS().G() != null) {
-                this.entity.getNMS().z().a(this.entity.getNMS().G(), (float) this.entity.getNMS().V(),
-                        (float) this.entity.getNMS().U());
+                this.entity.getNMS().z()
+                        .a(this.entity.getNMS().G(), (float) this.entity.getNMS().V(),
+                                (float) this.entity.getNMS().U());
             }
 
         }
