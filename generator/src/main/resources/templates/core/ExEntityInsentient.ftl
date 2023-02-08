@@ -29,7 +29,7 @@ public class ${exName} extends ${craftName} implements ${moduleName}.${name} {
                 if (randomizeData) {
                     return super.a(worldaccess, difficultydamagescaler, enummobspawn, groupdataentity, nbttagcompound);
                 }
-                return null;
+                return groupdataentity;
             }
         });
     }
