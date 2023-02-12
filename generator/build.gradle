@@ -14,6 +14,7 @@ repositories {
 dependencies {
     implementation project(':library-reflection')
     implementation project(':library-basic')
+    implementation project(':library-chat')
 
     implementation project.spigot_api
     implementation project.spigot
