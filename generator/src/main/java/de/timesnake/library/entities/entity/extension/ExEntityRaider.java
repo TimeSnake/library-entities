@@ -9,11 +9,11 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftRaider;
 
 public class ExEntityRaider extends ExEntityMonsterPatrolling {
 
-    public ExEntityRaider(CraftRaider entity) {
-        super(entity);
-    }
+  public ExEntityRaider(CraftRaider entity) {
+    super(entity);
+  }
 
-    public ExEntityRaider(EntityRaider entity) {
-        super(entity);
-    }
+  public ExEntityRaider(EntityRaider entity) {
+    super(entity);
+  }
 }

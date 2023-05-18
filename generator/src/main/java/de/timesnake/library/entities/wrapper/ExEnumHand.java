@@ -8,25 +8,25 @@ import net.minecraft.world.EnumHand;
 
 public enum ExEnumHand {
 
-    MAIN_HAND(EnumHand.a),
-    OFF_HAND(EnumHand.b);
+  MAIN_HAND(EnumHand.a),
+  OFF_HAND(EnumHand.b);
 
-    public static ExEnumHand fromNms(EnumHand hand) {
-        for (ExEnumHand exHand : ExEnumHand.values()) {
-            if (exHand.getNMS().equals(hand)) {
-                return exHand;
-            }
-        }
-        return null;
+  public static ExEnumHand fromNms(EnumHand hand) {
+    for (ExEnumHand exHand : ExEnumHand.values()) {
+      if (exHand.getNMS().equals(hand)) {
+        return exHand;
+      }
     }
+    return null;
+  }
 
-    private final EnumHand hand;
+  private final EnumHand hand;
 
-    ExEnumHand(EnumHand hand) {
-        this.hand = hand;
-    }
+  ExEnumHand(EnumHand hand) {
+    this.hand = hand;
+  }
 
-    public EnumHand getNMS() {
-        return this.hand;
-    }
+  public EnumHand getNMS() {
+    return this.hand;
+  }
 }

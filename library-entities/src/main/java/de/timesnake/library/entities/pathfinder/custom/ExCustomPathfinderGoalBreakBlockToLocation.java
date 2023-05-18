@@ -10,14 +10,15 @@ import org.bukkit.Material;
 
 public class ExCustomPathfinderGoalBreakBlockToLocation extends ExPathfinderGoal {
 
-    public ExCustomPathfinderGoalBreakBlockToLocation(double x, double y, double z, double speedModifier,
-                                                      Material... materials) {
-        super(new CustomPathfinderGoalBreakBlockToLocation(null, x, y, z, speedModifier, materials));
-    }
+  public ExCustomPathfinderGoalBreakBlockToLocation(double x, double y, double z,
+      double speedModifier,
+      Material... materials) {
+    super(new CustomPathfinderGoalBreakBlockToLocation(null, x, y, z, speedModifier, materials));
+  }
 
-    @Override
-    public void injectEntity(Mob entity) {
-        super.setNMSField("entity", entity);
-    }
+  @Override
+  public void injectEntity(Mob entity) {
+    super.setNMSField("entity", entity);
+  }
 
 }

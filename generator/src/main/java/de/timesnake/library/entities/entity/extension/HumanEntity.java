@@ -13,9 +13,9 @@ import java.util.UUID;
 
 public interface HumanEntity extends LivingEntity, org.bukkit.entity.HumanEntity {
 
-    net.minecraft.world.entity.player.EntityHuman getNMS();
+  net.minecraft.world.entity.player.EntityHuman getNMS();
 
-    UUID getUniqueID();
+  UUID getUniqueID();
 
-    GameProfile getProfile();
+  GameProfile getProfile();
 }

@@ -11,26 +11,29 @@ import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.goal.target.PathfinderGoalNearestAttackableTarget;
 import net.minecraft.world.entity.monster.EntitySpider;
 
-public class ExCustomPathfinderGoalSpiderNearestAttackableTarget extends ExPathfinderGoalNearestAttackableTarget {
+public class ExCustomPathfinderGoalSpiderNearestAttackableTarget extends
+    ExPathfinderGoalNearestAttackableTarget {
 
-    public ExCustomPathfinderGoalSpiderNearestAttackableTarget(Class<? extends LivingEntity> target) {
-        super(target, false);
+  public ExCustomPathfinderGoalSpiderNearestAttackableTarget(Class<? extends LivingEntity> target) {
+    super(target, false);
+  }
+
+  @Override
+  public void injectEntity(Mob entity) {
+    super.pathfinderGoal = new PathfinderGoalSpiderNearestAttackableTarget<>(
+        ((EntitySpider) entity.getNMS()), this.clazz);
+  }
+
+  static class PathfinderGoalSpiderNearestAttackableTarget<T extends EntityLiving> extends
+      PathfinderGoalNearestAttackableTarget<T> {
+
+    public PathfinderGoalSpiderNearestAttackableTarget(EntitySpider entityspider, Class<T> oclass) {
+      super(entityspider, oclass, true);
     }
 
-    @Override
-    public void injectEntity(Mob entity) {
-        super.pathfinderGoal = new PathfinderGoalSpiderNearestAttackableTarget<>(((EntitySpider) entity.getNMS()), this.clazz);
+    public boolean a() {
+      float f = this.e.bh();
+      return !(f >= 0.5F) && super.a();
     }
-
-    static class PathfinderGoalSpiderNearestAttackableTarget<T extends EntityLiving> extends PathfinderGoalNearestAttackableTarget<T> {
-
-        public PathfinderGoalSpiderNearestAttackableTarget(EntitySpider entityspider, Class<T> oclass) {
-            super(entityspider, oclass, true);
-        }
-
-        public boolean a() {
-            float f = this.e.bh();
-            return !(f >= 0.5F) && super.a();
-        }
-    }
+  }
 }

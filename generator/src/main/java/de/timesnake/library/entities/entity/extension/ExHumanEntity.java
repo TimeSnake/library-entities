@@ -15,11 +15,11 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftHumanEntity;
 
 public class ExHumanEntity extends CraftHumanEntity {
 
-    public ExHumanEntity(EntityHuman entity) {
-        super(((CraftServer) Bukkit.getServer()), entity);
-    }
+  public ExHumanEntity(EntityHuman entity) {
+    super(((CraftServer) Bukkit.getServer()), entity);
+  }
 
-    public ExHumanEntity(CraftServer server, EntityHuman entity) {
-        super(server, entity);
-    }
+  public ExHumanEntity(CraftServer server, EntityHuman entity) {
+    super(server, entity);
+  }
 }

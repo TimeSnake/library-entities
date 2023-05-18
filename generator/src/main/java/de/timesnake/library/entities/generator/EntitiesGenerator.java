@@ -6,7 +6,7 @@ package de.timesnake.library.entities.generator;
 
 public interface EntitiesGenerator {
 
-    boolean clean();
+  boolean clean();
 
-    boolean generate();
+  boolean generate();
 }

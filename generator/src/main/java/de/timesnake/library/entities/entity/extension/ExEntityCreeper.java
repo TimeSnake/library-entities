@@ -13,24 +13,24 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMonster;
 
 public class ExEntityCreeper extends ExEntityMonster {
 
-    public ExEntityCreeper(CraftMonster entity) {
-        super(entity);
-    }
+  public ExEntityCreeper(CraftMonster entity) {
+    super(entity);
+  }
 
-    @Override
-    public EntityCreeper getNMS() {
-        return (EntityCreeper) super.getNMS();
-    }
+  @Override
+  public EntityCreeper getNMS() {
+    return (EntityCreeper) super.getNMS();
+  }
 
-    public int q() {
-        return this.getNMS().q();
-    }
+  public int q() {
+    return this.getNMS().q();
+  }
 
-    public void a(int i) {
-        this.getNMS().a(i);
-    }
+  public void a(int i) {
+    this.getNMS().a(i);
+  }
 
-    public int eK() {
-        return this.getNMS().q();
-    }
+  public int eK() {
+    return this.getNMS().q();
+  }
 }

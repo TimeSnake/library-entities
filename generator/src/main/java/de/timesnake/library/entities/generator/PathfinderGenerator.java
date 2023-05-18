@@ -19,84 +19,84 @@ import org.apache.commons.io.FileUtils;
 
 public class PathfinderGenerator implements EntitiesGenerator {
 
-    private final List<String> FILES_TO_COPY = List.of("ExPathfinderGoal.java",
-            "ExPathfinderGoalTarget.java");
+  private final List<String> FILES_TO_COPY = List.of("ExPathfinderGoal.java",
+      "ExPathfinderGoalTarget.java");
 
-    private final Configuration cfg;
+  private final Configuration cfg;
 
-    private final File srcDir;
-    private final File outputDir;
+  private final File srcDir;
+  private final File outputDir;
 
-    public PathfinderGenerator(Configuration cfg, File srcDir, File outputDir) {
-        this.cfg = cfg;
-        this.srcDir = srcDir;
-        this.outputDir = outputDir;
-    }
+  public PathfinderGenerator(Configuration cfg, File srcDir, File outputDir) {
+    this.cfg = cfg;
+    this.srcDir = srcDir;
+    this.outputDir = outputDir;
+  }
 
-    @Override
-    public boolean clean() {
-        if (outputDir.exists()) {
-            for (File file : outputDir.listFiles()) {
-                if (file.isFile()) {
-                    file.delete();
-                }
-            }
+  @Override
+  public boolean clean() {
+    if (outputDir.exists()) {
+      for (File file : outputDir.listFiles()) {
+        if (file.isFile()) {
+          file.delete();
         }
-        return true;
+      }
+    }
+    return true;
+  }
+
+  @Override
+  public boolean generate() {
+
+    try {
+      if (!outputDir.exists()) {
+        Files.createDirectory(outputDir.toPath());
+      }
+
+      for (Generator_PathfinderGoal<?> pathfinderGoal : Generator_PathfinderGoal.TYPES) {
+        this.copyPathfinderBasis();
+        this.generatePathfinderGoal(pathfinderGoal, false);
+      }
+
+      for (Generator_PathfinderGoal<?> pathfinderGoal : Generator_PathfinderGoal.TARGET_TYPES) {
+        this.generatePathfinderGoal(pathfinderGoal, true);
+      }
+
+    } catch (IOException | TemplateException e) {
+      throw new RuntimeException(e);
+    }
+    return true;
+  }
+
+  private void generatePathfinderGoal(Generator_PathfinderGoal<?> pathfinderGoal,
+      boolean isTargetGoal) throws IOException,
+      TemplateException {
+
+    Template temp;
+
+    if (isTargetGoal) {
+      temp = cfg.getTemplate("templates/pathfinder/ExPathfinderGoalTarget.ftl");
+    } else {
+      temp = cfg.getTemplate("templates/pathfinder/ExPathfinderGoal.ftl");
     }
 
-    @Override
-    public boolean generate() {
+    HashMap<String, Object> root = new HashMap<>();
 
-        try {
-            if (!outputDir.exists()) {
-                Files.createDirectory(outputDir.toPath());
-            }
+    root.put("pathfinder", pathfinderGoal);
 
-            for (Generator_PathfinderGoal<?> pathfinderGoal : Generator_PathfinderGoal.TYPES) {
-                this.copyPathfinderBasis();
-                this.generatePathfinderGoal(pathfinderGoal, false);
-            }
+    Writer out =
+        new OutputStreamWriter(
+            new FileOutputStream(outputDir.getAbsolutePath() + File.separator +
+                pathfinderGoal.getExName() + ".java"));
+    temp.process(root, out);
+    out.close();
+  }
 
-            for (Generator_PathfinderGoal<?> pathfinderGoal : Generator_PathfinderGoal.TARGET_TYPES) {
-                this.generatePathfinderGoal(pathfinderGoal, true);
-            }
 
-        } catch (IOException | TemplateException e) {
-            throw new RuntimeException(e);
-        }
-        return true;
+  private void copyPathfinderBasis() throws IOException {
+    for (File file : srcDir.listFiles(f -> f.isFile() && FILES_TO_COPY.contains(f.getName()))) {
+      FileUtils.copyFile(file,
+          new File(outputDir.getAbsolutePath() + File.separator + file.getName()));
     }
-
-    private void generatePathfinderGoal(Generator_PathfinderGoal<?> pathfinderGoal,
-            boolean isTargetGoal) throws IOException,
-            TemplateException {
-
-        Template temp;
-
-        if (isTargetGoal) {
-            temp = cfg.getTemplate("templates/pathfinder/ExPathfinderGoalTarget.ftl");
-        } else {
-            temp = cfg.getTemplate("templates/pathfinder/ExPathfinderGoal.ftl");
-        }
-
-        HashMap<String, Object> root = new HashMap<>();
-
-        root.put("pathfinder", pathfinderGoal);
-
-        Writer out =
-                new OutputStreamWriter(
-                        new FileOutputStream(outputDir.getAbsolutePath() + File.separator +
-                                pathfinderGoal.getExName() + ".java"));
-        temp.process(root, out);
-        out.close();
-    }
-
-
-    private void copyPathfinderBasis() throws IOException {
-        for (File file : srcDir.listFiles(f -> f.isFile() && FILES_TO_COPY.contains(f.getName()))) {
-            FileUtils.copyFile(file,
-                    new File(outputDir.getAbsolutePath() + File.separator + file.getName()));
-        }
-    }
+  }
 }

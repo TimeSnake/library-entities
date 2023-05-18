@@ -29,224 +29,224 @@ import org.bukkit.event.entity.EntityTargetEvent;
 
 public class ExEntityInsentient extends ExEntityLiving {
 
-    public ExEntityInsentient(CraftMob entity) {
-        super(entity);
+  public ExEntityInsentient(CraftMob entity) {
+    super(entity);
+  }
+
+  public ExEntityInsentient(EntityInsentient entity) {
+    super(entity);
+  }
+
+  @Override
+  public Mob getExEntity() {
+    return (Mob) super.getExEntity();
+  }
+
+  @Override
+  public EntityInsentient getNMS() {
+    return (EntityInsentient) super.getNMS();
+  }
+
+  public PathfinderGoalSelector getGoalSelector() {
+    PathfinderGoalSelector bS;
+    try {
+      Field bSField = this.getNMS().getClass().getField("bS");
+      bSField.setAccessible(true);
+      bS = (PathfinderGoalSelector) bSField.get(this.getNMS());
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      throw new RuntimeException(e);
+    }
+    return bS;
+  }
+
+  public PathfinderGoalSelector getTargetSelector() {
+    PathfinderGoalSelector bT;
+    try {
+      Field bTField = this.getNMS().getClass().getField("bT");
+      bTField.setAccessible(true);
+      bT = (PathfinderGoalSelector) bTField.get(this.getNMS());
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      throw new RuntimeException(e);
+    }
+    return bT;
+  }
+
+  public void addPathfinderGoal(ExPathfinderGoal pathfinderGoal) {
+    if (pathfinderGoal == null) {
+      return;
     }
 
-    public ExEntityInsentient(EntityInsentient entity) {
-        super(entity);
+    pathfinderGoal.injectEntity(this.getExEntity());
+
+    if (pathfinderGoal.getNMS() == null) {
+      return;
     }
 
-    @Override
-    public Mob getExEntity() {
-        return (Mob) super.getExEntity();
+    this.getGoalSelector().a(pathfinderGoal.getPriority(), pathfinderGoal.getNMS());
+  }
+
+  public void addPathfinderGoal(int priority, ExPathfinderGoal pathfinderGoal) {
+    if (pathfinderGoal == null) {
+      return;
     }
 
-    @Override
-    public EntityInsentient getNMS() {
-        return (EntityInsentient) super.getNMS();
+    pathfinderGoal.injectEntity(this.getExEntity());
+
+    if (pathfinderGoal instanceof ExPathfinderGoalTarget) {
+      this.getTargetSelector().a(priority, pathfinderGoal.getNMS());
+    } else {
+      this.getGoalSelector().a(priority, pathfinderGoal.getNMS());
+    }
+  }
+
+  public void removePathfinderGoal(ExPathfinderGoal pathfinderGoal) {
+    if (pathfinderGoal instanceof ExPathfinderGoalTarget) {
+      this.getTargetSelector().a(pathfinderGoal.getNMS());
+    } else {
+      this.getGoalSelector().a(pathfinderGoal.getNMS());
+    }
+  }
+
+  public void clearPathfinderGoals() {
+    try {
+      Field d = this.getGoalSelector().getClass().getField("d");
+      d.setAccessible(true);
+      d.set(this.getGoalSelector(), Sets.newLinkedHashSet());
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      throw new RuntimeException(e);
     }
 
-    public PathfinderGoalSelector getGoalSelector() {
-        PathfinderGoalSelector bS;
-        try {
-            Field bSField = this.getNMS().getClass().getField("bS");
-            bSField.setAccessible(true);
-            bS = (PathfinderGoalSelector) bSField.get(this.getNMS());
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-        return bS;
+    try {
+      Field d = this.getTargetSelector().getClass().getField("d");
+      d.setAccessible(true);
+      d.set(this.getTargetSelector(), Sets.newLinkedHashSet());
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      throw new RuntimeException(e);
     }
+  }
 
-    public PathfinderGoalSelector getTargetSelector() {
-        PathfinderGoalSelector bT;
-        try {
-            Field bTField = this.getNMS().getClass().getField("bT");
-            bTField.setAccessible(true);
-            bT = (PathfinderGoalSelector) bTField.get(this.getNMS());
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-        return bT;
+  public void setTarget(ExEntityLiving target) {
+    if (target != null) {
+      this.getNMS().setTarget(target.getNMS(), EntityTargetEvent.TargetReason.CUSTOM, true);
+    } else {
+      this.getNMS().setTarget(null, EntityTargetEvent.TargetReason.CUSTOM, true);
     }
+  }
 
-    public void addPathfinderGoal(ExPathfinderGoal pathfinderGoal) {
-        if (pathfinderGoal == null) {
-            return;
-        }
+  public void setTarget(EntityLiving target) {
+    this.getNMS().setTarget(target, EntityTargetEvent.TargetReason.CUSTOM, true);
+  }
 
-        pathfinderGoal.injectEntity(this.getExEntity());
+  public void setTarget(EntityLiving entityliving, EntityTargetEvent.TargetReason reason,
+      boolean fireEvent) {
+    this.getNMS().setTarget(entityliving, reason, fireEvent);
+  }
 
-        if (pathfinderGoal.getNMS() == null) {
-            return;
-        }
-
-        this.getGoalSelector().a(pathfinderGoal.getPriority(), pathfinderGoal.getNMS());
+  public ExEntityLiving getExTarget() {
+    if (this.getNMSTarget() == null) {
+      return null;
     }
+    return new ExEntityLiving(this.getNMSTarget());
+  }
 
-    public void addPathfinderGoal(int priority, ExPathfinderGoal pathfinderGoal) {
-        if (pathfinderGoal == null) {
-            return;
-        }
-
-        pathfinderGoal.injectEntity(this.getExEntity());
-
-        if (pathfinderGoal instanceof ExPathfinderGoalTarget) {
-            this.getTargetSelector().a(priority, pathfinderGoal.getNMS());
-        } else {
-            this.getGoalSelector().a(priority, pathfinderGoal.getNMS());
-        }
+  public EntityLiving getNMSTarget() {
+    if (this.getNMS().G() == null) {
+      return null;
     }
+    return this.getNMS().G();
+  }
 
-    public void removePathfinderGoal(ExPathfinderGoal pathfinderGoal) {
-        if (pathfinderGoal instanceof ExPathfinderGoalTarget) {
-            this.getTargetSelector().a(pathfinderGoal.getNMS());
-        } else {
-            this.getGoalSelector().a(pathfinderGoal.getNMS());
-        }
+  public void clearGoalTargets() {
+    try {
+      Field bT = this.getNMS().getClass().getField("bT");
+      bT.setAccessible(true);
+      bT.set(this.getNMS(), new PathfinderGoalSelector(this.getNMS().s.ad()));
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      throw new RuntimeException(e);
     }
+  }
 
-    public void clearPathfinderGoals() {
-        try {
-            Field d = this.getGoalSelector().getClass().getField("d");
-            d.setAccessible(true);
-            d.set(this.getGoalSelector(), Sets.newLinkedHashSet());
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+  public ExPathEntity calcPath(double x, double y, double z, int minDistance) {
+    return ExWrapper.wrapPathEntity(this.getNMS().D().a(x, y, z, minDistance));
+  }
 
-        try {
-            Field d = this.getTargetSelector().getClass().getField("d");
-            d.setAccessible(true);
-            d.set(this.getTargetSelector(), Sets.newLinkedHashSet());
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
+  public ExNavigationAbstract getNavigation() {
+    return new ExNavigationAbstract(this.getNMS().D());
+  }
 
-    public void setTarget(ExEntityLiving target) {
-        if (target != null) {
-            this.getNMS().setTarget(target.getNMS(), EntityTargetEvent.TargetReason.CUSTOM, true);
-        } else {
-            this.getNMS().setTarget(null, EntityTargetEvent.TargetReason.CUSTOM, true);
-        }
-    }
+  public ExControllerLook getControllerLook() {
+    return new ExControllerLook(this.getNMS().z());
+  }
 
-    public void setTarget(EntityLiving target) {
-        this.getNMS().setTarget(target, EntityTargetEvent.TargetReason.CUSTOM, true);
-    }
+  public ExControllerJump getControllerJump() {
+    return new ExControllerJump(this.getNMS().C());
+  }
 
-    public void setTarget(EntityLiving entityliving, EntityTargetEvent.TargetReason reason,
-            boolean fireEvent) {
-        this.getNMS().setTarget(entityliving, reason, fireEvent);
-    }
+  public ExControllerMove getControllerMove() {
+    return new ExControllerMove(this.getNMS().A());
+  }
 
-    public ExEntityLiving getExTarget() {
-        if (this.getNMSTarget() == null) {
-            return null;
-        }
-        return new ExEntityLiving(this.getNMSTarget());
-    }
+  public ExEntitySenses getEntitySenses() {
+    return new ExEntitySenses(this.getNMS().E());
+  }
 
-    public EntityLiving getNMSTarget() {
-        if (this.getNMS().G() == null) {
-            return null;
-        }
-        return this.getNMS().G();
-    }
+  public boolean isNoAI() {
+    return this.getNMS().fs();
+  }
 
-    public void clearGoalTargets() {
-        try {
-            Field bT = this.getNMS().getClass().getField("bT");
-            bT.setAccessible(true);
-            bT.set(this.getNMS(), new PathfinderGoalSelector(this.getNMS().s.ad()));
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
+  public void setNoAI(boolean flag) {
+    this.getNMS().s(flag);
+  }
 
-    public ExPathEntity calcPath(double x, double y, double z, int minDistance) {
-        return ExWrapper.wrapPathEntity(this.getNMS().D().a(x, y, z, minDistance));
-    }
+  public boolean isLeftHanded() {
+    return this.getNMS().ft();
+  }
 
-    public ExNavigationAbstract getNavigation() {
-        return new ExNavigationAbstract(this.getNMS().D());
-    }
+  public void setLeftHanded(boolean flag) {
+    this.getNMS().t(flag);
+  }
 
-    public ExControllerLook getControllerLook() {
-        return new ExControllerLook(this.getNMS().z());
-    }
+  public boolean isAggressive() {
+    return this.getNMS().fD();
+  }
 
-    public ExControllerJump getControllerJump() {
-        return new ExControllerJump(this.getNMS().C());
-    }
+  public void setAggressive(boolean flag) {
+    this.getNMS().u(flag);
+  }
 
-    public ExControllerMove getControllerMove() {
-        return new ExControllerMove(this.getNMS().A());
-    }
+  public boolean isLeashed() {
+    return this.getNMS().fz();
+  }
 
-    public ExEntitySenses getEntitySenses() {
-        return new ExEntitySenses(this.getNMS().E());
-    }
+  public int O() {
+    return this.getNMS().U();
+  }
 
-    public boolean isNoAI() {
-        return this.getNMS().fs();
-    }
+  public int Q() {
+    return this.getNMS().V();
+  }
 
-    public void setNoAI(boolean flag) {
-        this.getNMS().s(flag);
-    }
+  public int ep() {
+    return this.getNMS().fo();
+  }
 
-    public boolean isLeftHanded() {
-        return this.getNMS().ft();
-    }
+  public float a(PathType pathType) {
+    return this.getNMS().a(pathType);
+  }
 
-    public void setLeftHanded(boolean flag) {
-        this.getNMS().t(flag);
-    }
+  public void a(PathType pathType, float f) {
+    this.getNMS().a(pathType, f);
+  }
 
-    public boolean isAggressive() {
-        return this.getNMS().fD();
-    }
+  public float a(ExPathType pathType) {
+    return this.a(pathType.getNMS());
+  }
 
-    public void setAggressive(boolean flag) {
-        this.getNMS().u(flag);
-    }
+  public void a(ExPathType pathType, float f) {
+    this.a(pathType.getNMS(), f);
+  }
 
-    public boolean isLeashed() {
-        return this.getNMS().fz();
-    }
-
-    public int O() {
-        return this.getNMS().U();
-    }
-
-    public int Q() {
-        return this.getNMS().V();
-    }
-
-    public int ep() {
-        return this.getNMS().fo();
-    }
-
-    public float a(PathType pathType) {
-        return this.getNMS().a(pathType);
-    }
-
-    public void a(PathType pathType, float f) {
-        this.getNMS().a(pathType, f);
-    }
-
-    public float a(ExPathType pathType) {
-        return this.a(pathType.getNMS());
-    }
-
-    public void a(ExPathType pathType, float f) {
-        this.a(pathType.getNMS(), f);
-    }
-
-    public boolean c(EntityLiving entity) {
-        return this.getNMS().c(entity);
-    }
+  public boolean c(EntityLiving entity) {
+    return this.getNMS().c(entity);
+  }
 }

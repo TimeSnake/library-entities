@@ -12,14 +12,14 @@ import net.minecraft.network.syncher.DataWatcher;
 
 public class ExDataWatcher {
 
-    private final DataWatcher watcher;
+  private final DataWatcher watcher;
 
-    public ExDataWatcher(DataWatcher watcher) {
-        this.watcher = watcher;
-    }
+  public ExDataWatcher(DataWatcher watcher) {
+    this.watcher = watcher;
+  }
 
-    public DataWatcher getNMS() {
-        return this.watcher;
-    }
+  public DataWatcher getNMS() {
+    return this.watcher;
+  }
 
 }

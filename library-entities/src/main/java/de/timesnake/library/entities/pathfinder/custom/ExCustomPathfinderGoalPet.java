@@ -10,13 +10,14 @@ import org.bukkit.entity.Player;
 
 public class ExCustomPathfinderGoalPet extends ExPathfinderGoal {
 
-    public ExCustomPathfinderGoalPet(Player owner, double entitySpeed, float minDistance, float teleportDistance) {
-        super(new CustomPathfinderGoalPet(null, owner, entitySpeed, minDistance, teleportDistance));
-    }
+  public ExCustomPathfinderGoalPet(Player owner, double entitySpeed, float minDistance,
+      float teleportDistance) {
+    super(new CustomPathfinderGoalPet(null, owner, entitySpeed, minDistance, teleportDistance));
+  }
 
-    @Override
-    public void injectEntity(Mob entity) {
-        this.setNMSField("pet", entity.getExtension());
-    }
+  @Override
+  public void injectEntity(Mob entity) {
+    this.setNMSField("pet", entity.getExtension());
+  }
 
 }
