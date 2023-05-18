@@ -1,5 +1,11 @@
+group = project.group
+version = '1.1-SNAPSHOT'
+archivesBaseName = 'library-entities'
+var projectId = 5
+
 repositories {
   mavenLocal()
+  mavenCentral()
   maven {
     url = uri 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
   }
@@ -19,7 +25,3 @@ dependencies {
   compileOnly project.spigot_api
   compileOnly project.spigot
 }
-
-group = project.group
-version = '1.1-SNAPSHOT'
-archivesBaseName = 'library-entities'
