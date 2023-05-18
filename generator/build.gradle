@@ -1,25 +1,25 @@
 repositories {
-    mavenLocal()
-    maven {
-        url = uri 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
-    }
-    maven {
-        url = uri 'https://papermc.io/repo/repository/maven-public/'
-    }
-    maven {
-        url = uri 'https://repo.maven.apache.org/maven2/'
-    }
+  mavenLocal()
+  maven {
+    url = uri 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+  }
+  maven {
+    url = uri 'https://papermc.io/repo/repository/maven-public/'
+  }
+  maven {
+    url = uri 'https://repo.maven.apache.org/maven2/'
+  }
 }
 
 dependencies {
-    implementation project(':library-reflection')
-    implementation project(':library-basic')
-    implementation project(':library-chat')
+  implementation project(':library-reflection')
+  implementation project(':library-basic')
+  implementation project(':library-chat')
 
-    implementation project.spigot_api
-    implementation project.spigot
+  implementation project.spigot_api
+  implementation project.spigot
 
-    implementation project.freemarker
+  implementation project.freemarker
 }
 
 group = project.group
@@ -27,30 +27,30 @@ version = '1.1-SNAPSHOT'
 archivesBaseName = 'generator'
 
 task buildFatJar(type: Jar) {
-    manifest {
-        attributes 'Main-Class': 'de.timesnake.library.entities.generator.LibraryEntityGenerator'
-    }
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    classifier = "all"
-    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
+  manifest {
+    attributes 'Main-Class': 'de.timesnake.library.entities.generator.LibraryEntityGenerator'
+  }
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+  classifier = "all"
+  from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+  with jar
 }
 
 jar.finalizedBy(buildFatJar)
 
 task runFinalJar(type: JavaExec) {
-    classpath = files('build/libs/generator-1.1-SNAPSHOT-all.jar')
-    classpath += sourceSets.main.runtimeClasspath
-    main = "de.timesnake.library.entities.generator.LibraryEntityGenerator"
-    args = [
-            project(':library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/entity",
-            "de.timesnake.library.entities.entity",
-            project(':library-entities-generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/entity",
-            project(':library-entities-generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/wrapper",
-            project(':library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/wrapper",
-            project(':library-entities-generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/pathfinder",
-            project(':library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/pathfinder"
-    ]
+  classpath = files('build/libs/generator-1.1-SNAPSHOT-all.jar')
+  classpath += sourceSets.main.runtimeClasspath
+  main = "de.timesnake.library.entities.generator.LibraryEntityGenerator"
+  args = [
+      project(':library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/entity",
+      "de.timesnake.library.entities.entity",
+      project(':library-entities-generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/entity",
+      project(':library-entities-generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/wrapper",
+      project(':library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/wrapper",
+      project(':library-entities-generator').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/pathfinder",
+      project(':library-entities').projectDir.absolutePath + "/src/main/java/de/timesnake/library/entities/pathfinder"
+  ]
 }
 
 runFinalJar.dependsOn(jar)
