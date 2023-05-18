@@ -13,11 +13,11 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftAmbient;
 
 public class ExEntityAmbient extends ExEntityInsentient {
 
-    public ExEntityAmbient(CraftAmbient entity) {
-        super(entity);
-    }
+  public ExEntityAmbient(CraftAmbient entity) {
+    super(entity);
+  }
 
-    public ExEntityAmbient(EntityAmbient entity) {
-        super(entity);
-    }
+  public ExEntityAmbient(EntityAmbient entity) {
+    super(entity);
+  }
 }

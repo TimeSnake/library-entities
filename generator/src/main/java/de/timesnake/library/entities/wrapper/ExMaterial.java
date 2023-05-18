@@ -12,17 +12,17 @@ import net.minecraft.world.level.material.Material;
 
 public class ExMaterial {
 
-    private final Material material;
+  private final Material material;
 
-    public ExMaterial(Material material) {
-        this.material = material;
-    }
+  public ExMaterial(Material material) {
+    this.material = material;
+  }
 
-    public Material getNMS() {
-        return this.material;
-    }
+  public Material getNMS() {
+    return this.material;
+  }
 
-    public boolean isLiquid() {
-        return this.material.a();
-    }
+  public boolean isLiquid() {
+    return this.material.a();
+  }
 }

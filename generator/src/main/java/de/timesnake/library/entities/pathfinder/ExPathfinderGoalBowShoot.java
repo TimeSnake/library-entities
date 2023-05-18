@@ -8,4 +8,5 @@ import de.timesnake.library.entities.generator.Placeholder;
 
 @Placeholder
 public abstract class ExPathfinderGoalBowShoot extends ExPathfinderGoal {
+
 }

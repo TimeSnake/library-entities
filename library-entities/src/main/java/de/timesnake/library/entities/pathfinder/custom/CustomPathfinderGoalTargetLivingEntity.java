@@ -10,15 +10,15 @@ import net.minecraft.world.entity.ai.goal.target.PathfinderGoalNearestAttackable
 
 public class CustomPathfinderGoalTargetLivingEntity extends PathfinderGoalNearestAttackableTarget {
 
-    private final EntityLiving target;
+  private final EntityLiving target;
 
-    public CustomPathfinderGoalTargetLivingEntity(EntityInsentient entity, EntityLiving target) {
-        super(entity, target.getClass(), true);
-        this.target = target;
-    }
+  public CustomPathfinderGoalTargetLivingEntity(EntityInsentient entity, EntityLiving target) {
+    super(entity, target.getClass(), true);
+    this.target = target;
+  }
 
-    @Override
-    public void h() {
-        super.c = target;
-    }
+  @Override
+  public void h() {
+    super.c = target;
+  }
 }

@@ -13,26 +13,28 @@ import net.minecraft.world.entity.EntityTypes;
 @Placeholder
 public interface ExEntityType<NmsType extends Entity, ExClass extends Entity & org.bukkit.entity.Entity> {
 
-    static ExEntityType<?, ?> getByExClass(Class<? extends ExEntity> clazz) {
-        throw new PlaceholderException();
-    }
+  static ExEntityType<?, ?> getByExClass(Class<? extends ExEntity> clazz) {
+    throw new PlaceholderException();
+  }
 
-    static ExEntityType<?, ?>[] getByExClasses(Class<? extends ExEntity>... exClasses) {
-        throw new PlaceholderException();
-    }
+  static ExEntityType<?, ?>[] getByExClasses(Class<? extends ExEntity>... exClasses) {
+    throw new PlaceholderException();
+  }
 
-    static ExEntityType<?, ?> getByNmsClass(Class<? extends net.minecraft.world.entity.Entity> clazz) {
-        throw new PlaceholderException();
-    }
+  static ExEntityType<?, ?> getByNmsClass(
+      Class<? extends net.minecraft.world.entity.Entity> clazz) {
+    throw new PlaceholderException();
+  }
 
-    static ExEntityType<?, ?>[] getByNmsClasses(Class<? extends net.minecraft.world.entity.Entity>... nmsClasses) {
-        throw new PlaceholderException();
-    }
+  static ExEntityType<?, ?>[] getByNmsClasses(
+      Class<? extends net.minecraft.world.entity.Entity>... nmsClasses) {
+    throw new PlaceholderException();
+  }
 
-    EntityTypes<NmsType> getNMSType();
+  EntityTypes<NmsType> getNMSType();
 
-    Class<NmsType> getNMSClass();
+  Class<NmsType> getNMSClass();
 
-    Class<ExClass> getExClass();
+  Class<ExClass> getExClass();
 
 }

@@ -13,8 +13,8 @@ import net.minecraft.world.entity.Entity;
 
 public interface ExtendedEntity {
 
-    ExEntity getExtension();
+  ExEntity getExtension();
 
-    Entity getNMS();
+  Entity getNMS();
 
 }

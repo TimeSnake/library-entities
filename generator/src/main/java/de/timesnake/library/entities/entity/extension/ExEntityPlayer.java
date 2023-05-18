@@ -14,15 +14,15 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftHumanEntity;
 
 public class ExEntityPlayer extends ExEntityHuman {
 
-    public ExEntityPlayer(CraftHumanEntity entityHuman) {
-        super(entityHuman);
-    }
+  public ExEntityPlayer(CraftHumanEntity entityHuman) {
+    super(entityHuman);
+  }
 
-    public ExEntityPlayer(EntityHuman entityHuman) {
-        super(entityHuman);
-    }
+  public ExEntityPlayer(EntityHuman entityHuman) {
+    super(entityHuman);
+  }
 
-    public void setTextures(String value, String signature) {
-        this.getProfile().getProperties().put("textures", new Property("textures", value, signature));
-    }
+  public void setTextures(String value, String signature) {
+    this.getProfile().getProperties().put("textures", new Property("textures", value, signature));
+  }
 }

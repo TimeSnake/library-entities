@@ -9,5 +9,5 @@ import de.timesnake.library.entities.generator.Placeholder;
 @Placeholder
 public interface Entity {
 
-    Class<net.minecraft.world.entity.Entity> NMS_CLASS = net.minecraft.world.entity.Entity.class;
+  Class<net.minecraft.world.entity.Entity> NMS_CLASS = net.minecraft.world.entity.Entity.class;
 }

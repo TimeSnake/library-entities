@@ -14,11 +14,11 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftFlying;
 
 public class ExEntityFlying extends ExEntityInsentient {
 
-    public ExEntityFlying(CraftFlying entity) {
-        super(entity);
-    }
+  public ExEntityFlying(CraftFlying entity) {
+    super(entity);
+  }
 
-    public ExEntityFlying(EntityFlying entity) {
-        super(entity);
-    }
+  public ExEntityFlying(EntityFlying entity) {
+    super(entity);
+  }
 }

@@ -13,11 +13,11 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftArrow;
 
 public class ExEntityArrow extends ExIProjectile {
 
-    public ExEntityArrow(CraftArrow entity) {
-        super(entity);
-    }
+  public ExEntityArrow(CraftArrow entity) {
+    super(entity);
+  }
 
-    public ExEntityArrow(EntityArrow entity) {
-        super(entity);
-    }
+  public ExEntityArrow(EntityArrow entity) {
+    super(entity);
+  }
 }

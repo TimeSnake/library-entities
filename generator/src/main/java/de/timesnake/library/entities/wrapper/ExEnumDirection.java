@@ -9,40 +9,40 @@ import net.minecraft.core.EnumDirection;
 
 public enum ExEnumDirection {
 
-    DOWN(EnumDirection.a),
-    UP(EnumDirection.b),
-    NORTH(EnumDirection.c),
-    SOUTH(EnumDirection.d),
-    WEST(EnumDirection.e),
-    EAST(EnumDirection.f);
+  DOWN(EnumDirection.a),
+  UP(EnumDirection.b),
+  NORTH(EnumDirection.c),
+  SOUTH(EnumDirection.d),
+  WEST(EnumDirection.e),
+  EAST(EnumDirection.f);
 
-    private final EnumDirection direction;
+  private final EnumDirection direction;
 
-    ExEnumDirection(EnumDirection direction) {
-        this.direction = direction;
-    }
+  ExEnumDirection(EnumDirection direction) {
+    this.direction = direction;
+  }
 
-    public EnumDirection getNMS() {
-        return this.direction;
-    }
+  public EnumDirection getNMS() {
+    return this.direction;
+  }
 
-    public BaseBlockPosition getBaseBlockPosition() {
-        return this.direction.q();
-    }
+  public BaseBlockPosition getBaseBlockPosition() {
+    return this.direction.q();
+  }
 
-    public ExBaseBlockPosition getExBaseBlockPosition() {
-        return new ExBaseBlockPosition(this.getBaseBlockPosition());
-    }
+  public ExBaseBlockPosition getExBaseBlockPosition() {
+    return new ExBaseBlockPosition(this.getBaseBlockPosition());
+  }
 
-    public int getAdjacentX() {
-        return this.getExBaseBlockPosition().getX();
-    }
+  public int getAdjacentX() {
+    return this.getExBaseBlockPosition().getX();
+  }
 
-    public int getAdjacentY() {
-        return this.getExBaseBlockPosition().getY();
-    }
+  public int getAdjacentY() {
+    return this.getExBaseBlockPosition().getY();
+  }
 
-    public int getAdjacentZ() {
-        return this.getExBaseBlockPosition().getZ();
-    }
+  public int getAdjacentZ() {
+    return this.getExBaseBlockPosition().getZ();
+  }
 }

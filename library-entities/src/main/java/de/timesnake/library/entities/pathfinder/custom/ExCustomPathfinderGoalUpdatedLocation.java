@@ -9,18 +9,19 @@ import de.timesnake.library.entities.pathfinder.ExPathfinderGoal;
 
 public class ExCustomPathfinderGoalUpdatedLocation extends ExPathfinderGoal {
 
-    public ExCustomPathfinderGoalUpdatedLocation() {
-        super();
-    }
+  public ExCustomPathfinderGoalUpdatedLocation() {
+    super();
+  }
 
-    public ExCustomPathfinderGoalUpdatedLocation(CustomPathfinderGoalUpdatedLocation customPathfinderGoalUpdatedLocation) {
-        super(customPathfinderGoalUpdatedLocation);
-    }
+  public ExCustomPathfinderGoalUpdatedLocation(
+      CustomPathfinderGoalUpdatedLocation customPathfinderGoalUpdatedLocation) {
+    super(customPathfinderGoalUpdatedLocation);
+  }
 
-    @Override
-    public void injectEntity(Mob entity) {
-        super.setNMSField("entity", entity);
-    }
+  @Override
+  public void injectEntity(Mob entity) {
+    super.setNMSField("entity", entity);
+  }
 
 
 }

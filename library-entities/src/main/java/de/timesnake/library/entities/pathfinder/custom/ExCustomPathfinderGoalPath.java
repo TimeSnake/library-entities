@@ -11,24 +11,24 @@ import org.bukkit.Location;
 
 public class ExCustomPathfinderGoalPath extends ExPathfinderGoal {
 
-    protected ExCustomPathfinderGoalPath(CustomPathfinderGoalPath customPathfinderGoalPath) {
-        super(customPathfinderGoalPath);
-    }
+  protected ExCustomPathfinderGoalPath(CustomPathfinderGoalPath customPathfinderGoalPath) {
+    super(customPathfinderGoalPath);
+  }
 
-    public ExCustomPathfinderGoalPath(Location target, double speed, double minDistance,
-            Location... pathPoints) {
-        super(new CustomPathfinderGoalPath(null, target, speed, minDistance, pathPoints));
-    }
+  public ExCustomPathfinderGoalPath(Location target, double speed, double minDistance,
+      Location... pathPoints) {
+    super(new CustomPathfinderGoalPath(null, target, speed, minDistance, pathPoints));
+  }
 
-    public ExCustomPathfinderGoalPath(Location target, double speed, double minDistance,
-            LinkedList<Location> pathPoints) {
-        super(new CustomPathfinderGoalPath(null, target, speed, minDistance, pathPoints));
-    }
+  public ExCustomPathfinderGoalPath(Location target, double speed, double minDistance,
+      LinkedList<Location> pathPoints) {
+    super(new CustomPathfinderGoalPath(null, target, speed, minDistance, pathPoints));
+  }
 
-    @Override
-    public void injectEntity(Mob entity) {
-        super.setNMSField("entity", entity.getNMS());
-    }
+  @Override
+  public void injectEntity(Mob entity) {
+    super.setNMSField("entity", entity.getNMS());
+  }
 
 
 }

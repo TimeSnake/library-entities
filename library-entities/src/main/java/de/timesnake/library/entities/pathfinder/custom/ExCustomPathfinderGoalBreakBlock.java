@@ -12,40 +12,40 @@ import org.bukkit.block.Block;
 
 public class ExCustomPathfinderGoalBreakBlock extends ExPathfinderGoal {
 
-    public ExCustomPathfinderGoalBreakBlock(double speedModifier, boolean ignoreTarget) {
-        super(new CustomPathfinderGoalBreakBlock(null, speedModifier, ignoreTarget));
-    }
+  public ExCustomPathfinderGoalBreakBlock(double speedModifier, boolean ignoreTarget) {
+    super(new CustomPathfinderGoalBreakBlock(null, speedModifier, ignoreTarget));
+  }
 
-    public ExCustomPathfinderGoalBreakBlock(double speedModifier, boolean ignoreTarget,
-            Material... materials) {
-        super(new CustomPathfinderGoalBreakBlock(null, speedModifier, ignoreTarget, materials));
-    }
+  public ExCustomPathfinderGoalBreakBlock(double speedModifier, boolean ignoreTarget,
+      Material... materials) {
+    super(new CustomPathfinderGoalBreakBlock(null, speedModifier, ignoreTarget, materials));
+  }
 
-    public ExCustomPathfinderGoalBreakBlock(double speedModifier, boolean ignoreTarget,
-            Collection<Material> materials) {
-        super(new CustomPathfinderGoalBreakBlock(null, speedModifier, ignoreTarget, materials));
-    }
+  public ExCustomPathfinderGoalBreakBlock(double speedModifier, boolean ignoreTarget,
+      Collection<Material> materials) {
+    super(new CustomPathfinderGoalBreakBlock(null, speedModifier, ignoreTarget, materials));
+  }
 
-    public ExCustomPathfinderGoalBreakBlock(double speedModifier, boolean ignoreTarget,
-            BreakEvent event,
-            Collection<Material> materials) {
-        super(new CustomPathfinderGoalBreakBlock(null, speedModifier, ignoreTarget, event,
-                materials));
-    }
+  public ExCustomPathfinderGoalBreakBlock(double speedModifier, boolean ignoreTarget,
+      BreakEvent event,
+      Collection<Material> materials) {
+    super(new CustomPathfinderGoalBreakBlock(null, speedModifier, ignoreTarget, event,
+        materials));
+  }
 
-    public ExCustomPathfinderGoalBreakBlock(
-            CustomPathfinderGoalBreakBlock customPathfinderGoalBreakBlock) {
-        super(customPathfinderGoalBreakBlock);
-    }
+  public ExCustomPathfinderGoalBreakBlock(
+      CustomPathfinderGoalBreakBlock customPathfinderGoalBreakBlock) {
+    super(customPathfinderGoalBreakBlock);
+  }
 
-    @Override
-    public void injectEntity(Mob entity) {
-        super.setNMSField("entity", entity);
-    }
+  @Override
+  public void injectEntity(Mob entity) {
+    super.setNMSField("entity", entity);
+  }
 
-    @FunctionalInterface
-    public interface BreakEvent {
+  @FunctionalInterface
+  public interface BreakEvent {
 
-        void onBlockBreak(Block block);
-    }
+    void onBlockBreak(Block block);
+  }
 }

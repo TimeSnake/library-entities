@@ -14,25 +14,25 @@ import net.minecraft.world.entity.ai.sensing.EntitySenses;
 
 public class ExEntitySenses {
 
-    private final EntitySenses senses;
+  private final EntitySenses senses;
 
-    public ExEntitySenses(EntitySenses senses) {
-        this.senses = senses;
-    }
+  public ExEntitySenses(EntitySenses senses) {
+    this.senses = senses;
+  }
 
-    public EntitySenses getNMS() {
-        return this.senses;
-    }
+  public EntitySenses getNMS() {
+    return this.senses;
+  }
 
-    public void a() {
-        this.senses.a();
-    }
+  public void a() {
+    this.senses.a();
+  }
 
-    public boolean a(Entity entity) {
-        return this.senses.a(entity);
-    }
+  public boolean a(Entity entity) {
+    return this.senses.a(entity);
+  }
 
-    public boolean a(ExEntity entity) {
-        return this.senses.a(entity.getNMS());
-    }
+  public boolean a(ExEntity entity) {
+    return this.senses.a(entity.getNMS());
+  }
 }
