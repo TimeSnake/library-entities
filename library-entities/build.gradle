@@ -1,23 +1,23 @@
 repositories {
-    mavenLocal()
-    maven {
-        url = uri 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
-    }
-    maven {
-        url = uri 'https://papermc.io/repo/repository/maven-public/'
-    }
-    maven {
-        url = uri 'https://repo.maven.apache.org/maven2/'
-    }
+  mavenLocal()
+  maven {
+    url = uri 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+  }
+  maven {
+    url = uri 'https://papermc.io/repo/repository/maven-public/'
+  }
+  maven {
+    url = uri 'https://repo.maven.apache.org/maven2/'
+  }
 }
 
 dependencies {
-    compileOnly project(':library-reflection')
-    compileOnly project(':library-basic')
-    compileOnly project(':library-chat')
+  compileOnly project(':library-reflection')
+  compileOnly project(':library-basic')
+  compileOnly project(':library-chat')
 
-    compileOnly project.spigot_api
-    compileOnly project.spigot
+  compileOnly project.spigot_api
+  compileOnly project.spigot
 }
 
 group = project.group
