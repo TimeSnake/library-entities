@@ -6,7 +6,7 @@
 /build/
 generator/build
 library-entities/build
-/gradle/
+
 gradlew
 gradlew.bat
 /library-entities/src/main/java/de/timesnake/library/entities/entity/
