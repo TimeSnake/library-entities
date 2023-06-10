@@ -13,16 +13,16 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftIllager;
 
 public class ExEntityIllagerWizard extends ExEntityIllagerAbstract {
 
-  public ExEntityIllagerWizard(CraftIllager entity) {
-    super(entity);
-  }
+	public ExEntityIllagerWizard(CraftIllager entity) {
+		super(entity);
+	}
 
-  public ExEntityIllagerWizard(EntityIllagerWizard entity) {
-    super(entity);
-  }
+	public ExEntityIllagerWizard(EntityIllagerWizard entity) {
+		super(entity);
+	}
 
-  @Override
-  public EntityIllagerWizard getNMS() {
-    return (EntityIllagerWizard) super.getNMS();
-  }
+	@Override
+	public EntityIllagerWizard getNMS() {
+		return (EntityIllagerWizard) super.getNMS();
+	}
 }

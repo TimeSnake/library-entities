@@ -13,11 +13,11 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftFish;
 
 public class ExEntityFish extends ExEntityWaterAnimal {
 
-  public ExEntityFish(CraftFish entity) {
-    super(entity);
-  }
+	public ExEntityFish(CraftFish entity) {
+		super(entity);
+	}
 
-  public ExEntityFish(EntityFish entity) {
-    super(entity);
-  }
+	public ExEntityFish(EntityFish entity) {
+		super(entity);
+	}
 }

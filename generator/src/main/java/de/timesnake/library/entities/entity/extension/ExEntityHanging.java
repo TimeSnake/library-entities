@@ -14,28 +14,28 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftHanging;
 
 public class ExEntityHanging extends ExEntity {
 
-  public ExEntityHanging(CraftHanging entity) {
-    super(entity);
-  }
+	public ExEntityHanging(CraftHanging entity) {
+		super(entity);
+	}
 
-  public ExEntityHanging(EntityHanging entity) {
-    super(entity);
-  }
+	public ExEntityHanging(EntityHanging entity) {
+		super(entity);
+	}
 
-  @Override
-  public EntityHanging getNMS() {
-    return (EntityHanging) super.getNMS();
-  }
+	@Override
+	public EntityHanging getNMS() {
+		return (EntityHanging) super.getNMS();
+	}
 
-  @Override
-  public void setPosition(double x, double y, double z) {
-    super.setPosition(x, y, z);
-    this.getNMS().c = new BlockPosition(x, y, z);
-  }
+	@Override
+	public void setPosition(double x, double y, double z) {
+		super.setPosition(x, y, z);
+		this.getNMS().c = new BlockPosition(x, y, z);
+	}
 
-  @Override
-  public void setPosition(double x, double y, double z, boolean fixSpawnInBlock) {
-    super.setPosition(x, y, z, fixSpawnInBlock);
-    this.getNMS().c = new BlockPosition(x, y, z);
-  }
+	@Override
+	public void setPosition(double x, double y, double z, boolean fixSpawnInBlock) {
+		super.setPosition(x, y, z, fixSpawnInBlock);
+		this.getNMS().c = new BlockPosition(x, y, z);
+	}
 }

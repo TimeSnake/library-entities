@@ -17,30 +17,30 @@ import org.bukkit.craftbukkit.v1_19_R1.CraftServer;
 
 public class ExWorld {
 
-  protected final World world;
+	protected final World world;
 
-  public ExWorld(World world) {
-    this.world = world;
-  }
+	public ExWorld(World world) {
+		this.world = world;
+	}
 
-  public World getNMS() {
-    return this.world;
-  }
+	public World getNMS() {
+		return this.world;
+	}
 
-  public ExIBlockData getType(ExBlockPosition blockPosition) {
-    return new ExIBlockData(this.getType(blockPosition.getNMS()));
-  }
+	public ExIBlockData getType(ExBlockPosition blockPosition) {
+		return new ExIBlockData(this.getType(blockPosition.getNMS()));
+	}
 
-  public IBlockData getType(BlockPosition blockPosition) {
-    return this.world.a_(blockPosition);
-  }
+	public IBlockData getType(BlockPosition blockPosition) {
+		return this.world.a_(blockPosition);
+	}
 
-  public CraftServer getServer() {
-    return this.world.getCraftServer();
-  }
+	public CraftServer getServer() {
+		return this.world.getCraftServer();
+	}
 
-  public boolean getCubes(Entity entity, AxisAlignedBB axis) {
-    return this.world.a(entity, axis);
-  }
+	public boolean getCubes(Entity entity, AxisAlignedBB axis) {
+		return this.world.a(entity, axis);
+	}
 
 }

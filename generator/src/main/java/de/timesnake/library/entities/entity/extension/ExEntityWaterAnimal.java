@@ -13,11 +13,11 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftWaterMob;
 
 public class ExEntityWaterAnimal extends ExEntityCreature {
 
-  public ExEntityWaterAnimal(CraftWaterMob entity) {
-    super(entity);
-  }
+	public ExEntityWaterAnimal(CraftWaterMob entity) {
+		super(entity);
+	}
 
-  public ExEntityWaterAnimal(EntityWaterAnimal entity) {
-    super(entity);
-  }
+	public ExEntityWaterAnimal(EntityWaterAnimal entity) {
+		super(entity);
+	}
 }
