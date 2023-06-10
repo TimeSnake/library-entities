@@ -13,11 +13,11 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEntity;
 
 public class ExIProjectile extends ExEntity {
 
-  public ExIProjectile(CraftEntity entity) {
-    super(entity);
-  }
+	public ExIProjectile(CraftEntity entity) {
+		super(entity);
+	}
 
-  public ExIProjectile(IProjectile entity) {
-    super(entity);
-  }
+	public ExIProjectile(IProjectile entity) {
+		super(entity);
+	}
 }

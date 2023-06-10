@@ -13,16 +13,16 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftAbstractVillager;
 
 public class ExEntityVillagerAbstract extends ExEntityAgeable {
 
-  public ExEntityVillagerAbstract(CraftAbstractVillager entity) {
-    super(entity);
-  }
+	public ExEntityVillagerAbstract(CraftAbstractVillager entity) {
+		super(entity);
+	}
 
-  public ExEntityVillagerAbstract(EntityVillagerAbstract entity) {
-    super(entity);
-  }
+	public ExEntityVillagerAbstract(EntityVillagerAbstract entity) {
+		super(entity);
+	}
 
-  @Override
-  public EntityVillagerAbstract getNMS() {
-    return ((EntityVillagerAbstract) super.getNMS());
-  }
+	@Override
+	public EntityVillagerAbstract getNMS() {
+		return ((EntityVillagerAbstract) super.getNMS());
+	}
 }

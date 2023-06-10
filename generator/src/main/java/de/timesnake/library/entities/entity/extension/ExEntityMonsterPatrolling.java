@@ -13,11 +13,11 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMonster;
 
 public class ExEntityMonsterPatrolling extends ExEntityMonster {
 
-  public ExEntityMonsterPatrolling(CraftMonster entity) {
-    super(entity);
-  }
+	public ExEntityMonsterPatrolling(CraftMonster entity) {
+		super(entity);
+	}
 
-  public ExEntityMonsterPatrolling(EntityMonsterPatrolling entity) {
-    super(entity);
-  }
+	public ExEntityMonsterPatrolling(EntityMonsterPatrolling entity) {
+		super(entity);
+	}
 }

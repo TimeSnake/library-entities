@@ -13,11 +13,11 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftGolem;
 
 public class ExEntityGolem extends ExEntityInsentient {
 
-  public ExEntityGolem(EntityGolem entity) {
-    super(entity);
-  }
+	public ExEntityGolem(EntityGolem entity) {
+		super(entity);
+	}
 
-  public ExEntityGolem(CraftGolem entity) {
-    super(entity);
-  }
+	public ExEntityGolem(CraftGolem entity) {
+		super(entity);
+	}
 }

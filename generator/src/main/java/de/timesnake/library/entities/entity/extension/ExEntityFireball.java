@@ -9,11 +9,11 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftFireball;
 
 public class ExEntityFireball extends ExIProjectile {
 
-  public ExEntityFireball(CraftFireball entity) {
-    super(entity);
-  }
+	public ExEntityFireball(CraftFireball entity) {
+		super(entity);
+	}
 
-  public ExEntityFireball(EntityFireball entity) {
-    super(entity);
-  }
+	public ExEntityFireball(EntityFireball entity) {
+		super(entity);
+	}
 }
