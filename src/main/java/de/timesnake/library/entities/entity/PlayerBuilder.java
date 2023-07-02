@@ -1,0 +1,60 @@
+/*
+ * Copyright (C) 2023 timesnake
+ */
+
+/*
+    Copied from entity generator. Should only be edited in generator files
+*/
+
+package de.timesnake.library.entities.entity;
+
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
+import de.timesnake.library.basic.util.Tuple;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_20_R1.CraftServer;
+
+import java.lang.reflect.Field;
+import java.util.UUID;
+
+public class PlayerBuilder<E extends Player, B extends PlayerBuilder<E, B>> extends LivingEntityBuilder<E, B> {
+
+  public static PlayerBuilder<Player, ?> ofName(String name, String skinValue, String skinSignature) {
+    GameProfile profile = new GameProfile(UUID.randomUUID(), name.replace("§", ""));
+    if (skinValue != null && skinSignature != null) {
+      profile.getProperties().put("textures", new Property("textures", skinValue, skinSignature));
+    }
+    MinecraftServer server = ((CraftServer) Bukkit.getServer()).getHandle().getServer();
+    Player player = new ServerPlayer(server, server.overworld(), profile);
+    try {
+      Field listName = player.getClass().getField("listName");
+      listName.setAccessible(true);
+      listName.set(player, Component.literal(name));
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      throw new RuntimeException(e);
+    }
+    return new PlayerBuilder<>(player);
+  }
+
+  public static PlayerBuilder<Player, ?> ofName(String name) {
+    return ofName(name, null, null);
+  }
+
+  public PlayerBuilder(E entityHuman) {
+    super(entityHuman);
+  }
+
+  public B setTextures(String value, String signature) {
+    this.getNMS().getGameProfile().getProperties().put("textures", new Property("textures", value, signature));
+    return this.self;
+  }
+
+  public Tuple<String, String> getTextures() {
+    Property property = this.entity.getGameProfile().getProperties().get("textures").stream().findFirst().get();
+    return new Tuple<>(property.getValue(), property.getSignature());
+  }
+}

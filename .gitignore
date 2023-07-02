@@ -4,11 +4,7 @@
 .idea/dataSources
 /.gradle/
 /build/
-generator/build
-library-entities/build
 
 gradlew
 gradlew.bat
-/library-entities/src/main/java/de/timesnake/library/entities/entity/
-/library-entities/src/main/java/de/timesnake/library/entities/pathfinder/*.java
-/library-entities/src/main/java/de/timesnake/library/entities/wrapper/
+

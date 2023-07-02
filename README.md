@@ -28,7 +28,7 @@ the entity class, due to delegation.
 The following example show the class structure of the zombie entity.
 
 ``` java
-public class ExZombie extends org.bukkit.craftbukkit.v1_19_R1.entity.CraftZombie 
+public class ExZombie extends org.bukkit.craftbukkit.v1_20_R1.entity.CraftZombie 
         implements de.timesnake.library.entities.entity.bukkit.Zombie {
 
     private final ExEntityMonster extension = new ExEntityMonster(this) {
