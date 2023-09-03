@@ -20,7 +20,7 @@ public class RavagerBuilder extends RaiderBuilder<Ravager, RavagerBuilder> {
     super(entity);
   }
 
-  public RavagerBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData) {
+  public RavagerBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
     super(new Ravager(EntityType.RAVAGER, world) {
       @Override
       protected void registerGoals() {
@@ -37,6 +37,12 @@ public class RavagerBuilder extends RaiderBuilder<Ravager, RavagerBuilder> {
         }
         return entityData;
       }
+
+      @Override
+      public boolean removeWhenFarAway(double distanceSquared) {
+        return preventDespawn;
+      }
     });
+    this.entity.persist = preventDespawn;
   }
 }

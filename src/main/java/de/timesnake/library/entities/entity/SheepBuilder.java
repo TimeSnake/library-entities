@@ -20,7 +20,7 @@ public class SheepBuilder extends AnimalBuilder<Sheep, SheepBuilder> {
     super(entity);
   }
 
-  public SheepBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData) {
+  public SheepBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
     super(new Sheep(EntityType.SHEEP, world) {
       @Override
       protected void registerGoals() {
@@ -37,6 +37,12 @@ public class SheepBuilder extends AnimalBuilder<Sheep, SheepBuilder> {
         }
         return entityData;
       }
+
+      @Override
+      public boolean removeWhenFarAway(double distanceSquared) {
+        return preventDespawn;
+      }
     });
+    this.entity.persist = preventDespawn;
   }
 }

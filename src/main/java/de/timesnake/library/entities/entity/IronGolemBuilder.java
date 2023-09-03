@@ -20,7 +20,7 @@ public class IronGolemBuilder extends AbstractGolemBuilder<IronGolem, IronGolemB
     super(entity);
   }
 
-  public IronGolemBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData) {
+  public IronGolemBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
     super(new IronGolem(EntityType.IRON_GOLEM, world) {
       @Override
       protected void registerGoals() {
@@ -37,6 +37,12 @@ public class IronGolemBuilder extends AbstractGolemBuilder<IronGolem, IronGolemB
         }
         return entityData;
       }
+
+      @Override
+      public boolean removeWhenFarAway(double distanceSquared) {
+        return preventDespawn;
+      }
     });
+    this.entity.persist = preventDespawn;
   }
 }

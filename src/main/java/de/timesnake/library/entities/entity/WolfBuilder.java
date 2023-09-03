@@ -20,7 +20,7 @@ public class WolfBuilder extends TamableAnimalBuilder<Wolf, WolfBuilder> {
     super(entity);
   }
 
-  public WolfBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData) {
+  public WolfBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
     super(new Wolf(EntityType.WOLF, world) {
       @Override
       protected void registerGoals() {
@@ -37,6 +37,12 @@ public class WolfBuilder extends TamableAnimalBuilder<Wolf, WolfBuilder> {
         }
         return entityData;
       }
+
+      @Override
+      public boolean removeWhenFarAway(double distanceSquared) {
+        return preventDespawn;
+      }
     });
+    this.entity.persist = preventDespawn;
   }
 }

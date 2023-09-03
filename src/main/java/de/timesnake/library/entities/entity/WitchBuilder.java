@@ -19,7 +19,7 @@ public class WitchBuilder extends RaiderBuilder<Witch, WitchBuilder> {
     super(entity);
   }
 
-  public WitchBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData) {
+  public WitchBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
     super(new Witch(EntityType.WITCH, world) {
       @Override
       protected void registerGoals() {
@@ -36,6 +36,12 @@ public class WitchBuilder extends RaiderBuilder<Witch, WitchBuilder> {
         }
         return entityData;
       }
+
+      @Override
+      public boolean removeWhenFarAway(double distanceSquared) {
+        return preventDespawn;
+      }
     });
+    this.entity.persist = preventDespawn;
   }
 }

@@ -20,7 +20,7 @@ public class VindicatorBuilder extends AbstractIllagerBuilder<Vindicator, Vindic
     super(entity);
   }
 
-  public VindicatorBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData) {
+  public VindicatorBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
     super(new Vindicator(EntityType.VINDICATOR, world) {
       @Override
       protected void registerGoals() {
@@ -37,6 +37,12 @@ public class VindicatorBuilder extends AbstractIllagerBuilder<Vindicator, Vindic
         }
         return entityData;
       }
+
+      @Override
+      public boolean removeWhenFarAway(double distanceSquared) {
+        return preventDespawn;
+      }
     });
+    this.entity.persist = preventDespawn;
   }
 }

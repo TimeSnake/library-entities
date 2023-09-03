@@ -19,7 +19,7 @@ public class PillagerBuilder extends AbstractIllagerBuilder<Pillager, PillagerBu
     super(entity);
   }
 
-  public PillagerBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData) {
+  public PillagerBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
     super(new Pillager(EntityType.PILLAGER, world) {
       @Override
       protected void registerGoals() {
@@ -36,6 +36,12 @@ public class PillagerBuilder extends AbstractIllagerBuilder<Pillager, PillagerBu
         }
         return entityData;
       }
+
+      @Override
+      public boolean removeWhenFarAway(double distanceSquared) {
+        return preventDespawn;
+      }
     });
+    this.entity.persist = preventDespawn;
   }
 }

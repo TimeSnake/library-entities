@@ -20,7 +20,7 @@ public class VillagerBuilder extends AbstractVillagerBuilder<Villager, VillagerB
     super(entity);
   }
 
-  public VillagerBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData) {
+  public VillagerBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
     super(new Villager(EntityType.VILLAGER, world) {
       @Override
       protected void registerGoals() {
@@ -37,6 +37,12 @@ public class VillagerBuilder extends AbstractVillagerBuilder<Villager, VillagerB
         }
         return entityData;
       }
+
+      @Override
+      public boolean removeWhenFarAway(double distanceSquared) {
+        return preventDespawn;
+      }
     });
+    this.entity.persist = preventDespawn;
   }
 }
