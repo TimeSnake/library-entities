@@ -20,7 +20,7 @@ public class BlazeBuilder extends MonsterBuilder<Blaze, BlazeBuilder> {
     super(entity);
   }
 
-  public BlazeBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData) {
+  public BlazeBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
     super(new Blaze(EntityType.BLAZE, world) {
       @Override
       protected void registerGoals() {
@@ -37,6 +37,12 @@ public class BlazeBuilder extends MonsterBuilder<Blaze, BlazeBuilder> {
         }
         return entityData;
       }
+
+      @Override
+      public boolean removeWhenFarAway(double distanceSquared) {
+        return preventDespawn;
+      }
     });
+    this.entity.persist = preventDespawn;
   }
 }

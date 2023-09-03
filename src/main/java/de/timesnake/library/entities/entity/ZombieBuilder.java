@@ -20,7 +20,7 @@ public class ZombieBuilder extends MonsterBuilder<Zombie, ZombieBuilder> {
     super(entity);
   }
 
-  public ZombieBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData) {
+  public ZombieBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
     super(new Zombie(EntityType.ZOMBIE, world) {
       @Override
       protected void registerGoals() {
@@ -37,6 +37,12 @@ public class ZombieBuilder extends MonsterBuilder<Zombie, ZombieBuilder> {
         }
         return entityData;
       }
+
+      @Override
+      public boolean removeWhenFarAway(double distanceSquared) {
+        return preventDespawn;
+      }
     });
+    this.entity.persist = preventDespawn;
   }
 }

@@ -24,7 +24,7 @@ public class CreeperBuilder extends MonsterBuilder<Creeper, CreeperBuilder> {
     super(entity);
   }
 
-  public CreeperBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData) {
+  public CreeperBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
     super(new Creeper(EntityType.CREEPER, world) {
       @Override
       protected void registerGoals() {
@@ -41,7 +41,13 @@ public class CreeperBuilder extends MonsterBuilder<Creeper, CreeperBuilder> {
         }
         return entityData;
       }
+
+      @Override
+      public boolean removeWhenFarAway(double distanceSquared) {
+        return preventDespawn;
+      }
     });
+    this.entity.persist = preventDespawn;
   }
 
 }

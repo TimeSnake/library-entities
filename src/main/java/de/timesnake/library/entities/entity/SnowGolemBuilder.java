@@ -19,7 +19,7 @@ public class SnowGolemBuilder extends AbstractGolemBuilder<SnowGolem, SnowGolemB
     super(entity);
   }
 
-  public SnowGolemBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData) {
+  public SnowGolemBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
     super(new SnowGolem(EntityType.SNOW_GOLEM, world) {
       @Override
       protected void registerGoals() {
@@ -36,6 +36,12 @@ public class SnowGolemBuilder extends AbstractGolemBuilder<SnowGolem, SnowGolemB
         }
         return entityData;
       }
+
+      @Override
+      public boolean removeWhenFarAway(double distanceSquared) {
+        return preventDespawn;
+      }
     });
+    this.entity.persist = preventDespawn;
   }
 }

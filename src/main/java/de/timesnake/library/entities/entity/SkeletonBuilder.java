@@ -20,7 +20,7 @@ public class SkeletonBuilder extends AbstractSkeletonBuilder<Skeleton, SkeletonB
     super(entity);
   }
 
-  public SkeletonBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData) {
+  public SkeletonBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
     super(new Skeleton(EntityType.SKELETON, world) {
       @Override
       protected void registerGoals() {
@@ -37,6 +37,12 @@ public class SkeletonBuilder extends AbstractSkeletonBuilder<Skeleton, SkeletonB
         }
         return entityData;
       }
+
+      @Override
+      public boolean removeWhenFarAway(double distanceSquared) {
+        return preventDespawn;
+      }
     });
+    this.entity.persist = preventDespawn;
   }
 }

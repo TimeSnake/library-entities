@@ -20,7 +20,7 @@ public class StrayBuilder extends AbstractSkeletonBuilder<Stray, StrayBuilder> {
     super(entity);
   }
 
-  public StrayBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData) {
+  public StrayBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
     super(new Stray(EntityType.STRAY, world) {
       @Override
       protected void registerGoals() {
@@ -37,6 +37,12 @@ public class StrayBuilder extends AbstractSkeletonBuilder<Stray, StrayBuilder> {
         }
         return entityData;
       }
+
+      @Override
+      public boolean removeWhenFarAway(double distanceSquared) {
+        return preventDespawn;
+      }
     });
+    this.entity.persist = preventDespawn;
   }
 }

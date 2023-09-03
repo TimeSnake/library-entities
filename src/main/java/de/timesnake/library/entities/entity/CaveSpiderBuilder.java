@@ -20,7 +20,7 @@ public class CaveSpiderBuilder extends SpiderBuilder<CaveSpider, CaveSpiderBuild
     super(entity);
   }
 
-  public CaveSpiderBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData) {
+  public CaveSpiderBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
     super(new CaveSpider(EntityType.CAVE_SPIDER, world) {
       @Override
       protected void registerGoals() {
@@ -37,6 +37,12 @@ public class CaveSpiderBuilder extends SpiderBuilder<CaveSpider, CaveSpiderBuild
         }
         return entityData;
       }
+
+      @Override
+      public boolean removeWhenFarAway(double distanceSquared) {
+        return preventDespawn;
+      }
     });
+    this.entity.persist = preventDespawn;
   }
 }
