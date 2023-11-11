@@ -15,5 +15,9 @@ public interface EntityProxy {
 
   @Static
   @FieldGetter("DATA_SHARED_FLAGS_ID")
-  EntityDataAccessor<Byte> getDataSharedFlagsId();
+  EntityDataAccessor<Byte> getDataSharedFlagsIdDataAccessor();
+
+  @Static
+  @FieldGetter("DATA_POSE")
+  EntityDataAccessor<net.minecraft.world.entity.Pose> getDataPoseDataAccessor();
 }
