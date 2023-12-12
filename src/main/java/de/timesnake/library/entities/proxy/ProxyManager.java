@@ -19,6 +19,7 @@ public class ProxyManager {
   private final AbstractSkeletonProxy abstractSkeletonProxy;
   private final BlazeProxy blazeProxy;
   private final EntityProxy entityProxy;
+  private final SynchedEntityDataProxy synchedEntityDataProxy;
 
   public ProxyManager() {
     final ReflectionRemapper reflectionRemapper = ReflectionRemapper.forReobfMappingsInPaperJar();
@@ -29,6 +30,8 @@ public class ProxyManager {
     this.abstractSkeletonProxy = reflectionProxyFactory.reflectionProxy(AbstractSkeletonProxy.class);
     this.blazeProxy = reflectionProxyFactory.reflectionProxy(BlazeProxy.class);
     this.entityProxy = reflectionProxyFactory.reflectionProxy(EntityProxy.class);
+
+    this.synchedEntityDataProxy = reflectionProxyFactory.reflectionProxy(SynchedEntityDataProxy.class);
 
   }
 
@@ -46,5 +49,9 @@ public class ProxyManager {
 
   public EntityProxy getEntityProxy() {
     return entityProxy;
+  }
+
+  public SynchedEntityDataProxy getSynchedEntityDataProxy() {
+    return synchedEntityDataProxy;
   }
 }
