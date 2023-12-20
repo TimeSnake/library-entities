@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_20_R1.entity.CraftEntity;
 import org.bukkit.event.entity.EntityTeleportEvent;
@@ -24,12 +25,8 @@ import java.util.EnumSet;
 
 public class PetGoal extends Goal {
 
-  public static final int TELEPORT_WHEN_DISTANCE_IS = 12;
-  private static final int MIN_HORIZONTAL_DISTANCE_FROM_PLAYER_WHEN_TELEPORTING = 2;
-  private static final int MAX_HORIZONTAL_DISTANCE_FROM_PLAYER_WHEN_TELEPORTING = 3;
-  private static final int MAX_VERTICAL_DISTANCE_FROM_PLAYER_WHEN_TELEPORTING = 1;
   private final Mob mob;
-  private LivingEntity owner;
+  private final LivingEntity owner;
   private final LevelReader level;
   private final double speedModifier;
   private final PathNavigation navigation;
@@ -39,18 +36,19 @@ public class PetGoal extends Goal {
   private float oldWaterCost;
   private final boolean canFly;
 
-  public PetGoal(Mob tameable, LivingEntity owner, double speed, float minDistance, float maxDistance, boolean leavesAllowed) {
+  public PetGoal(Mob tameable, LivingEntity owner, double speed, float startDistance, float stopDistance,
+                 boolean leavesAllowed) {
     this.mob = tameable;
     this.owner = owner;
     this.level = tameable.level();
     this.speedModifier = speed;
     this.navigation = tameable.getNavigation();
-    this.startDistance = minDistance;
-    this.stopDistance = maxDistance;
+    this.startDistance = startDistance;
+    this.stopDistance = stopDistance;
     this.canFly = leavesAllowed;
     this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
     if (!(tameable.getNavigation() instanceof GroundPathNavigation) && !(tameable.getNavigation() instanceof FlyingPathNavigation)) {
-      throw new IllegalArgumentException("Unsupported mob type for FollowOwnerGoal");
+      throw new IllegalArgumentException("Unsupported mob type for PetGoal");
     }
   }
 
@@ -71,8 +69,8 @@ public class PetGoal extends Goal {
 
   @Override
   public boolean canContinueToUse() {
-    return !this.navigation.isDone() && (!this.unableToMove()
-        && this.mob.distanceToSqr(this.owner) > (double) (this.stopDistance * this.stopDistance));
+    return !this.navigation.isDone() && !this.unableToMove()
+        && this.mob.distanceToSqr(this.owner) > (double) (this.stopDistance * this.stopDistance);
   }
 
   private boolean unableToMove() {
@@ -88,7 +86,6 @@ public class PetGoal extends Goal {
 
   @Override
   public void stop() {
-    this.owner = null;
     this.navigation.stop();
     this.mob.setPathfindingMalus(BlockPathTypes.WATER, this.oldWaterCost);
   }
@@ -96,7 +93,7 @@ public class PetGoal extends Goal {
   @Override
   public void tick() {
     if (this.mob.distanceToSqr(this.owner) <= 16 * 16) {
-      this.mob.getLookControl().setLookAt(this.owner, 10.0F, (float) this.mob.getMaxHeadXRot()); // Paper
+      this.mob.getLookControl().setLookAt(this.owner, 10.0F, (float) this.mob.getMaxHeadXRot());
     }
     if (--this.timeToRecalcPath <= 0) {
       this.timeToRecalcPath = this.adjustedTickDelay(10);
@@ -131,18 +128,18 @@ public class PetGoal extends Goal {
     } else if (!this.canTeleportTo(new BlockPos(x, y, z))) {
       return false;
     } else {
-      // CraftBukkit start
       CraftEntity entity = this.mob.getBukkitEntity();
-      Location to = new Location(entity.getWorld(), (double) x + 0.5D, y, (double) z + 0.5D, this.mob.getYRot(), this.mob.getXRot());
-      EntityTeleportEvent event = new EntityTeleportEvent(entity, entity.getLocation(), to);
-      this.mob.level().getCraftServer().getPluginManager().callEvent(event);
+      Location to = new Location(entity.getWorld(), x + 0.5, y, z + 0.5, this.mob.getYRot(), this.mob.getXRot());
+      EntityTeleportEvent event = new org.bukkit.event.entity.EntityTeleportEvent(entity, entity.getLocation(), to);
+
+      Bukkit.getPluginManager().callEvent(event);
+
       if (event.isCancelled()) {
         return false;
       }
-      to = event.getTo();
 
+      to = event.getTo();
       this.mob.moveTo(to.getX(), to.getY(), to.getZ(), to.getYaw(), to.getPitch());
-      // CraftBukkit end
       this.navigation.stop();
       return true;
     }
