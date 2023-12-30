@@ -4,6 +4,7 @@
 
 package de.timesnake.library.entities.entity;
 
+import de.timesnake.library.entities.entity.base.MobBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
@@ -16,16 +17,16 @@ import org.jetbrains.annotations.Nullable;
 
 public class SlimeBuilder extends MobBuilder<Slime, SlimeBuilder> {
 
-  public SlimeBuilder(Slime entity) {
-    super(entity);
+  public SlimeBuilder() {
+    super();
   }
 
-  public SlimeBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData,
-                      boolean preventDespawn) {
-    super(new Slime(EntityType.SLIME, world) {
+  @Override
+  public Slime create(ServerLevel serverLevel) {
+    return new Slime(EntityType.SLIME, serverLevel) {
       @Override
       protected void registerGoals() {
-        if (loadDefaultPathfinders) {
+        if (loadDefaultPathfinderGoals) {
           super.registerGoals();
         }
       }
@@ -35,7 +36,7 @@ public class SlimeBuilder extends MobBuilder<Slime, SlimeBuilder> {
       public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty,
                                           MobSpawnType spawnReason, @Nullable SpawnGroupData entityData,
                                           @Nullable CompoundTag entityNbt) {
-        if (randomizeData) {
+        if (randomizeDataOnSpawn) {
           return super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityNbt);
         }
         return entityData;
@@ -43,9 +44,13 @@ public class SlimeBuilder extends MobBuilder<Slime, SlimeBuilder> {
 
       @Override
       public boolean removeWhenFarAway(double distanceSquared) {
-        return preventDespawn;
+        return !preventDespawning && super.removeWhenFarAway(distanceSquared);
       }
-    });
-    this.entity.persist = preventDespawn;
+
+      @Override
+      public boolean isVehicle() {
+        return !neverVehicle && super.isVehicle();
+      }
+    };
   }
 }

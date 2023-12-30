@@ -4,6 +4,7 @@
 
 package de.timesnake.library.entities.entity;
 
+import de.timesnake.library.entities.entity.base.AbstractIllagerBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
@@ -15,23 +16,27 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
 public class PillagerBuilder extends AbstractIllagerBuilder<Pillager, PillagerBuilder> {
-  public PillagerBuilder(Pillager entity) {
-    super(entity);
+
+  public PillagerBuilder() {
+    super();
   }
 
-  public PillagerBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
-    super(new Pillager(EntityType.PILLAGER, world) {
+  @Override
+  public Pillager create(ServerLevel serverLevel) {
+    return new Pillager(EntityType.PILLAGER, serverLevel) {
       @Override
       protected void registerGoals() {
-        if (loadDefaultPathfinders) {
+        if (loadDefaultPathfinderGoals) {
           super.registerGoals();
         }
       }
 
       @Nullable
       @Override
-      public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @Nullable SpawnGroupData entityData, @Nullable CompoundTag entityNbt) {
-        if (randomizeData) {
+      public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty,
+                                          MobSpawnType spawnReason, @Nullable SpawnGroupData entityData,
+                                          @Nullable CompoundTag entityNbt) {
+        if (randomizeDataOnSpawn) {
           return super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityNbt);
         }
         return entityData;
@@ -39,9 +44,13 @@ public class PillagerBuilder extends AbstractIllagerBuilder<Pillager, PillagerBu
 
       @Override
       public boolean removeWhenFarAway(double distanceSquared) {
-        return preventDespawn;
+        return !preventDespawning && super.removeWhenFarAway(distanceSquared);
       }
-    });
-    this.entity.persist = preventDespawn;
+
+      @Override
+      public boolean isVehicle() {
+        return !neverVehicle && super.isVehicle();
+      }
+    };
   }
 }

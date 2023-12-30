@@ -4,6 +4,7 @@
 
 package de.timesnake.library.entities.entity;
 
+import de.timesnake.library.entities.entity.base.AnimalBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
@@ -16,23 +17,26 @@ import org.jetbrains.annotations.Nullable;
 
 public class SheepBuilder extends AnimalBuilder<Sheep, SheepBuilder> {
 
-  public SheepBuilder(Sheep entity) {
-    super(entity);
+  public SheepBuilder() {
+    super();
   }
 
-  public SheepBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
-    super(new Sheep(EntityType.SHEEP, world) {
+  @Override
+  public Sheep create(ServerLevel world) {
+    return new Sheep(EntityType.SHEEP, world) {
       @Override
       protected void registerGoals() {
-        if (loadDefaultPathfinders) {
+        if (loadDefaultPathfinderGoals) {
           super.registerGoals();
         }
       }
 
       @Nullable
       @Override
-      public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @Nullable SpawnGroupData entityData, @Nullable CompoundTag entityNbt) {
-        if (randomizeData) {
+      public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty,
+                                          MobSpawnType spawnReason, @Nullable SpawnGroupData entityData,
+                                          @Nullable CompoundTag entityNbt) {
+        if (randomizeDataOnSpawn) {
           return super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityNbt);
         }
         return entityData;
@@ -40,9 +44,13 @@ public class SheepBuilder extends AnimalBuilder<Sheep, SheepBuilder> {
 
       @Override
       public boolean removeWhenFarAway(double distanceSquared) {
-        return preventDespawn;
+        return !preventDespawning && super.removeWhenFarAway(distanceSquared);
       }
-    });
-    this.entity.persist = preventDespawn;
+
+      @Override
+      public boolean isVehicle() {
+        return !neverVehicle && super.isVehicle();
+      }
+    };
   }
 }

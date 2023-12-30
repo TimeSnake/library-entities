@@ -4,6 +4,7 @@
 
 package de.timesnake.library.entities.entity;
 
+import de.timesnake.library.entities.entity.base.AnimalBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
@@ -16,15 +17,16 @@ import org.jetbrains.annotations.Nullable;
 
 public class FoxBuilder extends AnimalBuilder<Fox, FoxBuilder> {
 
-  public FoxBuilder(Fox entity) {
-    super(entity);
+  public FoxBuilder() {
+    super();
   }
 
-  public FoxBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
-    super(new Fox(EntityType.FOX, world) {
+  @Override
+  public Fox create(ServerLevel serverLevel) {
+    return new Fox(EntityType.FOX, serverLevel) {
       @Override
       protected void registerGoals() {
-        if (loadDefaultPathfinders) {
+        if (loadDefaultPathfinderGoals) {
           super.registerGoals();
         }
       }
@@ -34,7 +36,7 @@ public class FoxBuilder extends AnimalBuilder<Fox, FoxBuilder> {
       public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty,
                                           MobSpawnType spawnReason, @Nullable SpawnGroupData entityData,
                                           @Nullable CompoundTag entityNbt) {
-        if (randomizeData) {
+        if (randomizeDataOnSpawn) {
           return super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityNbt);
         }
         return entityData;
@@ -42,10 +44,13 @@ public class FoxBuilder extends AnimalBuilder<Fox, FoxBuilder> {
 
       @Override
       public boolean removeWhenFarAway(double distanceSquared) {
-        return preventDespawn;
+        return !preventDespawning && super.removeWhenFarAway(distanceSquared);
       }
 
-    });
-    this.entity.persist = preventDespawn;
+      @Override
+      public boolean isVehicle() {
+        return !neverVehicle && super.isVehicle();
+      }
+    };
   }
 }

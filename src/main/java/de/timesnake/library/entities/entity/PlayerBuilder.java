@@ -11,8 +11,10 @@ package de.timesnake.library.entities.entity;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import de.timesnake.library.basic.util.Tuple;
+import de.timesnake.library.entities.entity.base.LivingEntityBuilder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import org.bukkit.Bukkit;
@@ -44,17 +46,28 @@ public class PlayerBuilder<E extends Player, B extends PlayerBuilder<E, B>> exte
     return ofName(name, null, null);
   }
 
-  public PlayerBuilder(E entityHuman) {
-    super(entityHuman);
+  private final E player;
+
+  public PlayerBuilder(E player) {
+    super();
+    this.player = player;
+  }
+
+  public E build() {
+    return this.build(null);
+  }
+
+  @Override
+  protected E create(ServerLevel serverLevel) {
+    return this.player;
   }
 
   public B setTextures(String value, String signature) {
-    this.getNMS().getGameProfile().getProperties().put("textures", new Property("textures", value, signature));
-    return this.self;
+    return this.applyOnEntity(e -> e.getGameProfile().getProperties().put("textures", new Property("textures", value, signature)));
   }
 
   public Tuple<String, String> getTextures() {
-    Property property = this.entity.getGameProfile().getProperties().get("textures").stream().findFirst().get();
+    Property property = this.player.getGameProfile().getProperties().get("textures").stream().findFirst().get();
     return new Tuple<>(property.getValue(), property.getSignature());
   }
 }

@@ -10,7 +10,7 @@ plugins {
 
 
 group = "de.timesnake"
-version = '2.1'
+version = '2.2'
 archivesBaseName = 'library-entities'
 var projectId = 5
 

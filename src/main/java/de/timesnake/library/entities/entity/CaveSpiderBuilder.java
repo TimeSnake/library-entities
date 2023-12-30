@@ -16,23 +16,26 @@ import org.jetbrains.annotations.Nullable;
 
 public class CaveSpiderBuilder extends SpiderBuilder<CaveSpider, CaveSpiderBuilder> {
 
-  public CaveSpiderBuilder(CaveSpider entity) {
-    super(entity);
+  public CaveSpiderBuilder() {
+    super();
   }
 
-  public CaveSpiderBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
-    super(new CaveSpider(EntityType.CAVE_SPIDER, world) {
+  @Override
+  public CaveSpider create(ServerLevel serverLevel) {
+    return new CaveSpider(EntityType.CAVE_SPIDER, serverLevel) {
       @Override
       protected void registerGoals() {
-        if (loadDefaultPathfinders) {
+        if (loadDefaultPathfinderGoals) {
           super.registerGoals();
         }
       }
 
       @Nullable
       @Override
-      public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @Nullable SpawnGroupData entityData, @Nullable CompoundTag entityNbt) {
-        if (randomizeData) {
+      public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty,
+                                          MobSpawnType spawnReason, @Nullable SpawnGroupData entityData,
+                                          @Nullable CompoundTag entityNbt) {
+        if (randomizeDataOnSpawn) {
           return super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityNbt);
         }
         return entityData;
@@ -40,9 +43,13 @@ public class CaveSpiderBuilder extends SpiderBuilder<CaveSpider, CaveSpiderBuild
 
       @Override
       public boolean removeWhenFarAway(double distanceSquared) {
-        return preventDespawn;
+        return !preventDespawning && super.removeWhenFarAway(distanceSquared);
       }
-    });
-    this.entity.persist = preventDespawn;
+
+      @Override
+      public boolean isVehicle() {
+        return !neverVehicle && super.isVehicle();
+      }
+    };
   }
 }

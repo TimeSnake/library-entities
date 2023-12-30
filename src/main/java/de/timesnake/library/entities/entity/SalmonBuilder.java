@@ -4,6 +4,7 @@
 
 package de.timesnake.library.entities.entity;
 
+import de.timesnake.library.entities.entity.base.AbstractSchoolingFishBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
@@ -16,16 +17,16 @@ import org.jetbrains.annotations.Nullable;
 
 public class SalmonBuilder extends AbstractSchoolingFishBuilder<Salmon, SalmonBuilder> {
 
-  public SalmonBuilder(Salmon entity) {
-    super(entity);
+  public SalmonBuilder() {
+    super();
   }
 
-  public SalmonBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData,
-                       boolean preventDespawn) {
-    super(new Salmon(EntityType.SALMON, world) {
+  @Override
+  public Salmon create(ServerLevel serverLevel) {
+    return new Salmon(EntityType.SALMON, serverLevel) {
       @Override
       protected void registerGoals() {
-        if (loadDefaultPathfinders) {
+        if (loadDefaultPathfinderGoals) {
           super.registerGoals();
         }
       }
@@ -35,7 +36,7 @@ public class SalmonBuilder extends AbstractSchoolingFishBuilder<Salmon, SalmonBu
       public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty,
                                           MobSpawnType spawnReason, @Nullable SpawnGroupData entityData,
                                           @Nullable CompoundTag entityNbt) {
-        if (randomizeData) {
+        if (randomizeDataOnSpawn) {
           return super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityNbt);
         }
         return entityData;
@@ -43,10 +44,13 @@ public class SalmonBuilder extends AbstractSchoolingFishBuilder<Salmon, SalmonBu
 
       @Override
       public boolean removeWhenFarAway(double distanceSquared) {
-        return preventDespawn;
+        return !preventDespawning && super.removeWhenFarAway(distanceSquared);
       }
 
-    });
-    this.entity.persist = preventDespawn;
+      @Override
+      public boolean isVehicle() {
+        return !neverVehicle && super.isVehicle();
+      }
+    };
   }
 }
