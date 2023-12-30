@@ -8,6 +8,7 @@
 
 package de.timesnake.library.entities.entity;
 
+import de.timesnake.library.entities.entity.base.MonsterBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
@@ -20,23 +21,26 @@ import org.jetbrains.annotations.Nullable;
 
 public class CreeperBuilder extends MonsterBuilder<Creeper, CreeperBuilder> {
 
-  public CreeperBuilder(Creeper entity) {
-    super(entity);
+  public CreeperBuilder() {
+    super();
   }
 
-  public CreeperBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData, boolean preventDespawn) {
-    super(new Creeper(EntityType.CREEPER, world) {
+  @Override
+  public Creeper create(ServerLevel serverLevel) {
+    return new Creeper(EntityType.CREEPER, serverLevel) {
       @Override
       protected void registerGoals() {
-        if (loadDefaultPathfinders) {
+        if (loadDefaultPathfinderGoals) {
           super.registerGoals();
         }
       }
 
       @Nullable
       @Override
-      public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @Nullable SpawnGroupData entityData, @Nullable CompoundTag entityNbt) {
-        if (randomizeData) {
+      public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty,
+                                          MobSpawnType spawnReason, @Nullable SpawnGroupData entityData,
+                                          @Nullable CompoundTag entityNbt) {
+        if (randomizeDataOnSpawn) {
           return super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityNbt);
         }
         return entityData;
@@ -44,10 +48,14 @@ public class CreeperBuilder extends MonsterBuilder<Creeper, CreeperBuilder> {
 
       @Override
       public boolean removeWhenFarAway(double distanceSquared) {
-        return preventDespawn;
+        return !preventDespawning && super.removeWhenFarAway(distanceSquared);
       }
-    });
-    this.entity.persist = preventDespawn;
+
+      @Override
+      public boolean isVehicle() {
+        return !neverVehicle && super.isVehicle();
+      }
+    };
   }
 
 }

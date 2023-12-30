@@ -4,6 +4,7 @@
 
 package de.timesnake.library.entities.entity;
 
+import de.timesnake.library.entities.entity.base.AnimalBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
@@ -16,16 +17,16 @@ import org.jetbrains.annotations.Nullable;
 
 public class ChickenBuilder extends AnimalBuilder<Chicken, ChickenBuilder> {
 
-  public ChickenBuilder(Chicken entity) {
-    super(entity);
+  public ChickenBuilder() {
+    super();
   }
 
-  public ChickenBuilder(ServerLevel world, boolean loadDefaultPathfinders, boolean randomizeData,
-                        boolean preventDespawn) {
-    super(new Chicken(EntityType.CHICKEN, world) {
+  @Override
+  public Chicken create(ServerLevel serverLevel) {
+    return new Chicken(EntityType.CHICKEN, serverLevel) {
       @Override
       protected void registerGoals() {
-        if (loadDefaultPathfinders) {
+        if (loadDefaultPathfinderGoals) {
           super.registerGoals();
         }
       }
@@ -35,7 +36,7 @@ public class ChickenBuilder extends AnimalBuilder<Chicken, ChickenBuilder> {
       public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty,
                                           MobSpawnType spawnReason, @Nullable SpawnGroupData entityData,
                                           @Nullable CompoundTag entityNbt) {
-        if (randomizeData) {
+        if (randomizeDataOnSpawn) {
           return super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityNbt);
         }
         return entityData;
@@ -43,9 +44,13 @@ public class ChickenBuilder extends AnimalBuilder<Chicken, ChickenBuilder> {
 
       @Override
       public boolean removeWhenFarAway(double distanceSquared) {
-        return preventDespawn;
+        return !preventDespawning && super.removeWhenFarAway(distanceSquared);
       }
-    });
-    this.entity.persist = preventDespawn;
+
+      @Override
+      public boolean isVehicle() {
+        return !neverVehicle && super.isVehicle();
+      }
+    };
   }
 }
