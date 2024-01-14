@@ -18,6 +18,7 @@ public class ProxyManager {
   private final SpellcasterIllagerProxy spellcasterIllagerProxy;
   private final AbstractSkeletonProxy abstractSkeletonProxy;
   private final BlazeProxy blazeProxy;
+  private final SheepProxy sheepProxy;
   private final EntityProxy entityProxy;
   private final SynchedEntityDataProxy synchedEntityDataProxy;
 
@@ -29,6 +30,7 @@ public class ProxyManager {
     this.spellcasterIllagerProxy = reflectionProxyFactory.reflectionProxy(SpellcasterIllagerProxy.class);
     this.abstractSkeletonProxy = reflectionProxyFactory.reflectionProxy(AbstractSkeletonProxy.class);
     this.blazeProxy = reflectionProxyFactory.reflectionProxy(BlazeProxy.class);
+    this.sheepProxy = reflectionProxyFactory.reflectionProxy(SheepProxy.class);
     this.entityProxy = reflectionProxyFactory.reflectionProxy(EntityProxy.class);
 
     this.synchedEntityDataProxy = reflectionProxyFactory.reflectionProxy(SynchedEntityDataProxy.class);
@@ -45,6 +47,10 @@ public class ProxyManager {
 
   public BlazeProxy getBlazeProxy() {
     return blazeProxy;
+  }
+
+  public SheepProxy getSheepProxy() {
+    return sheepProxy;
   }
 
   public EntityProxy getEntityProxy() {
