@@ -8,7 +8,9 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.world.entity.ai.goal.EatBlockGoal;
 import net.minecraft.world.entity.animal.Sheep;
 import xyz.jpenilla.reflectionremapper.proxy.annotation.FieldSetter;
+import xyz.jpenilla.reflectionremapper.proxy.annotation.Proxies;
 
+@Proxies(Sheep.class)
 public interface SheepProxy {
 
   @FieldSetter("eatBlockGoal")
