@@ -28,7 +28,10 @@ public abstract class LivingEntityBuilder<E extends net.minecraft.world.entity.L
   }
 
   public B setMaxHealthAndHealth(float health) {
-    return this.applyOnEntity(e -> ((LivingEntity) e.getBukkitEntity()).getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(health));
+    return this.applyOnEntity(e -> {
+      ((LivingEntity) e.getBukkitEntity()).getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(health);
+      e.setHealth(health);
+    });
   }
 
   public B addDeathLoot(Collection<ItemStack> items) {
