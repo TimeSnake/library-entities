@@ -21,6 +21,7 @@ public class ProxyManager {
   private final SheepProxy sheepProxy;
   private final EntityProxy entityProxy;
   private final SynchedEntityDataProxy synchedEntityDataProxy;
+  private final WitchProxy witchProxy;
 
   public ProxyManager() {
     final ReflectionRemapper reflectionRemapper = ReflectionRemapper.forReobfMappingsInPaperJar();
@@ -32,9 +33,9 @@ public class ProxyManager {
     this.blazeProxy = reflectionProxyFactory.reflectionProxy(BlazeProxy.class);
     this.sheepProxy = reflectionProxyFactory.reflectionProxy(SheepProxy.class);
     this.entityProxy = reflectionProxyFactory.reflectionProxy(EntityProxy.class);
+    this.witchProxy = reflectionProxyFactory.reflectionProxy(WitchProxy.class);
 
     this.synchedEntityDataProxy = reflectionProxyFactory.reflectionProxy(SynchedEntityDataProxy.class);
-
   }
 
   public SpellcasterIllagerProxy getSpellcasterIllagerProxy() {
@@ -55,6 +56,10 @@ public class ProxyManager {
 
   public EntityProxy getEntityProxy() {
     return entityProxy;
+  }
+
+  public WitchProxy getWitchProxy() {
+    return witchProxy;
   }
 
   public SynchedEntityDataProxy getSynchedEntityDataProxy() {
