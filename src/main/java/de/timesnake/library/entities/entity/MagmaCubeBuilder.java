@@ -11,19 +11,15 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.monster.Slime;
+import net.minecraft.world.entity.monster.MagmaCube;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
-public class SlimeBuilder extends AbstractSlimeBuilder<Slime, SlimeBuilder> {
-
-  public SlimeBuilder() {
-    super();
-  }
+public class MagmaCubeBuilder extends AbstractSlimeBuilder<MagmaCube, MagmaCubeBuilder> {
 
   @Override
-  public Slime create(ServerLevel serverLevel) {
-    return new Slime(EntityType.SLIME, serverLevel) {
+  protected MagmaCube create(ServerLevel serverLevel) {
+    return new MagmaCube(EntityType.MAGMA_CUBE, serverLevel) {
       @Override
       protected void registerGoals() {
         if (loadDefaultPathfinderGoals) {
@@ -63,4 +59,5 @@ public class SlimeBuilder extends AbstractSlimeBuilder<Slime, SlimeBuilder> {
       }
     };
   }
+
 }

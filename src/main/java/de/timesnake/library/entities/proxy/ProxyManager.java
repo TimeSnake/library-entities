@@ -22,6 +22,8 @@ public class ProxyManager {
   private final EntityProxy entityProxy;
   private final SynchedEntityDataProxy synchedEntityDataProxy;
   private final WitchProxy witchProxy;
+  private final SlimeProxy slimeProxy;
+  private final SlimeMoveControlProxy slimeMoveControlProxy;
 
   public ProxyManager() {
     final ReflectionRemapper reflectionRemapper = ReflectionRemapper.forReobfMappingsInPaperJar();
@@ -34,6 +36,8 @@ public class ProxyManager {
     this.sheepProxy = reflectionProxyFactory.reflectionProxy(SheepProxy.class);
     this.entityProxy = reflectionProxyFactory.reflectionProxy(EntityProxy.class);
     this.witchProxy = reflectionProxyFactory.reflectionProxy(WitchProxy.class);
+    this.slimeProxy = reflectionProxyFactory.reflectionProxy(SlimeProxy.class);
+    this.slimeMoveControlProxy = reflectionProxyFactory.reflectionProxy(SlimeMoveControlProxy.class);
 
     this.synchedEntityDataProxy = reflectionProxyFactory.reflectionProxy(SynchedEntityDataProxy.class);
   }
@@ -60,6 +64,14 @@ public class ProxyManager {
 
   public WitchProxy getWitchProxy() {
     return witchProxy;
+  }
+
+  public SlimeProxy getSlimeProxy() {
+    return slimeProxy;
+  }
+
+  public SlimeMoveControlProxy getSlimeMoveControlProxy() {
+    return slimeMoveControlProxy;
   }
 
   public SynchedEntityDataProxy getSynchedEntityDataProxy() {
