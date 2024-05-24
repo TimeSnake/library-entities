@@ -26,7 +26,12 @@ import java.util.UUID;
 public class PlayerBuilder<E extends Player, B extends PlayerBuilder<E, B>> extends LivingEntityBuilder<E, B> {
 
   public static PlayerBuilder<Player, ?> ofName(String name, String skinValue, String skinSignature) {
-    GameProfile profile = new GameProfile(UUID.randomUUID(), name.replace("§", ""));
+    return ofName(name, name, skinValue, skinSignature);
+  }
+
+  public static PlayerBuilder<Player, ?> ofName(String name, String tablistName, String skinValue,
+                                                String skinSignature) {
+    GameProfile profile = new GameProfile(UUID.randomUUID(), name);
     if (skinValue != null && skinSignature != null) {
       profile.getProperties().put("textures", new Property("textures", skinValue, skinSignature));
     }
@@ -35,7 +40,7 @@ public class PlayerBuilder<E extends Player, B extends PlayerBuilder<E, B>> exte
     try {
       Field listName = player.getClass().getField("listName");
       listName.setAccessible(true);
-      listName.set(player, Component.literal(name));
+      listName.set(player, Component.literal(tablistName));
     } catch (NoSuchFieldException | IllegalAccessException e) {
       throw new RuntimeException(e);
     }
@@ -43,7 +48,11 @@ public class PlayerBuilder<E extends Player, B extends PlayerBuilder<E, B>> exte
   }
 
   public static PlayerBuilder<Player, ?> ofName(String name) {
-    return ofName(name, null, null);
+    return ofName(name, name, null, null);
+  }
+
+  public static PlayerBuilder<Player, ?> ofName(String name, String tablistName) {
+    return ofName(name, tablistName, null, null);
   }
 
   private final E player;
