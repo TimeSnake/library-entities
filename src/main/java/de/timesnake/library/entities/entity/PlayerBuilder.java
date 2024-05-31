@@ -14,11 +14,12 @@ import de.timesnake.library.basic.util.Tuple;
 import de.timesnake.library.entities.entity.base.LivingEntityBuilder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ClientInformation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_20_R1.CraftServer;
+import org.bukkit.craftbukkit.CraftServer;
 
 import java.lang.reflect.Field;
 import java.util.UUID;
@@ -36,7 +37,8 @@ public class PlayerBuilder<E extends Player, B extends PlayerBuilder<E, B>> exte
       profile.getProperties().put("textures", new Property("textures", skinValue, skinSignature));
     }
     MinecraftServer server = ((CraftServer) Bukkit.getServer()).getHandle().getServer();
-    Player player = new ServerPlayer(server, server.overworld(), profile);
+    ClientInformation clientInformation = ClientInformation.createDefault();
+    Player player = new ServerPlayer(server, server.overworld(), profile, clientInformation);
     try {
       Field listName = player.getClass().getField("listName");
       listName.setAccessible(true);
@@ -77,6 +79,6 @@ public class PlayerBuilder<E extends Player, B extends PlayerBuilder<E, B>> exte
 
   public Tuple<String, String> getTextures() {
     Property property = this.player.getGameProfile().getProperties().get("textures").stream().findFirst().get();
-    return new Tuple<>(property.getValue(), property.getSignature());
+    return new Tuple<>(property.value(), property.signature());
   }
 }

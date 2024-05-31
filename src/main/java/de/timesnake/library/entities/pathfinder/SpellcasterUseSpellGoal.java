@@ -54,7 +54,7 @@ public abstract class SpellcasterUseSpellGoal extends Goal {
     --this.attackWarmupDelay;
     if (this.attackWarmupDelay == 0) {
       // CraftBukkit start
-      if (!org.bukkit.craftbukkit.v1_20_R1.event.CraftEventFactory.handleEntitySpellCastEvent(this.entity, this.getSpell())) {
+      if (!org.bukkit.craftbukkit.event.CraftEventFactory.handleEntitySpellCastEvent(this.entity, this.getSpell())) {
         return;
       }
       // CraftBukkit end
