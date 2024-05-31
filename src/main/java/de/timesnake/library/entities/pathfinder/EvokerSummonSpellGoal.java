@@ -5,7 +5,6 @@
 package de.timesnake.library.entities.pathfinder;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -59,7 +58,8 @@ public class EvokerSummonSpellGoal extends SpellcasterUseSpellGoal {
 
       if (entityvex != null) {
         entityvex.moveTo(blockposition, 0.0F, 0.0F);
-        entityvex.finalizeSpawn(worldserver, this.entity.level().getCurrentDifficultyAt(blockposition), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+        entityvex.finalizeSpawn(worldserver, this.entity.level().getCurrentDifficultyAt(blockposition),
+            MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null);
         entityvex.setOwner(this.entity);
         entityvex.setBoundOrigin(blockposition);
         entityvex.setLimitedLife(20 * (30 + this.entity.getRandom().nextInt(90)));

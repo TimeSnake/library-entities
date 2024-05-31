@@ -4,7 +4,6 @@
 
 package de.timesnake.library.entities.pathfinder;
 
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.monster.Spider;
 
@@ -28,15 +27,10 @@ public class SpiderAttackGoal extends MeleeAttackGoal {
     float f = this.mob.getLightLevelDependentMagicValue();
 
     if (f >= 0.5F && this.mob.getRandom().nextInt(100) == 0) {
-      this.mob.setTarget((LivingEntity) null);
+      this.mob.setTarget(null);
       return false;
     } else {
       return super.canContinueToUse();
     }
-  }
-
-  @Override
-  protected double getAttackReachSqr(LivingEntity entity) {
-    return (double) (4.0F + entity.getBbWidth());
   }
 }

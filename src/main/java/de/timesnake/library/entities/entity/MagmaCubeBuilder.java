@@ -5,7 +5,6 @@
 package de.timesnake.library.entities.entity;
 
 import de.timesnake.library.entities.entity.base.AbstractSlimeBuilder;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;
@@ -30,10 +29,9 @@ public class MagmaCubeBuilder extends AbstractSlimeBuilder<MagmaCube, MagmaCubeB
       @Nullable
       @Override
       public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty,
-                                          MobSpawnType spawnReason, @Nullable SpawnGroupData entityData,
-                                          @Nullable CompoundTag entityNbt) {
+                                          MobSpawnType spawnReason, @Nullable SpawnGroupData entityData) {
         if (randomizeDataOnSpawn) {
-          return super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityNbt);
+          return super.finalizeSpawn(world, difficulty, spawnReason, entityData);
         }
         return entityData;
       }

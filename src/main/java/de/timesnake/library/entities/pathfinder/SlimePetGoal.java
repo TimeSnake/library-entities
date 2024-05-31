@@ -15,11 +15,11 @@ import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_20_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.entity.CraftEntity;
 import org.bukkit.event.entity.EntityTeleportEvent;
 
 import java.util.EnumSet;
@@ -81,14 +81,14 @@ public class SlimePetGoal extends Goal {
   @Override
   public void start() {
     this.timeToRecalcPath = 0;
-    this.oldWaterCost = this.mob.getPathfindingMalus(BlockPathTypes.WATER);
-    this.mob.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+    this.oldWaterCost = this.mob.getPathfindingMalus(PathType.WATER);
+    this.mob.setPathfindingMalus(PathType.WATER, 0.0F);
   }
 
   @Override
   public void stop() {
     this.navigation.stop();
-    this.mob.setPathfindingMalus(BlockPathTypes.WATER, this.oldWaterCost);
+    this.mob.setPathfindingMalus(PathType.WATER, this.oldWaterCost);
   }
 
   @Override
@@ -149,9 +149,9 @@ public class SlimePetGoal extends Goal {
   }
 
   private boolean canTeleportTo(BlockPos pos) {
-    BlockPathTypes pathtype = WalkNodeEvaluator.getBlockPathTypeStatic(this.level, pos.mutable());
+    PathType pathtype = WalkNodeEvaluator.getPathTypeStatic(this.mob, pos.mutable());
 
-    if (pathtype != BlockPathTypes.WALKABLE) {
+    if (pathtype != PathType.WALKABLE) {
       return false;
     } else {
       BlockState iblockdata = this.level.getBlockState(pos.below());
