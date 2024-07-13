@@ -18,6 +18,6 @@ public interface WitchProxy {
   @FieldSetter("healRaidersGoal")
   void setHealRaidersGoal(Witch instance, NearestHealableRaiderTargetGoal<Raider> goal);
 
-  @FieldSetter("healRaidersGoal")
+  @FieldSetter("attackPlayersGoal")
   void setAttackPlayersGoal(Witch instance, NearestAttackableWitchTargetGoal<Player> goal);
 }
