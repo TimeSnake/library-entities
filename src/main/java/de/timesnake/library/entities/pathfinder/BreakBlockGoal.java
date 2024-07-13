@@ -173,7 +173,7 @@ public class BreakBlockGoal extends Goal implements LocationTargetable {
 
   @Override
   public boolean requiresUpdateEveryTick() {
-    return false;
+    return true;
   }
 
   @Override
@@ -186,7 +186,7 @@ public class BreakBlockGoal extends Goal implements LocationTargetable {
     if (this.soundDelay <= 0) {
       this.entity.swing(InteractionHand.MAIN_HAND);
       this.currentBlock.getWorld().playSound(this.currentBlock.getLocation(), Sound.ENTITY_ZOMBIE_ATTACK_WOODEN_DOOR, 0.5F, 1F);
-      this.soundDelay = 20;
+      this.soundDelay = 10;
     }
     this.soundDelay--;
   }
@@ -198,19 +198,6 @@ public class BreakBlockGoal extends Goal implements LocationTargetable {
   protected static int reducedTickDelay(int serverTicks) {
     return Mth.positiveCeilDiv(serverTicks, 2);
   }
-
-  // Paper start - mob goal api
-  private com.destroystokyo.paper.entity.ai.PaperVanillaGoal<?> vanillaGoal = null;
-
-  public <T extends org.bukkit.entity.Mob> com.destroystokyo.paper.entity.ai.Goal<T> asPaperVanillaGoal() {
-    if (this.vanillaGoal == null) {
-      this.vanillaGoal = new com.destroystokyo.paper.entity.ai.PaperVanillaGoal<>(this);
-    }
-    //noinspection unchecked
-    return (com.destroystokyo.paper.entity.ai.Goal<T>) this.vanillaGoal;
-  }
-  // Paper end - mob goal api
-
 
   private boolean checkBlock(int x, int y, int z) {
     BlockPos position = new BlockPos(x, y, z);
@@ -232,7 +219,7 @@ public class BreakBlockGoal extends Goal implements LocationTargetable {
     if (deltaY > 0) {
       position = new BlockPos(x, y + 2, z); // make stairs
     } else {
-      position = new BlockPos(x, y - 1, z);// make tunnel
+      position = new BlockPos(x, y - 1, z); // make tunnel
     }
 
     if (this.isBlockBreakable(position)) {
