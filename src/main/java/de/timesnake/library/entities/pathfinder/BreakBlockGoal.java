@@ -26,37 +26,31 @@ public class BreakBlockGoal extends Goal implements LocationTargetable {
   private final double speedModifier;
   private final boolean ignoreTarget;
   private final BreakEvent event;
-  private Double targetX;
-  private Double targetY;
-  private Double targetZ;
+  private Integer targetX;
+  private Integer targetY;
+  private Integer targetZ;
   private Block currentBlock;
   private BlockPos position;
   private Material currentBlockType;
   private double remainTime;
   private int soundDelay;
 
-  public BreakBlockGoal(Mob entity, double speedModifier, boolean ignoreTarget,
-                        Material... materials) {
+  public BreakBlockGoal(Mob entity, double speedModifier, boolean ignoreTarget, Material... materials) {
     this(entity, speedModifier, ignoreTarget, null, Arrays.asList(materials));
   }
 
-  public BreakBlockGoal(Mob entity, double speedModifier, boolean ignoreTarget,
-                        Collection<Material> materials) {
+  public BreakBlockGoal(Mob entity, double speedModifier, boolean ignoreTarget, Collection<Material> materials) {
     this(entity, speedModifier, ignoreTarget, null, materials);
   }
 
-  public BreakBlockGoal(Mob entity, double speedModifier, boolean ignoreTarget,
-                        BreakEvent event, Collection<Material> materials) {
+  public BreakBlockGoal(Mob entity, double speedModifier, boolean ignoreTarget, BreakEvent event,
+                        Collection<Material> materials) {
     this.entity = entity;
     this.speedModifier = speedModifier;
     this.ignoreTarget = ignoreTarget;
     this.materials = new ArrayList<>(materials);
     this.event = event;
     this.setFlags(EnumSet.of(Flag.JUMP, Flag.MOVE, Flag.LOOK));
-  }
-
-  public List<Material> getMaterials() {
-    return materials;
   }
 
   @Override
@@ -118,7 +112,6 @@ public class BreakBlockGoal extends Goal implements LocationTargetable {
         }
       }
     }
-
     return false;
   }
 
@@ -256,10 +249,17 @@ public class BreakBlockGoal extends Goal implements LocationTargetable {
     return false;
   }
 
-  public void setTarget(Double x, Double y, Double z) {
+  public void setTarget(int x, int y, int z) {
     this.targetX = x;
     this.targetY = y;
     this.targetZ = z;
+  }
+
+  @Override
+  public void clearTarget() {
+    this.targetX = null;
+    this.targetY = null;
+    this.targetZ = null;
   }
 
   @FunctionalInterface
