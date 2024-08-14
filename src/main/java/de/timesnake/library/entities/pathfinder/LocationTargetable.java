@@ -6,5 +6,7 @@ package de.timesnake.library.entities.pathfinder;
 
 public interface LocationTargetable {
 
-  void setTarget(Double x, Double y, Double z);
+  void setTarget(int x, int y, int z);
+
+  void clearTarget();
 }

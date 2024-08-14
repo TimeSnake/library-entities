@@ -13,9 +13,9 @@ public class LocationSwellGoal extends Goal implements LocationTargetable {
 
   private final Creeper creeper;
 
-  private Double targetX;
-  private Double targetY;
-  private Double targetZ;
+  private Integer targetX;
+  private Integer targetY;
+  private Integer targetZ;
 
   private final double swellDistance;
   private final double keepSwellingDistance;
@@ -71,9 +71,16 @@ public class LocationSwellGoal extends Goal implements LocationTargetable {
   }
 
   @Override
-  public void setTarget(Double x, Double y, Double z) {
+  public void setTarget(int x, int y, int z) {
     this.targetX = x;
     this.targetY = y;
     this.targetZ = z;
+  }
+
+  @Override
+  public void clearTarget() {
+    this.targetX = null;
+    this.targetY = null;
+    this.targetZ = null;
   }
 }
