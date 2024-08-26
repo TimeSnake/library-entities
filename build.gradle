@@ -33,7 +33,7 @@ repositories {
 }
 
 dependencies {
-  compileOnly "xyz.jpenilla:reflection-remapper:0.1.0-SNAPSHOT"
+  compileOnly "xyz.jpenilla:reflection-remapper:0.1.0"
 
   compileOnly "de.timesnake:library-basic:1.+"
   compileOnly "de.timesnake:library-chat:1.+"
