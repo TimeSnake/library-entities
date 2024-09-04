@@ -1,3 +1,5 @@
+import io.papermc.paperweight.userdev.ReobfArtifactConfiguration
+
 plugins {
   id 'java'
   id 'java-base'
@@ -10,7 +12,7 @@ plugins {
 
 
 group = "de.timesnake"
-version = '3.0.0'
+version = '3.0.1'
 var projectId = 5
 
 repositories {
@@ -81,3 +83,5 @@ java {
   }
   withSourcesJar()
 }
+
+paperweight.reobfArtifactConfiguration = ReobfArtifactConfiguration.getMOJANG_PRODUCTION()
