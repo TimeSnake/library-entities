@@ -39,7 +39,6 @@ public class CowBuilder extends AnimalBuilder<Cow, CowBuilder> {
         }
         return entityData;
       }
-
       @Override
       public boolean removeWhenFarAway(double distanceSquared) {
         return !preventDespawning && super.removeWhenFarAway(distanceSquared);

@@ -4,7 +4,6 @@
 
 package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.library.entities.proxy.ProxyManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -17,11 +16,12 @@ import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.entity.CraftEntity;
+import org.bukkit.craftbukkit.event.CraftEventFactory;
 import org.bukkit.event.entity.EntityTeleportEvent;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.EnumSet;
 
 public class SlimePetGoal extends Goal {
@@ -71,7 +71,7 @@ public class SlimePetGoal extends Goal {
   @Override
   public boolean canContinueToUse() {
     return !this.navigation.isDone() && !this.unableToMove()
-        && this.mob.distanceToSqr(this.owner) > (double) (this.stopDistance * this.stopDistance);
+           && this.mob.distanceToSqr(this.owner) > (double) (this.stopDistance * this.stopDistance);
   }
 
   private boolean unableToMove() {
@@ -102,8 +102,28 @@ public class SlimePetGoal extends Goal {
         this.teleportToOwner();
       } else {
         this.mob.lookAt(this.owner, 10.0F, 10.0F);
-        ProxyManager.getInstance().getSlimeMoveControlProxy().setWantedMovement(this.mob.getMoveControl(), 1.3D);
-        ProxyManager.getInstance().getSlimeMoveControlProxy().setDirection(this.mob.getMoveControl(), this.mob.getYRot(), true);
+        Class<?> moveControlClass;
+        try {
+          moveControlClass = Class.forName("net.minecraft.world.entity.monster.Slime$SlimeMoveControl");
+        } catch (ClassNotFoundException e) {
+          throw new RuntimeException(e);
+        }
+
+        try {
+          Method setWantedMovement = moveControlClass.getMethod("setWantedMovement");
+          setWantedMovement.setAccessible(true);
+          setWantedMovement.invoke(moveControlClass, this.mob.getMoveControl(), 1.3D);
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+          throw new RuntimeException(e);
+        }
+
+        try {
+          Method setDirection = moveControlClass.getMethod("setDirection");
+          setDirection.setAccessible(true);
+          setDirection.invoke(moveControlClass, this.mob.getYRot(), true);
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+          throw new RuntimeException(e);
+        }
       }
 
     }
@@ -131,17 +151,14 @@ public class SlimePetGoal extends Goal {
     } else if (!this.canTeleportTo(new BlockPos(x, y, z))) {
       return false;
     } else {
-      CraftEntity entity = this.mob.getBukkitEntity();
-      Location to = new Location(entity.getWorld(), x + 0.5, y, z + 0.5, this.mob.getYRot(), this.mob.getXRot());
-      EntityTeleportEvent event = new EntityTeleportEvent(entity, entity.getLocation(), to);
+      EntityTeleportEvent event = CraftEventFactory.callEntityTeleportEvent(this.mob, (double) x + 0.5D, y,
+          (double) z + 0.5D);
 
-      Bukkit.getPluginManager().callEvent(event);
-
-      if (event.isCancelled()) {
+      if (event.isCancelled() || event.getTo() == null) {
         return false;
       }
 
-      to = event.getTo();
+      Location to = event.getTo();
       this.mob.moveTo(to.getX(), to.getY(), to.getZ(), to.getYaw(), to.getPitch());
       this.navigation.stop();
       return true;

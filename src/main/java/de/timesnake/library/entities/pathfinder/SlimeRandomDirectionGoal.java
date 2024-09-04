@@ -5,11 +5,12 @@
 package de.timesnake.library.entities.pathfinder;
 
 import com.destroystokyo.paper.event.entity.SlimeChangeDirectionEvent;
-import de.timesnake.library.entities.proxy.ProxyManager;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.Slime;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.EnumSet;
 
 public class SlimeRandomDirectionGoal extends Goal {
@@ -41,6 +42,19 @@ public class SlimeRandomDirectionGoal extends Goal {
       // Paper end
     }
 
-    ProxyManager.getInstance().getSlimeMoveControlProxy().setDirection(this.slime.getMoveControl(), this.chosenDegrees, false);
+    Class<?> moveControlClass;
+    try {
+      moveControlClass = Class.forName("net.minecraft.world.entity.monster.Slime$SlimeMoveControl");
+    } catch (ClassNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      Method setDirection = moveControlClass.getMethod("setDirection");
+      setDirection.setAccessible(true);
+      setDirection.invoke(moveControlClass, this.chosenDegrees, false);
+    } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+      throw new RuntimeException(e);
+    }
   }
 }

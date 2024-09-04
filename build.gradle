@@ -10,7 +10,7 @@ plugins {
 
 
 group = "de.timesnake"
-version = '2.7.0'
+version = '3.0.0'
 var projectId = 5
 
 repositories {
@@ -33,11 +33,9 @@ repositories {
 }
 
 dependencies {
-  compileOnly "xyz.jpenilla:reflection-remapper:0.1.0"
+  compileOnly "de.timesnake:library-basic:2.+"
 
-  compileOnly "de.timesnake:library-basic:1.+"
-
-  paperweight.paperDevBundle("1.20.1-R0.1-SNAPSHOT")
+  paperweight.paperDevBundle("1.21-R0.1-SNAPSHOT")
 }
 
 configurations.configureEach {
@@ -46,21 +44,6 @@ configurations.configureEach {
       substitute module("de.timesnake:library-basic") using project(":library-basic")
       substitute module("de.timesnake:library-chat") using project(":library-chat")
     }
-  }
-}
-
-tasks {
-  jar {
-    dependsOn(reobfJar)
-  }
-
-  compileJava {
-    options.encoding = 'UTF-8'
-    options.release.set(17)
-  }
-
-  javadoc {
-    options.encoding = 'UTF-8'
   }
 }
 
@@ -81,16 +64,20 @@ publishing {
   publications {
     mavenJava(MavenPublication) {
       from components.java
-
-      artifact "$buildDir/libs/${archivesBaseName}-${project.version}.jar"
     }
   }
 }
 
-tasks.withType(JavaCompile).configureEach {
-  options.encoding = 'UTF-8'
+tasks {
+  compileJava {
+    options.encoding = "UTF-8"
+    options.release = 21
+  }
 }
 
 java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(21)
+  }
   withSourcesJar()
 }

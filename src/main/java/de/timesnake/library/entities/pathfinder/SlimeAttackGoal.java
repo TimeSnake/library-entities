@@ -5,11 +5,12 @@
 package de.timesnake.library.entities.pathfinder;
 
 import com.destroystokyo.paper.event.entity.SlimeTargetLivingEntityEvent;
-import de.timesnake.library.entities.proxy.ProxyManager;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.Slime;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.EnumSet;
 
 public class SlimeAttackGoal extends Goal {
@@ -56,7 +57,7 @@ public class SlimeAttackGoal extends Goal {
       return false;
     }
     return --this.growTiredTimer > 0 && this.slime.canWander()
-        && new SlimeTargetLivingEntityEvent((org.bukkit.entity.Slime) this.slime.getBukkitEntity(),
+           && new SlimeTargetLivingEntityEvent((org.bukkit.entity.Slime) this.slime.getBukkitEntity(),
         (org.bukkit.entity.LivingEntity) entityliving.getBukkitEntity()).callEvent();
     // Paper end
   }
@@ -74,10 +75,29 @@ public class SlimeAttackGoal extends Goal {
       this.slime.lookAt(entityliving, 10.0F, 10.0F);
     }
 
-    ProxyManager.getInstance().getSlimeMoveControlProxy().setDirection(this.slime.getMoveControl(), this.slime.getYRot(),
-        ProxyManager.getInstance().getSlimeProxy().isDealsDamage(this.slime));
+    Class<?> moveControlClass;
+    try {
+      moveControlClass = Class.forName("net.minecraft.world.entity.monster.Slime$SlimeMoveControl");
+    } catch (ClassNotFoundException e) {
+      throw new RuntimeException(e);
+    }
 
+    Object result;
+    try {
+      Method isDealsDamage = this.slime.getClass().getMethod("isDealsDamage");
+      isDealsDamage.setAccessible(true);
+      result = isDealsDamage.invoke(this.slime);
+    } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+      throw new RuntimeException(e);
+    }
 
+    try {
+      Method setDirection = moveControlClass.getMethod("setDirection");
+      setDirection.setAccessible(true);
+      setDirection.invoke(moveControlClass, this.slime.getYRot(), result);
+    } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   // Paper start - clear timer and target when goal resets
