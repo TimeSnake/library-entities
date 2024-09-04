@@ -14,7 +14,20 @@ import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 public class BlazeBuilder extends MonsterBuilder<Blaze, BlazeBuilder> {
+
+  public static void setCharged(Blaze blaze, boolean charged) {
+    try {
+      Method setCharged = blaze.getClass().getMethod("setCharged");
+      setCharged.setAccessible(true);
+      setCharged.invoke(blaze, charged);
+    } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
   public BlazeBuilder() {
     super();

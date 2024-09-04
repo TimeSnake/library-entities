@@ -4,13 +4,16 @@
 
 package de.timesnake.library.entities.pathfinder;
 
-import de.timesnake.library.entities.proxy.ProxyManager;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.SpellcasterIllager;
+import org.bukkit.craftbukkit.event.CraftEventFactory;
 
 import javax.annotation.Nullable;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public abstract class SpellcasterUseSpellGoal extends Goal {
 
@@ -38,7 +41,13 @@ public abstract class SpellcasterUseSpellGoal extends Goal {
   @Override
   public void start() {
     this.attackWarmupDelay = this.adjustedTickDelay(this.getCastWarmupTime());
-    ProxyManager.getInstance().getSpellcasterIllagerProxy().setSpellCastingTickCount(this.entity, this.getCastingTime());
+    try {
+      Field spellCastingTickCount = SpellcasterIllager.class.getDeclaredField("spellCastingTickCount");
+      spellCastingTickCount.setAccessible(true);
+      spellCastingTickCount.set(this.entity, this.getCastingTime());
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      throw new RuntimeException(e);
+    }
     this.nextAttackTickCount = this.entity.tickCount + this.getCastingInterval();
     SoundEvent soundeffect = this.getSpellPrepareSound();
 
@@ -51,15 +60,25 @@ public abstract class SpellcasterUseSpellGoal extends Goal {
 
   @Override
   public void tick() {
-    --this.attackWarmupDelay;
+    this.attackWarmupDelay--;
     if (this.attackWarmupDelay == 0) {
       // CraftBukkit start
-      if (!org.bukkit.craftbukkit.event.CraftEventFactory.handleEntitySpellCastEvent(this.entity, this.getSpell())) {
+
+      if (!CraftEventFactory.handleEntitySpellCastEvent(this.entity, this.getSpell())) {
         return;
       }
       // CraftBukkit end
       this.performSpellCasting();
-      this.entity.playSound(ProxyManager.getInstance().getSpellcasterIllagerProxy().getCastingSoundEvent(this.entity), 1.0F, 1.0F);
+
+      SoundEvent soundEvent;
+      try {
+        Method getCastingSoundEvent = this.entity.getClass().getMethod("getCastingSoundEvent");
+        getCastingSoundEvent.setAccessible(true);
+        soundEvent = (SoundEvent) getCastingSoundEvent.invoke(this.entity);
+      } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+        throw new RuntimeException(e);
+      }
+      this.entity.playSound(soundEvent, 1.0F, 1.0F);
     }
 
   }

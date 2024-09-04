@@ -74,7 +74,8 @@ public class PlayerBuilder<E extends Player, B extends PlayerBuilder<E, B>> exte
   }
 
   public B setTextures(String value, String signature) {
-    return this.applyOnEntity(e -> e.getGameProfile().getProperties().put("textures", new Property("textures", value, signature)));
+    return this.applyOnEntity(e -> e.getGameProfile().getProperties().put("textures", new Property("textures", value,
+        signature)));
   }
 
   public Tuple<String, String> getTextures() {

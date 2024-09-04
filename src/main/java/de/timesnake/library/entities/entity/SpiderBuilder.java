@@ -43,7 +43,6 @@ public class SpiderBuilder<E extends Spider, B extends SpiderBuilder<E, B>> exte
         }
         return entityData;
       }
-
       @Override
       public boolean removeWhenFarAway(double distanceSquared) {
         return !preventDespawning && super.removeWhenFarAway(distanceSquared);

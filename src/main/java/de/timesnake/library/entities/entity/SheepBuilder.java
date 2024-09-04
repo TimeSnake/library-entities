@@ -5,7 +5,6 @@
 package de.timesnake.library.entities.entity;
 
 import de.timesnake.library.entities.entity.base.AnimalBuilder;
-import de.timesnake.library.entities.proxy.ProxyManager;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;
@@ -16,6 +15,8 @@ import net.minecraft.world.entity.ai.goal.EatBlockGoal;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
+
+import java.lang.reflect.Field;
 
 public class SheepBuilder extends AnimalBuilder<Sheep, SheepBuilder> {
 
@@ -31,7 +32,13 @@ public class SheepBuilder extends AnimalBuilder<Sheep, SheepBuilder> {
         if (loadDefaultPathfinderGoals) {
           super.registerGoals();
         } else {
-          ProxyManager.getInstance().getSheepProxy().setEatBlockGoal(this, new NotEatBlockGoal(this));
+          try {
+            Field eatBlockGoal = Sheep.class.getDeclaredField("eatBlockGoal");
+            eatBlockGoal.setAccessible(true);
+            eatBlockGoal.set(this, new EatBlockGoal(this));
+          } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+          }
         }
       }
 

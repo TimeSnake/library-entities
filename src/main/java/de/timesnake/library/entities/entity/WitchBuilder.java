@@ -5,7 +5,6 @@
 package de.timesnake.library.entities.entity;
 
 import de.timesnake.library.entities.entity.base.RaiderBuilder;
-import de.timesnake.library.entities.proxy.ProxyManager;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;
@@ -18,6 +17,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
+
+import java.lang.reflect.Field;
 
 public class WitchBuilder extends RaiderBuilder<Witch, WitchBuilder> {
 
@@ -33,13 +34,23 @@ public class WitchBuilder extends RaiderBuilder<Witch, WitchBuilder> {
         if (loadDefaultPathfinderGoals) {
           super.registerGoals();
         } else {
-          ProxyManager.getInstance().getWitchProxy().setHealRaidersGoal(this,
-              new NearestHealableRaiderTargetGoal<>(this, Raider.class, true,
+          try {
+            Field healRaidersGoal = Witch.class.getDeclaredField("healRaidersGoal");
+            healRaidersGoal.setAccessible(true);
+            healRaidersGoal.set(this, new NearestHealableRaiderTargetGoal<>(this, Raider.class, true,
                   (entityliving) -> entityliving != null && this.hasActiveRaid() && entityliving.getType() != EntityType.WITCH));
+          } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+          }
 
-          ProxyManager.getInstance().getWitchProxy().setAttackPlayersGoal(this,
-              new NearestAttackableWitchTargetGoal<>(this, Player.class, 10, true,
+          try {
+            Field attackPlayersGoal = Witch.class.getDeclaredField("attackPlayersGoal");
+            attackPlayersGoal.setAccessible(true);
+            attackPlayersGoal.set(this, new NearestAttackableWitchTargetGoal<>(this, Player.class, 10, true,
                   false, null));
+          } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+          }
         }
       }
 

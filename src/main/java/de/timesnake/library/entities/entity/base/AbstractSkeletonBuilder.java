@@ -8,8 +8,6 @@
 
 package de.timesnake.library.entities.entity.base;
 
-import de.timesnake.library.entities.proxy.AbstractSkeletonProxy;
-import de.timesnake.library.entities.proxy.ProxyManager;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RangedBowAttackGoal;
@@ -18,12 +16,11 @@ import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
+import java.lang.reflect.Field;
 import java.util.function.Function;
 
 
 public abstract class AbstractSkeletonBuilder<E extends AbstractSkeleton, B extends AbstractSkeletonBuilder<E, B>> extends MonsterBuilder<E, B> {
-
-  protected static final AbstractSkeletonProxy PROXY = ProxyManager.getInstance().getAbstractSkeletonProxy();
 
   public AbstractSkeletonBuilder() {
     super();
@@ -36,10 +33,22 @@ public abstract class AbstractSkeletonBuilder<E extends AbstractSkeleton, B exte
     return this.applyOnEntity(e -> {
       Goal goal = pathfinderGoal.apply(e);
       if (goal instanceof RangedBowAttackGoal<?>) {
-        PROXY.setBowGoal(e, (RangedBowAttackGoal<AbstractSkeleton>) goal);
+        try {
+          Field bowGoal = AbstractSkeleton.class.getDeclaredField("bowGoal");
+          bowGoal.setAccessible(true);
+          bowGoal.set(this, goal);
+        } catch (NoSuchFieldException | IllegalAccessException ex) {
+          throw new RuntimeException(ex);
+        }
         this.reassessWeaponGoal(priority);
       } else if (goal instanceof MeleeAttackGoal) {
-        PROXY.setMeleeGoal(e, (MeleeAttackGoal) goal);
+        try {
+          Field meleeGoal = AbstractSkeleton.class.getDeclaredField("meleeGoal");
+          meleeGoal.setAccessible(true);
+          meleeGoal.set(this, goal);
+        } catch (NoSuchFieldException | IllegalAccessException ex) {
+          throw new RuntimeException(ex);
+        }
         this.reassessWeaponGoal(priority);
       }
     });
@@ -47,8 +56,23 @@ public abstract class AbstractSkeletonBuilder<E extends AbstractSkeleton, B exte
 
   public B reassessWeaponGoal(int priority) {
     return this.applyOnEntity(e -> {
-      RangedBowAttackGoal<?> bowGoal = PROXY.getBowGoal(e);
-      MeleeAttackGoal meleeGoal = PROXY.getMeleeGoal(e);
+      RangedBowAttackGoal<?> bowGoal;
+      try {
+        Field bowGoalField = AbstractSkeleton.class.getDeclaredField("bowGoal");
+        bowGoalField.setAccessible(true);
+        bowGoal = (RangedBowAttackGoal<?>) bowGoalField.get(e);
+      } catch (NoSuchFieldException | IllegalAccessException ex) {
+        throw new RuntimeException(ex);
+      }
+
+      MeleeAttackGoal meleeGoal;
+      try {
+        Field meleeGoalField = AbstractSkeleton.class.getDeclaredField("meleeGoal");
+        meleeGoalField.setAccessible(true);
+        meleeGoal = (MeleeAttackGoal) meleeGoalField.get(e);
+      } catch (NoSuchFieldException | IllegalAccessException ex) {
+        throw new RuntimeException(ex);
+      }
 
       if (!e.level().isClientSide) {
         e.goalSelector.removeGoal(bowGoal);

@@ -5,10 +5,11 @@
 package de.timesnake.library.entities.pathfinder;
 
 import com.destroystokyo.paper.event.entity.SlimeSwimEvent;
-import de.timesnake.library.entities.proxy.ProxyManager;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.Slime;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.EnumSet;
 
 public class SlimeFloatGoal extends Goal {
@@ -38,6 +39,19 @@ public class SlimeFloatGoal extends Goal {
       this.slime.getJumpControl().jump();
     }
 
-    ProxyManager.getInstance().getSlimeMoveControlProxy().setWantedMovement(this.slime.getMoveControl(), 1.2D);
+    Class<?> moveControlClass;
+    try {
+      moveControlClass = Class.forName("net.minecraft.world.entity.monster.Slime$SlimeMoveControl");
+    } catch (ClassNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      Method setWantedMovement = moveControlClass.getMethod("setWantedMovement");
+      setWantedMovement.setAccessible(true);
+      setWantedMovement.invoke(moveControlClass, this.slime.getMoveControl(), 1.2D);
+    } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+      throw new RuntimeException(e);
+    }
   }
 }
