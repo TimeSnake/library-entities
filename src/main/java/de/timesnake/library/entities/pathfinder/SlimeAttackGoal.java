@@ -82,19 +82,19 @@ public class SlimeAttackGoal extends Goal {
       throw new RuntimeException(e);
     }
 
-    Object result;
+    boolean result;
     try {
       Method isDealsDamage = this.slime.getClass().getMethod("isDealsDamage");
       isDealsDamage.setAccessible(true);
-      result = isDealsDamage.invoke(this.slime);
+      result = (boolean) isDealsDamage.invoke(this.slime);
     } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
       throw new RuntimeException(e);
     }
 
     try {
-      Method setDirection = moveControlClass.getMethod("setDirection");
+      Method setDirection = moveControlClass.getMethod("setDirection", float.class, boolean.class);
       setDirection.setAccessible(true);
-      setDirection.invoke(moveControlClass, this.slime.getYRot(), result);
+      setDirection.invoke(this.slime.getMoveControl(), this.slime.getYRot(), result);
     } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
       throw new RuntimeException(e);
     }
