@@ -50,9 +50,9 @@ public class SlimeRandomDirectionGoal extends Goal {
     }
 
     try {
-      Method setDirection = moveControlClass.getMethod("setDirection");
+      Method setDirection = moveControlClass.getMethod("setDirection", float.class, boolean.class);
       setDirection.setAccessible(true);
-      setDirection.invoke(moveControlClass, this.chosenDegrees, false);
+      setDirection.invoke(this.slime.getMoveControl(), this.chosenDegrees, false);
     } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
       throw new RuntimeException(e);
     }

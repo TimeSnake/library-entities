@@ -47,9 +47,9 @@ public class SlimeFloatGoal extends Goal {
     }
 
     try {
-      Method setWantedMovement = moveControlClass.getMethod("setWantedMovement");
+      Method setWantedMovement = moveControlClass.getMethod("setWantedMovement", double.class);
       setWantedMovement.setAccessible(true);
-      setWantedMovement.invoke(moveControlClass, this.slime.getMoveControl(), 1.2D);
+      setWantedMovement.invoke(this.slime.getMoveControl(), 1.2D);
     } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
       throw new RuntimeException(e);
     }

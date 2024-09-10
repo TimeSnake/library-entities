@@ -110,17 +110,17 @@ public class SlimePetGoal extends Goal {
         }
 
         try {
-          Method setWantedMovement = moveControlClass.getMethod("setWantedMovement");
+          Method setWantedMovement = moveControlClass.getMethod("setWantedMovement", double.class);
           setWantedMovement.setAccessible(true);
-          setWantedMovement.invoke(moveControlClass, this.mob.getMoveControl(), 1.3D);
+          setWantedMovement.invoke(this.mob.getMoveControl(), 1.3D);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
           throw new RuntimeException(e);
         }
 
         try {
-          Method setDirection = moveControlClass.getMethod("setDirection");
+          Method setDirection = moveControlClass.getMethod("setDirection", float.class, boolean.class);
           setDirection.setAccessible(true);
-          setDirection.invoke(moveControlClass, this.mob.getYRot(), true);
+          setDirection.invoke(this.mob.getMoveControl(), this.mob.getYRot(), true);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
           throw new RuntimeException(e);
         }
