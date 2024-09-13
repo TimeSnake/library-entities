@@ -26,11 +26,11 @@ import java.util.UUID;
 
 public class PlayerBuilder<E extends Player, B extends PlayerBuilder<E, B>> extends LivingEntityBuilder<E, B> {
 
-  public static PlayerBuilder<Player, ?> ofName(String name, String skinValue, String skinSignature) {
+  public static PlayerBuilder<ServerPlayer, ?> ofName(String name, String skinValue, String skinSignature) {
     return ofName(name, name, skinValue, skinSignature);
   }
 
-  public static PlayerBuilder<Player, ?> ofName(String name, String tablistName, String skinValue,
+  public static PlayerBuilder<ServerPlayer, ?> ofName(String name, String tablistName, String skinValue,
                                                 String skinSignature) {
     GameProfile profile = new GameProfile(UUID.randomUUID(), name);
     if (skinValue != null && skinSignature != null) {
@@ -38,7 +38,7 @@ public class PlayerBuilder<E extends Player, B extends PlayerBuilder<E, B>> exte
     }
     MinecraftServer server = ((CraftServer) Bukkit.getServer()).getHandle().getServer();
     ClientInformation clientInformation = ClientInformation.createDefault();
-    Player player = new ServerPlayer(server, server.overworld(), profile, clientInformation);
+    ServerPlayer player = new ServerPlayer(server, server.overworld(), profile, clientInformation);
     try {
       Field listName = player.getClass().getField("listName");
       listName.setAccessible(true);
@@ -49,11 +49,11 @@ public class PlayerBuilder<E extends Player, B extends PlayerBuilder<E, B>> exte
     return new PlayerBuilder<>(player);
   }
 
-  public static PlayerBuilder<Player, ?> ofName(String name) {
+  public static PlayerBuilder<ServerPlayer, ?> ofName(String name) {
     return ofName(name, name, null, null);
   }
 
-  public static PlayerBuilder<Player, ?> ofName(String name, String tablistName) {
+  public static PlayerBuilder<ServerPlayer, ?> ofName(String name, String tablistName) {
     return ofName(name, tablistName, null, null);
   }
 

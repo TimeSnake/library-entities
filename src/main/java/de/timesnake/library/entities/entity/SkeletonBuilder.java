@@ -49,6 +49,13 @@ public class SkeletonBuilder extends AbstractSkeletonBuilder<Skeleton, SkeletonB
       public boolean isVehicle() {
         return !neverVehicle && super.isVehicle();
       }
+
+      @Override
+      public void reassessWeaponGoal() {
+        if (loadDefaultPathfinderGoals) {
+          super.reassessWeaponGoal();
+        }
+      }
     };
   }
 }
