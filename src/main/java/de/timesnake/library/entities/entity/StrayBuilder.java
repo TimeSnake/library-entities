@@ -71,8 +71,8 @@ public class StrayBuilder extends AbstractSkeletonBuilder<Stray, StrayBuilder> {
                 i = this.getAttackInterval();
               }
 
-              StrayBuilder.this.bowGoal.setMinAttackInterval(i);
               if (StrayBuilder.this.bowGoal != null) {
+                StrayBuilder.this.bowGoal.setMinAttackInterval(i);
                 this.goalSelector.addGoal(4, StrayBuilder.this.bowGoal);
               }
             } else if (StrayBuilder.this.meleeGoal != null) {
