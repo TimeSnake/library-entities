@@ -12,7 +12,7 @@ plugins {
 
 
 group = "de.timesnake"
-version = "3.0.1"
+version = "4.0.0"
 var projectId = 5
 
 repositories {
@@ -32,16 +32,20 @@ repositories {
 }
 
 dependencies {
-    compileOnly("de.timesnake:library-basic:2.+")
+    api("de.timesnake:library-basic:3.+")
 
     paperweight.paperDevBundle("1.21-R0.1-SNAPSHOT")
 }
 
-configurations.configureEach {
-    resolutionStrategy.dependencySubstitution {
-        if (project.parent != null) {
-            substitute(module("de.timesnake:library-basic")).using(project(":libraries:library-basic"))
-            substitute(module("de.timesnake:library-chat")).using(project(":libraries:library-chat"))
+configurations.all {
+    resolutionStrategy.dependencySubstitution.all {
+        requested.let {
+            if (it is ModuleComponentSelector && it.group == "de.timesnake") {
+                val targetProject = findProject(":${it.module}")
+                if (targetProject != null) {
+                    useTarget(targetProject)
+                }
+            }
         }
     }
 }
